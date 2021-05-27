@@ -38,7 +38,7 @@ namespace cagd
         GLuint _div_point_count;
 
     public:
-        CubicCompositeCurve3(GLuint max_arc_count = 0);
+        CubicCompositeCurve3(GLuint arcCount = 0);
         ~CubicCompositeCurve3();
 
         CubicBezierArc3* InitializeArc();
@@ -46,8 +46,8 @@ namespace cagd
         GLboolean UpdateImageOfArc(const GLuint arcIndex);
         GLboolean InsertNewArc();
 
-        GLboolean JoinExistingArcs(const GLuint &arc_ind1, Direction dir1, const GLuint &arc_ind2, Direction dir2);
         GLboolean ContinueExistingArc(const GLuint &index, Direction dir);
+        GLboolean JoinExistingArcs(const GLuint &arc_ind1, Direction dir1, const GLuint &arc_ind2, Direction dir2);
         GLboolean MergeExistingArcs(const GLuint &arc_ind1, Direction dir1, const GLuint &arc_ind2, Direction dir2);
 
         GLboolean RenderAllArcs();
@@ -55,8 +55,8 @@ namespace cagd
         GLboolean RenderAllSecondOrderDerivatives();
         GLboolean RenderSelectedArc(const int &d1, const int &d2, GLuint arcInd, int render_data);
 
-        GLboolean GetDataPointValues(const GLuint &arcInd, const GLuint &dataPointInd, GLdouble &x, GLdouble &y, GLdouble &z);
         GLboolean GetDataPointValues(const GLuint &arcInd, const GLuint &dataPointInd, DCoordinate3 &p);
+        GLboolean GetDataPointValues(const GLuint &arcInd, const GLuint &dataPointInd, GLdouble &x, GLdouble &y, GLdouble &z);
         GLboolean ChangeDataPointValue(const GLuint &arcInd, const GLuint &dataPointInd, const GLuint &pointComponentInd, const GLdouble &val);
 
         GLboolean GetColorComponents(const GLuint &arcInd, GLdouble &r, GLdouble &g, GLdouble &b);

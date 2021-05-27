@@ -10,8 +10,16 @@
 
 namespace cagd
 {
+    class TensorProductSurface3;
+
+    std::ostream& operator << (std::ostream& lhs, const TensorProductSurface3& rhs);
+    std::istream& operator >> (std::istream& lhs, TensorProductSurface3& rhs);
+
     class TensorProductSurface3
     {
+        friend std::ostream& operator << (std::ostream& lhs, const TensorProductSurface3& rhs);
+        friend std::istream& operator >> (std::istream& lhs, TensorProductSurface3& rhs);
+
     public:
         // a nested class the stores the zeroth and higher order partial derivatives associated with a
         // surface point

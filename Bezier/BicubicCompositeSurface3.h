@@ -8,8 +8,16 @@
 
 namespace cagd
 {
+    class BicubicCompositeSurface3;
+
+    std::ostream& operator << (std::ostream& lhs, const BicubicCompositeSurface3& rhs);
+    std::istream& operator >> (std::istream& lhs, BicubicCompositeSurface3& rhs);
+
     class BicubicCompositeSurface3
     {
+        friend std::ostream& operator << (std::ostream& lhs, const BicubicCompositeSurface3& rhs);
+        friend std::istream& operator >> (std::istream& lhs, BicubicCompositeSurface3& rhs);
+
     public:
         enum Direction{N, NW, W, SW, S, SE, E, NE};
 
@@ -22,8 +30,7 @@ namespace cagd
             //QOpenGLTexture      *texture;  // use pointers to pre-defined textures
             //ShaderProgram       *shaders;   // use pointers to pre-defined shader programs
 
-            std::vector<PatchAttributes*> neighbours;
-            Direction         connection_type[8];
+            std::vector<PatchAttributes*>   neighbours;
 
             RowMatrix<GenericCurve3*>* u_lines;
             RowMatrix<GenericCurve3*>* v_lines;
@@ -35,21 +42,22 @@ namespace cagd
         };
 
     protected:
+        std::vector<PatchAttributes> _attributes;
+        GLuint _iso_line_count;
 
 
     public:
-        std::vector<PatchAttributes> _attributes;
-
-        GLuint _iso_line_count;
         // special/default ctor
-        BicubicCompositeSurface3();
+        BicubicCompositeSurface3(GLuint patchCount = 0);
 
         // operations
         BicubicBezierPatch* InitializePatch();
         GLboolean UpdateVBOs(PatchAttributes &attribute);
-        GLint IndexOfAttribute(const PatchAttributes &attribute) const;
         GLboolean InsertNewPatch();
         GLboolean DeleteExistingPatch(GLuint index);
+
+        GLint     IndexOfAttribute(const PatchAttributes &attribute) const;
+
         GLboolean ContinueExistingPatch(const GLuint &index, Direction direction);
         GLboolean JoinExistingPatches(const GLuint &firstPatchIndex, Direction firstDirection, const GLuint &secondPatchIndex, Direction secondDirection);
         GLboolean MergeExistingPatches(const GLuint &firstPatchIndex, Direction firstDirection, const GLuint &secondPatchIndex, Direction secondDirection);

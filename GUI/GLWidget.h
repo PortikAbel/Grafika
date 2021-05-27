@@ -11,7 +11,7 @@
 #include "../Core/ShaderPrograms.h"
 #include "../Cyclic/CyclicCurves3.h"
 #include "../Bezier/CubicCompositeCurve3.h"
-#include "../Bezier/BicubicBezierPatches.h"
+#include "../Bezier/BicubicCompositeSurface3.h"
 
 namespace cagd
 {
@@ -57,7 +57,7 @@ namespace cagd
         void    _destroyShaders();
 
         // a number that can be used to switch between different test-cases
-        int  _homework_id = 5;
+        int  _homework_id = 6;
 
         // DCoordinates + TemplateMatrices
         // ID = 0
@@ -142,25 +142,24 @@ namespace cagd
         bool    _showFirstOrderCurveDerivatives = false;
         bool    _showSecondOrderCurveDerivatives = false;
 
-        bool _createCubicBezierArcs();
-        void _destroyCubicBezierArcs();
-        bool _renderCubicBezierArcs();
+        bool _createCubicCompositeCurve();
+        void _destroyCubicCompositeCurve();
+        bool _renderCubicCompositeCurve();
 
         // Bezier patches
         // ID = 6
 
-        BicubicBezierPatch      _patch;
-        TriangulatedMesh3*      _before_interpolation = nullptr;
-        TriangulatedMesh3*      _after_interpolation = nullptr;
-        bool                    _show_bb_patch = true, _show_ip_bb_patch = true;
-        RowMatrix<GenericCurve3*>*  _uIsoparametricLines = nullptr;
-        RowMatrix<GenericCurve3*>*  _vIsoparametricLines = nullptr;
-        bool                    _show_patch_d1_u = false;
-        bool                    _show_patch_d1_v = false;
+        BicubicCompositeSurface3*   _compositeSurface;
+        GLuint      _selectedPatch  = 0;
+        GLuint      _selectedPointRow   = 0,    _selectedPointCol = 0;
+        bool        _showIsoLinesU      = false;
+        bool        _showIsoLinesV      = false;
+        bool        _showIsoLinesD1U    = false;
+        bool        _showIsoLinesD1V    = false;
 
-        bool _createBicubicBezierPatches();
-        void _destroyBicubicBezierPatchImages();
-        bool _renderBicubicBezierPatches();
+        bool _createBicubicCompositeSurface();
+        void _destroyBicubicCompositeSurface();
+        bool _renderBicubicCompositeSurface();
 
     private slots:
         void _animate();
@@ -236,10 +235,10 @@ namespace cagd
         void set_arc_d1_visibility(bool);
         void set_arc_d2_visibility(bool);
 
-        void setBbPatchVisibility(bool);
-        void setIpBbPatchVisibility(bool);
-        void setBbPatchD1UVisibility(bool);
-        void setBbPatchD1VVisibility(bool);
+        void setIsoLineUVisibility(bool);
+        void setIsoLineVVisibility(bool);
+        void setIsoLineD1UVisibility(bool);
+        void setIsoLineD1VVisibility(bool);
 
     signals:
         void setAngle(int);

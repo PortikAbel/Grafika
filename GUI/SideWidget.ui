@@ -232,7 +232,7 @@
    <item>
     <widget class="QToolBox" name="toolBox">
      <property name="currentIndex">
-      <number>5</number>
+      <number>6</number>
      </property>
      <widget class="QWidget" name="triangle_page">
       <property name="geometry">
@@ -1043,40 +1043,26 @@
          <item row="0" column="0">
           <widget class="QLabel" name="showBezierPatchLabel">
            <property name="text">
-            <string>Show Bezier Patch</string>
+            <string>Show U iso lines</string>
            </property>
           </widget>
          </item>
          <item row="0" column="1">
-          <widget class="QCheckBox" name="show_bb_patch_check_box">
+          <widget class="QCheckBox" name="show_iso_u_check_box">
            <property name="checked">
-            <bool>true</bool>
+            <bool>false</bool>
            </property>
           </widget>
          </item>
          <item row="1" column="0">
           <widget class="QLabel" name="showDerivativesInDirULabel">
            <property name="text">
-            <string>Show derivatives in dir U</string>
+            <string>Show V iso lines</string>
            </property>
           </widget>
          </item>
          <item row="1" column="1">
-          <widget class="QCheckBox" name="patch_d1_u_check_box"/>
-         </item>
-         <item row="3" column="0">
-          <widget class="QLabel" name="showInterpolatedBezierPatchLabel">
-           <property name="text">
-            <string>Show Interpolated Bezier Patch</string>
-           </property>
-          </widget>
-         </item>
-         <item row="3" column="1">
-          <widget class="QCheckBox" name="show_ip_bb_patch_check_box">
-           <property name="checked">
-            <bool>true</bool>
-           </property>
-          </widget>
+          <widget class="QCheckBox" name="show_iso_v_check_box"/>
          </item>
          <item row="2" column="0">
           <widget class="QLabel" name="showDerivativesInDirVLabel">
@@ -1086,7 +1072,21 @@
           </widget>
          </item>
          <item row="2" column="1">
-          <widget class="QCheckBox" name="patch_d1_v_check_box"/>
+          <widget class="QCheckBox" name="show_iso_d1_u_check_box"/>
+         </item>
+         <item row="3" column="0">
+          <widget class="QLabel" name="showInterpolatedBezierPatchLabel">
+           <property name="text">
+            <string>Show derivatives in dir V</string>
+           </property>
+          </widget>
+         </item>
+         <item row="3" column="1">
+          <widget class="QCheckBox" name="show_iso_d1_v_check_box">
+           <property name="checked">
+            <bool>false</bool>
+           </property>
+          </widget>
          </item>
         </layout>
        </item>
@@ -1099,9 +1099,9 @@
  <resources/>
  <connections>
   <connection>
-   <sender>show_bb_patch_check_box</sender>
+   <sender>show_iso_u_check_box</sender>
    <signal>toggled(bool)</signal>
-   <receiver>patch_d1_u_check_box</receiver>
+   <receiver>show_iso_v_check_box</receiver>
    <slot>setChecked(bool)</slot>
    <hints>
     <hint type="sourcelabel">
@@ -1115,9 +1115,9 @@
    </hints>
   </connection>
   <connection>
-   <sender>show_bb_patch_check_box</sender>
+   <sender>show_iso_u_check_box</sender>
    <signal>toggled(bool)</signal>
-   <receiver>patch_d1_v_check_box</receiver>
+   <receiver>show_iso_d1_u_check_box</receiver>
    <slot>setChecked(bool)</slot>
    <hints>
     <hint type="sourcelabel">

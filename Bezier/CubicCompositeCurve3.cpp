@@ -101,11 +101,11 @@ namespace cagd {
         }
     }
 
-    CubicCompositeCurve3::CubicCompositeCurve3(GLuint max_arc_count):
+    CubicCompositeCurve3::CubicCompositeCurve3(GLuint arcCount):
        _div_point_count(100)
     {
-        _attributes.resize(max_arc_count);
-        for (GLuint i = 0; i < max_arc_count; i++)
+        _attributes.resize(arcCount);
+        for (GLuint i = 0; i < arcCount; i++)
         {
             _attributes[i].arc = InitializeArc();
             UpdateImageOfArc(i);

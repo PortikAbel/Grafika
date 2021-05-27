@@ -849,7 +849,7 @@ namespace cagd
     // methods of cubic bezier arcs
     //-----------------------------
 
-    bool GLWidget::_createCubicBezierArcs()
+    bool GLWidget::_createCubicCompositeCurve()
     {
         _compositeCurve = new CubicCompositeCurve3(1);
         if (!_compositeCurve)
@@ -860,7 +860,7 @@ namespace cagd
         return true;
     }
 
-    void GLWidget::_destroyCubicBezierArcs()
+    void GLWidget::_destroyCubicCompositeCurve()
     {
         if (_compositeCurve)
         {
@@ -869,7 +869,7 @@ namespace cagd
         }
     }
 
-    bool GLWidget::_renderCubicBezierArcs()
+    bool GLWidget::_renderCubicCompositeCurve()
     {
         if (!_compositeCurve)
         {
@@ -897,98 +897,10 @@ namespace cagd
     // methods of bicubic bezier patches
     //----------------------------------
 
-    bool GLWidget::_createBicubicBezierPatches()
+    bool GLWidget::_createBicubicCompositeSurface()
     {
-        _patch.SetData(0, 0, -2.0, -2.0, 0.0);
-        _patch.SetData(0, 1, -2.0, -1.0, 0.0);
-        _patch.SetData(0, 2, -2.0, 1.0, 0.0);
-        _patch.SetData(0, 3, -2.0, 2.0, 0.0);
-
-        _patch.SetData(1, 0, -1.0, -2.0, 0.0);
-        _patch.SetData(1, 1, -1.0, -1.0, 2.0);
-        _patch.SetData(1, 2, -1.0, 1.0, 2.0);
-        _patch.SetData(1, 3, -1.0, 2.0, 0.0);
-
-        _patch.SetData(2, 0, 1.0, -2.0, 0.0);
-        _patch.SetData(2, 1, 1.0, -1.0, 2.0);
-        _patch.SetData(2, 2, 1.0, 1.0, 2.0);
-        _patch.SetData(2, 3, 1.0, 2.0, 0.0);
-
-        _patch.SetData(3, 0, 2.0, -2.0, 0.0);
-        _patch.SetData(3, 1, 2.0, -1.0, 0.0);
-        _patch.SetData(3, 2, 2.0, 1.0, 0.0);
-        _patch.SetData(3, 3, 2.0, 2.0, 0.0);
-
-        if (!_patch.UpdateVertexBufferObjectsOfData())
-        {
-            return false;
-        }
-
-        _before_interpolation = _patch.GenerateImage(30, 30, GL_STATIC_DRAW);
-
-        if (!_before_interpolation || !_before_interpolation->UpdateVertexBufferObjects())
-        {
-            return false;
-        }
-
-        _uIsoparametricLines = _patch.GenerateUIsoparametricLines(30, 1, 30, GL_STATIC_DRAW);
-        _vIsoparametricLines = _patch.GenerateVIsoparametricLines(30, 1, 30, GL_STATIC_DRAW);
-
-        if (!_uIsoparametricLines || !_vIsoparametricLines)
-        {
-            return false;
-        }
-
-        for (GLuint i = 0; i < _uIsoparametricLines->GetColumnCount(); i++)
-        {
-            if(!(*_uIsoparametricLines)[i]->UpdateVertexBufferObjects(0.05))
-            {
-                return false;
-            }
-        }
-
-        for (GLuint i = 0; i < _vIsoparametricLines->GetColumnCount(); i++)
-        {
-            if(!(*_vIsoparametricLines)[i]->UpdateVertexBufferObjects(0.05))
-            {
-                return false;
-            }
-        }
-
-        // define an interpolation problem
-        // 1: create a knot vector in u-direction
-        RowMatrix<GLdouble> u_knot_vector(4);
-        u_knot_vector(0) = 0.0;
-        u_knot_vector(1) = 1.0 / 3.0;
-        u_knot_vector(2) = 2.0 / 3.0;
-        u_knot_vector(3) = 1.0;
-
-        // 2: create a knot vector in v-direction
-        ColumnMatrix<GLdouble> v_knot_vector(4);
-        v_knot_vector(0) = 0.0;
-        v_knot_vector(1) = 1.0 / 3.0;
-        v_knot_vector(2) = 2.0 / 3.0;
-        v_knot_vector(3) = 1.0;
-
-        // 3: define a matrix of data points, e. g. set them to the original control points
-        Matrix<DCoordinate3> data_points_to_interpolate(4, 4);
-        for (GLuint row = 0; row < 4; row++)
-        {
-            for (GLuint column = 0; column < 4; column++)
-            {
-                _patch.GetData(row, column, data_points_to_interpolate(row, column));
-            }
-        }
-
-        // 4: solve the interpolation problem and generate the mesh of the interpolating patch
-        if (!_patch.UpdateDataForInterpolation(u_knot_vector, v_knot_vector, data_points_to_interpolate))
-        {
-            return false;
-        }
-
-        _after_interpolation = _patch.GenerateImage(30, 30, GL_STATIC_DRAW);
-
-        if (!_after_interpolation || !_after_interpolation->UpdateVertexBufferObjects())
+        _compositeSurface = new BicubicCompositeSurface3(1);
+        if (!_compositeSurface)
         {
             return false;
         }
@@ -996,99 +908,34 @@ namespace cagd
         return true;
     }
 
-    void GLWidget::_destroyBicubicBezierPatchImages()
+    void GLWidget::_destroyBicubicCompositeSurface()
     {
-        if (_before_interpolation)
+        if (_compositeSurface)
         {
-            delete _before_interpolation;
-            _before_interpolation = nullptr;
-        }
-        if (_after_interpolation)
-        {
-            delete _after_interpolation;
-            _after_interpolation = nullptr;
-        }
-        if (_uIsoparametricLines)
-        {
-            delete _uIsoparametricLines;
-            _uIsoparametricLines = nullptr;
-        }
-        if (_vIsoparametricLines)
-        {
-            delete _vIsoparametricLines;
-            _vIsoparametricLines = nullptr;
+            delete _compositeCurve;
+            _compositeCurve = nullptr;
         }
     }
 
-    bool GLWidget::_renderBicubicBezierPatches()
+    bool GLWidget::_renderBicubicCompositeSurface()
     {
-        if (!_dl || !_before_interpolation || !_after_interpolation)
+        if (!_compositeSurface)
         {
             return false;
         }
 
-        bool ret_val = true;
-
-        if (!_patch.RenderData(GL_LINE_STRIP))
+        if (!_compositeSurface->RenderAllPatches())
         {
             return false;
         }
 
-        for (GLuint i = 0; i < _uIsoparametricLines->GetColumnCount(); i++)
+        // TODO: render iso lines & derivatives
+        if (_showIsoLinesU && false)
         {
-            (*_uIsoparametricLines)[i]->RenderDerivatives(0, GL_LINE_STRIP);
+            return false;
         }
 
-        for (GLuint i = 0; i < _vIsoparametricLines->GetColumnCount(); i++)
-        {
-            (*_vIsoparametricLines)[i]->RenderDerivatives(0, GL_LINE_STRIP);
-        }
-
-        glColor3f(1.0f, 0.0f, 0.0f);
-        if (_show_patch_d1_u)
-        {
-            for (GLuint i = 0; i < _uIsoparametricLines->GetColumnCount(); i++)
-            {
-                (*_uIsoparametricLines)[i]->RenderDerivatives(1, GL_LINES);
-                (*_uIsoparametricLines)[i]->RenderDerivatives(1, GL_POINTS);
-            }
-        }
-
-        if (_show_patch_d1_v)
-        {
-            for (GLuint i = 0; i < _vIsoparametricLines->GetColumnCount(); i++)
-            {
-                (*_vIsoparametricLines)[i]->RenderDerivatives(1, GL_LINES);
-                (*_vIsoparametricLines)[i]->RenderDerivatives(1, GL_POINTS);
-            }
-        }
-
-        glEnable(GL_LIGHTING);
-        glEnable(GL_NORMALIZE);
-        _dl->Enable();
-
-        if (_show_bb_patch)
-        {
-            MatFBRuby.Apply();
-            ret_val &= _before_interpolation->Render();
-        }
-
-        if (_show_ip_bb_patch)
-        {
-            glEnable(GL_BLEND);
-            glDepthMask(GL_FALSE);
-            glBlendFunc(GL_SRC_ALPHA, GL_ONE);
-                MatFBTurquoise.Apply();
-                ret_val &= _after_interpolation->Render();
-            glDepthMask(GL_TRUE);
-            glDisable(GL_BLEND);
-        }
-
-        _dl->Disable();
-        glDisable(GL_NORMALIZE);
-        glDisable(GL_LIGHTING);
-
-        return ret_val;
+        return true;
     }
 
     //----------------------------
@@ -1135,8 +982,8 @@ namespace cagd
         _destroyAllExistingParametricCurvesAndTheirImages();
         _destroyAllExistingParametricSurfacesAndTheirImages();
         _destroyCyclicCurvesAndTheirImages();
-        _destroyCubicBezierArcs();
-        _destroyBicubicBezierPatchImages();
+        _destroyCubicCompositeCurve();
+        _destroyBicubicCompositeSurface();
         _destroyDl();
         _destroyTextures();
         _destroyShaders();
@@ -1223,12 +1070,12 @@ namespace cagd
                 throw Exception("Could not create cyclic curves");
             }
 
-            if (!_createCubicBezierArcs())
+            if (!_createCubicCompositeCurve())
             {
                 throw Exception("Could not create cubic bezier arc");
             }
 
-            if (!_createBicubicBezierPatches())
+            if (!_createBicubicCompositeSurface())
             {
                 throw Exception("Could not create bicubic bezier patches");
             }
@@ -1313,10 +1160,10 @@ namespace cagd
                 _renderCyclicCurves();
                 break;
             case 5:
-                _renderCubicBezierArcs();
+                _renderCubicCompositeCurve();
                 break;
             case 6:
-                _renderBicubicBezierPatches();
+                _renderBicubicCompositeSurface();
                 break;
             }
 
@@ -1488,7 +1335,15 @@ namespace cagd
     {
         if (_homework_id != id)
         {
+            if (_homework_id == 1)
+            {
+                _timer->stop();
+            }
             _homework_id = id;
+            if (_homework_id == 1)
+            {
+                _timer->start();
+            }
             update();
         }
     }
@@ -1708,24 +1563,24 @@ namespace cagd
         update();
     }
 
-    void GLWidget::setBbPatchVisibility(bool visibility)
+    void GLWidget::setIsoLineUVisibility(bool visibility)
     {
-        _show_bb_patch = visibility;
+        _showIsoLinesU = visibility;
         update();
     }
-    void GLWidget::setIpBbPatchVisibility(bool visibility)
+    void GLWidget::setIsoLineVVisibility(bool visibility)
     {
-        _show_ip_bb_patch = visibility;
+        _showIsoLinesV = visibility;
         update();
     }
-    void GLWidget::setBbPatchD1UVisibility(bool visibility)
+    void GLWidget::setIsoLineD1UVisibility(bool visibility)
     {
-        _show_patch_d1_u = visibility;
+        _showIsoLinesD1U = visibility;
         update();
     }
-    void GLWidget::setBbPatchD1VVisibility(bool visibility)
+    void GLWidget::setIsoLineD1VVisibility(bool visibility)
     {
-        _show_patch_d1_v = visibility;
+        _showIsoLinesD1V = visibility;
         update();
     }
 }
