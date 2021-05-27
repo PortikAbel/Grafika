@@ -72,6 +72,7 @@ FORMS += \
 HEADERS += \
     Bezier/BicubicBezierPatches.h \
     Bezier/CubicBezierArcs3.h \
+    Bezier/CubicCompositeCurve3.h \
     Core/Colors4.h \
     Core/Constants.h \
     Core/DCoordinates3.h \
@@ -100,6 +101,7 @@ HEADERS += \
 SOURCES += \
     Bezier/BicubicBezierPatches.cpp \
     Bezier/CubicBezierArcs3.cpp \
+    Bezier/CubicCompositeCurve3.cpp \
     Core/GenericCurves3.cpp \
     Core/Lights.cpp \
     Core/LinearCombination3.cpp \
