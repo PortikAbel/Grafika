@@ -849,49 +849,10 @@ namespace cagd
     // methods of cubic bezier arcs
     //-----------------------------
 
-    bool GLWidget::_createCubicBezierArc()
+    bool GLWidget::_createCubicBezierArcs()
     {
-        _arc = new (nothrow) CubicBezierArc3(GL_STATIC_DRAW);
-
-        if (!_arc)
-        {
-            return false;
-        }
-
-        _arc_knot_vector.ResizeRows(4);
-        _arc_data_points.ResizeRows(4);
-
-        for (int i = 0; i < 4; i++)
-        {
-            _arc_knot_vector[i] = i / 3.0;
-            DCoordinate3& cp = (*_arc)[i];
-            cp[0] = -3 + 2 * i;
-            cp[1] = i % 2;
-            _arc_data_points[i] = cp;
-        }
-
-        emit arc_control_point_x_changed(_arc_data_points[_arc_selected_cp].x());
-        emit arc_control_point_y_changed(_arc_data_points[_arc_selected_cp].y());
-        emit arc_control_point_z_changed(_arc_data_points[_arc_selected_cp].z());
-
-        return _updateImageOfCubicBezierArc();
-    }
-
-    bool GLWidget::_updateImageOfCubicBezierArc()
-    {
-        if (!_arc->UpdateVertexBufferObjectsOfData())
-        {
-            _destroyCubicBezierArc();
-            return false;
-        }
-
-        if (_image_of_arc)
-        {
-            delete _image_of_arc;
-        }
-        _image_of_arc = _arc->GenerateImage(2, _arc_div_point_count, GL_STATIC_DRAW);
-
-        if (!_image_of_arc || !_image_of_arc->UpdateVertexBufferObjects())
+        _compositeCurve = new CubicCompositeCurve3(1);
+        if (!_compositeCurve)
         {
             return false;
         }
@@ -899,54 +860,36 @@ namespace cagd
         return true;
     }
 
-    void GLWidget::_destroyCubicBezierArc()
+    void GLWidget::_destroyCubicBezierArcs()
     {
-        if (_arc)
+        if (_compositeCurve)
         {
-            delete _arc;
-            _arc = nullptr;
-        }
-        if (_image_of_arc)
-        {
-            delete _image_of_arc;
-            _image_of_arc = nullptr;
+            delete _compositeCurve;
+            _compositeCurve = nullptr;
         }
     }
 
-    bool GLWidget::_renderCubicBezierArc()
+    bool GLWidget::_renderCubicBezierArcs()
     {
-        if (!_arc || !_image_of_arc)
+        if (!_compositeCurve)
         {
             return false;
         }
 
-        if (!_arc->RenderData(GL_LINE_STRIP))
+        if (!_compositeCurve->RenderAllArcs())
         {
             return false;
         }
-        glPointSize(10.0f);
-        glBegin(GL_POINTS);
-            glVertex3dv(&(*_arc)[_arc_selected_cp][0]);
-        glEnd();
-        glPointSize(1.0f);
-        glColor3f(1.0f, 0.0f, 0.0f);
-        _image_of_arc->RenderDerivatives(0, GL_LINE_STRIP);
 
-        glPointSize(5.0f);
-        if (_show_arc_d1)
+        if (_showFirstOrderCurveDerivatives && !_compositeCurve->RenderAllFirstOrderDerivatives())
         {
-            glColor3f(0.0f, 1.0f, 0.0f);
-            _image_of_arc->RenderDerivatives(1, GL_LINES);
-            _image_of_arc->RenderDerivatives(1, GL_POINTS);
+            return false;
         }
-        if (_show_arc_d2)
-        {
-            glColor3f(0.0f, 0.0f, 1.0f);
-            _image_of_arc->RenderDerivatives(2, GL_LINES);
-            _image_of_arc->RenderDerivatives(2, GL_POINTS);
-        }
-        glPointSize(1.0f);
 
+        if (_showSecondOrderCurveDerivatives && !_compositeCurve->RenderAllSecondOrderDerivatives())
+        {
+            return false;
+        }
         return true;
     }
 
@@ -1192,7 +1135,7 @@ namespace cagd
         _destroyAllExistingParametricCurvesAndTheirImages();
         _destroyAllExistingParametricSurfacesAndTheirImages();
         _destroyCyclicCurvesAndTheirImages();
-        _destroyCubicBezierArc();
+        _destroyCubicBezierArcs();
         _destroyBicubicBezierPatchImages();
         _destroyDl();
         _destroyTextures();
@@ -1280,7 +1223,7 @@ namespace cagd
                 throw Exception("Could not create cyclic curves");
             }
 
-            if (!_createCubicBezierArc())
+            if (!_createCubicBezierArcs())
             {
                 throw Exception("Could not create cubic bezier arc");
             }
@@ -1370,7 +1313,7 @@ namespace cagd
                 _renderCyclicCurves();
                 break;
             case 5:
-                _renderCubicBezierArc();
+                _renderCubicBezierArcs();
                 break;
             case 6:
                 _renderBicubicBezierPatches();
@@ -1723,50 +1666,46 @@ namespace cagd
 
     void GLWidget::set_selected_cp_arc(int index)
     {
-        _arc_selected_cp = index;
-        emit arc_control_point_x_changed(_arc_data_points[_arc_selected_cp].x());
-        emit arc_control_point_y_changed(_arc_data_points[_arc_selected_cp].y());
-        emit arc_control_point_z_changed(_arc_data_points[_arc_selected_cp].z());
-    }
-    void GLWidget::set_arc_d1_visibility(bool value)
-    {
-        _show_arc_d1 = value;
-        update();
-    }
-    void GLWidget::set_arc_d2_visibility(bool value)
-    {
-        _show_arc_d2 = value;
-        update();
+        _selectedCurvePoint = index;
+        DCoordinate3 selectedPoint;
+        _compositeCurve->GetDataPointValues(_selectedCurve, _selectedCurvePoint, selectedPoint);
+        emit arc_control_point_x_changed(selectedPoint.x());
+        emit arc_control_point_y_changed(selectedPoint.y());
+        emit arc_control_point_z_changed(selectedPoint.z());
     }
     void GLWidget::arc_cp_set_x(double x)
     {
-        _arc_data_points[_arc_selected_cp].x() = x;
-        (*_arc)[_arc_selected_cp].x() = x;
-        _updateImageOfCubicBezierArc();
+        DCoordinate3 pointToUpdate;
+        _compositeCurve->GetDataPointValues(_selectedCurve, _selectedCurvePoint, pointToUpdate);
+        pointToUpdate.x() = x;
+        _compositeCurve->UpdateArc(_selectedCurve, _selectedCurvePoint, pointToUpdate);
         update();
     }
     void GLWidget::arc_cp_set_y(double y)
     {
-        _arc_data_points[_arc_selected_cp].y() = y;
-        (*_arc)[_arc_selected_cp].y() = y;
-        _updateImageOfCubicBezierArc();
+        DCoordinate3 pointToUpdate;
+        _compositeCurve->GetDataPointValues(_selectedCurve, _selectedCurvePoint, pointToUpdate);
+        pointToUpdate.y() = y;
+        _compositeCurve->UpdateArc(_selectedCurve, _selectedCurvePoint, pointToUpdate);
         update();
     }
     void GLWidget::arc_cp_set_z(double z)
     {
-        _arc_data_points[_arc_selected_cp].z() = z;
-        (*_arc)[_arc_selected_cp].z() = z;
-        _updateImageOfCubicBezierArc();
+        DCoordinate3 pointToUpdate;
+        _compositeCurve->GetDataPointValues(_selectedCurve, _selectedCurvePoint, pointToUpdate);
+        pointToUpdate.z() = z;
+        _compositeCurve->UpdateArc(_selectedCurve, _selectedCurvePoint, pointToUpdate);
         update();
     }
-    void GLWidget::set_arc_div_point_count(int div_point_count)
+    void GLWidget::set_arc_d1_visibility(bool value)
     {
-        if (_arc_div_point_count != div_point_count)
-        {
-            _arc_div_point_count = div_point_count;
-            _updateImageOfCubicBezierArc();
-            update();
-        }
+        _showFirstOrderCurveDerivatives = value;
+        update();
+    }
+    void GLWidget::set_arc_d2_visibility(bool value)
+    {
+        _showSecondOrderCurveDerivatives = value;
+        update();
     }
 
     void GLWidget::setBbPatchVisibility(bool visibility)

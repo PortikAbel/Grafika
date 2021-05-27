@@ -10,7 +10,7 @@
 #include "../Core/Lights.h"
 #include "../Core/ShaderPrograms.h"
 #include "../Cyclic/CyclicCurves3.h"
-#include "../Bezier/CubicBezierArcs3.h"
+#include "../Bezier/CubicCompositeCurve3.h"
 #include "../Bezier/BicubicBezierPatches.h"
 
 namespace cagd
@@ -57,7 +57,7 @@ namespace cagd
         void    _destroyShaders();
 
         // a number that can be used to switch between different test-cases
-        int  _homework_id = 6;
+        int  _homework_id = 5;
 
         // DCoordinates + TemplateMatrices
         // ID = 0
@@ -136,18 +136,15 @@ namespace cagd
         // Bezier curves
         // ID = 5
 
-        CubicBezierArc3*            _arc;
-        GenericCurve3*              _image_of_arc = nullptr;
-        ColumnMatrix<GLdouble>      _arc_knot_vector;
-        ColumnMatrix<DCoordinate3>  _arc_data_points;
-        int                         _arc_div_point_count = 200;
-        int                         _arc_selected_cp = 0;
-        bool    _show_arc_d1 = false, _show_arc_d2 = false;
+        CubicCompositeCurve3*   _compositeCurve;
+        GLuint      _selectedCurve      = 0;
+        GLuint      _selectedCurvePoint = 0;
+        bool    _showFirstOrderCurveDerivatives = false;
+        bool    _showSecondOrderCurveDerivatives = false;
 
-        bool _createCubicBezierArc();
-        bool _updateImageOfCubicBezierArc();
-        void _destroyCubicBezierArc();
-        bool _renderCubicBezierArc();
+        bool _createCubicBezierArcs();
+        void _destroyCubicBezierArcs();
+        bool _renderCubicBezierArcs();
 
         // Bezier patches
         // ID = 6
@@ -238,7 +235,6 @@ namespace cagd
         void arc_cp_set_z(double);
         void set_arc_d1_visibility(bool);
         void set_arc_d2_visibility(bool);
-        void set_arc_div_point_count(int);
 
         void setBbPatchVisibility(bool);
         void setIpBbPatchVisibility(bool);

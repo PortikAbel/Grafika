@@ -232,7 +232,7 @@
    <item>
     <widget class="QToolBox" name="toolBox">
      <property name="currentIndex">
-      <number>6</number>
+      <number>5</number>
      </property>
      <widget class="QWidget" name="triangle_page">
       <property name="geometry">
@@ -1018,26 +1018,6 @@
            </property>
            <property name="singleStep">
             <double>0.100000000000000</double>
-           </property>
-          </widget>
-         </item>
-         <item row="6" column="0">
-          <widget class="QLabel" name="divisionPointCountLabel">
-           <property name="text">
-            <string>division point count</string>
-           </property>
-          </widget>
-         </item>
-         <item row="6" column="1">
-          <widget class="QSpinBox" name="arc_div_point_count_spin_box">
-           <property name="minimum">
-            <number>3</number>
-           </property>
-           <property name="maximum">
-            <number>1000</number>
-           </property>
-           <property name="value">
-            <number>200</number>
            </property>
           </widget>
          </item>
