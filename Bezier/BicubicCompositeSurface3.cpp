@@ -13,7 +13,7 @@ namespace cagd
     // --------------------------------------------------------------------------------
 
     BicubicCompositeSurface3::PatchAttributes::PatchAttributes():
-        patch(nullptr), image(nullptr), u_lines(nullptr), v_lines(nullptr), neighbours(8, nullptr)
+        patch(nullptr), image(nullptr), neighbours(8, nullptr), u_lines(nullptr), v_lines(nullptr)
     {
         material = new Material(MatFBGold);
     }
@@ -79,7 +79,12 @@ namespace cagd
     }
 
 
-    void BicubicCompositeSurface3::PatchAttributes::_GetSymmetricPointIndexes(const GLuint row, const GLuint column, Direction direction, GLuint &symmetricRow, GLuint &symmetricColumn) const
+    void BicubicCompositeSurface3::PatchAttributes::_GetSymmetricPointIndexes(
+            const GLuint row,
+            const GLuint column,
+            Direction direction,
+            GLuint &symmetricRow,
+            GLuint &symmetricColumn) const
     {
         if (direction == N)
         {
@@ -185,6 +190,18 @@ namespace cagd
         }
     }
 
+    // --------------------------------------------------------------------------------
+
+    BicubicCompositeSurface3::BicubicCompositeSurface3(GLuint patchCount):
+        _iso_line_count(50)
+    {
+        _attributes.resize(patchCount);
+        for (GLuint i = 0; i < patchCount; i++)
+        {
+            _attributes[i].patch = InitializePatch();
+            UpdateVBOs(_attributes[i]);
+        }
+    }
 
     BicubicBezierPatch* BicubicCompositeSurface3::InitializePatch()
     {
@@ -360,7 +377,6 @@ namespace cagd
         try
         {
             attribute.patch = InitializePatch();
-
             return UpdateVBOs(attribute);
         }
         catch (Exception ex)
@@ -531,11 +547,7 @@ namespace cagd
 
         PatchAttributes &attribute = _attributes[patchIndex];
 
-         if( (direction==N && attribute.neighbours[0])||
-             (direction == W && attribute.neighbours[2]) ||
-             (direction == S && attribute.neighbours[4]) ||
-             (direction == E && attribute.neighbours[6])
-            )
+         if (attribute.neighbours[direction])
          {
              cout << "The patch arlready has a neighbor in the given direction!" << endl;
              return GL_FALSE;
@@ -617,14 +629,7 @@ namespace cagd
         PatchAttributes &firstAttribute = _attributes[firstPatchIndex];
         PatchAttributes &secondAttribute = _attributes[secondPatchIndex];
 
-        if ((firstDirection == N && firstAttribute.neighbours[0]) ||
-            (firstDirection == W && firstAttribute.neighbours[2]) ||
-            (firstDirection == S && firstAttribute.neighbours[4]) ||
-            (firstDirection == E && firstAttribute.neighbours[6]) ||
-            (secondDirection == N && secondAttribute.neighbours[0]) ||
-            (secondDirection == W && secondAttribute.neighbours[2]) ||
-            (secondDirection == S && secondAttribute.neighbours[4]) ||
-            (secondDirection == E && secondAttribute.neighbours[6]))
+        if (firstAttribute.neighbours[firstDirection] || secondAttribute.neighbours[secondDirection])
         {
             cout << "One of the patches arlready has a neighbor in the given direction!" << endl;
             return GL_FALSE;
@@ -738,14 +743,7 @@ namespace cagd
         PatchAttributes &firstAttribute = _attributes[firstPatchIndex];
         PatchAttributes &secondAttribute = _attributes[secondPatchIndex];
 
-        if ((firstDirection == N && firstAttribute.neighbours[0]) ||
-            (firstDirection == W && firstAttribute.neighbours[2]) ||
-            (firstDirection == S && firstAttribute.neighbours[4]) ||
-            (firstDirection == E && firstAttribute.neighbours[6]) ||
-            (secondDirection == N && secondAttribute.neighbours[0]) ||
-            (secondDirection == W && secondAttribute.neighbours[2]) ||
-            (secondDirection == S && secondAttribute.neighbours[4]) ||
-            (secondDirection == E && secondAttribute.neighbours[6]))
+        if (firstAttribute.neighbours[firstDirection] || secondAttribute.neighbours[secondDirection])
         {
             cout << "One of the patches arlready has a neighbor in the given direction!" << endl;
             return GL_FALSE;
@@ -1398,7 +1396,7 @@ namespace cagd
         return UpdateVBOs(firstAttribute) && UpdateVBOs(secondAttribute);
     }
 
-    /*GLboolean BicubicCompositeSurface3::SaveToFile(const string filename) const
+    GLboolean BicubicCompositeSurface3::SaveToFile(const string filename) const
     {
         fstream f(filename.c_str(), ios_base::out);
 
@@ -1482,7 +1480,5 @@ namespace cagd
         }
 
         return lhs;
-    }*/
-
-
+    }
 }

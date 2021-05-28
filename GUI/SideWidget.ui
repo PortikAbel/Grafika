@@ -6,12 +6,12 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>327</width>
-    <height>777</height>
+    <width>284</width>
+    <height>848</height>
    </rect>
   </property>
   <property name="sizePolicy">
-   <sizepolicy hsizetype="Fixed" vsizetype="Preferred">
+   <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
     <horstretch>0</horstretch>
     <verstretch>0</verstretch>
    </sizepolicy>
@@ -239,8 +239,8 @@
        <rect>
         <x>0</x>
         <y>0</y>
-        <width>309</width>
-        <height>322</height>
+        <width>266</width>
+        <height>385</height>
        </rect>
       </property>
       <attribute name="label">
@@ -252,7 +252,7 @@
        <rect>
         <x>0</x>
         <y>0</y>
-        <width>295</width>
+        <width>252</width>
         <height>425</height>
        </rect>
       </property>
@@ -447,8 +447,8 @@
        <rect>
         <x>0</x>
         <y>0</y>
-        <width>309</width>
-        <height>322</height>
+        <width>266</width>
+        <height>385</height>
        </rect>
       </property>
       <attribute name="label">
@@ -459,8 +459,8 @@
         <rect>
          <x>0</x>
          <y>0</y>
-         <width>239</width>
-         <height>151</height>
+         <width>241</width>
+         <height>152</height>
         </rect>
        </property>
        <layout class="QFormLayout" name="pc_form">
@@ -590,8 +590,8 @@
        <rect>
         <x>0</x>
         <y>0</y>
-        <width>309</width>
-        <height>322</height>
+        <width>266</width>
+        <height>385</height>
        </rect>
       </property>
       <attribute name="label">
@@ -602,7 +602,7 @@
         <rect>
          <x>10</x>
          <y>0</y>
-         <width>207</width>
+         <width>213</width>
          <height>132</height>
         </rect>
        </property>
@@ -712,8 +712,8 @@
        <rect>
         <x>0</x>
         <y>0</y>
-        <width>309</width>
-        <height>322</height>
+        <width>266</width>
+        <height>385</height>
        </rect>
       </property>
       <attribute name="label">
@@ -917,8 +917,8 @@
        <rect>
         <x>0</x>
         <y>0</y>
-        <width>309</width>
-        <height>322</height>
+        <width>252</width>
+        <height>457</height>
        </rect>
       </property>
       <attribute name="label">
@@ -926,122 +926,352 @@
       </attribute>
       <layout class="QVBoxLayout" name="verticalLayout_10">
        <item>
-        <layout class="QFormLayout" name="formLayout_7">
-         <item row="0" column="0">
-          <widget class="QLabel" name="show1stOrderDerivativesLabel_3">
-           <property name="text">
-            <string>show 1st order derivatives</string>
-           </property>
-          </widget>
-         </item>
-         <item row="0" column="1">
-          <widget class="QCheckBox" name="arc_d1_check_box"/>
-         </item>
-         <item row="1" column="0">
-          <widget class="QLabel" name="show2ndOrderDerivativesLabel_3">
-           <property name="text">
-            <string>show 2nd order derivatives</string>
-           </property>
-          </widget>
-         </item>
-         <item row="1" column="1">
-          <widget class="QCheckBox" name="arc_d2_check_box"/>
-         </item>
-         <item row="2" column="0">
-          <widget class="QLabel" name="controlPointIndexLabel_2">
-           <property name="text">
-            <string>control point index</string>
-           </property>
-          </widget>
-         </item>
-         <item row="2" column="1">
-          <widget class="QSpinBox" name="arc_cp_index_spin_box">
-           <property name="maximum">
-            <number>3</number>
-           </property>
-          </widget>
-         </item>
-         <item row="3" column="0">
-          <widget class="QLabel" name="controlPointXLabel">
-           <property name="text">
-            <string>control point X</string>
-           </property>
-          </widget>
-         </item>
-         <item row="3" column="1">
-          <widget class="QDoubleSpinBox" name="arc_cp_x_spin_box">
-           <property name="minimum">
-            <double>-10.000000000000000</double>
-           </property>
-           <property name="maximum">
-            <double>10.000000000000000</double>
-           </property>
-           <property name="singleStep">
-            <double>0.100000000000000</double>
-           </property>
-          </widget>
-         </item>
-         <item row="4" column="0">
-          <widget class="QLabel" name="controlPointYLabel">
-           <property name="text">
-            <string>control point Y</string>
-           </property>
-          </widget>
-         </item>
-         <item row="4" column="1">
-          <widget class="QDoubleSpinBox" name="arc_cp_y_spin_box">
-           <property name="minimum">
-            <double>-10.000000000000000</double>
-           </property>
-           <property name="maximum">
-            <double>10.000000000000000</double>
-           </property>
-           <property name="singleStep">
-            <double>0.100000000000000</double>
-           </property>
-          </widget>
-         </item>
-         <item row="5" column="0">
-          <widget class="QLabel" name="controlPointZLabel">
-           <property name="text">
-            <string>control point Z</string>
-           </property>
-          </widget>
-         </item>
-         <item row="5" column="1">
-          <widget class="QDoubleSpinBox" name="arc_cp_z_spin_box">
-           <property name="minimum">
-            <double>-10.000000000000000</double>
-           </property>
-           <property name="maximum">
-            <double>10.000000000000000</double>
-           </property>
-           <property name="singleStep">
-            <double>0.100000000000000</double>
-           </property>
-          </widget>
-         </item>
-         <item row="6" column="0">
-          <widget class="QLabel" name="divisionPointCountLabel">
-           <property name="text">
-            <string>division point count</string>
-           </property>
-          </widget>
-         </item>
-         <item row="6" column="1">
-          <widget class="QSpinBox" name="arc_div_point_count_spin_box">
-           <property name="minimum">
-            <number>3</number>
-           </property>
-           <property name="maximum">
-            <number>1000</number>
-           </property>
-           <property name="value">
-            <number>200</number>
-           </property>
-          </widget>
-         </item>
-        </layout>
+        <widget class="QGroupBox" name="">
+         <layout class="QFormLayout" name="formLayout_7">
+          <property name="topMargin">
+           <number>2</number>
+          </property>
+          <property name="bottomMargin">
+           <number>1</number>
+          </property>
+          <item row="0" column="0">
+           <widget class="QLabel" name="show1stOrderDerivativesLabel_3">
+            <property name="text">
+             <string>Show 1st order derivatives</string>
+            </property>
+            <property name="margin">
+             <number>0</number>
+            </property>
+           </widget>
+          </item>
+          <item row="0" column="1">
+           <widget class="QCheckBox" name="arc_d1_check_box"/>
+          </item>
+          <item row="1" column="0">
+           <widget class="QLabel" name="show2ndOrderDerivativesLabel_3">
+            <property name="text">
+             <string>Show 2nd order derivatives</string>
+            </property>
+           </widget>
+          </item>
+          <item row="1" column="1">
+           <widget class="QCheckBox" name="arc_d2_check_box"/>
+          </item>
+          <item row="2" column="0">
+           <widget class="QLabel" name="selectedCurveLabel">
+            <property name="font">
+             <font>
+              <pointsize>10</pointsize>
+              <weight>75</weight>
+              <bold>true</bold>
+              <underline>false</underline>
+             </font>
+            </property>
+            <property name="text">
+             <string>Selected curve</string>
+            </property>
+            <property name="indent">
+             <number>-1</number>
+            </property>
+           </widget>
+          </item>
+          <item row="2" column="1">
+           <widget class="QSpinBox" name="selectedCurveSpinBox">
+            <property name="maximumSize">
+             <size>
+              <width>60</width>
+              <height>16777215</height>
+             </size>
+            </property>
+            <property name="maximum">
+             <number>9</number>
+            </property>
+           </widget>
+          </item>
+          <item row="3" column="0">
+           <widget class="QLabel" name="colorLabel">
+            <property name="text">
+             <string>Color</string>
+            </property>
+           </widget>
+          </item>
+          <item row="3" column="1">
+           <widget class="QSpinBox" name="colorSpinBox">
+            <property name="maximumSize">
+             <size>
+              <width>60</width>
+              <height>16777215</height>
+             </size>
+            </property>
+           </widget>
+          </item>
+          <item row="4" column="0">
+           <widget class="QLabel" name="hullLabel">
+            <property name="text">
+             <string>Hull</string>
+            </property>
+           </widget>
+          </item>
+          <item row="4" column="1">
+           <widget class="QSpinBox" name="hullSpinBox">
+            <property name="maximumSize">
+             <size>
+              <width>60</width>
+              <height>16777215</height>
+             </size>
+            </property>
+           </widget>
+          </item>
+          <item row="5" column="0">
+           <widget class="QLabel" name="controlPointIndexLabel_2">
+            <property name="sizePolicy">
+             <sizepolicy hsizetype="Minimum" vsizetype="Preferred">
+              <horstretch>0</horstretch>
+              <verstretch>0</verstretch>
+             </sizepolicy>
+            </property>
+            <property name="font">
+             <font>
+              <pointsize>10</pointsize>
+              <underline>true</underline>
+             </font>
+            </property>
+            <property name="layoutDirection">
+             <enum>Qt::LeftToRight</enum>
+            </property>
+            <property name="autoFillBackground">
+             <bool>false</bool>
+            </property>
+            <property name="text">
+             <string>Control point index</string>
+            </property>
+            <property name="alignment">
+             <set>Qt::AlignJustify|Qt::AlignVCenter</set>
+            </property>
+           </widget>
+          </item>
+          <item row="5" column="1">
+           <widget class="QSpinBox" name="arc_cp_index_spin_box">
+            <property name="maximumSize">
+             <size>
+              <width>60</width>
+              <height>16777215</height>
+             </size>
+            </property>
+            <property name="maximum">
+             <number>3</number>
+            </property>
+           </widget>
+          </item>
+          <item row="6" column="0">
+           <widget class="QLabel" name="controlPointXLabel">
+            <property name="text">
+             <string>Control point X</string>
+            </property>
+           </widget>
+          </item>
+          <item row="6" column="1">
+           <widget class="QDoubleSpinBox" name="arc_cp_x_spin_box">
+            <property name="maximumSize">
+             <size>
+              <width>60</width>
+              <height>16777215</height>
+             </size>
+            </property>
+            <property name="minimum">
+             <double>-10.000000000000000</double>
+            </property>
+            <property name="maximum">
+             <double>10.000000000000000</double>
+            </property>
+            <property name="singleStep">
+             <double>0.100000000000000</double>
+            </property>
+           </widget>
+          </item>
+          <item row="7" column="0">
+           <widget class="QLabel" name="controlPointYLabel">
+            <property name="text">
+             <string>Control point Y</string>
+            </property>
+           </widget>
+          </item>
+          <item row="7" column="1">
+           <widget class="QDoubleSpinBox" name="arc_cp_y_spin_box">
+            <property name="maximumSize">
+             <size>
+              <width>60</width>
+              <height>16777215</height>
+             </size>
+            </property>
+            <property name="minimum">
+             <double>-10.000000000000000</double>
+            </property>
+            <property name="maximum">
+             <double>10.000000000000000</double>
+            </property>
+            <property name="singleStep">
+             <double>0.100000000000000</double>
+            </property>
+           </widget>
+          </item>
+          <item row="8" column="0">
+           <widget class="QLabel" name="controlPointZLabel">
+            <property name="text">
+             <string>Control point Z</string>
+            </property>
+           </widget>
+          </item>
+          <item row="8" column="1">
+           <widget class="QDoubleSpinBox" name="arc_cp_z_spin_box">
+            <property name="maximumSize">
+             <size>
+              <width>60</width>
+              <height>16777215</height>
+             </size>
+            </property>
+            <property name="minimum">
+             <double>-10.000000000000000</double>
+            </property>
+            <property name="maximum">
+             <double>10.000000000000000</double>
+            </property>
+            <property name="singleStep">
+             <double>0.100000000000000</double>
+            </property>
+           </widget>
+          </item>
+          <item row="10" column="0">
+           <widget class="QLabel" name="label_10">
+            <property name="font">
+             <font>
+              <pointsize>10</pointsize>
+              <weight>75</weight>
+              <bold>true</bold>
+             </font>
+            </property>
+            <property name="text">
+             <string>Join</string>
+            </property>
+           </widget>
+          </item>
+          <item row="11" column="0">
+           <widget class="QLabel" name="label_11">
+            <property name="text">
+             <string>First curve</string>
+            </property>
+           </widget>
+          </item>
+          <item row="11" column="1">
+           <widget class="QSpinBox" name="firstCurveJoinSpinBox">
+            <property name="maximumSize">
+             <size>
+              <width>60</width>
+              <height>16777215</height>
+             </size>
+            </property>
+            <property name="maximum">
+             <number>9</number>
+            </property>
+           </widget>
+          </item>
+          <item row="12" column="0">
+           <widget class="QLabel" name="label_12">
+            <property name="text">
+             <string>Second curve</string>
+            </property>
+           </widget>
+          </item>
+          <item row="12" column="1">
+           <widget class="QSpinBox" name="secondCurveJoinSpinBox">
+            <property name="maximumSize">
+             <size>
+              <width>60</width>
+              <height>16777215</height>
+             </size>
+            </property>
+            <property name="maximum">
+             <number>9</number>
+            </property>
+           </widget>
+          </item>
+          <item row="13" column="0">
+           <widget class="QLabel" name="label_13">
+            <property name="font">
+             <font>
+              <pointsize>10</pointsize>
+              <weight>75</weight>
+              <bold>true</bold>
+             </font>
+            </property>
+            <property name="text">
+             <string>Merge</string>
+            </property>
+           </widget>
+          </item>
+          <item row="14" column="0">
+           <widget class="QLabel" name="label_14">
+            <property name="text">
+             <string>First curve</string>
+            </property>
+           </widget>
+          </item>
+          <item row="14" column="1">
+           <widget class="QSpinBox" name="firstCurveMergeSpinBox">
+            <property name="maximumSize">
+             <size>
+              <width>60</width>
+              <height>16777215</height>
+             </size>
+            </property>
+            <property name="maximum">
+             <number>9</number>
+            </property>
+           </widget>
+          </item>
+          <item row="15" column="0">
+           <widget class="QLabel" name="label_15">
+            <property name="text">
+             <string>Second curve</string>
+            </property>
+           </widget>
+          </item>
+          <item row="15" column="1">
+           <widget class="QSpinBox" name="secondCurveMergeSpinBox">
+            <property name="maximumSize">
+             <size>
+              <width>60</width>
+              <height>16777215</height>
+             </size>
+            </property>
+            <property name="maximum">
+             <number>9</number>
+            </property>
+           </widget>
+          </item>
+          <item row="9" column="0">
+           <widget class="QLabel" name="label_25">
+            <property name="text">
+             <string>Continue</string>
+            </property>
+           </widget>
+          </item>
+          <item row="9" column="1">
+           <widget class="QComboBox" name="comboBox">
+            <item>
+             <property name="text">
+              <string>LEFT</string>
+             </property>
+            </item>
+            <item>
+             <property name="text">
+              <string>RIGHT</string>
+             </property>
+            </item>
+           </widget>
+          </item>
+         </layout>
+        </widget>
        </item>
       </layout>
      </widget>
@@ -1049,9 +1279,9 @@
       <property name="geometry">
        <rect>
         <x>0</x>
-        <y>0</y>
-        <width>309</width>
-        <height>322</height>
+        <y>-467</y>
+        <width>252</width>
+        <height>853</height>
        </rect>
       </property>
       <attribute name="label">
@@ -1059,56 +1289,416 @@
       </attribute>
       <layout class="QVBoxLayout" name="verticalLayout_5">
        <item>
-        <layout class="QFormLayout" name="formLayout_3">
-         <item row="0" column="0">
-          <widget class="QLabel" name="showBezierPatchLabel">
-           <property name="text">
-            <string>Show Bezier Patch</string>
-           </property>
-          </widget>
-         </item>
-         <item row="0" column="1">
-          <widget class="QCheckBox" name="show_bb_patch_check_box">
-           <property name="checked">
-            <bool>true</bool>
-           </property>
-          </widget>
-         </item>
-         <item row="1" column="0">
-          <widget class="QLabel" name="showDerivativesInDirULabel">
-           <property name="text">
-            <string>Show derivatives in dir U</string>
-           </property>
-          </widget>
-         </item>
-         <item row="1" column="1">
-          <widget class="QCheckBox" name="patch_d1_u_check_box"/>
-         </item>
-         <item row="3" column="0">
-          <widget class="QLabel" name="showInterpolatedBezierPatchLabel">
-           <property name="text">
-            <string>Show Interpolated Bezier Patch</string>
-           </property>
-          </widget>
-         </item>
-         <item row="3" column="1">
-          <widget class="QCheckBox" name="show_ip_bb_patch_check_box">
-           <property name="checked">
-            <bool>true</bool>
-           </property>
-          </widget>
-         </item>
-         <item row="2" column="0">
-          <widget class="QLabel" name="showDerivativesInDirVLabel">
-           <property name="text">
-            <string>Show derivatives in dir V</string>
-           </property>
-          </widget>
-         </item>
-         <item row="2" column="1">
-          <widget class="QCheckBox" name="patch_d1_v_check_box"/>
-         </item>
-        </layout>
+        <widget class="QGroupBox" name="">
+         <layout class="QFormLayout" name="formLayout_3">
+          <item row="0" column="0">
+           <widget class="QLabel" name="showBezierPatchLabel">
+            <property name="text">
+             <string>Show U iso lines</string>
+            </property>
+           </widget>
+          </item>
+          <item row="0" column="1">
+           <widget class="QCheckBox" name="show_iso_u_check_box">
+            <property name="checked">
+             <bool>false</bool>
+            </property>
+           </widget>
+          </item>
+          <item row="1" column="0">
+           <widget class="QLabel" name="showDerivativesInDirULabel">
+            <property name="text">
+             <string>Show V iso lines</string>
+            </property>
+           </widget>
+          </item>
+          <item row="1" column="1">
+           <widget class="QCheckBox" name="show_iso_v_check_box"/>
+          </item>
+          <item row="2" column="0">
+           <widget class="QLabel" name="showDerivativesInDirVLabel">
+            <property name="text">
+             <string>Show derivatives in dir U</string>
+            </property>
+           </widget>
+          </item>
+          <item row="2" column="1">
+           <widget class="QCheckBox" name="show_iso_d1_u_check_box"/>
+          </item>
+          <item row="3" column="0">
+           <widget class="QLabel" name="showInterpolatedBezierPatchLabel">
+            <property name="text">
+             <string>Show derivatives in dir V</string>
+            </property>
+           </widget>
+          </item>
+          <item row="3" column="1">
+           <widget class="QCheckBox" name="show_iso_d1_v_check_box">
+            <property name="checked">
+             <bool>false</bool>
+            </property>
+           </widget>
+          </item>
+          <item row="4" column="0">
+           <widget class="QLabel" name="label_34">
+            <property name="text">
+             <string>Show normal vectors</string>
+            </property>
+           </widget>
+          </item>
+          <item row="5" column="0">
+           <widget class="QLabel" name="label_16">
+            <property name="text">
+             <string>Shader or light</string>
+            </property>
+           </widget>
+          </item>
+          <item row="5" column="1">
+           <widget class="QRadioButton" name="shaderRadioButton">
+            <property name="text">
+             <string>Shader</string>
+            </property>
+           </widget>
+          </item>
+          <item row="6" column="1">
+           <widget class="QRadioButton" name="lightRadioButton_2">
+            <property name="text">
+             <string>Light</string>
+            </property>
+           </widget>
+          </item>
+          <item row="7" column="0">
+           <widget class="QLabel" name="label_17">
+            <property name="text">
+             <string>Shader</string>
+            </property>
+           </widget>
+          </item>
+          <item row="7" column="1">
+           <widget class="QComboBox" name="shaderComboBox">
+            <item>
+             <property name="text">
+              <string>Directional</string>
+             </property>
+            </item>
+            <item>
+             <property name="text">
+              <string>Reflection</string>
+             </property>
+            </item>
+            <item>
+             <property name="text">
+              <string>Toon</string>
+             </property>
+            </item>
+            <item>
+             <property name="text">
+              <string>Two-sided</string>
+             </property>
+            </item>
+           </widget>
+          </item>
+          <item row="8" column="0">
+           <widget class="QLabel" name="label_18">
+            <property name="text">
+             <string>Lights</string>
+            </property>
+           </widget>
+          </item>
+          <item row="8" column="1">
+           <widget class="QCheckBox" name="drectedCheckBox">
+            <property name="text">
+             <string>Directional</string>
+            </property>
+           </widget>
+          </item>
+          <item row="9" column="1">
+           <widget class="QCheckBox" name="twoSidedCheckBox_2">
+            <property name="text">
+             <string>Point-like</string>
+            </property>
+           </widget>
+          </item>
+          <item row="10" column="1">
+           <widget class="QCheckBox" name="reflectorCheckBox_4">
+            <property name="text">
+             <string>Reflector</string>
+            </property>
+           </widget>
+          </item>
+          <item row="11" column="0">
+           <widget class="QLabel" name="label_19">
+            <property name="font">
+             <font>
+              <pointsize>10</pointsize>
+              <weight>75</weight>
+              <bold>true</bold>
+             </font>
+            </property>
+            <property name="text">
+             <string>Join</string>
+            </property>
+           </widget>
+          </item>
+          <item row="11" column="1">
+           <widget class="QSpinBox" name="firstPatchJoinSpinBox"/>
+          </item>
+          <item row="13" column="0">
+           <widget class="QLabel" name="label_20">
+            <property name="text">
+             <string>First patch</string>
+            </property>
+           </widget>
+          </item>
+          <item row="13" column="1">
+           <widget class="QSpinBox" name="secondPatchJoinSpinBox"/>
+          </item>
+          <item row="15" column="0">
+           <widget class="QLabel" name="label_21">
+            <property name="text">
+             <string>Second patch</string>
+            </property>
+           </widget>
+          </item>
+          <item row="15" column="1">
+           <widget class="QSpinBox" name="firstPatchMergeSpinBox"/>
+          </item>
+          <item row="19" column="0">
+           <widget class="QLabel" name="label_22">
+            <property name="font">
+             <font>
+              <pointsize>10</pointsize>
+              <weight>75</weight>
+              <bold>true</bold>
+             </font>
+            </property>
+            <property name="text">
+             <string>Merge</string>
+            </property>
+           </widget>
+          </item>
+          <item row="21" column="0">
+           <widget class="QLabel" name="label_23">
+            <property name="text">
+             <string>First patch</string>
+            </property>
+           </widget>
+          </item>
+          <item row="22" column="0">
+           <widget class="QLabel" name="label_24">
+            <property name="text">
+             <string>Second patch</string>
+            </property>
+           </widget>
+          </item>
+          <item row="22" column="1">
+           <widget class="QSpinBox" name="spinBox_4"/>
+          </item>
+          <item row="23" column="0">
+           <widget class="QLabel" name="selectedPatchLabel">
+            <property name="font">
+             <font>
+              <pointsize>10</pointsize>
+              <weight>75</weight>
+              <bold>true</bold>
+             </font>
+            </property>
+            <property name="text">
+             <string>Selected patch</string>
+            </property>
+           </widget>
+          </item>
+          <item row="23" column="1">
+           <widget class="QSpinBox" name="selectedPatchSpinBox">
+            <property name="maximumSize">
+             <size>
+              <width>60</width>
+              <height>16777215</height>
+             </size>
+            </property>
+            <property name="maximum">
+             <number>9</number>
+            </property>
+           </widget>
+          </item>
+          <item row="24" column="0">
+           <widget class="QLabel" name="textureOrMaterialLabel">
+            <property name="text">
+             <string>Texture or material</string>
+            </property>
+           </widget>
+          </item>
+          <item row="24" column="1">
+           <widget class="QRadioButton" name="textureRadioButton">
+            <property name="text">
+             <string>Texture</string>
+            </property>
+           </widget>
+          </item>
+          <item row="26" column="1">
+           <widget class="QRadioButton" name="materialRadioButton">
+            <property name="text">
+             <string>Material</string>
+            </property>
+           </widget>
+          </item>
+          <item row="27" column="0">
+           <widget class="QLabel" name="textureLabel">
+            <property name="text">
+             <string>Texture</string>
+            </property>
+           </widget>
+          </item>
+          <item row="27" column="1">
+           <widget class="QComboBox" name="textureComboBox">
+            <item>
+             <property name="text">
+              <string>Mozaik</string>
+             </property>
+            </item>
+            <item>
+             <property name="text">
+              <string>Tapeta</string>
+             </property>
+            </item>
+            <item>
+             <property name="text">
+              <string>Padlo</string>
+             </property>
+            </item>
+            <item>
+             <property name="text">
+              <string>Indiai</string>
+             </property>
+            </item>
+           </widget>
+          </item>
+          <item row="29" column="0">
+           <widget class="QLabel" name="materialLabel">
+            <property name="text">
+             <string>Material</string>
+            </property>
+           </widget>
+          </item>
+          <item row="29" column="1">
+           <widget class="QComboBox" name="materialComboBox">
+            <item>
+             <property name="text">
+              <string>Gold</string>
+             </property>
+            </item>
+            <item>
+             <property name="text">
+              <string>Ruby</string>
+             </property>
+            </item>
+            <item>
+             <property name="text">
+              <string>Emerald</string>
+             </property>
+            </item>
+            <item>
+             <property name="text">
+              <string>Silver</string>
+             </property>
+            </item>
+           </widget>
+          </item>
+          <item row="32" column="0">
+           <widget class="QLabel" name="label_26">
+            <property name="text">
+             <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:9pt; text-decoration: underline;&quot;&gt;Control point index&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+            </property>
+            <property name="textFormat">
+             <enum>Qt::AutoText</enum>
+            </property>
+           </widget>
+          </item>
+          <item row="34" column="0">
+           <widget class="QLabel" name="label_27">
+            <property name="text">
+             <string>Row</string>
+            </property>
+           </widget>
+          </item>
+          <item row="34" column="1">
+           <widget class="QSpinBox" name="cp_row_spinBox"/>
+          </item>
+          <item row="35" column="0">
+           <widget class="QLabel" name="label_28">
+            <property name="text">
+             <string>Column</string>
+            </property>
+           </widget>
+          </item>
+          <item row="35" column="1">
+           <widget class="QSpinBox" name="cp_col_spinBox"/>
+          </item>
+          <item row="36" column="0">
+           <widget class="QLabel" name="label_29">
+            <property name="text">
+             <string>Control point X</string>
+            </property>
+           </widget>
+          </item>
+          <item row="36" column="1">
+           <widget class="QSpinBox" name="patch_cp_x_spinBox"/>
+          </item>
+          <item row="37" column="0">
+           <widget class="QLabel" name="label_30">
+            <property name="text">
+             <string>Control point Y</string>
+            </property>
+           </widget>
+          </item>
+          <item row="37" column="1">
+           <widget class="QSpinBox" name="patch_cp_y_spinBox"/>
+          </item>
+          <item row="38" column="0">
+           <widget class="QLabel" name="label_31">
+            <property name="text">
+             <string>Control point Z</string>
+            </property>
+           </widget>
+          </item>
+          <item row="38" column="1">
+           <widget class="QSpinBox" name="patch_cp_z_spinBox"/>
+          </item>
+          <item row="39" column="0">
+           <widget class="QLabel" name="label_32">
+            <property name="text">
+             <string>Continue</string>
+            </property>
+           </widget>
+          </item>
+          <item row="39" column="1">
+           <widget class="QComboBox" name="continuePatchComboBox">
+            <item>
+             <property name="text">
+              <string>W</string>
+             </property>
+            </item>
+            <item>
+             <property name="text">
+              <string>S</string>
+             </property>
+            </item>
+            <item>
+             <property name="text">
+              <string>E</string>
+             </property>
+            </item>
+           </widget>
+          </item>
+          <item row="4" column="1">
+           <widget class="QCheckBox" name="showNormalVectorsCheckBox">
+            <property name="text">
+             <string/>
+            </property>
+           </widget>
+          </item>
+         </layout>
+        </widget>
        </item>
       </layout>
      </widget>
@@ -1116,39 +1706,54 @@
    </item>
   </layout>
  </widget>
+ <tabstops>
+  <tabstop>rotate_y_slider</tabstop>
+  <tabstop>rotate_z_slider</tabstop>
+  <tabstop>zoom_factor_spin_box</tabstop>
+  <tabstop>trans_x_spin_box</tabstop>
+  <tabstop>trans_y_spin_box</tabstop>
+  <tabstop>trans_z_spin_box</tabstop>
+  <tabstop>resetButton</tabstop>
+  <tabstop>dl_shader_check_box</tabstop>
+  <tabstop>rl_shader_check_box</tabstop>
+  <tabstop>toon_shader_check_box</tabstop>
+  <tabstop>two_sl_shader_check_box</tabstop>
+  <tabstop>rl_scale_spin_box</tabstop>
+  <tabstop>rl_smoothing_spin_box</tabstop>
+  <tabstop>rl_shading_spin_box</tabstop>
+  <tabstop>toon_outline_r_spin_box</tabstop>
+  <tabstop>toon_outline_g_spin_box</tabstop>
+  <tabstop>toon_outline_b_spin_box</tabstop>
+  <tabstop>toon_outline_a_spin_box</tabstop>
+  <tabstop>curveComboBox</tabstop>
+  <tabstop>show_tangents_check_box</tabstop>
+  <tabstop>show_acceleration_vectors_check_box</tabstop>
+  <tabstop>derivative_scale_double_spin_box</tabstop>
+  <tabstop>division_point_count_spin_box</tabstop>
+  <tabstop>resetButton_2</tabstop>
+  <tabstop>uDivPointCountSpinBox</tabstop>
+  <tabstop>vDivPointCountSpinBox</tabstop>
+  <tabstop>surfaceComboBox</tabstop>
+  <tabstop>showTextureCheckBox</tabstop>
+  <tabstop>cc_cp_index_spin_box</tabstop>
+  <tabstop>cc_trans_x_spin_box</tabstop>
+  <tabstop>cc_trans_y_spin_box</tabstop>
+  <tabstop>cc_trans_z_spin_box</tabstop>
+  <tabstop>show_cc_check_box</tabstop>
+  <tabstop>show_cc_d1_check_box</tabstop>
+  <tabstop>show_cc_d2_check_box</tabstop>
+  <tabstop>show_ip_cc_check_box</tabstop>
+  <tabstop>show_ip_cc_d1_check_box</tabstop>
+  <tabstop>show_ip_cc_d2_check_box</tabstop>
+  <tabstop>arc_d1_check_box</tabstop>
+  <tabstop>arc_d2_check_box</tabstop>
+  <tabstop>selectedCurveSpinBox</tabstop>
+  <tabstop>show_iso_u_check_box</tabstop>
+  <tabstop>show_iso_v_check_box</tabstop>
+  <tabstop>show_iso_d1_u_check_box</tabstop>
+  <tabstop>show_iso_d1_v_check_box</tabstop>
+  <tabstop>rotate_x_slider</tabstop>
+ </tabstops>
  <resources/>
- <connections>
-  <connection>
-   <sender>show_bb_patch_check_box</sender>
-   <signal>toggled(bool)</signal>
-   <receiver>patch_d1_u_check_box</receiver>
-   <slot>setChecked(bool)</slot>
-   <hints>
-    <hint type="sourcelabel">
-     <x>177</x>
-     <y>460</y>
-    </hint>
-    <hint type="destinationlabel">
-     <x>184</x>
-     <y>485</y>
-    </hint>
-   </hints>
-  </connection>
-  <connection>
-   <sender>show_bb_patch_check_box</sender>
-   <signal>toggled(bool)</signal>
-   <receiver>patch_d1_v_check_box</receiver>
-   <slot>setChecked(bool)</slot>
-   <hints>
-    <hint type="sourcelabel">
-     <x>187</x>
-     <y>467</y>
-    </hint>
-    <hint type="destinationlabel">
-     <x>180</x>
-     <y>503</y>
-    </hint>
-   </hints>
-  </connection>
- </connections>
+ <connections/>
 </ui>

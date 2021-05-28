@@ -10,8 +10,8 @@
 #include "../Core/Lights.h"
 #include "../Core/ShaderPrograms.h"
 #include "../Cyclic/CyclicCurves3.h"
-#include "../Bezier/CubicBezierArcs3.h"
-#include "../Bezier/BicubicBezierPatches.h"
+#include "../Bezier/CubicCompositeCurve3.h"
+#include "../Bezier/BicubicCompositeSurface3.h"
 
 namespace cagd
 {
@@ -136,34 +136,30 @@ namespace cagd
         // Bezier curves
         // ID = 5
 
-        CubicBezierArc3*            _arc;
-        GenericCurve3*              _image_of_arc = nullptr;
-        ColumnMatrix<GLdouble>      _arc_knot_vector;
-        ColumnMatrix<DCoordinate3>  _arc_data_points;
-        int                         _arc_div_point_count = 200;
-        int                         _arc_selected_cp = 0;
-        bool    _show_arc_d1 = false, _show_arc_d2 = false;
+        CubicCompositeCurve3*   _compositeCurve;
+        GLuint      _selectedCurve      = 0;
+        GLuint      _selectedCurvePoint = 0;
+        bool    _showFirstOrderCurveDerivatives = false;
+        bool    _showSecondOrderCurveDerivatives = false;
 
-        bool _createCubicBezierArc();
-        bool _updateImageOfCubicBezierArc();
-        void _destroyCubicBezierArc();
-        bool _renderCubicBezierArc();
+        bool _createCubicCompositeCurve();
+        void _destroyCubicCompositeCurve();
+        bool _renderCubicCompositeCurve();
 
         // Bezier patches
         // ID = 6
 
-        BicubicBezierPatch      _patch;
-        TriangulatedMesh3*      _before_interpolation = nullptr;
-        TriangulatedMesh3*      _after_interpolation = nullptr;
-        bool                    _show_bb_patch = true, _show_ip_bb_patch = true;
-        RowMatrix<GenericCurve3*>*  _uIsoparametricLines = nullptr;
-        RowMatrix<GenericCurve3*>*  _vIsoparametricLines = nullptr;
-        bool                    _show_patch_d1_u = false;
-        bool                    _show_patch_d1_v = false;
+        BicubicCompositeSurface3*   _compositeSurface;
+        GLuint      _selectedPatch  = 0;
+        GLuint      _selectedPointRow   = 0,    _selectedPointCol = 0;
+        bool        _showIsoLinesU      = false;
+        bool        _showIsoLinesV      = false;
+        bool        _showIsoLinesD1U    = false;
+        bool        _showIsoLinesD1V    = false;
 
-        bool _createBicubicBezierPatches();
-        void _destroyBicubicBezierPatchImages();
-        bool _renderBicubicBezierPatches();
+        bool _createBicubicCompositeSurface();
+        void _destroyBicubicCompositeSurface();
+        bool _renderBicubicCompositeSurface();
 
     private slots:
         void _animate();
@@ -238,12 +234,11 @@ namespace cagd
         void arc_cp_set_z(double);
         void set_arc_d1_visibility(bool);
         void set_arc_d2_visibility(bool);
-        void set_arc_div_point_count(int);
 
-        void setBbPatchVisibility(bool);
-        void setIpBbPatchVisibility(bool);
-        void setBbPatchD1UVisibility(bool);
-        void setBbPatchD1VVisibility(bool);
+        void setIsoLineUVisibility(bool);
+        void setIsoLineVVisibility(bool);
+        void setIsoLineD1UVisibility(bool);
+        void setIsoLineD1VVisibility(bool);
 
     signals:
         void setAngle(int);

@@ -44,7 +44,7 @@ namespace cagd
         // vertex buffer object handling methods
         GLvoid DeleteVertexBufferObjects();
         GLboolean RenderDerivatives(GLuint order, GLenum render_mode) const;
-        GLboolean UpdateVertexBufferObjects(GLdouble scale = 1.0, GLenum usage_flag = GL_STATIC_DRAW);
+        GLboolean UpdateVertexBufferObjects(GLdouble scale = 0.2, GLenum usage_flag = GL_STATIC_DRAW);
 
         GLfloat* MapDerivatives(GLuint order, GLenum access_mode = GL_READ_ONLY) const;
         GLboolean UnmapDerivatives(GLuint order) const;

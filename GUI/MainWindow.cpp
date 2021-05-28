@@ -122,17 +122,16 @@ namespace cagd
         connect(_side_widget->arc_cp_z_spin_box, SIGNAL(valueChanged(double)), _gl_widget, SLOT(arc_cp_set_z(double)));
         connect(_side_widget->arc_d1_check_box, SIGNAL(toggled(bool)), _gl_widget, SLOT(set_arc_d1_visibility(bool)));
         connect(_side_widget->arc_d2_check_box, SIGNAL(toggled(bool)), _gl_widget, SLOT(set_arc_d2_visibility(bool)));
-        connect(_side_widget->arc_div_point_count_spin_box, SIGNAL(valueChanged(int)), _gl_widget, SLOT(set_arc_div_point_count(int)));
 
         connect(_gl_widget, SIGNAL(arc_control_point_x_changed(double)), _side_widget->arc_cp_x_spin_box, SLOT(setValue(double)));
         connect(_gl_widget, SIGNAL(arc_control_point_y_changed(double)), _side_widget->arc_cp_y_spin_box, SLOT(setValue(double)));
         connect(_gl_widget, SIGNAL(arc_control_point_z_changed(double)), _side_widget->arc_cp_z_spin_box, SLOT(setValue(double)));
 
         // bicubic bezier patches
-        connect(_side_widget->show_bb_patch_check_box, SIGNAL(toggled(bool)), _gl_widget, SLOT(setBbPatchVisibility(bool)));
-        connect(_side_widget->show_ip_bb_patch_check_box, SIGNAL(toggled(bool)), _gl_widget, SLOT(setIpBbPatchVisibility(bool)));
-        connect(_side_widget->patch_d1_u_check_box, SIGNAL(toggled(bool)), _gl_widget, SLOT(setBbPatchD1UVisibility(bool)));
-        connect(_side_widget->patch_d1_v_check_box, SIGNAL(toggled(bool)), _gl_widget, SLOT(setBbPatchD1VVisibility(bool)));
+        connect(_side_widget->show_iso_u_check_box, SIGNAL(toggled(bool)), _gl_widget, SLOT(setBbPatchVisibility(bool)));
+        connect(_side_widget->show_iso_v_check_box, SIGNAL(toggled(bool)), _gl_widget, SLOT(setIpBbPatchVisibility(bool)));
+        connect(_side_widget->show_iso_d1_u_check_box, SIGNAL(toggled(bool)), _gl_widget, SLOT(setBbPatchD1UVisibility(bool)));
+        connect(_side_widget->show_iso_d1_v_check_box, SIGNAL(toggled(bool)), _gl_widget, SLOT(setBbPatchD1VVisibility(bool)));
 
         // change scene
         connect(_side_widget->toolBox, SIGNAL(currentChanged(int)), _gl_widget, SLOT(setID(int)));
