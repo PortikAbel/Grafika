@@ -1528,6 +1528,7 @@ namespace cagd
         emit arc_control_point_y_changed(selectedPoint.y());
         emit arc_control_point_z_changed(selectedPoint.z());
     }
+
     void GLWidget::arc_cp_set_x(double x)
     {
         DCoordinate3 pointToUpdate;
@@ -1536,6 +1537,7 @@ namespace cagd
         _compositeCurve->UpdateArc(_selectedCurve, _selectedCurvePoint, pointToUpdate);
         update();
     }
+
     void GLWidget::arc_cp_set_y(double y)
     {
         DCoordinate3 pointToUpdate;
