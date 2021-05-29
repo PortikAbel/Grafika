@@ -1219,9 +1219,9 @@
       <property name="geometry">
        <rect>
         <x>0</x>
-        <y>-57</y>
+        <y>-747</y>
         <width>252</width>
-        <height>1153</height>
+        <height>1132</height>
        </rect>
       </property>
       <attribute name="label">
@@ -1290,263 +1290,6 @@
            <widget class="QCheckBox" name="showNormalVectorsCheckBox">
             <property name="text">
              <string/>
-            </property>
-           </widget>
-          </item>
-          <item row="6" column="0">
-           <widget class="QPushButton" name="pushButton">
-            <property name="text">
-             <string>Join</string>
-            </property>
-           </widget>
-          </item>
-          <item row="9" column="0">
-           <widget class="QLabel" name="label_20">
-            <property name="text">
-             <string>First patch</string>
-            </property>
-           </widget>
-          </item>
-          <item row="9" column="1">
-           <widget class="QSpinBox" name="firstPatchJoinSpinBox"/>
-          </item>
-          <item row="11" column="0">
-           <widget class="QLabel" name="label_21">
-            <property name="text">
-             <string>Second patch</string>
-            </property>
-           </widget>
-          </item>
-          <item row="11" column="1">
-           <widget class="QSpinBox" name="secondPatchJoinSpinBox"/>
-          </item>
-          <item row="16" column="0">
-           <widget class="QLabel" name="label_23">
-            <property name="text">
-             <string>First patch</string>
-            </property>
-           </widget>
-          </item>
-          <item row="16" column="1">
-           <widget class="QSpinBox" name="firstPatchMergeSpinBox"/>
-          </item>
-          <item row="17" column="0">
-           <widget class="QLabel" name="label_24">
-            <property name="text">
-             <string>Second patch</string>
-            </property>
-           </widget>
-          </item>
-          <item row="17" column="1">
-           <widget class="QSpinBox" name="spinBox_4"/>
-          </item>
-          <item row="18" column="0">
-           <widget class="QLabel" name="selectedPatchLabel">
-            <property name="font">
-             <font>
-              <pointsize>10</pointsize>
-              <weight>75</weight>
-              <bold>true</bold>
-             </font>
-            </property>
-            <property name="text">
-             <string>Selected patch</string>
-            </property>
-           </widget>
-          </item>
-          <item row="18" column="1">
-           <widget class="QSpinBox" name="selectedPatchSpinBox">
-            <property name="maximumSize">
-             <size>
-              <width>60</width>
-              <height>16777215</height>
-             </size>
-            </property>
-            <property name="maximum">
-             <number>9</number>
-            </property>
-           </widget>
-          </item>
-          <item row="19" column="0">
-           <widget class="QLabel" name="textureOrMaterialLabel">
-            <property name="text">
-             <string>Texture or material</string>
-            </property>
-           </widget>
-          </item>
-          <item row="19" column="1">
-           <widget class="QRadioButton" name="textureRadioButton">
-            <property name="text">
-             <string>Texture</string>
-            </property>
-           </widget>
-          </item>
-          <item row="21" column="1">
-           <widget class="QRadioButton" name="materialRadioButton">
-            <property name="text">
-             <string>Material</string>
-            </property>
-           </widget>
-          </item>
-          <item row="22" column="0">
-           <widget class="QLabel" name="textureLabel">
-            <property name="text">
-             <string>Texture</string>
-            </property>
-           </widget>
-          </item>
-          <item row="22" column="1">
-           <widget class="QComboBox" name="textureComboBox">
-            <item>
-             <property name="text">
-              <string>Mozaik</string>
-             </property>
-            </item>
-            <item>
-             <property name="text">
-              <string>Tapeta</string>
-             </property>
-            </item>
-            <item>
-             <property name="text">
-              <string>Padlo</string>
-             </property>
-            </item>
-            <item>
-             <property name="text">
-              <string>Indiai</string>
-             </property>
-            </item>
-           </widget>
-          </item>
-          <item row="24" column="0">
-           <widget class="QLabel" name="materialLabel">
-            <property name="text">
-             <string>Material</string>
-            </property>
-           </widget>
-          </item>
-          <item row="24" column="1">
-           <widget class="QComboBox" name="materialComboBox">
-            <item>
-             <property name="text">
-              <string>Gold</string>
-             </property>
-            </item>
-            <item>
-             <property name="text">
-              <string>Ruby</string>
-             </property>
-            </item>
-            <item>
-             <property name="text">
-              <string>Emerald</string>
-             </property>
-            </item>
-            <item>
-             <property name="text">
-              <string>Silver</string>
-             </property>
-            </item>
-           </widget>
-          </item>
-          <item row="27" column="0">
-           <widget class="QLabel" name="label_26">
-            <property name="text">
-             <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:9pt; text-decoration: underline;&quot;&gt;Control point index&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
-            </property>
-            <property name="textFormat">
-             <enum>Qt::AutoText</enum>
-            </property>
-           </widget>
-          </item>
-          <item row="29" column="0">
-           <widget class="QLabel" name="label_27">
-            <property name="text">
-             <string>Row</string>
-            </property>
-           </widget>
-          </item>
-          <item row="29" column="1">
-           <widget class="QSpinBox" name="cp_row_spinBox"/>
-          </item>
-          <item row="30" column="0">
-           <widget class="QLabel" name="label_28">
-            <property name="text">
-             <string>Column</string>
-            </property>
-           </widget>
-          </item>
-          <item row="30" column="1">
-           <widget class="QSpinBox" name="cp_col_spinBox"/>
-          </item>
-          <item row="31" column="0">
-           <widget class="QLabel" name="label_29">
-            <property name="text">
-             <string>Control point X</string>
-            </property>
-           </widget>
-          </item>
-          <item row="31" column="1">
-           <widget class="QSpinBox" name="patch_cp_x_spinBox"/>
-          </item>
-          <item row="32" column="0">
-           <widget class="QLabel" name="label_30">
-            <property name="text">
-             <string>Control point Y</string>
-            </property>
-           </widget>
-          </item>
-          <item row="32" column="1">
-           <widget class="QSpinBox" name="patch_cp_y_spinBox"/>
-          </item>
-          <item row="33" column="0">
-           <widget class="QLabel" name="label_31">
-            <property name="text">
-             <string>Control point Z</string>
-            </property>
-           </widget>
-          </item>
-          <item row="33" column="1">
-           <widget class="QSpinBox" name="patch_cp_z_spinBox"/>
-          </item>
-          <item row="34" column="1">
-           <widget class="QComboBox" name="continuePatchComboBox">
-            <item>
-             <property name="text">
-              <string>W</string>
-             </property>
-            </item>
-            <item>
-             <property name="text">
-              <string>S</string>
-             </property>
-            </item>
-            <item>
-             <property name="text">
-              <string>E</string>
-             </property>
-            </item>
-           </widget>
-          </item>
-          <item row="13" column="0">
-           <widget class="QPushButton" name="pushButton_2">
-            <property name="text">
-             <string>Merge</string>
-            </property>
-           </widget>
-          </item>
-          <item row="34" column="0">
-           <widget class="QPushButton" name="pushButton_6">
-            <property name="text">
-             <string>Continue</string>
-            </property>
-           </widget>
-          </item>
-          <item row="35" column="0">
-           <widget class="QPushButton" name="pushButton_8">
-            <property name="text">
-             <string>New patch</string>
             </property>
            </widget>
           </item>
@@ -1768,6 +1511,279 @@
               </item>
              </layout>
             </widget>
+           </widget>
+          </item>
+          <item row="6" column="0">
+           <widget class="QPushButton" name="pushButton">
+            <property name="text">
+             <string>Join</string>
+            </property>
+           </widget>
+          </item>
+          <item row="9" column="0">
+           <widget class="QLabel" name="label_20">
+            <property name="text">
+             <string>First patch</string>
+            </property>
+           </widget>
+          </item>
+          <item row="9" column="1">
+           <widget class="QSpinBox" name="firstPatchJoinSpinBox"/>
+          </item>
+          <item row="11" column="0">
+           <widget class="QLabel" name="label_21">
+            <property name="text">
+             <string>Second patch</string>
+            </property>
+           </widget>
+          </item>
+          <item row="11" column="1">
+           <widget class="QSpinBox" name="secondPatchJoinSpinBox"/>
+          </item>
+          <item row="13" column="0">
+           <widget class="QPushButton" name="pushButton_2">
+            <property name="text">
+             <string>Merge</string>
+            </property>
+           </widget>
+          </item>
+          <item row="16" column="0">
+           <widget class="QLabel" name="label_23">
+            <property name="text">
+             <string>First patch</string>
+            </property>
+           </widget>
+          </item>
+          <item row="16" column="1">
+           <widget class="QSpinBox" name="firstPatchMergeSpinBox"/>
+          </item>
+          <item row="17" column="0">
+           <widget class="QLabel" name="label_24">
+            <property name="text">
+             <string>Second patch</string>
+            </property>
+           </widget>
+          </item>
+          <item row="17" column="1">
+           <widget class="QSpinBox" name="spinBox_4"/>
+          </item>
+          <item row="26" column="0">
+           <widget class="QLabel" name="label_26">
+            <property name="text">
+             <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:9pt; text-decoration: underline;&quot;&gt;Control point index&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+            </property>
+            <property name="textFormat">
+             <enum>Qt::AutoText</enum>
+            </property>
+           </widget>
+          </item>
+          <item row="28" column="0">
+           <widget class="QLabel" name="label_27">
+            <property name="text">
+             <string>Row</string>
+            </property>
+           </widget>
+          </item>
+          <item row="28" column="1">
+           <widget class="QSpinBox" name="cp_row_spinBox"/>
+          </item>
+          <item row="29" column="0">
+           <widget class="QLabel" name="label_28">
+            <property name="text">
+             <string>Column</string>
+            </property>
+           </widget>
+          </item>
+          <item row="29" column="1">
+           <widget class="QSpinBox" name="cp_col_spinBox"/>
+          </item>
+          <item row="30" column="0">
+           <widget class="QLabel" name="label_29">
+            <property name="text">
+             <string>Control point X</string>
+            </property>
+           </widget>
+          </item>
+          <item row="30" column="1">
+           <widget class="QSpinBox" name="patch_cp_x_spinBox"/>
+          </item>
+          <item row="31" column="0">
+           <widget class="QLabel" name="label_30">
+            <property name="text">
+             <string>Control point Y</string>
+            </property>
+           </widget>
+          </item>
+          <item row="31" column="1">
+           <widget class="QSpinBox" name="patch_cp_y_spinBox"/>
+          </item>
+          <item row="32" column="0">
+           <widget class="QLabel" name="label_31">
+            <property name="text">
+             <string>Control point Z</string>
+            </property>
+           </widget>
+          </item>
+          <item row="32" column="1">
+           <widget class="QSpinBox" name="patch_cp_z_spinBox"/>
+          </item>
+          <item row="33" column="0">
+           <widget class="QPushButton" name="pushButton_6">
+            <property name="text">
+             <string>Continue</string>
+            </property>
+           </widget>
+          </item>
+          <item row="33" column="1">
+           <widget class="QComboBox" name="continuePatchComboBox">
+            <item>
+             <property name="text">
+              <string>W</string>
+             </property>
+            </item>
+            <item>
+             <property name="text">
+              <string>S</string>
+             </property>
+            </item>
+            <item>
+             <property name="text">
+              <string>E</string>
+             </property>
+            </item>
+           </widget>
+          </item>
+          <item row="34" column="0">
+           <widget class="QPushButton" name="pushButton_8">
+            <property name="text">
+             <string>New patch</string>
+            </property>
+           </widget>
+          </item>
+          <item row="25" column="0" colspan="2">
+           <widget class="QTabWidget" name="TextureTab">
+            <property name="currentIndex">
+             <number>1</number>
+            </property>
+            <widget class="QWidget" name="tab_3">
+             <attribute name="title">
+              <string>Texture</string>
+             </attribute>
+             <layout class="QFormLayout" name="formLayout_11">
+              <item row="0" column="0">
+               <widget class="QLabel" name="label_33">
+                <property name="text">
+                 <string>Texture</string>
+                </property>
+               </widget>
+              </item>
+              <item row="0" column="1">
+               <widget class="QComboBox" name="textureComboBox">
+                <property name="maximumSize">
+                 <size>
+                  <width>70</width>
+                  <height>16777215</height>
+                 </size>
+                </property>
+                <item>
+                 <property name="text">
+                  <string>Mozaik</string>
+                 </property>
+                </item>
+                <item>
+                 <property name="text">
+                  <string>Tapeta</string>
+                 </property>
+                </item>
+                <item>
+                 <property name="text">
+                  <string>Padlo</string>
+                 </property>
+                </item>
+                <item>
+                 <property name="text">
+                  <string>Indiai</string>
+                 </property>
+                </item>
+               </widget>
+              </item>
+             </layout>
+            </widget>
+            <widget class="QWidget" name="tab_4">
+             <attribute name="title">
+              <string>Material</string>
+             </attribute>
+             <widget class="QComboBox" name="materialComboBox">
+              <property name="geometry">
+               <rect>
+                <x>60</x>
+                <y>10</y>
+                <width>77</width>
+                <height>22</height>
+               </rect>
+              </property>
+              <item>
+               <property name="text">
+                <string>Gold</string>
+               </property>
+              </item>
+              <item>
+               <property name="text">
+                <string>Ruby</string>
+               </property>
+              </item>
+              <item>
+               <property name="text">
+                <string>Emerald</string>
+               </property>
+              </item>
+              <item>
+               <property name="text">
+                <string>Silver</string>
+               </property>
+              </item>
+             </widget>
+             <widget class="QLabel" name="label_35">
+              <property name="geometry">
+               <rect>
+                <x>10</x>
+                <y>10</y>
+                <width>47</width>
+                <height>14</height>
+               </rect>
+              </property>
+              <property name="text">
+               <string>Material</string>
+              </property>
+             </widget>
+            </widget>
+           </widget>
+          </item>
+          <item row="20" column="0">
+           <widget class="QLabel" name="selectedPatchLabel">
+            <property name="font">
+             <font>
+              <pointsize>10</pointsize>
+              <weight>75</weight>
+              <bold>true</bold>
+             </font>
+            </property>
+            <property name="text">
+             <string>Selected patch</string>
+            </property>
+           </widget>
+          </item>
+          <item row="20" column="1">
+           <widget class="QSpinBox" name="selectedPatchSpinBox">
+            <property name="maximumSize">
+             <size>
+              <width>60</width>
+              <height>16777215</height>
+             </size>
+            </property>
+            <property name="maximum">
+             <number>9</number>
+            </property>
            </widget>
           </item>
          </layout>
