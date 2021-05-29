@@ -25,7 +25,7 @@ namespace cagd
     bool GLWidget::_createDl()
     {
         // creating a white directional light source
-        HCoordinate3    direction   (0.0, 0.0, 1.0, 0.0);
+        HCoordinate3    direction   (1.0, 0.0, 1.0, 0.0);
         Color4          ambient     (0.4f, 0.4f, 0.4f, 1.0f);
         Color4          diffuse     (0.8f, 0.8f, 0.8f, 1.0f);
         Color4          specular    (1.0, 1.0, 1.0, 1.0);
@@ -52,7 +52,7 @@ namespace cagd
     bool GLWidget::_createPl()
     {
         // creating a white directional light source
-        HCoordinate3    direction   (0.0, 0.0, 1.0, 1.0);
+        HCoordinate3    direction   (1.0, 0.0, 1.0, 1.0);
         Color4          ambient     (0.4f, 0.4f, 0.4f, 1.0f);
         Color4          diffuse     (0.8f, 0.8f, 0.8f, 1.0f);
         Color4          specular    (1.0, 1.0, 1.0, 1.0);
@@ -187,6 +187,7 @@ namespace cagd
 
     bool GLWidget::_communicateWithShaders()
     {
+        cout<< _rl_scale;
         _shaders[1]->Enable();
         if (!_shaders[1]->SetUniformVariable1f("scale_factor", _rl_scale))
         {
@@ -994,8 +995,11 @@ namespace cagd
         }
         else
         {
-            glEnable(GL_LIGHTING);
-            glEnable(GL_NORMALIZE);
+            if (_directional_light || _point_like_light || _reflector_light)
+            {
+                glEnable(GL_LIGHTING);
+                glEnable(GL_NORMALIZE);
+            }
             if (_directional_light)
             {
                 _dl->Enable();
@@ -1032,8 +1036,11 @@ namespace cagd
         }
         else
         {
-            glDisable(GL_LIGHTING);
-            glDisable(GL_NORMALIZE);
+            if (_directional_light || _point_like_light || _reflector_light)
+            {
+                glDisable(GL_LIGHTING);
+                glDisable(GL_NORMALIZE);
+            }
             if (_directional_light)
             {
                 _dl->Disable();
@@ -1732,15 +1739,18 @@ namespace cagd
         update();
     }
 
-    void GLWidget::setShader(bool shader)
+    void GLWidget::shaderOrLight(int shaderOrLight)
     {
-        _shader = shader;
-        update();
-    }
-
-    void GLWidget::setLight(bool light)
-    {
-        _light = light;
+        if (shaderOrLight == 0)
+        {
+            _shader = true;
+            _light = false;
+        }
+        else
+        {
+            _shader = false;
+            _light = true;
+        }
         update();
     }
 
