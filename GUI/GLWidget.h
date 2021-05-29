@@ -189,6 +189,12 @@ namespace cagd
         void paintGL();
         void resizeGL(int w, int h);
 
+        // file handling methods
+        std::ostream& saveCurves(std::ostream&);
+        std::istream& loadCurves(std::istream&);
+        std::ostream& saveSurfaces(std::ostream&);
+        std::istream& loadSurfaces(std::istream&);
+
         virtual ~GLWidget();
 
     public slots:

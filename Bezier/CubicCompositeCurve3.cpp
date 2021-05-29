@@ -292,6 +292,14 @@ namespace cagd {
         return GL_TRUE;
     }
 
+    GLboolean CubicCompositeCurve3::UpdateImageOfAllArcs()
+    {
+        for (GLuint i = 0; i < _attributes.size(); i++)
+            if (!UpdateImageOfArc(i))
+                return GL_FALSE;
+        return GL_TRUE;
+    }
+
     GLboolean CubicCompositeCurve3::JoinExistingArcs(
             const GLuint &firstArcIndex,
             Direction firstDirection,
@@ -522,6 +530,19 @@ namespace cagd {
         return GL_TRUE;
     }
 
+    GLint CubicCompositeCurve3::IndexOfAttribute(const ArcAttributes &attribute) const
+    {
+        for (GLuint i=0; i<_attributes.size(); ++i)
+        {
+            if (&_attributes[i] == &attribute)
+            {
+                return i;
+            }
+        }
+
+        return -1;
+    }
+
     GLboolean CubicCompositeCurve3::RenderAllArcs()
     {
         glPointSize(6.0);
@@ -609,5 +630,71 @@ namespace cagd {
     {
         p = (*_attributes[arcInd].arc)[dataPointInd];
         return GL_TRUE;
+    }
+
+    std::ostream& operator << (std::ostream& lhs, const CubicCompositeCurve3& rhs)
+    {
+        lhs << rhs._div_point_count << endl;
+        lhs << rhs._attributes.size() << endl;
+
+        // attributes
+        for (auto it = rhs._attributes.begin(); it != rhs._attributes.end(); ++it)
+        {
+            lhs << *it->arc << endl;
+            lhs << *it->color << endl;
+        }
+
+        // connections
+        for (auto it = rhs._attributes.begin(); it != rhs._attributes.end(); ++it)
+        {
+            lhs << rhs.IndexOfAttribute(*it->previous) << " "
+                << rhs.IndexOfAttribute(*it->next) << endl;
+        }
+
+        return lhs;
+    }
+
+    std::istream& operator >> (std::istream& lhs, CubicCompositeCurve3& rhs)
+    {
+        GLint n;
+
+        lhs >> rhs._div_point_count;
+        lhs >> n;
+
+        rhs._attributes.resize(n);
+
+        // attributes
+        for (auto it = rhs._attributes.begin(); it != rhs._attributes.end(); ++it)
+        {
+            lhs >> *it->arc;
+            lhs >> *it->color;
+        }
+
+        rhs.UpdateImageOfAllArcs();
+
+        // connections
+        for (auto it = rhs._attributes.begin(); it != rhs._attributes.end(); ++it)
+        {
+            lhs >> n;
+            if (n == -1)
+            {
+                it->previous = nullptr;
+            }
+            else
+            {
+                it->previous = &rhs._attributes[n];
+            }
+            lhs >> n;
+            if (n == -1)
+            {
+                it->next = nullptr;
+            }
+            else
+            {
+                it->next = &rhs._attributes[n];
+            }
+        }
+
+        return lhs;
     }
 }

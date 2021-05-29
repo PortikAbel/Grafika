@@ -1,10 +1,13 @@
 #pragma once
 
+#include <iostream>
+#include <fstream>
 #include <QMainWindow>
 #include "ui_MainWindow.h"
 #include "SideWidget.h"
 #include "GLWidget.h"
 #include <QScrollArea>
+#include <QFileDialog>
 
 namespace cagd
 {
@@ -25,5 +28,9 @@ namespace cagd
     private slots:
         // private event handling methods/slots
         void on_action_Quit_triggered();
+        void on_action_Save_curve_triggered();
+        void on_action_Load_curve_triggered();
+        void on_action_Save_surface_triggered();
+        void on_action_Load_surface_triggered();
     };
 }

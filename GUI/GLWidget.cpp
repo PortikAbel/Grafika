@@ -1319,6 +1319,28 @@ namespace cagd
         update();
     }
 
+    std::ostream& GLWidget::saveCurves(std::ostream & stream)
+    {
+        return stream << *_compositeCurve;
+    }
+
+    std::istream& GLWidget::loadCurves(std::istream & stream)
+    {
+        return stream >> *_compositeCurve;
+        update();
+    }
+
+    std::ostream& GLWidget::saveSurfaces(std::ostream & stream)
+    {
+        return stream << *_compositeSurface;
+    }
+
+    std::istream& GLWidget::loadSurfaces(std::istream & stream)
+    {
+        return stream >> *_compositeSurface;
+        update();
+    }
+
     //-----------------------------------
     // implementation of the public slots
     //-----------------------------------
