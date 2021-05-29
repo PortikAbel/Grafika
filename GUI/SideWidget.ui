@@ -232,15 +232,15 @@
    <item>
     <widget class="QToolBox" name="toolBox">
      <property name="currentIndex">
-      <number>6</number>
+      <number>5</number>
      </property>
      <widget class="QWidget" name="triangle_page">
       <property name="geometry">
        <rect>
         <x>0</x>
         <y>0</y>
-        <width>262</width>
-        <height>325</height>
+        <width>266</width>
+        <height>385</height>
        </rect>
       </property>
       <attribute name="label">
@@ -252,8 +252,8 @@
        <rect>
         <x>0</x>
         <y>0</y>
-        <width>251</width>
-        <height>337</height>
+        <width>266</width>
+        <height>385</height>
        </rect>
       </property>
       <attribute name="label">
@@ -394,8 +394,8 @@
        <rect>
         <x>0</x>
         <y>0</y>
-        <width>262</width>
-        <height>325</height>
+        <width>266</width>
+        <height>385</height>
        </rect>
       </property>
       <attribute name="label">
@@ -537,8 +537,8 @@
        <rect>
         <x>0</x>
         <y>0</y>
-        <width>262</width>
-        <height>325</height>
+        <width>266</width>
+        <height>385</height>
        </rect>
       </property>
       <attribute name="label">
@@ -659,8 +659,8 @@
        <rect>
         <x>0</x>
         <y>0</y>
-        <width>262</width>
-        <height>325</height>
+        <width>266</width>
+        <height>385</height>
        </rect>
       </property>
       <attribute name="label">
@@ -864,8 +864,8 @@
        <rect>
         <x>0</x>
         <y>0</y>
-        <width>282</width>
-        <height>557</height>
+        <width>252</width>
+        <height>538</height>
        </rect>
       </property>
       <attribute name="label">
@@ -905,7 +905,7 @@
            <widget class="QCheckBox" name="arc_d2_check_box"/>
           </item>
           <item row="2" column="0">
-           <widget class="QLabel" name="selectedCurveLabel">
+           <widget class="QLabel" name="selectedCurve1Label">
             <property name="font">
              <font>
               <pointsize>10</pointsize>
@@ -915,7 +915,7 @@
              </font>
             </property>
             <property name="text">
-             <string>Selected curve</string>
+             <string>Selected curve 1</string>
             </property>
             <property name="indent">
              <number>-1</number>
@@ -923,7 +923,7 @@
            </widget>
           </item>
           <item row="2" column="1">
-           <widget class="QSpinBox" name="selectedCurveSpinBox">
+           <widget class="QSpinBox" name="selectedCurve1SpinBox">
             <property name="maximumSize">
              <size>
               <width>60</width>
@@ -935,14 +935,14 @@
             </property>
            </widget>
           </item>
-          <item row="3" column="0">
+          <item row="4" column="0">
            <widget class="QLabel" name="colorLabel">
             <property name="text">
              <string>Color</string>
             </property>
            </widget>
           </item>
-          <item row="3" column="1">
+          <item row="4" column="1">
            <widget class="QSpinBox" name="colorSpinBox">
             <property name="maximumSize">
              <size>
@@ -952,14 +952,14 @@
             </property>
            </widget>
           </item>
-          <item row="4" column="0">
+          <item row="5" column="0">
            <widget class="QLabel" name="hullLabel">
             <property name="text">
              <string>Hull</string>
             </property>
            </widget>
           </item>
-          <item row="4" column="1">
+          <item row="5" column="1">
            <widget class="QSpinBox" name="hullSpinBox">
             <property name="maximumSize">
              <size>
@@ -969,7 +969,7 @@
             </property>
            </widget>
           </item>
-          <item row="5" column="0">
+          <item row="6" column="0">
            <widget class="QLabel" name="controlPointIndexLabel_2">
             <property name="sizePolicy">
              <sizepolicy hsizetype="Minimum" vsizetype="Preferred">
@@ -997,7 +997,7 @@
             </property>
            </widget>
           </item>
-          <item row="5" column="1">
+          <item row="6" column="1">
            <widget class="QSpinBox" name="arc_cp_index_spin_box">
             <property name="maximumSize">
              <size>
@@ -1010,14 +1010,14 @@
             </property>
            </widget>
           </item>
-          <item row="6" column="0">
+          <item row="7" column="0">
            <widget class="QLabel" name="controlPointXLabel">
             <property name="text">
              <string>Control point X</string>
             </property>
            </widget>
           </item>
-          <item row="6" column="1">
+          <item row="7" column="1">
            <widget class="QDoubleSpinBox" name="arc_cp_x_spin_box">
             <property name="maximumSize">
              <size>
@@ -1036,14 +1036,14 @@
             </property>
            </widget>
           </item>
-          <item row="7" column="0">
+          <item row="8" column="0">
            <widget class="QLabel" name="controlPointYLabel">
             <property name="text">
              <string>Control point Y</string>
             </property>
            </widget>
           </item>
-          <item row="7" column="1">
+          <item row="8" column="1">
            <widget class="QDoubleSpinBox" name="arc_cp_y_spin_box">
             <property name="maximumSize">
              <size>
@@ -1062,14 +1062,14 @@
             </property>
            </widget>
           </item>
-          <item row="8" column="0">
+          <item row="9" column="0">
            <widget class="QLabel" name="controlPointZLabel">
             <property name="text">
              <string>Control point Z</string>
             </property>
            </widget>
           </item>
-          <item row="8" column="1">
+          <item row="9" column="1">
            <widget class="QDoubleSpinBox" name="arc_cp_z_spin_box">
             <property name="maximumSize">
              <size>
@@ -1088,7 +1088,14 @@
             </property>
            </widget>
           </item>
-          <item row="9" column="1">
+          <item row="11" column="0">
+           <widget class="QPushButton" name="pushButton_5">
+            <property name="text">
+             <string>Continue</string>
+            </property>
+           </widget>
+          </item>
+          <item row="11" column="1">
            <widget class="QComboBox" name="comboBox">
             <item>
              <property name="text">
@@ -1102,21 +1109,21 @@
             </item>
            </widget>
           </item>
-          <item row="10" column="0">
+          <item row="12" column="0">
            <widget class="QPushButton" name="pushButton_3">
             <property name="text">
              <string>Join</string>
             </property>
            </widget>
           </item>
-          <item row="11" column="0">
+          <item row="13" column="0">
            <widget class="QLabel" name="label_11">
             <property name="text">
              <string>First curve</string>
             </property>
            </widget>
           </item>
-          <item row="11" column="1">
+          <item row="13" column="1">
            <widget class="QSpinBox" name="firstCurveJoinSpinBox">
             <property name="maximumSize">
              <size>
@@ -1129,14 +1136,14 @@
             </property>
            </widget>
           </item>
-          <item row="12" column="0">
+          <item row="14" column="0">
            <widget class="QLabel" name="label_12">
             <property name="text">
              <string>Second curve</string>
             </property>
            </widget>
           </item>
-          <item row="12" column="1">
+          <item row="14" column="1">
            <widget class="QSpinBox" name="secondCurveJoinSpinBox">
             <property name="maximumSize">
              <size>
@@ -1149,14 +1156,21 @@
             </property>
            </widget>
           </item>
-          <item row="14" column="0">
+          <item row="15" column="0">
+           <widget class="QPushButton" name="pushButton_4">
+            <property name="text">
+             <string>Merge</string>
+            </property>
+           </widget>
+          </item>
+          <item row="16" column="0">
            <widget class="QLabel" name="label_14">
             <property name="text">
              <string>First curve</string>
             </property>
            </widget>
           </item>
-          <item row="14" column="1">
+          <item row="16" column="1">
            <widget class="QSpinBox" name="firstCurveMergeSpinBox">
             <property name="maximumSize">
              <size>
@@ -1169,14 +1183,14 @@
             </property>
            </widget>
           </item>
-          <item row="15" column="0">
+          <item row="17" column="0">
            <widget class="QLabel" name="label_15">
             <property name="text">
              <string>Second curve</string>
             </property>
            </widget>
           </item>
-          <item row="15" column="1">
+          <item row="17" column="1">
            <widget class="QSpinBox" name="secondCurveMergeSpinBox">
             <property name="maximumSize">
              <size>
@@ -1189,24 +1203,27 @@
             </property>
            </widget>
           </item>
-          <item row="13" column="0">
-           <widget class="QPushButton" name="pushButton_4">
-            <property name="text">
-             <string>Merge</string>
-            </property>
-           </widget>
-          </item>
-          <item row="9" column="0">
-           <widget class="QPushButton" name="pushButton_5">
-            <property name="text">
-             <string>Continue</string>
-            </property>
-           </widget>
-          </item>
-          <item row="16" column="0">
+          <item row="18" column="0">
            <widget class="QPushButton" name="new_arc_button">
             <property name="text">
              <string>New arc</string>
+            </property>
+           </widget>
+          </item>
+          <item row="3" column="0">
+           <widget class="QLabel" name="selectedCurve2Label">
+            <property name="text">
+             <string>Selected curve 2</string>
+            </property>
+           </widget>
+          </item>
+          <item row="3" column="1">
+           <widget class="QSpinBox" name="selectedCurve2SpinBox">
+            <property name="maximumSize">
+             <size>
+              <width>60</width>
+              <height>16777215</height>
+             </size>
             </property>
            </widget>
           </item>
@@ -1219,9 +1236,9 @@
       <property name="geometry">
        <rect>
         <x>0</x>
-        <y>-949</y>
-        <width>270</width>
-        <height>1257</height>
+        <y>0</y>
+        <width>252</width>
+        <height>1102</height>
        </rect>
       </property>
       <attribute name="label">
@@ -1856,7 +1873,7 @@
   <tabstop>show_ip_cc_d2_check_box</tabstop>
   <tabstop>arc_d1_check_box</tabstop>
   <tabstop>arc_d2_check_box</tabstop>
-  <tabstop>selectedCurveSpinBox</tabstop>
+  <tabstop>selectedCurve1SpinBox</tabstop>
   <tabstop>show_iso_u_check_box</tabstop>
   <tabstop>show_iso_v_check_box</tabstop>
   <tabstop>show_iso_d1_u_check_box</tabstop>
