@@ -25,7 +25,7 @@ namespace cagd
     bool GLWidget::_createDl()
     {
         // creating a white directional light source
-        HCoordinate3    direction   (1.0, 0.0, 1.0, 0.0);
+        HCoordinate3    direction   (0.0, 0.0, 1.0, 0.0);
         Color4          ambient     (0.4f, 0.4f, 0.4f, 1.0f);
         Color4          diffuse     (0.8f, 0.8f, 0.8f, 1.0f);
         Color4          specular    (1.0, 1.0, 1.0, 1.0);
@@ -52,7 +52,7 @@ namespace cagd
     bool GLWidget::_createPl()
     {
         // creating a white directional light source
-        HCoordinate3    direction   (1.0, 0.0, 1.0, 1.0);
+        HCoordinate3    direction   (0.0, 0.0, 1.0, 1.0);
         Color4          ambient     (0.4f, 0.4f, 0.4f, 1.0f);
         Color4          diffuse     (0.8f, 0.8f, 0.8f, 1.0f);
         Color4          specular    (1.0, 1.0, 1.0, 1.0);
@@ -187,7 +187,6 @@ namespace cagd
 
     bool GLWidget::_communicateWithShaders()
     {
-        cout<< _rl_scale;
         _shaders[1]->Enable();
         if (!_shaders[1]->SetUniformVariable1f("scale_factor", _rl_scale))
         {
@@ -970,13 +969,6 @@ namespace cagd
             return false;
         }
 
-        DCoordinate3 selectedPoint;
-        _compositeSurface->GetDataPointValues(_selectedPatch, _selectedPointRow, _selectedPointCol, selectedPoint);
-        selectedPoint.x();
-        emit patch_control_point_x_changed(selectedPoint.x());
-        emit patch_control_point_y_changed(selectedPoint.y());
-        emit patch_control_point_z_changed(selectedPoint.z());
-
         return true;
     }
 
@@ -1002,11 +994,8 @@ namespace cagd
         }
         else
         {
-            if (_directional_light || _point_like_light || _reflector_light)
-            {
-                glEnable(GL_LIGHTING);
-                glEnable(GL_NORMALIZE);
-            }
+            glEnable(GL_LIGHTING);
+            glEnable(GL_NORMALIZE);
             if (_directional_light)
             {
                 _dl->Enable();
@@ -1043,11 +1032,8 @@ namespace cagd
         }
         else
         {
-            if (_directional_light || _point_like_light || _reflector_light)
-            {
-                glDisable(GL_LIGHTING);
-                glDisable(GL_NORMALIZE);
-            }
+            glDisable(GL_LIGHTING);
+            glDisable(GL_NORMALIZE);
             if (_directional_light)
             {
                 _dl->Disable();
@@ -1422,6 +1408,10 @@ namespace cagd
         }
     }
 
+    // ---------------------------------------------------
+    // slots of shaderers
+    // ---------------------------------------------------
+
     void GLWidget::set_dl_shader_selected(bool value)
     {
         if (_shader_selected[0] != value)
@@ -1522,6 +1512,10 @@ namespace cagd
         update();
     }
 
+    // ---------------------------------------------------
+    // slots of parametric curves
+    // ---------------------------------------------------
+
     void GLWidget::setParametricCurveIndex(int index)
     {
         if (_selected_pc != index)
@@ -1577,6 +1571,10 @@ namespace cagd
         emit divisionPointCountSignal(200);
     }
 
+    // ---------------------------------------------------
+    // slots of parametric surfaces
+    // ---------------------------------------------------
+
     void GLWidget::setParametricSurfaceIndex(int index)
     {
         if (_selected_ps != index)
@@ -1614,6 +1612,10 @@ namespace cagd
             update();
         }
     }
+
+    // ---------------------------------------------------
+    // slots of cyclic curves
+    // ---------------------------------------------------
 
     void GLWidget::setSelectedControlPoint(int index)
     {
@@ -1679,11 +1681,15 @@ namespace cagd
         update();
     }
 
+    // ---------------------------------------------------
+    // slots of composite curve
+    // ---------------------------------------------------
+
     void GLWidget::set_selected_cp_arc(int index)
     {
         _selectedCurvePoint = index;
         DCoordinate3 selectedPoint;
-        _compositeCurve->GetDataPointValues(_selectedCurve, _selectedCurvePoint, selectedPoint);
+        _compositeCurve->GetDataPointValues(_selectedCurve1, _selectedCurvePoint, selectedPoint);
         emit arc_control_point_x_changed(selectedPoint.x());
         emit arc_control_point_y_changed(selectedPoint.y());
         emit arc_control_point_z_changed(selectedPoint.z());
@@ -1692,26 +1698,26 @@ namespace cagd
     void GLWidget::arc_cp_set_x(double x)
     {
         DCoordinate3 pointToUpdate;
-        _compositeCurve->GetDataPointValues(_selectedCurve, _selectedCurvePoint, pointToUpdate);
+        _compositeCurve->GetDataPointValues(_selectedCurve1, _selectedCurvePoint, pointToUpdate);
         pointToUpdate.x() = x;
-        _compositeCurve->UpdateArc(_selectedCurve, _selectedCurvePoint, pointToUpdate);
+        _compositeCurve->UpdateArc(_selectedCurve1, _selectedCurvePoint, pointToUpdate);
         update();
     }
 
     void GLWidget::arc_cp_set_y(double y)
     {
         DCoordinate3 pointToUpdate;
-        _compositeCurve->GetDataPointValues(_selectedCurve, _selectedCurvePoint, pointToUpdate);
+        _compositeCurve->GetDataPointValues(_selectedCurve1, _selectedCurvePoint, pointToUpdate);
         pointToUpdate.y() = y;
-        _compositeCurve->UpdateArc(_selectedCurve, _selectedCurvePoint, pointToUpdate);
+        _compositeCurve->UpdateArc(_selectedCurve1, _selectedCurvePoint, pointToUpdate);
         update();
     }
     void GLWidget::arc_cp_set_z(double z)
     {
         DCoordinate3 pointToUpdate;
-        _compositeCurve->GetDataPointValues(_selectedCurve, _selectedCurvePoint, pointToUpdate);
+        _compositeCurve->GetDataPointValues(_selectedCurve1, _selectedCurvePoint, pointToUpdate);
         pointToUpdate.z() = z;
-        _compositeCurve->UpdateArc(_selectedCurve, _selectedCurvePoint, pointToUpdate);
+        _compositeCurve->UpdateArc(_selectedCurve1, _selectedCurvePoint, pointToUpdate);
         update();
     }
     void GLWidget::set_arc_d1_visibility(bool value)
@@ -1725,52 +1731,79 @@ namespace cagd
         update();
     }
 
-    void GLWidget::set_selected_cp_patch_row(int index)
+    void GLWidget::new_arc()
     {
-        _selectedPointRow = index;
-        DCoordinate3 selectedPoint;
-        _compositeSurface->GetDataPointValues(_selectedPatch, _selectedPointRow, _selectedPointCol, selectedPoint);
-        emit patch_control_point_x_changed(selectedPoint.x());
-        emit patch_control_point_y_changed(selectedPoint.y());
-        emit patch_control_point_z_changed(selectedPoint.z());
-    }
-
-    void GLWidget::set_selected_cp_patch_column(int index)
-    {
-        _selectedPointCol = index;
-        DCoordinate3 selectedPoint;
-        _compositeSurface->GetDataPointValues(_selectedPatch, _selectedPointRow, _selectedPointCol, selectedPoint);
-        emit patch_control_point_x_changed(selectedPoint.x());
-        emit patch_control_point_y_changed(selectedPoint.y());
-        emit patch_control_point_z_changed(selectedPoint.z());
-    }
-
-    void GLWidget::patch_cp_set_x(double x)
-    {
-        DCoordinate3 selectedPoint;
-        _compositeSurface->GetDataPointValues(_selectedPatch, _selectedPointRow, _selectedPointCol, selectedPoint);
-        selectedPoint.x() = x;
-        _compositeSurface->UpdatePatch(_selectedPatch, _selectedPointRow, _selectedPointCol, selectedPoint);
+        _compositeCurve->InsertNewArc();
         update();
     }
 
-    void GLWidget::patch_cp_set_y(double y)
+    void GLWidget::cont_arc()
     {
-        DCoordinate3 selectedPoint;
-        _compositeSurface->GetDataPointValues(_selectedPatch, _selectedPointRow, _selectedPointCol, selectedPoint);
-        selectedPoint.y() = y;
-        _compositeSurface->UpdatePatch(_selectedPatch, _selectedPointRow, _selectedPointCol, selectedPoint);
-        update();
+        if (_compositeCurve->ContinueExistingArc(_selectedCurve1, _arc_continue_dir))
+        {
+            update();
+        }
     }
 
-    void GLWidget::patch_cp_set_z(double z)
+    void GLWidget::join_arcs()
     {
-        DCoordinate3 selectedPoint;
-        _compositeSurface->GetDataPointValues(_selectedPatch, _selectedPointRow, _selectedPointCol, selectedPoint);
-        selectedPoint.z() = z;
-        _compositeSurface->UpdatePatch(_selectedPatch, _selectedPointRow, _selectedPointCol, selectedPoint);
-        update();
+        if (_compositeCurve->JoinExistingArcs(_selectedCurve1, _arc_join_dir_1, _selectedCurve2, _arc_join_dir_2))
+        {
+            update();
+        }
     }
+
+    void GLWidget::merge_arcs()
+    {
+        if (_compositeCurve->MergeExistingArcs(_selectedCurve1, _arc_merge_dir_1, _selectedCurve2, _arc_merge_dir_2))
+        {
+            update();
+        }
+    }
+
+    void GLWidget::set_arc_cont_dir(int dir)
+    {
+        if (_arc_continue_dir != dir)
+        {
+            _arc_continue_dir = dir == 0 ? CubicCompositeCurve3::Direction::LEFT : CubicCompositeCurve3::Direction::LEFT;
+        }
+    }
+
+    void GLWidget::set_arc_join_dir_1(int dir)
+    {
+        if (_arc_join_dir_1 != dir)
+        {
+            _arc_join_dir_1 = dir == 0 ? CubicCompositeCurve3::Direction::LEFT : CubicCompositeCurve3::Direction::RIGHT;
+        }
+    }
+
+    void GLWidget::set_arc_join_dir_2(int dir)
+    {
+        if (_arc_join_dir_2 != dir)
+        {
+            _arc_join_dir_2 = dir == 0 ? CubicCompositeCurve3::Direction::LEFT : CubicCompositeCurve3::Direction::RIGHT;
+        }
+    }
+
+    void GLWidget::set_arc_merge_dir_1(int dir)
+    {
+        if (_arc_merge_dir_1 != dir)
+        {
+            _arc_merge_dir_1 = dir == 0 ? CubicCompositeCurve3::Direction::LEFT : CubicCompositeCurve3::Direction::RIGHT;
+        }
+    }
+
+    void GLWidget::set_arc_merge_dir_2(int dir)
+    {
+        if (_arc_merge_dir_2 != dir)
+        {
+            _arc_merge_dir_2 = dir == 0 ? CubicCompositeCurve3::Direction::LEFT : CubicCompositeCurve3::Direction::RIGHT;
+        }
+    }
+
+    // ---------------------------------------------------
+    // slots of composite surface
+    // ---------------------------------------------------
 
     void GLWidget::setIsoLineUVisibility(bool visibility)
     {
@@ -1793,18 +1826,15 @@ namespace cagd
         update();
     }
 
-    void GLWidget::shaderOrLight(int shaderOrLight)
+    void GLWidget::setShader(bool shader)
     {
-        if (shaderOrLight == 0)
-        {
-            _shader = true;
-            _light = false;
-        }
-        else
-        {
-            _shader = false;
-            _light = true;
-        }
+        _shader = shader;
+        update();
+    }
+
+    void GLWidget::setLight(bool light)
+    {
+        _light = light;
         update();
     }
 

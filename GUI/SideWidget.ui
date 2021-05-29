@@ -232,15 +232,15 @@
    <item>
     <widget class="QToolBox" name="toolBox">
      <property name="currentIndex">
-      <number>6</number>
+      <number>5</number>
      </property>
      <widget class="QWidget" name="triangle_page">
       <property name="geometry">
        <rect>
         <x>0</x>
         <y>0</y>
-        <width>266</width>
-        <height>385</height>
+        <width>262</width>
+        <height>325</height>
        </rect>
       </property>
       <attribute name="label">
@@ -252,8 +252,8 @@
        <rect>
         <x>0</x>
         <y>0</y>
-        <width>252</width>
-        <height>425</height>
+        <width>251</width>
+        <height>486</height>
        </rect>
       </property>
       <attribute name="label">
@@ -447,8 +447,8 @@
        <rect>
         <x>0</x>
         <y>0</y>
-        <width>266</width>
-        <height>385</height>
+        <width>262</width>
+        <height>325</height>
        </rect>
       </property>
       <attribute name="label">
@@ -459,8 +459,8 @@
         <rect>
          <x>0</x>
          <y>0</y>
-         <width>241</width>
-         <height>152</height>
+         <width>283</width>
+         <height>172</height>
         </rect>
        </property>
        <layout class="QFormLayout" name="pc_form">
@@ -590,8 +590,8 @@
        <rect>
         <x>0</x>
         <y>0</y>
-        <width>266</width>
-        <height>385</height>
+        <width>262</width>
+        <height>325</height>
        </rect>
       </property>
       <attribute name="label">
@@ -602,7 +602,7 @@
         <rect>
          <x>10</x>
          <y>0</y>
-         <width>213</width>
+         <width>242</width>
          <height>132</height>
         </rect>
        </property>
@@ -712,8 +712,8 @@
        <rect>
         <x>0</x>
         <y>0</y>
-        <width>266</width>
-        <height>385</height>
+        <width>262</width>
+        <height>325</height>
        </rect>
       </property>
       <attribute name="label">
@@ -916,16 +916,16 @@
       <property name="geometry">
        <rect>
         <x>0</x>
-        <y>0</y>
-        <width>252</width>
-        <height>497</height>
+        <y>-433</y>
+        <width>289</width>
+        <height>741</height>
        </rect>
       </property>
       <attribute name="label">
        <string>Cubic Bezier Arc</string>
       </attribute>
       <layout class="QVBoxLayout" name="verticalLayout_10">
-       <item>
+       <item alignment="Qt::AlignRight">
         <widget class="QGroupBox" name="groupBox">
          <layout class="QFormLayout" name="formLayout_7">
           <property name="topMargin">
@@ -957,7 +957,20 @@
           <item row="1" column="1">
            <widget class="QCheckBox" name="arc_d2_check_box"/>
           </item>
-          <item row="2" column="0">
+          <item row="2" column="0" colspan="2">
+           <widget class="Line" name="line">
+            <property name="sizePolicy">
+             <sizepolicy hsizetype="Minimum" vsizetype="Fixed">
+              <horstretch>0</horstretch>
+              <verstretch>0</verstretch>
+             </sizepolicy>
+            </property>
+            <property name="orientation">
+             <enum>Qt::Horizontal</enum>
+            </property>
+           </widget>
+          </item>
+          <item row="3" column="0">
            <widget class="QLabel" name="selectedCurveLabel">
             <property name="font">
              <font>
@@ -975,7 +988,7 @@
             </property>
            </widget>
           </item>
-          <item row="2" column="1">
+          <item row="3" column="1">
            <widget class="QSpinBox" name="selectedCurveSpinBox">
             <property name="maximumSize">
              <size>
@@ -988,14 +1001,14 @@
             </property>
            </widget>
           </item>
-          <item row="3" column="0">
+          <item row="4" column="0">
            <widget class="QLabel" name="colorLabel">
             <property name="text">
              <string>Color</string>
             </property>
            </widget>
           </item>
-          <item row="3" column="1">
+          <item row="4" column="1">
            <widget class="QSpinBox" name="colorSpinBox">
             <property name="maximumSize">
              <size>
@@ -1005,14 +1018,14 @@
             </property>
            </widget>
           </item>
-          <item row="4" column="0">
+          <item row="5" column="0">
            <widget class="QLabel" name="hullLabel">
             <property name="text">
              <string>Hull</string>
             </property>
            </widget>
           </item>
-          <item row="4" column="1">
+          <item row="5" column="1">
            <widget class="QSpinBox" name="hullSpinBox">
             <property name="maximumSize">
              <size>
@@ -1022,7 +1035,14 @@
             </property>
            </widget>
           </item>
-          <item row="5" column="0">
+          <item row="6" column="0" colspan="2">
+           <widget class="Line" name="line_2">
+            <property name="orientation">
+             <enum>Qt::Horizontal</enum>
+            </property>
+           </widget>
+          </item>
+          <item row="7" column="0">
            <widget class="QLabel" name="controlPointIndexLabel_2">
             <property name="sizePolicy">
              <sizepolicy hsizetype="Minimum" vsizetype="Preferred">
@@ -1050,7 +1070,7 @@
             </property>
            </widget>
           </item>
-          <item row="5" column="1">
+          <item row="7" column="1">
            <widget class="QSpinBox" name="arc_cp_index_spin_box">
             <property name="maximumSize">
              <size>
@@ -1063,14 +1083,14 @@
             </property>
            </widget>
           </item>
-          <item row="6" column="0">
+          <item row="8" column="0">
            <widget class="QLabel" name="controlPointXLabel">
             <property name="text">
              <string>Control point X</string>
             </property>
            </widget>
           </item>
-          <item row="6" column="1">
+          <item row="8" column="1">
            <widget class="QDoubleSpinBox" name="arc_cp_x_spin_box">
             <property name="maximumSize">
              <size>
@@ -1089,14 +1109,14 @@
             </property>
            </widget>
           </item>
-          <item row="7" column="0">
+          <item row="9" column="0">
            <widget class="QLabel" name="controlPointYLabel">
             <property name="text">
              <string>Control point Y</string>
             </property>
            </widget>
           </item>
-          <item row="7" column="1">
+          <item row="9" column="1">
            <widget class="QDoubleSpinBox" name="arc_cp_y_spin_box">
             <property name="maximumSize">
              <size>
@@ -1115,14 +1135,14 @@
             </property>
            </widget>
           </item>
-          <item row="8" column="0">
+          <item row="10" column="0">
            <widget class="QLabel" name="controlPointZLabel">
             <property name="text">
              <string>Control point Z</string>
             </property>
            </widget>
           </item>
-          <item row="8" column="1">
+          <item row="10" column="1">
            <widget class="QDoubleSpinBox" name="arc_cp_z_spin_box">
             <property name="maximumSize">
              <size>
@@ -1141,8 +1161,22 @@
             </property>
            </widget>
           </item>
-          <item row="9" column="1">
-           <widget class="QComboBox" name="comboBox">
+          <item row="11" column="0" colspan="2">
+           <widget class="Line" name="line_3">
+            <property name="orientation">
+             <enum>Qt::Horizontal</enum>
+            </property>
+           </widget>
+          </item>
+          <item row="12" column="0">
+           <widget class="QPushButton" name="continue_arc_button">
+            <property name="text">
+             <string>Continue</string>
+            </property>
+           </widget>
+          </item>
+          <item row="12" column="1">
+           <widget class="QComboBox" name="arc_cont_dir_combo_box">
             <item>
              <property name="text">
               <string>LEFT</string>
@@ -1155,21 +1189,14 @@
             </item>
            </widget>
           </item>
-          <item row="10" column="0">
-           <widget class="QPushButton" name="pushButton_3">
-            <property name="text">
-             <string>Join</string>
-            </property>
-           </widget>
-          </item>
-          <item row="11" column="0">
+          <item row="15" column="0">
            <widget class="QLabel" name="label_11">
             <property name="text">
              <string>First curve</string>
             </property>
            </widget>
           </item>
-          <item row="11" column="1">
+          <item row="15" column="1">
            <widget class="QSpinBox" name="firstCurveJoinSpinBox">
             <property name="maximumSize">
              <size>
@@ -1182,14 +1209,28 @@
             </property>
            </widget>
           </item>
-          <item row="12" column="0">
+          <item row="16" column="1">
+           <widget class="QComboBox" name="arc_join_dir_1_combo_box">
+            <item>
+             <property name="text">
+              <string>LEFT</string>
+             </property>
+            </item>
+            <item>
+             <property name="text">
+              <string>RIGHT</string>
+             </property>
+            </item>
+           </widget>
+          </item>
+          <item row="17" column="0">
            <widget class="QLabel" name="label_12">
             <property name="text">
              <string>Second curve</string>
             </property>
            </widget>
           </item>
-          <item row="12" column="1">
+          <item row="17" column="1">
            <widget class="QSpinBox" name="secondCurveJoinSpinBox">
             <property name="maximumSize">
              <size>
@@ -1202,14 +1243,21 @@
             </property>
            </widget>
           </item>
-          <item row="14" column="0">
+          <item row="20" column="0">
+           <widget class="QPushButton" name="merge_arcs_button">
+            <property name="text">
+             <string>Merge</string>
+            </property>
+           </widget>
+          </item>
+          <item row="21" column="0">
            <widget class="QLabel" name="label_14">
             <property name="text">
              <string>First curve</string>
             </property>
            </widget>
           </item>
-          <item row="14" column="1">
+          <item row="21" column="1">
            <widget class="QSpinBox" name="firstCurveMergeSpinBox">
             <property name="maximumSize">
              <size>
@@ -1222,14 +1270,14 @@
             </property>
            </widget>
           </item>
-          <item row="15" column="0">
+          <item row="23" column="0">
            <widget class="QLabel" name="label_15">
             <property name="text">
              <string>Second curve</string>
             </property>
            </widget>
           </item>
-          <item row="15" column="1">
+          <item row="23" column="1">
            <widget class="QSpinBox" name="secondCurveMergeSpinBox">
             <property name="maximumSize">
              <size>
@@ -1242,25 +1290,87 @@
             </property>
            </widget>
           </item>
-          <item row="13" column="0">
-           <widget class="QPushButton" name="pushButton_4">
-            <property name="text">
-             <string>Merge</string>
+          <item row="19" column="0" colspan="2">
+           <widget class="Line" name="line_5">
+            <property name="sizePolicy">
+             <sizepolicy hsizetype="Minimum" vsizetype="Fixed">
+              <horstretch>0</horstretch>
+              <verstretch>0</verstretch>
+             </sizepolicy>
+            </property>
+            <property name="orientation">
+             <enum>Qt::Horizontal</enum>
             </property>
            </widget>
           </item>
-          <item row="9" column="0">
-           <widget class="QPushButton" name="pushButton_5">
-            <property name="text">
-             <string>Continue</string>
+          <item row="13" column="0" colspan="2">
+           <widget class="Line" name="line_4">
+            <property name="orientation">
+             <enum>Qt::Horizontal</enum>
             </property>
            </widget>
           </item>
-          <item row="16" column="0">
-           <widget class="QPushButton" name="pushButton_7">
+          <item row="14" column="0">
+           <widget class="QPushButton" name="join_arcs_button">
+            <property name="text">
+             <string>Join</string>
+            </property>
+           </widget>
+          </item>
+          <item row="18" column="1">
+           <widget class="QComboBox" name="arc_join_dir_2_combo_box">
+            <item>
+             <property name="text">
+              <string>LEFT</string>
+             </property>
+            </item>
+            <item>
+             <property name="text">
+              <string>RIGHT</string>
+             </property>
+            </item>
+           </widget>
+          </item>
+          <item row="25" column="0" colspan="2">
+           <widget class="Line" name="line_6">
+            <property name="orientation">
+             <enum>Qt::Horizontal</enum>
+            </property>
+           </widget>
+          </item>
+          <item row="26" column="0">
+           <widget class="QPushButton" name="new_arc_button">
             <property name="text">
              <string>New arc</string>
             </property>
+           </widget>
+          </item>
+          <item row="22" column="1">
+           <widget class="QComboBox" name="arc_merge_dir_1_combo_box">
+            <item>
+             <property name="text">
+              <string>LEFT</string>
+             </property>
+            </item>
+            <item>
+             <property name="text">
+              <string>RIGHT</string>
+             </property>
+            </item>
+           </widget>
+          </item>
+          <item row="24" column="1">
+           <widget class="QComboBox" name="arc_merge_dir_2_combo_box">
+            <item>
+             <property name="text">
+              <string>LEFT</string>
+             </property>
+            </item>
+            <item>
+             <property name="text">
+              <string>RIGHT</string>
+             </property>
+            </item>
            </widget>
           </item>
          </layout>
@@ -1272,9 +1382,9 @@
       <property name="geometry">
        <rect>
         <x>0</x>
-        <y>-495</y>
-        <width>260</width>
-        <height>866</height>
+        <y>0</y>
+        <width>302</width>
+        <height>998</height>
        </rect>
       </property>
       <attribute name="label">
@@ -1430,7 +1540,7 @@
            </widget>
           </item>
           <item row="6" column="0">
-           <widget class="QPushButton" name="pushButton">
+           <widget class="QPushButton" name="join_patches_button">
             <property name="text">
              <string>Join</string>
             </property>
@@ -1476,7 +1586,7 @@
           <item row="17" column="1">
            <widget class="QSpinBox" name="spinBox_4"/>
           </item>
-          <item row="18" column="0">
+          <item row="19" column="0">
            <widget class="QLabel" name="selectedPatchLabel">
             <property name="font">
              <font>
@@ -1490,7 +1600,7 @@
             </property>
            </widget>
           </item>
-          <item row="18" column="1">
+          <item row="19" column="1">
            <widget class="QSpinBox" name="selectedPatchSpinBox">
             <property name="maximumSize">
              <size>
@@ -1503,35 +1613,35 @@
             </property>
            </widget>
           </item>
-          <item row="19" column="0">
+          <item row="20" column="0">
            <widget class="QLabel" name="textureOrMaterialLabel">
             <property name="text">
              <string>Texture or material</string>
             </property>
            </widget>
           </item>
-          <item row="19" column="1">
+          <item row="20" column="1">
            <widget class="QRadioButton" name="textureRadioButton">
             <property name="text">
              <string>Texture</string>
             </property>
            </widget>
           </item>
-          <item row="21" column="1">
+          <item row="22" column="1">
            <widget class="QRadioButton" name="materialRadioButton">
             <property name="text">
              <string>Material</string>
             </property>
            </widget>
           </item>
-          <item row="22" column="0">
+          <item row="23" column="0">
            <widget class="QLabel" name="textureLabel">
             <property name="text">
              <string>Texture</string>
             </property>
            </widget>
           </item>
-          <item row="22" column="1">
+          <item row="23" column="1">
            <widget class="QComboBox" name="textureComboBox">
             <item>
              <property name="text">
@@ -1555,14 +1665,14 @@
             </item>
            </widget>
           </item>
-          <item row="24" column="0">
+          <item row="25" column="0">
            <widget class="QLabel" name="materialLabel">
             <property name="text">
              <string>Material</string>
             </property>
            </widget>
           </item>
-          <item row="24" column="1">
+          <item row="25" column="1">
            <widget class="QComboBox" name="materialComboBox">
             <item>
              <property name="text">
@@ -1586,7 +1696,7 @@
             </item>
            </widget>
           </item>
-          <item row="27" column="0">
+          <item row="28" column="0">
            <widget class="QLabel" name="label_26">
             <property name="text">
              <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:9pt; text-decoration: underline;&quot;&gt;Control point index&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
@@ -1596,41 +1706,47 @@
             </property>
            </widget>
           </item>
-          <item row="29" column="0">
+          <item row="30" column="0">
            <widget class="QLabel" name="label_27">
             <property name="text">
              <string>Row</string>
             </property>
            </widget>
           </item>
-          <item row="29" column="1">
+          <item row="30" column="1">
            <widget class="QSpinBox" name="cp_row_spinBox"/>
           </item>
-          <item row="30" column="0">
+          <item row="31" column="0">
            <widget class="QLabel" name="label_28">
             <property name="text">
              <string>Column</string>
             </property>
            </widget>
           </item>
-          <item row="30" column="1">
+          <item row="31" column="1">
            <widget class="QSpinBox" name="cp_col_spinBox"/>
           </item>
-          <item row="31" column="0">
+          <item row="32" column="0">
            <widget class="QLabel" name="label_29">
             <property name="text">
              <string>Control point X</string>
             </property>
            </widget>
           </item>
-          <item row="32" column="0">
+          <item row="32" column="1">
+           <widget class="QSpinBox" name="patch_cp_x_spinBox"/>
+          </item>
+          <item row="33" column="0">
            <widget class="QLabel" name="label_30">
             <property name="text">
              <string>Control point Y</string>
             </property>
            </widget>
           </item>
-          <item row="33" column="0">
+          <item row="33" column="1">
+           <widget class="QSpinBox" name="patch_cp_y_spinBox"/>
+          </item>
+          <item row="34" column="0">
            <widget class="QLabel" name="label_31">
             <property name="text">
              <string>Control point Z</string>
@@ -1638,6 +1754,9 @@
            </widget>
           </item>
           <item row="34" column="1">
+           <widget class="QSpinBox" name="patch_cp_z_spinBox"/>
+          </item>
+          <item row="35" column="1">
            <widget class="QComboBox" name="continuePatchComboBox">
             <item>
              <property name="text">
@@ -1657,62 +1776,37 @@
            </widget>
           </item>
           <item row="13" column="0">
-           <widget class="QPushButton" name="pushButton_2">
+           <widget class="QPushButton" name="merge_patches_button">
             <property name="text">
              <string>Merge</string>
             </property>
            </widget>
           </item>
-          <item row="34" column="0">
-           <widget class="QPushButton" name="pushButton_6">
+          <item row="35" column="0">
+           <widget class="QPushButton" name="continue_patch_button">
             <property name="text">
              <string>Continue</string>
             </property>
            </widget>
           </item>
-          <item row="35" column="0">
-           <widget class="QPushButton" name="pushButton_8">
+          <item row="36" column="0">
+           <widget class="QPushButton" name="new_patch_button">
             <property name="text">
              <string>New patch</string>
             </property>
            </widget>
           </item>
-          <item row="31" column="1">
-           <widget class="QDoubleSpinBox" name="patch_cp_x_spinBox">
-            <property name="minimum">
-             <double>-10.000000000000000</double>
-            </property>
-            <property name="maximum">
-             <double>10.000000000000000</double>
-            </property>
-            <property name="singleStep">
-             <double>0.100000000000000</double>
+          <item row="12" column="0" colspan="2">
+           <widget class="Line" name="line_7">
+            <property name="orientation">
+             <enum>Qt::Horizontal</enum>
             </property>
            </widget>
           </item>
-          <item row="32" column="1">
-           <widget class="QDoubleSpinBox" name="patch_cp_y_spinBox">
-            <property name="minimum">
-             <double>-10.000000000000000</double>
-            </property>
-            <property name="maximum">
-             <double>10.000000000000000</double>
-            </property>
-            <property name="singleStep">
-             <double>0.100000000000000</double>
-            </property>
-           </widget>
-          </item>
-          <item row="33" column="1">
-           <widget class="QDoubleSpinBox" name="patch_cp_z_spinBox">
-            <property name="minimum">
-             <double>-10.000000000000000</double>
-            </property>
-            <property name="maximum">
-             <double>10.000000000000000</double>
-            </property>
-            <property name="singleStep">
-             <double>0.100000000000000</double>
+          <item row="18" column="0" colspan="2">
+           <widget class="Line" name="line_8">
+            <property name="orientation">
+             <enum>Qt::Horizontal</enum>
             </property>
            </widget>
           </item>
