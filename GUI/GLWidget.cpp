@@ -49,6 +49,70 @@ namespace cagd
         }
     }
 
+    bool GLWidget::_createPl()
+    {
+        // creating a white directional light source
+        HCoordinate3    direction   (0.0, 0.0, 1.0, 1.0);
+        Color4          ambient     (0.4f, 0.4f, 0.4f, 1.0f);
+        Color4          diffuse     (0.8f, 0.8f, 0.8f, 1.0f);
+        Color4          specular    (1.0, 1.0, 1.0, 1.0);
+        GLfloat         constant_attenuation(1.0);
+        GLfloat         linear_attenuation(0.0);
+        GLfloat         quadratic_attenuation(0.0);
+        HCoordinate3    spot_direction(0.0, 0.0, -1.0);
+
+        _pl = new (nothrow) PointLight(GL_LIGHT1, direction, ambient, diffuse, specular, constant_attenuation, linear_attenuation, quadratic_attenuation);
+
+        if (!_pl)
+        {
+            return false;
+        }
+
+        return true;
+    }
+
+    void GLWidget::_destroyPl()
+    {
+        if (_pl)
+        {
+            delete _pl;
+            _pl = nullptr;
+        }
+    }
+
+    bool GLWidget::_createSl()
+    {
+        // creating a white directional light source
+        HCoordinate3    direction   (-1.0, -1.0, 2.0, 1.0);
+        Color4          ambient     (0.4f, 0.4f, 0.4f, 1.0f);
+        Color4          diffuse     (0.8f, 0.8f, 0.8f, 1.0f);
+        Color4          specular    (1.0, 1.0, 1.0, 1.0);
+        GLfloat         constant_attenuation(0.1f);
+        GLfloat         linear_attenuation(0.2f);
+        GLfloat         quadratic_attenuation(0.2f);
+        HCoordinate3    spot_direction(2.0, 1.0, -1.0, 1.0);
+        GLfloat         spot_cutoff(0.2f);
+        GLfloat         spot_exponent(0.2f);
+
+        _sl = new (nothrow) Spotlight(GL_LIGHT2, direction, ambient, diffuse, specular, constant_attenuation, linear_attenuation, quadratic_attenuation, spot_direction, spot_cutoff, spot_exponent);
+
+        if (!_sl)
+        {
+            return false;
+        }
+
+        return true;
+    }
+
+    void GLWidget::_destroySl()
+    {
+        if (_sl)
+        {
+            delete _sl;
+            _sl = nullptr;
+        }
+    }
+
     //---------
     // textures
     //---------
@@ -919,6 +983,33 @@ namespace cagd
 
     bool GLWidget::_renderBicubicCompositeSurface()
     {
+        if (!_dl || !_pl || !_sl)
+        {
+            return false;
+        }
+
+        if (_shader)
+        {
+            _shaders[_selected_shader] -> Enable();
+        }
+        else
+        {
+            glEnable(GL_LIGHTING);
+            glEnable(GL_NORMALIZE);
+            if (_directional_light)
+            {
+                _dl->Enable();
+            }
+            if (_point_like_light)
+            {
+                _pl->Enable();
+            }
+            if (_reflector_light)
+            {
+                _sl->Enable();
+            }
+        }
+
         if (!_compositeSurface)
         {
             return false;
@@ -935,6 +1026,27 @@ namespace cagd
             return false;
         }
 
+        if (_shader)
+        {
+            _shaders[_selected_shader] -> Disable();
+        }
+        else
+        {
+            glDisable(GL_LIGHTING);
+            glDisable(GL_NORMALIZE);
+            if (_directional_light)
+            {
+                _dl->Disable();
+            }
+            if (_point_like_light)
+            {
+                _pl->Disable();
+            }
+            if (_reflector_light)
+            {
+                _sl->Disable();
+            }
+        }
         return true;
     }
 
@@ -985,6 +1097,8 @@ namespace cagd
         _destroyCubicCompositeCurve();
         _destroyBicubicCompositeSurface();
         _destroyDl();
+        _destroySl();
+        _destroyPl();
         _destroyTextures();
         _destroyShaders();
     }
@@ -1088,6 +1202,16 @@ namespace cagd
             if (!_createDl())
             {
                 throw Exception("Could not create the dirctional light object");
+            }
+
+            if (!_createPl())
+            {
+                throw Exception("Could not create the point light object");
+            }
+
+            if (!_createSl())
+            {
+                throw Exception("Could not create the spotlight object");
             }
 
             if (!_loadTextures())
@@ -1583,6 +1707,42 @@ namespace cagd
     void GLWidget::setIsoLineD1VVisibility(bool visibility)
     {
         _showIsoLinesD1V = visibility;
+        update();
+    }
+
+    void GLWidget::setShader(bool shader)
+    {
+        _shader = shader;
+        update();
+    }
+
+    void GLWidget::setLight(bool light)
+    {
+        _light = light;
+        update();
+    }
+
+    void GLWidget::setShaderType(int selected_shader)
+    {
+        _selected_shader = selected_shader;
+        update();
+    }
+
+    void GLWidget::setDirectionalLight(bool directional_light)
+    {
+        _directional_light = directional_light;
+        update();
+    }
+
+    void GLWidget::setReflectorLight(bool reflector_light)
+    {
+        _reflector_light = reflector_light;
+        update();
+    }
+
+    void GLWidget::setPointLikeLight(bool point_like_light)
+    {
+        _point_like_light = point_like_light;
         update();
     }
 }

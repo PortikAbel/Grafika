@@ -40,6 +40,14 @@ namespace cagd
         bool                _createDl();
         void                _destroyDl();
 
+        Spotlight*          _sl = nullptr;
+        bool                _createSl();
+        void                _destroySl();
+
+        PointLight*         _pl = nullptr;
+        bool                _createPl();
+        void                _destroyPl();
+
         QOpenGLTexture*     _texture = nullptr;
         bool                _loadTextures();
         void                _destroyTextures();
@@ -156,6 +164,13 @@ namespace cagd
         bool        _showIsoLinesV      = false;
         bool        _showIsoLinesD1U    = false;
         bool        _showIsoLinesD1V    = false;
+        bool        _shader             = false;
+        bool        _light              = true;
+        int         _selected_shader    = 0;
+        bool        _directional_light  = true;
+        bool        _reflector_light    = false;
+        bool        _point_like_light   = false;
+
 
         bool _createBicubicCompositeSurface();
         void _destroyBicubicCompositeSurface();
@@ -239,6 +254,12 @@ namespace cagd
         void setIsoLineVVisibility(bool);
         void setIsoLineD1UVisibility(bool);
         void setIsoLineD1VVisibility(bool);
+        void setShader(bool);
+        void setLight(bool);
+        void setShaderType(int);
+        void setDirectionalLight(bool);
+        void setReflectorLight(bool);
+        void setPointLikeLight(bool);
 
     signals:
         void setAngle(int);
