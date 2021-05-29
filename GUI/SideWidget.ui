@@ -232,15 +232,15 @@
    <item>
     <widget class="QToolBox" name="toolBox">
      <property name="currentIndex">
-      <number>5</number>
+      <number>6</number>
      </property>
      <widget class="QWidget" name="triangle_page">
       <property name="geometry">
        <rect>
         <x>0</x>
         <y>0</y>
-        <width>262</width>
-        <height>325</height>
+        <width>266</width>
+        <height>385</height>
        </rect>
       </property>
       <attribute name="label">
@@ -252,67 +252,14 @@
        <rect>
         <x>0</x>
         <y>0</y>
-        <width>251</width>
-        <height>486</height>
+        <width>266</width>
+        <height>385</height>
        </rect>
       </property>
       <attribute name="label">
        <string>Playground</string>
       </attribute>
       <layout class="QVBoxLayout" name="verticalLayout_6">
-       <item>
-        <widget class="QGroupBox" name="shaders_box">
-         <property name="title">
-          <string>Select shaders</string>
-         </property>
-         <layout class="QVBoxLayout" name="verticalLayout_7">
-          <item>
-           <layout class="QFormLayout" name="formLayout_4">
-            <item row="0" column="0">
-             <widget class="QLabel" name="directionalLightShaderLabel">
-              <property name="text">
-               <string>directional light shader</string>
-              </property>
-             </widget>
-            </item>
-            <item row="0" column="1">
-             <widget class="QCheckBox" name="dl_shader_check_box"/>
-            </item>
-            <item row="1" column="0">
-             <widget class="QLabel" name="reflectionLinesShaderLabel">
-              <property name="text">
-               <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;reflection lines shader&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
-              </property>
-             </widget>
-            </item>
-            <item row="1" column="1">
-             <widget class="QCheckBox" name="rl_shader_check_box"/>
-            </item>
-            <item row="2" column="0">
-             <widget class="QLabel" name="toonShaderLabel">
-              <property name="text">
-               <string>toon shader</string>
-              </property>
-             </widget>
-            </item>
-            <item row="2" column="1">
-             <widget class="QCheckBox" name="toon_shader_check_box"/>
-            </item>
-            <item row="3" column="0">
-             <widget class="QLabel" name="twoSidedLightingShaderLabel">
-              <property name="text">
-               <string>two sided lighting shader</string>
-              </property>
-             </widget>
-            </item>
-            <item row="3" column="1">
-             <widget class="QCheckBox" name="two_sl_shader_check_box"/>
-            </item>
-           </layout>
-          </item>
-         </layout>
-        </widget>
-       </item>
        <item>
         <widget class="QGroupBox" name="groupBox_2">
          <property name="title">
@@ -328,16 +275,6 @@
               </property>
              </widget>
             </item>
-            <item row="0" column="1">
-             <widget class="QDoubleSpinBox" name="rl_scale_spin_box"/>
-            </item>
-            <item row="1" column="0">
-             <widget class="QLabel" name="smoothingLabel">
-              <property name="text">
-               <string>smoothing</string>
-              </property>
-             </widget>
-            </item>
             <item row="1" column="1">
              <widget class="QDoubleSpinBox" name="rl_smoothing_spin_box"/>
             </item>
@@ -348,8 +285,18 @@
               </property>
              </widget>
             </item>
+            <item row="1" column="0">
+             <widget class="QLabel" name="smoothingLabel">
+              <property name="text">
+               <string>smoothing</string>
+              </property>
+             </widget>
+            </item>
             <item row="2" column="1">
              <widget class="QDoubleSpinBox" name="rl_shading_spin_box"/>
+            </item>
+            <item row="0" column="1">
+             <widget class="QDoubleSpinBox" name="rl_scale_spin_box"/>
             </item>
            </layout>
           </item>
@@ -447,8 +394,8 @@
        <rect>
         <x>0</x>
         <y>0</y>
-        <width>262</width>
-        <height>325</height>
+        <width>266</width>
+        <height>385</height>
        </rect>
       </property>
       <attribute name="label">
@@ -459,8 +406,8 @@
         <rect>
          <x>0</x>
          <y>0</y>
-         <width>283</width>
-         <height>172</height>
+         <width>241</width>
+         <height>152</height>
         </rect>
        </property>
        <layout class="QFormLayout" name="pc_form">
@@ -590,8 +537,8 @@
        <rect>
         <x>0</x>
         <y>0</y>
-        <width>262</width>
-        <height>325</height>
+        <width>266</width>
+        <height>385</height>
        </rect>
       </property>
       <attribute name="label">
@@ -602,7 +549,7 @@
         <rect>
          <x>10</x>
          <y>0</y>
-         <width>242</width>
+         <width>213</width>
          <height>132</height>
         </rect>
        </property>
@@ -712,8 +659,8 @@
        <rect>
         <x>0</x>
         <y>0</y>
-        <width>262</width>
-        <height>325</height>
+        <width>266</width>
+        <height>385</height>
        </rect>
       </property>
       <attribute name="label">
@@ -916,16 +863,16 @@
       <property name="geometry">
        <rect>
         <x>0</x>
-        <y>-433</y>
-        <width>289</width>
-        <height>741</height>
+        <y>0</y>
+        <width>252</width>
+        <height>497</height>
        </rect>
       </property>
       <attribute name="label">
        <string>Cubic Bezier Arc</string>
       </attribute>
       <layout class="QVBoxLayout" name="verticalLayout_10">
-       <item alignment="Qt::AlignRight">
+       <item>
         <widget class="QGroupBox" name="groupBox">
          <layout class="QFormLayout" name="formLayout_7">
           <property name="topMargin">
@@ -957,20 +904,7 @@
           <item row="1" column="1">
            <widget class="QCheckBox" name="arc_d2_check_box"/>
           </item>
-          <item row="2" column="0" colspan="2">
-           <widget class="Line" name="line">
-            <property name="sizePolicy">
-             <sizepolicy hsizetype="Minimum" vsizetype="Fixed">
-              <horstretch>0</horstretch>
-              <verstretch>0</verstretch>
-             </sizepolicy>
-            </property>
-            <property name="orientation">
-             <enum>Qt::Horizontal</enum>
-            </property>
-           </widget>
-          </item>
-          <item row="3" column="0">
+          <item row="2" column="0">
            <widget class="QLabel" name="selectedCurveLabel">
             <property name="font">
              <font>
@@ -988,7 +922,7 @@
             </property>
            </widget>
           </item>
-          <item row="3" column="1">
+          <item row="2" column="1">
            <widget class="QSpinBox" name="selectedCurveSpinBox">
             <property name="maximumSize">
              <size>
@@ -1001,14 +935,14 @@
             </property>
            </widget>
           </item>
-          <item row="4" column="0">
+          <item row="3" column="0">
            <widget class="QLabel" name="colorLabel">
             <property name="text">
              <string>Color</string>
             </property>
            </widget>
           </item>
-          <item row="4" column="1">
+          <item row="3" column="1">
            <widget class="QSpinBox" name="colorSpinBox">
             <property name="maximumSize">
              <size>
@@ -1018,14 +952,14 @@
             </property>
            </widget>
           </item>
-          <item row="5" column="0">
+          <item row="4" column="0">
            <widget class="QLabel" name="hullLabel">
             <property name="text">
              <string>Hull</string>
             </property>
            </widget>
           </item>
-          <item row="5" column="1">
+          <item row="4" column="1">
            <widget class="QSpinBox" name="hullSpinBox">
             <property name="maximumSize">
              <size>
@@ -1035,14 +969,7 @@
             </property>
            </widget>
           </item>
-          <item row="6" column="0" colspan="2">
-           <widget class="Line" name="line_2">
-            <property name="orientation">
-             <enum>Qt::Horizontal</enum>
-            </property>
-           </widget>
-          </item>
-          <item row="7" column="0">
+          <item row="5" column="0">
            <widget class="QLabel" name="controlPointIndexLabel_2">
             <property name="sizePolicy">
              <sizepolicy hsizetype="Minimum" vsizetype="Preferred">
@@ -1070,7 +997,7 @@
             </property>
            </widget>
           </item>
-          <item row="7" column="1">
+          <item row="5" column="1">
            <widget class="QSpinBox" name="arc_cp_index_spin_box">
             <property name="maximumSize">
              <size>
@@ -1083,14 +1010,14 @@
             </property>
            </widget>
           </item>
-          <item row="8" column="0">
+          <item row="6" column="0">
            <widget class="QLabel" name="controlPointXLabel">
             <property name="text">
              <string>Control point X</string>
             </property>
            </widget>
           </item>
-          <item row="8" column="1">
+          <item row="6" column="1">
            <widget class="QDoubleSpinBox" name="arc_cp_x_spin_box">
             <property name="maximumSize">
              <size>
@@ -1109,14 +1036,14 @@
             </property>
            </widget>
           </item>
-          <item row="9" column="0">
+          <item row="7" column="0">
            <widget class="QLabel" name="controlPointYLabel">
             <property name="text">
              <string>Control point Y</string>
             </property>
            </widget>
           </item>
-          <item row="9" column="1">
+          <item row="7" column="1">
            <widget class="QDoubleSpinBox" name="arc_cp_y_spin_box">
             <property name="maximumSize">
              <size>
@@ -1135,14 +1062,14 @@
             </property>
            </widget>
           </item>
-          <item row="10" column="0">
+          <item row="8" column="0">
            <widget class="QLabel" name="controlPointZLabel">
             <property name="text">
              <string>Control point Z</string>
             </property>
            </widget>
           </item>
-          <item row="10" column="1">
+          <item row="8" column="1">
            <widget class="QDoubleSpinBox" name="arc_cp_z_spin_box">
             <property name="maximumSize">
              <size>
@@ -1161,22 +1088,8 @@
             </property>
            </widget>
           </item>
-          <item row="11" column="0" colspan="2">
-           <widget class="Line" name="line_3">
-            <property name="orientation">
-             <enum>Qt::Horizontal</enum>
-            </property>
-           </widget>
-          </item>
-          <item row="12" column="0">
-           <widget class="QPushButton" name="continue_arc_button">
-            <property name="text">
-             <string>Continue</string>
-            </property>
-           </widget>
-          </item>
-          <item row="12" column="1">
-           <widget class="QComboBox" name="arc_cont_dir_combo_box">
+          <item row="9" column="1">
+           <widget class="QComboBox" name="comboBox">
             <item>
              <property name="text">
               <string>LEFT</string>
@@ -1189,14 +1102,21 @@
             </item>
            </widget>
           </item>
-          <item row="15" column="0">
+          <item row="10" column="0">
+           <widget class="QPushButton" name="pushButton_3">
+            <property name="text">
+             <string>Join</string>
+            </property>
+           </widget>
+          </item>
+          <item row="11" column="0">
            <widget class="QLabel" name="label_11">
             <property name="text">
              <string>First curve</string>
             </property>
            </widget>
           </item>
-          <item row="15" column="1">
+          <item row="11" column="1">
            <widget class="QSpinBox" name="firstCurveJoinSpinBox">
             <property name="maximumSize">
              <size>
@@ -1209,28 +1129,14 @@
             </property>
            </widget>
           </item>
-          <item row="16" column="1">
-           <widget class="QComboBox" name="arc_join_dir_1_combo_box">
-            <item>
-             <property name="text">
-              <string>LEFT</string>
-             </property>
-            </item>
-            <item>
-             <property name="text">
-              <string>RIGHT</string>
-             </property>
-            </item>
-           </widget>
-          </item>
-          <item row="17" column="0">
+          <item row="12" column="0">
            <widget class="QLabel" name="label_12">
             <property name="text">
              <string>Second curve</string>
             </property>
            </widget>
           </item>
-          <item row="17" column="1">
+          <item row="12" column="1">
            <widget class="QSpinBox" name="secondCurveJoinSpinBox">
             <property name="maximumSize">
              <size>
@@ -1243,21 +1149,14 @@
             </property>
            </widget>
           </item>
-          <item row="20" column="0">
-           <widget class="QPushButton" name="merge_arcs_button">
-            <property name="text">
-             <string>Merge</string>
-            </property>
-           </widget>
-          </item>
-          <item row="21" column="0">
+          <item row="14" column="0">
            <widget class="QLabel" name="label_14">
             <property name="text">
              <string>First curve</string>
             </property>
            </widget>
           </item>
-          <item row="21" column="1">
+          <item row="14" column="1">
            <widget class="QSpinBox" name="firstCurveMergeSpinBox">
             <property name="maximumSize">
              <size>
@@ -1270,14 +1169,14 @@
             </property>
            </widget>
           </item>
-          <item row="23" column="0">
+          <item row="15" column="0">
            <widget class="QLabel" name="label_15">
             <property name="text">
              <string>Second curve</string>
             </property>
            </widget>
           </item>
-          <item row="23" column="1">
+          <item row="15" column="1">
            <widget class="QSpinBox" name="secondCurveMergeSpinBox">
             <property name="maximumSize">
              <size>
@@ -1290,87 +1189,25 @@
             </property>
            </widget>
           </item>
-          <item row="19" column="0" colspan="2">
-           <widget class="Line" name="line_5">
-            <property name="sizePolicy">
-             <sizepolicy hsizetype="Minimum" vsizetype="Fixed">
-              <horstretch>0</horstretch>
-              <verstretch>0</verstretch>
-             </sizepolicy>
-            </property>
-            <property name="orientation">
-             <enum>Qt::Horizontal</enum>
-            </property>
-           </widget>
-          </item>
-          <item row="13" column="0" colspan="2">
-           <widget class="Line" name="line_4">
-            <property name="orientation">
-             <enum>Qt::Horizontal</enum>
-            </property>
-           </widget>
-          </item>
-          <item row="14" column="0">
-           <widget class="QPushButton" name="join_arcs_button">
+          <item row="13" column="0">
+           <widget class="QPushButton" name="pushButton_4">
             <property name="text">
-             <string>Join</string>
+             <string>Merge</string>
             </property>
            </widget>
           </item>
-          <item row="18" column="1">
-           <widget class="QComboBox" name="arc_join_dir_2_combo_box">
-            <item>
-             <property name="text">
-              <string>LEFT</string>
-             </property>
-            </item>
-            <item>
-             <property name="text">
-              <string>RIGHT</string>
-             </property>
-            </item>
-           </widget>
-          </item>
-          <item row="25" column="0" colspan="2">
-           <widget class="Line" name="line_6">
-            <property name="orientation">
-             <enum>Qt::Horizontal</enum>
+          <item row="9" column="0">
+           <widget class="QPushButton" name="pushButton_5">
+            <property name="text">
+             <string>Continue</string>
             </property>
            </widget>
           </item>
-          <item row="26" column="0">
-           <widget class="QPushButton" name="new_arc_button">
+          <item row="16" column="0">
+           <widget class="QPushButton" name="pushButton_7">
             <property name="text">
              <string>New arc</string>
             </property>
-           </widget>
-          </item>
-          <item row="22" column="1">
-           <widget class="QComboBox" name="arc_merge_dir_1_combo_box">
-            <item>
-             <property name="text">
-              <string>LEFT</string>
-             </property>
-            </item>
-            <item>
-             <property name="text">
-              <string>RIGHT</string>
-             </property>
-            </item>
-           </widget>
-          </item>
-          <item row="24" column="1">
-           <widget class="QComboBox" name="arc_merge_dir_2_combo_box">
-            <item>
-             <property name="text">
-              <string>LEFT</string>
-             </property>
-            </item>
-            <item>
-             <property name="text">
-              <string>RIGHT</string>
-             </property>
-            </item>
            </widget>
           </item>
          </layout>
@@ -1382,9 +1219,9 @@
       <property name="geometry">
        <rect>
         <x>0</x>
-        <y>0</y>
-        <width>302</width>
-        <height>998</height>
+        <y>-717</y>
+        <width>252</width>
+        <height>1102</height>
        </rect>
       </property>
       <attribute name="label">
@@ -1456,7 +1293,7 @@
             </property>
            </widget>
           </item>
-          <item row="5" column="0">
+          <item row="5" column="0" colspan="2">
            <widget class="QTabWidget" name="tabWidget">
             <property name="currentIndex">
              <number>0</number>
@@ -1497,6 +1334,143 @@
                 </item>
                </widget>
               </item>
+              <item row="3" column="0" colspan="2">
+               <widget class="QGroupBox" name="groupBox_4">
+                <property name="title">
+                 <string>Reflection</string>
+                </property>
+                <layout class="QFormLayout" name="formLayout_4">
+                 <item row="0" column="0">
+                  <widget class="QLabel" name="label_10">
+                   <property name="text">
+                    <string>Scale</string>
+                   </property>
+                  </widget>
+                 </item>
+                 <item row="1" column="0">
+                  <widget class="QLabel" name="label_13">
+                   <property name="text">
+                    <string>Smoothing</string>
+                   </property>
+                  </widget>
+                 </item>
+                 <item row="2" column="0">
+                  <widget class="QLabel" name="label_16">
+                   <property name="text">
+                    <string>Shading</string>
+                   </property>
+                  </widget>
+                 </item>
+                 <item row="0" column="1">
+                  <widget class="QDoubleSpinBox" name="bp_rl_scale_spin_box">
+                   <property name="maximumSize">
+                    <size>
+                     <width>60</width>
+                     <height>16777215</height>
+                    </size>
+                   </property>
+                  </widget>
+                 </item>
+                 <item row="1" column="1">
+                  <widget class="QDoubleSpinBox" name="bp_rl_smoothing_spin_box">
+                   <property name="maximumSize">
+                    <size>
+                     <width>60</width>
+                     <height>16777215</height>
+                    </size>
+                   </property>
+                  </widget>
+                 </item>
+                 <item row="2" column="1">
+                  <widget class="QDoubleSpinBox" name="bp_rl_shading_spin_box">
+                   <property name="maximumSize">
+                    <size>
+                     <width>60</width>
+                     <height>16777215</height>
+                    </size>
+                   </property>
+                  </widget>
+                 </item>
+                </layout>
+               </widget>
+              </item>
+              <item row="5" column="0" colspan="2">
+               <widget class="QGroupBox" name="groupBox_5">
+                <property name="title">
+                 <string>Toon</string>
+                </property>
+                <layout class="QFormLayout" name="formLayout_10">
+                 <item row="0" column="0">
+                  <widget class="QLabel" name="label_19">
+                   <property name="text">
+                    <string>R</string>
+                   </property>
+                  </widget>
+                 </item>
+                 <item row="0" column="1">
+                  <widget class="QDoubleSpinBox" name="bp_toon_outline_r_spin_box">
+                   <property name="maximumSize">
+                    <size>
+                     <width>60</width>
+                     <height>16777215</height>
+                    </size>
+                   </property>
+                  </widget>
+                 </item>
+                 <item row="2" column="0">
+                  <widget class="QLabel" name="label_22">
+                   <property name="text">
+                    <string>G</string>
+                   </property>
+                  </widget>
+                 </item>
+                 <item row="2" column="1">
+                  <widget class="QDoubleSpinBox" name="bp_toon_outline_g_spin_box">
+                   <property name="maximumSize">
+                    <size>
+                     <width>60</width>
+                     <height>16777215</height>
+                    </size>
+                   </property>
+                  </widget>
+                 </item>
+                 <item row="3" column="0">
+                  <widget class="QLabel" name="label_25">
+                   <property name="text">
+                    <string>B</string>
+                   </property>
+                  </widget>
+                 </item>
+                 <item row="3" column="1">
+                  <widget class="QDoubleSpinBox" name="bp_toon_outline_b_spin_box">
+                   <property name="maximumSize">
+                    <size>
+                     <width>60</width>
+                     <height>16777215</height>
+                    </size>
+                   </property>
+                  </widget>
+                 </item>
+                 <item row="4" column="0">
+                  <widget class="QLabel" name="label_32">
+                   <property name="text">
+                    <string>A</string>
+                   </property>
+                  </widget>
+                 </item>
+                 <item row="4" column="1">
+                  <widget class="QDoubleSpinBox" name="bp_toon_outline_a_spin_box">
+                   <property name="maximumSize">
+                    <size>
+                     <width>60</width>
+                     <height>16777215</height>
+                    </size>
+                   </property>
+                  </widget>
+                 </item>
+                </layout>
+               </widget>
+              </item>
              </layout>
             </widget>
             <widget class="QWidget" name="tab_2">
@@ -1517,7 +1491,7 @@
                  <string>Directional</string>
                 </property>
                 <property name="checked">
-                 <bool>true</bool>
+                 <bool>false</bool>
                 </property>
                </widget>
               </item>
@@ -1540,7 +1514,7 @@
            </widget>
           </item>
           <item row="6" column="0">
-           <widget class="QPushButton" name="join_patches_button">
+           <widget class="QPushButton" name="pushButton">
             <property name="text">
              <string>Join</string>
             </property>
@@ -1566,6 +1540,13 @@
           <item row="11" column="1">
            <widget class="QSpinBox" name="secondPatchJoinSpinBox"/>
           </item>
+          <item row="13" column="0">
+           <widget class="QPushButton" name="pushButton_2">
+            <property name="text">
+             <string>Merge</string>
+            </property>
+           </widget>
+          </item>
           <item row="16" column="0">
            <widget class="QLabel" name="label_23">
             <property name="text">
@@ -1586,117 +1567,7 @@
           <item row="17" column="1">
            <widget class="QSpinBox" name="spinBox_4"/>
           </item>
-          <item row="19" column="0">
-           <widget class="QLabel" name="selectedPatchLabel">
-            <property name="font">
-             <font>
-              <pointsize>10</pointsize>
-              <weight>75</weight>
-              <bold>true</bold>
-             </font>
-            </property>
-            <property name="text">
-             <string>Selected patch</string>
-            </property>
-           </widget>
-          </item>
-          <item row="19" column="1">
-           <widget class="QSpinBox" name="selectedPatchSpinBox">
-            <property name="maximumSize">
-             <size>
-              <width>60</width>
-              <height>16777215</height>
-             </size>
-            </property>
-            <property name="maximum">
-             <number>9</number>
-            </property>
-           </widget>
-          </item>
-          <item row="20" column="0">
-           <widget class="QLabel" name="textureOrMaterialLabel">
-            <property name="text">
-             <string>Texture or material</string>
-            </property>
-           </widget>
-          </item>
-          <item row="20" column="1">
-           <widget class="QRadioButton" name="textureRadioButton">
-            <property name="text">
-             <string>Texture</string>
-            </property>
-           </widget>
-          </item>
-          <item row="22" column="1">
-           <widget class="QRadioButton" name="materialRadioButton">
-            <property name="text">
-             <string>Material</string>
-            </property>
-           </widget>
-          </item>
-          <item row="23" column="0">
-           <widget class="QLabel" name="textureLabel">
-            <property name="text">
-             <string>Texture</string>
-            </property>
-           </widget>
-          </item>
-          <item row="23" column="1">
-           <widget class="QComboBox" name="textureComboBox">
-            <item>
-             <property name="text">
-              <string>Mozaik</string>
-             </property>
-            </item>
-            <item>
-             <property name="text">
-              <string>Tapeta</string>
-             </property>
-            </item>
-            <item>
-             <property name="text">
-              <string>Padlo</string>
-             </property>
-            </item>
-            <item>
-             <property name="text">
-              <string>Indiai</string>
-             </property>
-            </item>
-           </widget>
-          </item>
-          <item row="25" column="0">
-           <widget class="QLabel" name="materialLabel">
-            <property name="text">
-             <string>Material</string>
-            </property>
-           </widget>
-          </item>
-          <item row="25" column="1">
-           <widget class="QComboBox" name="materialComboBox">
-            <item>
-             <property name="text">
-              <string>Gold</string>
-             </property>
-            </item>
-            <item>
-             <property name="text">
-              <string>Ruby</string>
-             </property>
-            </item>
-            <item>
-             <property name="text">
-              <string>Emerald</string>
-             </property>
-            </item>
-            <item>
-             <property name="text">
-              <string>Silver</string>
-             </property>
-            </item>
-           </widget>
-          </item>
-          <item row="28" column="0">
+          <item row="26" column="0">
            <widget class="QLabel" name="label_26">
             <property name="text">
              <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:9pt; text-decoration: underline;&quot;&gt;Control point index&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
@@ -1706,57 +1577,55 @@
             </property>
            </widget>
           </item>
-          <item row="30" column="0">
+          <item row="28" column="0">
            <widget class="QLabel" name="label_27">
             <property name="text">
              <string>Row</string>
             </property>
            </widget>
           </item>
-          <item row="30" column="1">
+          <item row="28" column="1">
            <widget class="QSpinBox" name="cp_row_spinBox"/>
           </item>
-          <item row="31" column="0">
+          <item row="29" column="0">
            <widget class="QLabel" name="label_28">
             <property name="text">
              <string>Column</string>
             </property>
            </widget>
           </item>
-          <item row="31" column="1">
+          <item row="29" column="1">
            <widget class="QSpinBox" name="cp_col_spinBox"/>
           </item>
-          <item row="32" column="0">
+          <item row="30" column="0">
            <widget class="QLabel" name="label_29">
             <property name="text">
              <string>Control point X</string>
             </property>
            </widget>
           </item>
-          <item row="32" column="1">
-           <widget class="QSpinBox" name="patch_cp_x_spinBox"/>
-          </item>
-          <item row="33" column="0">
+          <item row="31" column="0">
            <widget class="QLabel" name="label_30">
             <property name="text">
              <string>Control point Y</string>
             </property>
            </widget>
           </item>
-          <item row="33" column="1">
-           <widget class="QSpinBox" name="patch_cp_y_spinBox"/>
-          </item>
-          <item row="34" column="0">
+          <item row="32" column="0">
            <widget class="QLabel" name="label_31">
             <property name="text">
              <string>Control point Z</string>
             </property>
            </widget>
           </item>
-          <item row="34" column="1">
-           <widget class="QSpinBox" name="patch_cp_z_spinBox"/>
+          <item row="33" column="0">
+           <widget class="QPushButton" name="pushButton_6">
+            <property name="text">
+             <string>Continue</string>
+            </property>
+           </widget>
           </item>
-          <item row="35" column="1">
+          <item row="33" column="1">
            <widget class="QComboBox" name="continuePatchComboBox">
             <item>
              <property name="text">
@@ -1775,38 +1644,169 @@
             </item>
            </widget>
           </item>
-          <item row="13" column="0">
-           <widget class="QPushButton" name="merge_patches_button">
-            <property name="text">
-             <string>Merge</string>
-            </property>
-           </widget>
-          </item>
-          <item row="35" column="0">
-           <widget class="QPushButton" name="continue_patch_button">
-            <property name="text">
-             <string>Continue</string>
-            </property>
-           </widget>
-          </item>
-          <item row="36" column="0">
-           <widget class="QPushButton" name="new_patch_button">
+          <item row="34" column="0">
+           <widget class="QPushButton" name="pushButton_8">
             <property name="text">
              <string>New patch</string>
             </property>
            </widget>
           </item>
-          <item row="12" column="0" colspan="2">
-           <widget class="Line" name="line_7">
-            <property name="orientation">
-             <enum>Qt::Horizontal</enum>
+          <item row="25" column="0" colspan="2">
+           <widget class="QTabWidget" name="TextureTab">
+            <property name="currentIndex">
+             <number>1</number>
+            </property>
+            <widget class="QWidget" name="tab_3">
+             <attribute name="title">
+              <string>Texture</string>
+             </attribute>
+             <layout class="QFormLayout" name="formLayout_11">
+              <item row="0" column="0">
+               <widget class="QLabel" name="label_33">
+                <property name="text">
+                 <string>Texture</string>
+                </property>
+               </widget>
+              </item>
+              <item row="0" column="1">
+               <widget class="QComboBox" name="textureComboBox">
+                <property name="maximumSize">
+                 <size>
+                  <width>70</width>
+                  <height>16777215</height>
+                 </size>
+                </property>
+                <item>
+                 <property name="text">
+                  <string>Mozaik</string>
+                 </property>
+                </item>
+                <item>
+                 <property name="text">
+                  <string>Tapeta</string>
+                 </property>
+                </item>
+                <item>
+                 <property name="text">
+                  <string>Padlo</string>
+                 </property>
+                </item>
+                <item>
+                 <property name="text">
+                  <string>Indiai</string>
+                 </property>
+                </item>
+               </widget>
+              </item>
+             </layout>
+            </widget>
+            <widget class="QWidget" name="tab_4">
+             <attribute name="title">
+              <string>Material</string>
+             </attribute>
+             <widget class="QComboBox" name="materialComboBox">
+              <property name="geometry">
+               <rect>
+                <x>60</x>
+                <y>10</y>
+                <width>77</width>
+                <height>22</height>
+               </rect>
+              </property>
+              <item>
+               <property name="text">
+                <string>Gold</string>
+               </property>
+              </item>
+              <item>
+               <property name="text">
+                <string>Ruby</string>
+               </property>
+              </item>
+              <item>
+               <property name="text">
+                <string>Emerald</string>
+               </property>
+              </item>
+              <item>
+               <property name="text">
+                <string>Silver</string>
+               </property>
+              </item>
+             </widget>
+             <widget class="QLabel" name="label_35">
+              <property name="geometry">
+               <rect>
+                <x>10</x>
+                <y>10</y>
+                <width>47</width>
+                <height>14</height>
+               </rect>
+              </property>
+              <property name="text">
+               <string>Material</string>
+              </property>
+             </widget>
+            </widget>
+           </widget>
+          </item>
+          <item row="20" column="0">
+           <widget class="QLabel" name="selectedPatchLabel">
+            <property name="font">
+             <font>
+              <pointsize>10</pointsize>
+              <weight>75</weight>
+              <bold>true</bold>
+             </font>
+            </property>
+            <property name="text">
+             <string>Selected patch</string>
             </property>
            </widget>
           </item>
-          <item row="18" column="0" colspan="2">
-           <widget class="Line" name="line_8">
-            <property name="orientation">
-             <enum>Qt::Horizontal</enum>
+          <item row="20" column="1">
+           <widget class="QSpinBox" name="selectedPatchSpinBox">
+            <property name="maximumSize">
+             <size>
+              <width>60</width>
+              <height>16777215</height>
+             </size>
+            </property>
+            <property name="maximum">
+             <number>9</number>
+            </property>
+           </widget>
+          </item>
+          <item row="30" column="1">
+           <widget class="QDoubleSpinBox" name="patch_cp_x_spinBox">
+            <property name="minimum">
+             <double>-99.000000000000000</double>
+            </property>
+            <property name="maximum">
+             <double>100.989999999999995</double>
+            </property>
+            <property name="singleStep">
+             <double>0.100000000000000</double>
+            </property>
+           </widget>
+          </item>
+          <item row="31" column="1">
+           <widget class="QDoubleSpinBox" name="patch_cp_y_spinBox">
+            <property name="minimum">
+             <double>-99.000000000000000</double>
+            </property>
+            <property name="singleStep">
+             <double>0.100000000000000</double>
+            </property>
+           </widget>
+          </item>
+          <item row="32" column="1">
+           <widget class="QDoubleSpinBox" name="patch_cp_z_spinBox">
+            <property name="minimum">
+             <double>-99.000000000000000</double>
+            </property>
+            <property name="singleStep">
+             <double>0.100000000000000</double>
             </property>
            </widget>
           </item>
@@ -1857,10 +1857,6 @@
   <tabstop>trans_y_spin_box</tabstop>
   <tabstop>trans_z_spin_box</tabstop>
   <tabstop>resetButton</tabstop>
-  <tabstop>dl_shader_check_box</tabstop>
-  <tabstop>rl_shader_check_box</tabstop>
-  <tabstop>toon_shader_check_box</tabstop>
-  <tabstop>two_sl_shader_check_box</tabstop>
   <tabstop>rl_scale_spin_box</tabstop>
   <tabstop>rl_smoothing_spin_box</tabstop>
   <tabstop>rl_shading_spin_box</tabstop>

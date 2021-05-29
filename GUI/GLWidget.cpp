@@ -1718,6 +1718,7 @@ namespace cagd
         _compositeCurve->UpdateArc(_selectedCurve1, _selectedCurvePoint, pointToUpdate);
         update();
     }
+
     void GLWidget::arc_cp_set_z(double z)
     {
         DCoordinate3 pointToUpdate;
@@ -1726,6 +1727,7 @@ namespace cagd
         _compositeCurve->UpdateArc(_selectedCurve1, _selectedCurvePoint, pointToUpdate);
         update();
     }
+
     void GLWidget::set_arc_d1_visibility(bool value)
     {
         _showFirstOrderCurveDerivatives = value;

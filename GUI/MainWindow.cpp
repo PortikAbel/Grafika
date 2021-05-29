@@ -66,14 +66,14 @@ namespace cagd
         connect(_gl_widget, SIGNAL(setTranslate(double)), _side_widget->trans_z_spin_box, SLOT(setValue(double)));
 
         // shaders
-        connect(_side_widget->dl_shader_check_box, SIGNAL(toggled(bool)), _gl_widget, SLOT(set_dl_shader_selected(bool)));
-        connect(_side_widget->rl_shader_check_box, SIGNAL(toggled(bool)), _gl_widget, SLOT(set_rl_shader_selected(bool)));
-        connect(_side_widget->toon_shader_check_box, SIGNAL(toggled(bool)), _gl_widget, SLOT(set_toon_shader_selected(bool)));
-        connect(_side_widget->two_sl_shader_check_box, SIGNAL(toggled(bool)), _gl_widget, SLOT(set_two_sl_shader_selected(bool)));
+        //connect(_side_widget->dl_shader_check_box, SIGNAL(toggled(bool)), _gl_widget, SLOT(set_dl_shader_selected(bool)));
+        //connect(_side_widget->rl_shader_check_box, SIGNAL(toggled(bool)), _gl_widget, SLOT(set_rl_shader_selected(bool)));
+        //connect(_side_widget->toon_shader_check_box, SIGNAL(toggled(bool)), _gl_widget, SLOT(set_toon_shader_selected(bool)));
+        //connect(_side_widget->two_sl_shader_check_box, SIGNAL(toggled(bool)), _gl_widget, SLOT(set_two_sl_shader_selected(bool)));
 
-        connect(_side_widget->rl_scale_spin_box, SIGNAL(valueChanged(double)), _gl_widget, SLOT(set_rl_scale(double)));
-        connect(_side_widget->rl_smoothing_spin_box, SIGNAL(valueChanged(double)), _gl_widget, SLOT(set_rl_smoothing(double)));
-        connect(_side_widget->rl_shading_spin_box, SIGNAL(valueChanged(double)), _gl_widget, SLOT(set_rl_shading(double)));
+        //connect(_side_widget->rl_scale_spin_box, SIGNAL(valueChanged(double)), _gl_widget, SLOT(set_rl_scale(double)));
+        //connect(_side_widget->rl_smoothing_spin_box, SIGNAL(valueChanged(double)), _gl_widget, SLOT(set_rl_smoothing(double)));
+        //connect(_side_widget->rl_shading_spin_box, SIGNAL(valueChanged(double)), _gl_widget, SLOT(set_rl_shading(double)));
 
         connect(_side_widget->toon_outline_r_spin_box, SIGNAL(valueChanged(double)), _gl_widget, SLOT(set_toon_def_outline_r(double)));
         connect(_side_widget->toon_outline_g_spin_box, SIGNAL(valueChanged(double)), _gl_widget, SLOT(set_toon_def_outline_g(double)));
@@ -127,7 +127,7 @@ namespace cagd
         connect(_gl_widget, SIGNAL(arc_control_point_y_changed(double)), _side_widget->arc_cp_y_spin_box, SLOT(setValue(double)));
         connect(_gl_widget, SIGNAL(arc_control_point_z_changed(double)), _side_widget->arc_cp_z_spin_box, SLOT(setValue(double)));
 
-        connect(_side_widget->new_arc_button, SIGNAL(clicked()), _gl_widget, SLOT(new_arc()));
+        //connect(_side_widget->new_arc_button, SIGNAL(clicked()), _gl_widget, SLOT(new_arc()));
 
         // bicubic bezier patches
         connect(_side_widget->show_iso_u_check_box, SIGNAL(toggled(bool)), _gl_widget, SLOT(setBbPatchVisibility(bool)));
@@ -153,6 +153,10 @@ namespace cagd
 
         // change scene
         connect(_side_widget->toolBox, SIGNAL(currentChanged(int)), _gl_widget, SLOT(setID(int)));
+
+        connect(_gl_widget, SIGNAL(patch_control_point_x_changed(double)), _side_widget->patch_cp_x_spinBox, SLOT(setValue(double)));
+        connect(_gl_widget, SIGNAL(patch_control_point_y_changed(double)), _side_widget->patch_cp_y_spinBox, SLOT(setValue(double)));
+        connect(_gl_widget, SIGNAL(patch_control_point_z_changed(double)), _side_widget->patch_cp_z_spinBox, SLOT(setValue(double)));
     }
 
     //--------------------------------
