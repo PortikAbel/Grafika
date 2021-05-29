@@ -141,6 +141,16 @@ namespace cagd
         connect(_side_widget->pointLikeCheckBox, SIGNAL(toggled(bool)), _gl_widget, SLOT(setReflectorLight(bool)));
         connect(_side_widget->reflectorCheckBox, SIGNAL(toggled(bool)), _gl_widget, SLOT(setPointLikeLight(bool)));
 
+        connect(_side_widget->cp_row_spinBox, SIGNAL(valueChanged(int)), _gl_widget, SLOT(set_selected_cp_patch_row(int)));
+        connect(_side_widget->cp_col_spinBox, SIGNAL(valueChanged(int)), _gl_widget, SLOT(set_selected_cp_patch_column(int)));
+        connect(_side_widget->patch_cp_x_spinBox, SIGNAL(valueChanged(double)), _gl_widget, SLOT(patch_cp_set_x(double)));
+        connect(_side_widget->patch_cp_y_spinBox, SIGNAL(valueChanged(double)), _gl_widget, SLOT(patch_cp_set_y(double)));
+        connect(_side_widget->patch_cp_z_spinBox, SIGNAL(valueChanged(double)), _gl_widget, SLOT(patch_cp_set_z(double)));
+
+        connect(_gl_widget, SIGNAL(patch_control_point_x_changed(double)), _side_widget->patch_cp_x_spinBox, SLOT(setValue(double)));
+        connect(_gl_widget, SIGNAL(patch_control_point_y_changed(double)), _side_widget->patch_cp_y_spinBox, SLOT(setValue(double)));
+        connect(_gl_widget, SIGNAL(patch_control_point_z_changed(double)), _side_widget->patch_cp_z_spinBox, SLOT(setValue(double)));
+
         // change scene
         connect(_side_widget->toolBox, SIGNAL(currentChanged(int)), _gl_widget, SLOT(setID(int)));
     }

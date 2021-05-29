@@ -969,6 +969,12 @@ namespace cagd
             return false;
         }
 
+        DCoordinate3 selectedPoint;
+        _compositeSurface->GetDataPointValues(_selectedPatch, _selectedPointRow, _selectedPointCol, selectedPoint);
+        emit patch_control_point_x_changed(selectedPoint.x());
+        emit patch_control_point_y_changed(selectedPoint.y());
+        emit patch_control_point_z_changed(selectedPoint.z());
+
         return true;
     }
 
@@ -1804,6 +1810,53 @@ namespace cagd
     // ---------------------------------------------------
     // slots of composite surface
     // ---------------------------------------------------
+
+    void GLWidget::set_selected_cp_patch_row(int index)
+    {
+        _selectedPointRow = index;
+        DCoordinate3 selectedPoint;
+        _compositeSurface->GetDataPointValues(_selectedPatch, _selectedPointRow, _selectedPointCol, selectedPoint);
+        emit patch_control_point_x_changed(selectedPoint.x());
+        emit patch_control_point_y_changed(selectedPoint.y());
+        emit patch_control_point_z_changed(selectedPoint.z());
+    }
+
+    void GLWidget::set_selected_cp_patch_column(int index)
+    {
+        _selectedPointCol = index;
+        DCoordinate3 selectedPoint;
+        _compositeSurface->GetDataPointValues(_selectedPatch, _selectedPointRow, _selectedPointCol, selectedPoint);
+        emit patch_control_point_x_changed(selectedPoint.x());
+        emit patch_control_point_y_changed(selectedPoint.y());
+        emit patch_control_point_z_changed(selectedPoint.z());
+    }
+
+    void GLWidget::patch_cp_set_x(double x)
+    {
+        DCoordinate3 selectedPoint;
+        _compositeSurface->GetDataPointValues(_selectedPatch, _selectedPointRow, _selectedPointCol, selectedPoint);
+        selectedPoint.x() = x;
+        _compositeSurface->UpdatePatch(_selectedPatch, _selectedPointRow, _selectedPointCol, selectedPoint);
+        update();
+    }
+
+    void GLWidget::patch_cp_set_y(double y)
+    {
+        DCoordinate3 selectedPoint;
+        _compositeSurface->GetDataPointValues(_selectedPatch, _selectedPointRow, _selectedPointCol, selectedPoint);
+        selectedPoint.y() = y;
+        _compositeSurface->UpdatePatch(_selectedPatch, _selectedPointRow, _selectedPointCol, selectedPoint);
+        update();
+    }
+
+    void GLWidget::patch_cp_set_z(double z)
+    {
+        DCoordinate3 selectedPoint;
+        _compositeSurface->GetDataPointValues(_selectedPatch, _selectedPointRow, _selectedPointCol, selectedPoint);
+        selectedPoint.z() = z;
+        _compositeSurface->UpdatePatch(_selectedPatch, _selectedPointRow, _selectedPointCol, selectedPoint);
+        update();
+    }
 
     void GLWidget::setIsoLineUVisibility(bool visibility)
     {

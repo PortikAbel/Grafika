@@ -281,6 +281,12 @@ namespace cagd
         void set_arc_merge_dir_2(int);
 
         // patches
+        void set_selected_cp_patch_row(int);
+        void set_selected_cp_patch_column(int);
+        void patch_cp_set_x(double);
+        void patch_cp_set_y(double);
+        void patch_cp_set_z(double);
+
         void setIsoLineUVisibility(bool);
         void setIsoLineVVisibility(bool);
         void setIsoLineD1UVisibility(bool);
@@ -308,5 +314,9 @@ namespace cagd
         void arc_control_point_x_changed(double);
         void arc_control_point_y_changed(double);
         void arc_control_point_z_changed(double);
+
+        void patch_control_point_x_changed(double);
+        void patch_control_point_y_changed(double);
+        void patch_control_point_z_changed(double);
     };
 }
