@@ -127,13 +127,15 @@ namespace cagd
         connect(_gl_widget, SIGNAL(arc_control_point_y_changed(double)), _side_widget->arc_cp_y_spin_box, SLOT(setValue(double)));
         connect(_gl_widget, SIGNAL(arc_control_point_z_changed(double)), _side_widget->arc_cp_z_spin_box, SLOT(setValue(double)));
 
+        connect(_side_widget->new_arc_button, SIGNAL(clicked()), _gl_widget, SLOT(new_arc()));
+
         // bicubic bezier patches
         connect(_side_widget->show_iso_u_check_box, SIGNAL(toggled(bool)), _gl_widget, SLOT(setBbPatchVisibility(bool)));
         connect(_side_widget->show_iso_v_check_box, SIGNAL(toggled(bool)), _gl_widget, SLOT(setIpBbPatchVisibility(bool)));
         connect(_side_widget->show_iso_d1_u_check_box, SIGNAL(toggled(bool)), _gl_widget, SLOT(setBbPatchD1UVisibility(bool)));
         connect(_side_widget->show_iso_d1_v_check_box, SIGNAL(toggled(bool)), _gl_widget, SLOT(setBbPatchD1VVisibility(bool)));
-        connect(_side_widget->shaderRadioButton, SIGNAL(toggled(bool)), _gl_widget, SLOT(setShader(bool)));
-        connect(_side_widget->lightRadioButton, SIGNAL(toggled(bool)), _gl_widget, SLOT(setLight(bool)));
+        //connect(_side_widget->shaderRadioButton, SIGNAL(toggled(bool)), _gl_widget, SLOT(setShader(bool)));
+        //connect(_side_widget->lightRadioButton, SIGNAL(toggled(bool)), _gl_widget, SLOT(setLight(bool)));
         connect(_side_widget->shaderComboBox, SIGNAL(currentIndexChanged(int)), _gl_widget, SLOT(setShaderType(int)));
         connect(_side_widget->directedCheckBox, SIGNAL(toggled(bool)), _gl_widget, SLOT(setDirectionalLight(bool)));
         connect(_side_widget->pointLikeCheckBox, SIGNAL(toggled(bool)), _gl_widget, SLOT(setReflectorLight(bool)));

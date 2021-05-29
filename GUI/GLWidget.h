@@ -145,10 +145,17 @@ namespace cagd
         // ID = 5
 
         CubicCompositeCurve3*   _compositeCurve;
-        GLuint      _selectedCurve      = 0;
+        GLuint      _selectedCurve1     = 0;
+        GLuint      _selectedCurve2     = 0;
         GLuint      _selectedCurvePoint = 0;
         bool    _showFirstOrderCurveDerivatives = false;
         bool    _showSecondOrderCurveDerivatives = false;
+
+        CubicCompositeCurve3::Direction _arc_continue_dir = CubicCompositeCurve3::Direction::LEFT;
+        CubicCompositeCurve3::Direction _arc_merge_dir_1 = CubicCompositeCurve3::Direction::LEFT;
+        CubicCompositeCurve3::Direction _arc_merge_dir_2 = CubicCompositeCurve3::Direction::LEFT;
+        CubicCompositeCurve3::Direction _arc_join_dir_1 = CubicCompositeCurve3::Direction::LEFT;
+        CubicCompositeCurve3::Direction _arc_join_dir_2 = CubicCompositeCurve3::Direction::LEFT;
 
         bool _createCubicCompositeCurve();
         void _destroyCubicCompositeCurve();
@@ -211,6 +218,7 @@ namespace cagd
 
         void resetTransformations();
 
+        // shaderers
         void set_dl_shader_selected(bool value);
         void set_rl_shader_selected(bool value);
         void set_toon_shader_selected(bool value);
@@ -223,8 +231,10 @@ namespace cagd
         void set_toon_def_outline_b(double value);
         void set_toon_def_outline_a(double value);
 
+        // homework ID
         void setID(int id);
 
+        // parametric curves
         void setParametricCurveIndex(int index);
         void setVisibilityOfTangents(bool visibility);
         void setVisibilityOfAccelerationVectors(bool visibility);
@@ -233,11 +243,13 @@ namespace cagd
 
         void resetPcAttributes();
 
+        // parametric surfaces
         void setParametricSurfaceIndex(int index);
         void setDivPointCountU(int u_div_point_count);
         void setDivPointCountV(int v_div_point_count);
         void setShowTexture(bool show_texture);
 
+        // cyclic curves
         void setSelectedControlPoint(int);
         void cc_cp_set_x(double);
         void cc_cp_set_y(double);
@@ -249,6 +261,7 @@ namespace cagd
         void setIpCcD1Visibility(bool);
         void setIpCcD2Visibility(bool);
 
+        // arcs
         void set_selected_cp_arc(int);
         void arc_cp_set_x(double);
         void arc_cp_set_y(double);
@@ -256,6 +269,18 @@ namespace cagd
         void set_arc_d1_visibility(bool);
         void set_arc_d2_visibility(bool);
 
+        void new_arc();
+        void cont_arc();
+        void join_arcs();
+        void merge_arcs();
+
+        void set_arc_cont_dir(int);
+        void set_arc_join_dir_1(int);
+        void set_arc_join_dir_2(int);
+        void set_arc_merge_dir_1(int);
+        void set_arc_merge_dir_2(int);
+
+        // patches
         void setIsoLineUVisibility(bool);
         void setIsoLineVVisibility(bool);
         void setIsoLineD1UVisibility(bool);
