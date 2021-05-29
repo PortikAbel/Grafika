@@ -1441,6 +1441,7 @@ namespace cagd
             _shader = false;
             _light = true;
         }
+        update();
     }
 
     void GLWidget::set_dl_shader_selected(bool value)
@@ -1715,6 +1716,19 @@ namespace cagd
     // ---------------------------------------------------
     // slots of composite curve
     // ---------------------------------------------------
+
+
+    void GLWidget::set_selected_curve1(int index)
+    {
+        _selectedCurve1 = index;
+        set_selected_cp_arc(0);
+    }
+
+    void GLWidget::set_selected_curve2(int index)
+    {
+        _selectedCurve2 = index;
+        set_selected_cp_arc(0);
+    }
 
     void GLWidget::set_selected_cp_arc(int index)
     {

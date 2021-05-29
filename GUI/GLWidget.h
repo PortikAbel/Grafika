@@ -174,7 +174,7 @@ namespace cagd
         bool        _shader             = true;
         bool        _light              = false;
         int         _selected_shader    = 0;
-        bool        _directional_light  = true;
+        bool        _directional_light  = false;
         bool        _reflector_light    = false;
         bool        _point_like_light   = false;
 
@@ -263,6 +263,8 @@ namespace cagd
         void setIpCcD2Visibility(bool);
 
         // arcs
+        void set_selected_curve1(int);
+        void set_selected_curve2(int);
         void set_selected_cp_arc(int);
         void arc_cp_set_x(double);
         void arc_cp_set_y(double);

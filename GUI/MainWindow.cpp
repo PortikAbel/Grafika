@@ -79,6 +79,8 @@ namespace cagd
         connect(_side_widget->bp_toon_outline_a_spin_box, SIGNAL(valueChanged(double)), _gl_widget, SLOT(set_toon_def_outline_a(double)));
 
         // cubic bezier arc
+        connect(_side_widget->selectedCurve1SpinBox, SIGNAL(valueChanged(int)), _gl_widget, SLOT(set_selected_curve1(int)));
+        connect(_side_widget->selectedCurve2SpinBox, SIGNAL(valueChanged(int)), _gl_widget, SLOT(set_selected_curve2(int)));
         connect(_side_widget->arc_cp_index_spin_box, SIGNAL(valueChanged(int)), _gl_widget, SLOT(set_selected_cp_arc(int)));
         connect(_side_widget->arc_cp_x_spin_box, SIGNAL(valueChanged(double)), _gl_widget, SLOT(arc_cp_set_x(double)));
         connect(_side_widget->arc_cp_y_spin_box, SIGNAL(valueChanged(double)), _gl_widget, SLOT(arc_cp_set_y(double)));
