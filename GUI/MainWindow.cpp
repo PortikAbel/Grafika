@@ -144,4 +144,68 @@ namespace cagd
     {
         qApp->exit(0);
     }
+
+    void MainWindow::on_action_Save_curve_triggered()
+    {
+        QString fileName = QFileDialog::getSaveFileName(this, tr("Save composite curve"), "", tr("Composite curve (*.crv);;All files(*)"));
+        if (fileName.isEmpty())
+        {
+            return;
+        }
+        QFile file(fileName);
+        if (!file.open(QIODevice::WriteOnly))
+        {
+            throw Exception("Could not open file.");
+        }
+        std::ofstream out(file.fileName().toLocal8Bit());
+        _gl_widget->saveCurves(out);
+    }
+
+    void MainWindow::on_action_Load_curve_triggered()
+    {
+        QString fileName = QFileDialog::getOpenFileName(this, tr("Load composite curve"), "", tr("Composite curve (*.crv);;All files(*)"));
+        if (fileName.isEmpty())
+        {
+            return;
+        }
+        QFile file(fileName);
+        if (!file.open(QIODevice::ReadOnly))
+        {
+            throw Exception("Could not open file.");
+        }
+        std::ifstream in(file.fileName().toLocal8Bit());
+        _gl_widget->loadCurves(in);
+    }
+
+    void MainWindow::on_action_Save_surface_triggered()
+    {
+        QString fileName = QFileDialog::getSaveFileName(this, tr("Save composite surface"), "", tr("Composite surface (*.surf);;All files(*)"));
+        if (fileName.isEmpty())
+        {
+            return;
+        }
+        QFile file(fileName);
+        if (!file.open(QIODevice::WriteOnly))
+        {
+            throw Exception("Could not open file.");
+        }
+        std::ofstream out(file.fileName().toLocal8Bit());
+        _gl_widget->saveSurfaces(out);
+    }
+
+    void MainWindow::on_action_Load_surface_triggered()
+    {
+        QString fileName = QFileDialog::getOpenFileName(this, tr("Load composite surface"), "", tr("Composite surface (*.surf);;All files(*)"));
+        if (fileName.isEmpty())
+        {
+            return;
+        }
+        QFile file(fileName);
+        if (!file.open(QIODevice::ReadOnly))
+        {
+            throw Exception("Could not open file.");
+        }
+        std::ifstream in(file.fileName().toLocal8Bit());
+        _gl_widget->loadSurfaces(in);
+    }
 }

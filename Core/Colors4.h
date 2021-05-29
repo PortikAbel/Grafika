@@ -1,11 +1,20 @@
 #pragma once
 
+#include <iostream>
 #include <GL/glew.h>
 
 namespace cagd
 {
+    class Color4;
+
+    std::ostream& operator <<(std::ostream& lhs, const Color4& rhs);
+    std::istream& operator >>(std::istream& lhs, Color4& rhs);
+
     class Color4
     {
+        friend std::ostream& operator <<(std::ostream& lhs, const Color4& rhs);
+        friend std::istream& operator >>(std::istream& lhs, Color4& rhs);
+
     protected:
         GLfloat _data[4]; // (r, g, b, a)
 
@@ -82,4 +91,20 @@ namespace cagd
     {
         return _data[3];
     }
+
+    inline std::ostream& operator <<(std::ostream& lhs, const Color4& rhs)
+    {
+        return lhs << rhs._data[0]
+                << " " << rhs._data[1]
+                << " " << rhs._data[2]
+                << " " << rhs._data[3];
+    }
+    inline std::istream& operator >>(std::istream& lhs, Color4& rhs)
+    {
+        return lhs >> rhs._data[0]
+                >> rhs._data[1]
+                >> rhs._data[2]
+                >> rhs._data[3];
+    }
+
 }

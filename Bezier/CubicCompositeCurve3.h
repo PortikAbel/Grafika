@@ -12,8 +12,16 @@
 
 namespace cagd
 {
+    class CubicCompositeCurve3;
+
+    std::ostream& operator << (std::ostream& lhs, const CubicCompositeCurve3& rhs);
+    std::istream& operator >> (std::istream& lhs, CubicCompositeCurve3& rhs);
+
     class CubicCompositeCurve3
-    {
+    {        
+        friend std::ostream& operator << (std::ostream& lhs, const CubicCompositeCurve3& rhs);
+        friend std::istream& operator >> (std::istream& lhs, CubicCompositeCurve3& rhs);
+
     public:
         enum Direction {LEFT, RIGHT};
 
@@ -44,7 +52,11 @@ namespace cagd
         CubicBezierArc3* InitializeArc();
         GLboolean UpdateArc(const GLuint arcIndex, const GLuint pointIndex, const DCoordinate3 position);
         GLboolean UpdateImageOfArc(const GLuint arcIndex);
+        GLboolean UpdateImageOfAllArcs();
         GLboolean InsertNewArc();
+        GLboolean DeleteArc(const GLuint &arcInd);
+
+        GLint     IndexOfAttribute(const ArcAttributes &attribute) const;
 
         GLboolean ContinueExistingArc(const GLuint &index, Direction dir);
         GLboolean JoinExistingArcs(const GLuint &arc_ind1, Direction dir1, const GLuint &arc_ind2, Direction dir2);
@@ -61,7 +73,5 @@ namespace cagd
 
         GLboolean GetColorComponents(const GLuint &arcInd, GLdouble &r, GLdouble &g, GLdouble &b);
         GLboolean ChangeColorComponentValue(const GLuint &arcInd, const GLuint &colorComponentInd, const GLdouble &val);
-
-        GLboolean DeleteArc(const GLuint &arcInd);
     };
 }

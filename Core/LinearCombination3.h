@@ -6,11 +6,19 @@
 
 namespace cagd
 {
+    class LinearCombination3;
+
+    std::ostream& operator <<(std::ostream& lhs, const LinearCombination3& rhs);
+    std::istream& operator >>(std::istream& lhs, LinearCombination3& rhs);
+
     //-------------------------
     // class LinearCombination3
     //-------------------------
     class LinearCombination3
     {
+        friend std::ostream& operator <<(std::ostream& lhs, const LinearCombination3& rhs);
+        friend std::istream& operator >>(std::istream& lhs, LinearCombination3& rhs);
+
     public:
         class Derivatives: public ColumnMatrix<DCoordinate3>
         {

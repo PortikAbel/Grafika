@@ -20,14 +20,21 @@
      <x>0</x>
      <y>0</y>
      <width>800</width>
-     <height>20</height>
+     <height>25</height>
     </rect>
    </property>
    <widget class="QMenu" name="menu_File">
     <property name="title">
      <string>&amp;File</string>
     </property>
+    <addaction name="action_Save_curve"/>
+    <addaction name="action_Save_surface"/>
+    <addaction name="separator"/>
+    <addaction name="action_Load_curve"/>
+    <addaction name="action_Load_surface"/>
+    <addaction name="separator"/>
     <addaction name="action_Quit"/>
+    <addaction name="separator"/>
    </widget>
    <addaction name="menu_File"/>
   </widget>
@@ -38,6 +45,26 @@
    </property>
    <property name="shortcut">
     <string>Ctrl+Q</string>
+   </property>
+  </action>
+  <action name="action_Save_curve">
+   <property name="text">
+    <string>Save composite curve</string>
+   </property>
+  </action>
+  <action name="action_Load_curve">
+   <property name="text">
+    <string>Load composite curve</string>
+   </property>
+  </action>
+  <action name="action_Save_surface">
+   <property name="text">
+    <string>Save composite surface</string>
+   </property>
+  </action>
+  <action name="action_Load_surface">
+   <property name="text">
+    <string>Load composite surface</string>
    </property>
   </action>
  </widget>
