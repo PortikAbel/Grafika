@@ -640,7 +640,7 @@ namespace cagd {
         // attributes
         for (auto it = rhs._attributes.begin(); it != rhs._attributes.end(); ++it)
         {
-            lhs << *it->arc << endl;
+            lhs << *it->arc;
             lhs << *it->color << endl;
         }
 
