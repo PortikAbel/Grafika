@@ -368,6 +368,18 @@ namespace cagd
         return GL_TRUE;
     }
 
+    GLboolean BicubicCompositeSurface3::GetDataPointValues(const GLuint patchIndex, const GLuint row, const GLuint column, DCoordinate3 &position)
+    {
+        (*_attributes[patchIndex].patch).GetData(row,column,position);
+        return GL_TRUE;
+    }
+
+    GLboolean BicubicCompositeSurface3::GetDataPointValues(const GLuint patchIndex, const GLuint row, const GLuint column, GLdouble &x, GLdouble &y, GLdouble &z)
+    {
+        (*_attributes[patchIndex].patch).GetData(row,column,x,y,z);
+        return GL_TRUE;
+    }
+
     GLboolean BicubicCompositeSurface3::InsertNewPatch()
     {
         PatchAttributes attr;

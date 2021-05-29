@@ -68,6 +68,10 @@ namespace cagd
         GLboolean RenderAllPatches() const;
         GLboolean RenderSelectedPatch(GLuint index, GLuint order, GLenum render_mode) const;
 
+        GLboolean GetDataPointValues(const GLuint patchIndex, const GLuint row, const GLuint column, DCoordinate3 &position);
+        GLboolean GetDataPointValues(const GLuint patchIndex, const GLuint row, const GLuint column, GLdouble &x, GLdouble &y, GLdouble &z);
+        //GLboolean ChangeDataPointValue(const GLuint &arcInd, const GLuint &dataPointInd, const GLuint &pointComponentInd, const GLdouble &val);
+
         GLboolean SaveToFile(const std::string filename) const;
         GLboolean LoadFromFile(const std::string filename);
     };
