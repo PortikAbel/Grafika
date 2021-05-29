@@ -863,7 +863,7 @@
       <property name="geometry">
        <rect>
         <x>0</x>
-        <y>-112</y>
+        <y>0</y>
         <width>252</width>
         <height>497</height>
        </rect>
@@ -1219,9 +1219,9 @@
       <property name="geometry">
        <rect>
         <x>0</x>
-        <y>-747</y>
+        <y>-717</y>
         <width>252</width>
-        <height>1132</height>
+        <height>1102</height>
        </rect>
       </property>
       <attribute name="label">
@@ -1604,9 +1604,6 @@
             </property>
            </widget>
           </item>
-          <item row="30" column="1">
-           <widget class="QSpinBox" name="patch_cp_x_spinBox"/>
-          </item>
           <item row="31" column="0">
            <widget class="QLabel" name="label_30">
             <property name="text">
@@ -1614,18 +1611,12 @@
             </property>
            </widget>
           </item>
-          <item row="31" column="1">
-           <widget class="QSpinBox" name="patch_cp_y_spinBox"/>
-          </item>
           <item row="32" column="0">
            <widget class="QLabel" name="label_31">
             <property name="text">
              <string>Control point Z</string>
             </property>
            </widget>
-          </item>
-          <item row="32" column="1">
-           <widget class="QSpinBox" name="patch_cp_z_spinBox"/>
           </item>
           <item row="33" column="0">
            <widget class="QPushButton" name="pushButton_6">
@@ -1783,6 +1774,39 @@
             </property>
             <property name="maximum">
              <number>9</number>
+            </property>
+           </widget>
+          </item>
+          <item row="30" column="1">
+           <widget class="QDoubleSpinBox" name="patch_cp_x_spinBox">
+            <property name="minimum">
+             <double>-99.000000000000000</double>
+            </property>
+            <property name="maximum">
+             <double>100.989999999999995</double>
+            </property>
+            <property name="singleStep">
+             <double>0.100000000000000</double>
+            </property>
+           </widget>
+          </item>
+          <item row="31" column="1">
+           <widget class="QDoubleSpinBox" name="patch_cp_y_spinBox">
+            <property name="minimum">
+             <double>-99.000000000000000</double>
+            </property>
+            <property name="singleStep">
+             <double>0.100000000000000</double>
+            </property>
+           </widget>
+          </item>
+          <item row="32" column="1">
+           <widget class="QDoubleSpinBox" name="patch_cp_z_spinBox">
+            <property name="minimum">
+             <double>-99.000000000000000</double>
+            </property>
+            <property name="singleStep">
+             <double>0.100000000000000</double>
             </property>
            </widget>
           </item>
