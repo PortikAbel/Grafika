@@ -132,6 +132,12 @@ namespace cagd
         connect(_side_widget->show_iso_v_check_box, SIGNAL(toggled(bool)), _gl_widget, SLOT(setIpBbPatchVisibility(bool)));
         connect(_side_widget->show_iso_d1_u_check_box, SIGNAL(toggled(bool)), _gl_widget, SLOT(setBbPatchD1UVisibility(bool)));
         connect(_side_widget->show_iso_d1_v_check_box, SIGNAL(toggled(bool)), _gl_widget, SLOT(setBbPatchD1VVisibility(bool)));
+        connect(_side_widget->shaderRadioButton, SIGNAL(toggled(bool)), _gl_widget, SLOT(setShader(bool)));
+        connect(_side_widget->lightRadioButton, SIGNAL(toggled(bool)), _gl_widget, SLOT(setLight(bool)));
+        connect(_side_widget->shaderComboBox, SIGNAL(currentIndexChanged(int)), _gl_widget, SLOT(setShaderType(int)));
+        connect(_side_widget->directedCheckBox, SIGNAL(toggled(bool)), _gl_widget, SLOT(setDirectionalLight(bool)));
+        connect(_side_widget->pointLikeCheckBox, SIGNAL(toggled(bool)), _gl_widget, SLOT(setReflectorLight(bool)));
+        connect(_side_widget->reflectorCheckBox, SIGNAL(toggled(bool)), _gl_widget, SLOT(setPointLikeLight(bool)));
 
         // change scene
         connect(_side_widget->toolBox, SIGNAL(currentChanged(int)), _gl_widget, SLOT(setID(int)));
