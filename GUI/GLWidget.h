@@ -171,8 +171,8 @@ namespace cagd
         bool        _showIsoLinesV      = false;
         bool        _showIsoLinesD1U    = false;
         bool        _showIsoLinesD1V    = false;
-        bool        _shader             = false;
-        bool        _light              = true;
+        bool        _shader             = true;
+        bool        _light              = false;
         int         _selected_shader    = 0;
         bool        _directional_light  = true;
         bool        _reflector_light    = false;
@@ -219,6 +219,7 @@ namespace cagd
         void resetTransformations();
 
         // shaderers
+        void set_shader_light(int index);
         void set_dl_shader_selected(bool value);
         void set_rl_shader_selected(bool value);
         void set_toon_shader_selected(bool value);

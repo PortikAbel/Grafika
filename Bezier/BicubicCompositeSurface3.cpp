@@ -259,7 +259,7 @@ namespace cagd
             }
         }
 
-        attribute.image = attribute.patch->GenerateImage(2, 100);
+        attribute.image = attribute.patch->GenerateImage(_iso_line_count, _iso_line_count);
         if (!attribute.image)
         {
             throw Exception("Could not generate the image of patch!");
@@ -306,9 +306,19 @@ namespace cagd
                 glDisable(GL_LIGHT0);
                 glDisable(GL_NORMALIZE);
             }
+        }
 
-            //it->image->RenderNormals();
+        glPointSize(1.0);
+        return GL_TRUE;
+    }
 
+    GLboolean BicubicCompositeSurface3::RenderAllPatchesIsoU() const
+    {
+        glPointSize(6.0);
+
+        // TODO: the colors of the iso lines, derivatives and control points/net are not visible. Solve this.
+        for (auto it = _attributes.begin(); it != _attributes.end(); ++it)
+        {
             if (it->u_lines)
             {
                 glColor3f(1.0f, 0.0f, 0.0f); // red for iso lines
@@ -318,7 +328,19 @@ namespace cagd
                     (*(it->u_lines))[i]->RenderDerivatives(0, GL_LINE_STRIP);
                 }
             }
+        }
 
+        glPointSize(1.0);
+        return GL_TRUE;
+    }
+
+    GLboolean BicubicCompositeSurface3::RenderAllPatchesIsoV() const
+    {
+        glPointSize(6.0);
+
+        // TODO: the colors of the iso lines, derivatives and control points/net are not visible. Solve this.
+        for (auto it = _attributes.begin(); it != _attributes.end(); ++it)
+        {
             if (it->v_lines)
             {
                 glColor3f(1.0f, 0.0f, 0.0f); // red for iso lines
@@ -329,6 +351,19 @@ namespace cagd
                 }
             }
 
+        }
+
+        glPointSize(1.0);
+        return GL_TRUE;
+    }
+
+    GLboolean BicubicCompositeSurface3::RenderAllPatchesIsoUd1() const
+    {
+        glPointSize(6.0);
+
+        // TODO: the colors of the iso lines, derivatives and control points/net are not visible. Solve this.
+        for (auto it = _attributes.begin(); it != _attributes.end(); ++it)
+        {
             if (it->u_lines)
             {
                 glColor3f(0.0f, 0.5f, 0.0f); // green for first derivatives
@@ -339,7 +374,19 @@ namespace cagd
                     (*(it->u_lines))[i]->RenderDerivatives(1, GL_LINES);
                 }
             }
+        }
 
+        glPointSize(1.0);
+        return GL_TRUE;
+    }
+
+    GLboolean BicubicCompositeSurface3::RenderAllPatchesIsoVd1() const
+    {
+        glPointSize(6.0);
+
+        // TODO: the colors of the iso lines, derivatives and control points/net are not visible. Solve this.
+        for (auto it = _attributes.begin(); it != _attributes.end(); ++it)
+        {
             if (it->v_lines)
             {
                 glColor3f(0.0f, 0.5f, 0.0f); // green for first derivatives
@@ -350,13 +397,19 @@ namespace cagd
                     (*(it->v_lines))[i]->RenderDerivatives(1, GL_LINES);
                 }
             }
+        }
 
-            if (it->patch)
-            {
-                glColor3f(0.7f, 1.0f, 0.0f); // neongreen for control points
-                it->patch->RenderData(GL_POINTS);
-            }
+        glPointSize(1.0);
+        return GL_TRUE;
+    }
 
+    GLboolean BicubicCompositeSurface3::RenderAllPatchesData() const
+    {
+        glPointSize(6.0);
+
+        // TODO: the colors of the iso lines, derivatives and control points/net are not visible. Solve this.
+        for (auto it = _attributes.begin(); it != _attributes.end(); ++it)
+        {
             if (it->patch)
             {
                 glColor3f(0.7f, 1.0f, 0.0f); // neongreen for control net

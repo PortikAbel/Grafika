@@ -66,54 +66,17 @@ namespace cagd
         connect(_gl_widget, SIGNAL(setTranslate(double)), _side_widget->trans_z_spin_box, SLOT(setValue(double)));
 
         // shaders
-        //connect(_side_widget->dl_shader_check_box, SIGNAL(toggled(bool)), _gl_widget, SLOT(set_dl_shader_selected(bool)));
-        //connect(_side_widget->rl_shader_check_box, SIGNAL(toggled(bool)), _gl_widget, SLOT(set_rl_shader_selected(bool)));
-        //connect(_side_widget->toon_shader_check_box, SIGNAL(toggled(bool)), _gl_widget, SLOT(set_toon_shader_selected(bool)));
-        //connect(_side_widget->two_sl_shader_check_box, SIGNAL(toggled(bool)), _gl_widget, SLOT(set_two_sl_shader_selected(bool)));
 
-        //connect(_side_widget->rl_scale_spin_box, SIGNAL(valueChanged(double)), _gl_widget, SLOT(set_rl_scale(double)));
-        //connect(_side_widget->rl_smoothing_spin_box, SIGNAL(valueChanged(double)), _gl_widget, SLOT(set_rl_smoothing(double)));
-        //connect(_side_widget->rl_shading_spin_box, SIGNAL(valueChanged(double)), _gl_widget, SLOT(set_rl_shading(double)));
+        connect(_side_widget->shader_light_tab, SIGNAL(currentChanged(int)), _gl_widget, SLOT(set_shader_light(int)));
 
-        connect(_side_widget->toon_outline_r_spin_box, SIGNAL(valueChanged(double)), _gl_widget, SLOT(set_toon_def_outline_r(double)));
-        connect(_side_widget->toon_outline_g_spin_box, SIGNAL(valueChanged(double)), _gl_widget, SLOT(set_toon_def_outline_g(double)));
-        connect(_side_widget->toon_outline_b_spin_box, SIGNAL(valueChanged(double)), _gl_widget, SLOT(set_toon_def_outline_b(double)));
-        connect(_side_widget->toon_outline_a_spin_box, SIGNAL(valueChanged(double)), _gl_widget, SLOT(set_toon_def_outline_a(double)));
+        connect(_side_widget->bp_rl_scale_spin_box, SIGNAL(valueChanged(double)), _gl_widget, SLOT(set_rl_scale(double)));
+        connect(_side_widget->bp_rl_smoothing_spin_box, SIGNAL(valueChanged(double)), _gl_widget, SLOT(set_rl_smoothing(double)));
+        connect(_side_widget->bp_rl_shading_spin_box, SIGNAL(valueChanged(double)), _gl_widget, SLOT(set_rl_shading(double)));
 
-        // parametric curves
-        connect(_side_widget->curveComboBox, SIGNAL(currentIndexChanged(int)), _gl_widget, SLOT(setParametricCurveIndex(int)));
-        connect(_side_widget->show_tangents_check_box, SIGNAL(toggled(bool)), _gl_widget, SLOT(setVisibilityOfTangents(bool)));
-        connect(_side_widget->show_acceleration_vectors_check_box, SIGNAL(toggled(bool)), _gl_widget, SLOT(setVisibilityOfAccelerationVectors(bool)));
-        connect(_side_widget->derivative_scale_double_spin_box, SIGNAL(valueChanged(double)), _gl_widget, SLOT(setDerivativeScale(double)));
-        connect(_side_widget->division_point_count_spin_box, SIGNAL(valueChanged(int)), _gl_widget, SLOT(setDivPointCount(int)));
-        connect(_side_widget->resetButton_2, SIGNAL(pressed(void)), _gl_widget, SLOT(resetPcAttributes(void)));
-
-        connect(_gl_widget, SIGNAL(derivativeVisibilitySignal(bool)), _side_widget->show_tangents_check_box, SLOT(setChecked(bool)));
-        connect(_gl_widget, SIGNAL(derivativeVisibilitySignal(bool)), _side_widget->show_acceleration_vectors_check_box, SLOT(setChecked(bool)));
-        connect(_gl_widget, SIGNAL(derivativeScaleSignal(double)), _side_widget->derivative_scale_double_spin_box, SLOT(setValue(double)));
-        connect(_gl_widget, SIGNAL(divisionPointCountSignal(int)), _side_widget->division_point_count_spin_box, SLOT(setValue(int)));
-
-        // parametric surfaces
-        connect(_side_widget->surfaceComboBox, SIGNAL(currentIndexChanged(int)), _gl_widget, SLOT(setParametricSurfaceIndex(int)));
-        connect(_side_widget->uDivPointCountSpinBox, SIGNAL(valueChanged(int)), _gl_widget, SLOT(setDivPointCountU(int)));
-        connect(_side_widget->vDivPointCountSpinBox, SIGNAL(valueChanged(int)), _gl_widget, SLOT(setDivPointCountV(int)));
-        connect(_side_widget->showTextureCheckBox, SIGNAL(toggled(bool)), _gl_widget, SLOT(setShowTexture(bool)));
-
-        // cyclic curves
-        connect(_side_widget->cc_cp_index_spin_box, SIGNAL(valueChanged(int)), _gl_widget, SLOT(setSelectedControlPoint(int)));
-        connect(_side_widget->cc_trans_x_spin_box, SIGNAL(valueChanged(double)), _gl_widget, SLOT(cc_cp_set_x(double)));
-        connect(_side_widget->cc_trans_y_spin_box, SIGNAL(valueChanged(double)), _gl_widget, SLOT(cc_cp_set_y(double)));
-        connect(_side_widget->cc_trans_z_spin_box, SIGNAL(valueChanged(double)), _gl_widget, SLOT(cc_cp_set_z(double)));
-        connect(_side_widget->show_cc_check_box, SIGNAL(toggled(bool)), _gl_widget, SLOT(setCcVisibility(bool)));
-        connect(_side_widget->show_cc_d1_check_box, SIGNAL(toggled(bool)), _gl_widget, SLOT(setCcD1Visibility(bool)));
-        connect(_side_widget->show_cc_d2_check_box, SIGNAL(toggled(bool)), _gl_widget, SLOT(setCcD2Visibility(bool)));
-        connect(_side_widget->show_ip_cc_check_box, SIGNAL(toggled(bool)), _gl_widget, SLOT(setIpCcVisibility(bool)));
-        connect(_side_widget->show_ip_cc_d1_check_box, SIGNAL(toggled(bool)), _gl_widget, SLOT(setIpCcD1Visibility(bool)));
-        connect(_side_widget->show_ip_cc_d2_check_box, SIGNAL(toggled(bool)), _gl_widget, SLOT(setIpCcD2Visibility(bool)));
-
-        connect(_gl_widget, SIGNAL(cc_control_point_x_changed(double)), _side_widget->cc_trans_x_spin_box, SLOT(setValue(double)));
-        connect(_gl_widget, SIGNAL(cc_control_point_y_changed(double)), _side_widget->cc_trans_y_spin_box, SLOT(setValue(double)));
-        connect(_gl_widget, SIGNAL(cc_control_point_z_changed(double)), _side_widget->cc_trans_z_spin_box, SLOT(setValue(double)));
+        connect(_side_widget->bp_toon_outline_r_spin_box, SIGNAL(valueChanged(double)), _gl_widget, SLOT(set_toon_def_outline_r(double)));
+        connect(_side_widget->bp_toon_outline_g_spin_box, SIGNAL(valueChanged(double)), _gl_widget, SLOT(set_toon_def_outline_g(double)));
+        connect(_side_widget->bp_toon_outline_b_spin_box, SIGNAL(valueChanged(double)), _gl_widget, SLOT(set_toon_def_outline_b(double)));
+        connect(_side_widget->bp_toon_outline_a_spin_box, SIGNAL(valueChanged(double)), _gl_widget, SLOT(set_toon_def_outline_a(double)));
 
         // cubic bezier arc
         connect(_side_widget->arc_cp_index_spin_box, SIGNAL(valueChanged(int)), _gl_widget, SLOT(set_selected_cp_arc(int)));
@@ -127,15 +90,13 @@ namespace cagd
         connect(_gl_widget, SIGNAL(arc_control_point_y_changed(double)), _side_widget->arc_cp_y_spin_box, SLOT(setValue(double)));
         connect(_gl_widget, SIGNAL(arc_control_point_z_changed(double)), _side_widget->arc_cp_z_spin_box, SLOT(setValue(double)));
 
-        //connect(_side_widget->new_arc_button, SIGNAL(clicked()), _gl_widget, SLOT(new_arc()));
+        connect(_side_widget->new_arc_button, SIGNAL(clicked()), _gl_widget, SLOT(new_arc()));
 
         // bicubic bezier patches
-        connect(_side_widget->show_iso_u_check_box, SIGNAL(toggled(bool)), _gl_widget, SLOT(setBbPatchVisibility(bool)));
-        connect(_side_widget->show_iso_v_check_box, SIGNAL(toggled(bool)), _gl_widget, SLOT(setIpBbPatchVisibility(bool)));
-        connect(_side_widget->show_iso_d1_u_check_box, SIGNAL(toggled(bool)), _gl_widget, SLOT(setBbPatchD1UVisibility(bool)));
-        connect(_side_widget->show_iso_d1_v_check_box, SIGNAL(toggled(bool)), _gl_widget, SLOT(setBbPatchD1VVisibility(bool)));
-        //connect(_side_widget->shaderRadioButton, SIGNAL(toggled(bool)), _gl_widget, SLOT(setShader(bool)));
-        //connect(_side_widget->lightRadioButton, SIGNAL(toggled(bool)), _gl_widget, SLOT(setLight(bool)));
+        connect(_side_widget->show_iso_u_check_box, SIGNAL(toggled(bool)), _gl_widget, SLOT(setIsoLineUVisibility(bool)));
+        connect(_side_widget->show_iso_v_check_box, SIGNAL(toggled(bool)), _gl_widget, SLOT(setIsoLineVVisibility(bool)));
+        connect(_side_widget->show_iso_d1_u_check_box, SIGNAL(toggled(bool)), _gl_widget, SLOT(setIsoLineD1UVisibility(bool)));
+        connect(_side_widget->show_iso_d1_v_check_box, SIGNAL(toggled(bool)), _gl_widget, SLOT(setIsoLineD1VVisibility(bool)));
         connect(_side_widget->shaderComboBox, SIGNAL(currentIndexChanged(int)), _gl_widget, SLOT(setShaderType(int)));
         connect(_side_widget->directedCheckBox, SIGNAL(toggled(bool)), _gl_widget, SLOT(setDirectionalLight(bool)));
         connect(_side_widget->pointLikeCheckBox, SIGNAL(toggled(bool)), _gl_widget, SLOT(setReflectorLight(bool)));

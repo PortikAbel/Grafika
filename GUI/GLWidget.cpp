@@ -708,10 +708,10 @@ namespace cagd
         {
             glEnable(GL_LIGHTING);
             glEnable(GL_NORMALIZE);
-            _dl->Enable();
+            //_dl->Enable();
             MatFBTurquoise.Apply();
             ret_val = _image_of_ps[_selected_ps]->Render();
-            _dl->Disable();
+            //_dl->Disable();
             glDisable(GL_NORMALIZE);
             glDisable(GL_LIGHTING);
         }
@@ -1000,8 +1000,6 @@ namespace cagd
         }
         else
         {
-            glEnable(GL_LIGHTING);
-            glEnable(GL_NORMALIZE);
             if (_directional_light)
             {
                 _dl->Enable();
@@ -1026,8 +1024,22 @@ namespace cagd
             return false;
         }
 
-        // TODO: render iso lines & derivatives
-        if (_showIsoLinesU && false)
+        if (_showIsoLinesU && !_compositeSurface->RenderAllPatchesIsoU())
+        {
+            return false;
+        }
+
+        if (_showIsoLinesV && !_compositeSurface->RenderAllPatchesIsoV())
+        {
+            return false;
+        }
+
+        if (_showIsoLinesD1U && !_compositeSurface->RenderAllPatchesIsoUd1())
+        {
+            return false;
+        }
+
+        if (_showIsoLinesD1V && !_compositeSurface->RenderAllPatchesIsoVd1())
         {
             return false;
         }
@@ -1038,8 +1050,6 @@ namespace cagd
         }
         else
         {
-            glDisable(GL_LIGHTING);
-            glDisable(GL_NORMALIZE);
             if (_directional_light)
             {
                 _dl->Disable();
@@ -1293,6 +1303,7 @@ namespace cagd
                 _renderCubicCompositeCurve();
                 break;
             case 6:
+                _communicateWithShaders();
                 _renderBicubicCompositeSurface();
                 break;
             }
@@ -1417,6 +1428,20 @@ namespace cagd
     // ---------------------------------------------------
     // slots of shaderers
     // ---------------------------------------------------
+
+    void GLWidget::set_shader_light(int index)
+    {
+        if (index == 0)
+        {
+            _shader = true;
+            _light = false;
+        }
+        else
+        {
+            _shader = false;
+            _light = true;
+        }
+    }
 
     void GLWidget::set_dl_shader_selected(bool value)
     {

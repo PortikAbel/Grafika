@@ -66,6 +66,11 @@ namespace cagd
         GLboolean UpdatePatch(PatchAttributes &attribute, const GLuint row, const GLuint column, const DCoordinate3 position);
         GLboolean MovePatch(const GLuint patchIndex, const DCoordinate3 difference);
         GLboolean RenderAllPatches() const;
+        GLboolean RenderAllPatchesIsoU() const;
+        GLboolean RenderAllPatchesIsoV() const;
+        GLboolean RenderAllPatchesIsoUd1() const;
+        GLboolean RenderAllPatchesIsoVd1() const;
+        GLboolean RenderAllPatchesData() const;
         GLboolean RenderSelectedPatch(GLuint index, GLuint order, GLenum render_mode) const;
 
         GLboolean GetDataPointValues(const GLuint patchIndex, const GLuint row, const GLuint column, DCoordinate3 &position);
