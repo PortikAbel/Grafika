@@ -66,10 +66,10 @@ namespace cagd
         connect(_gl_widget, SIGNAL(setTranslate(double)), _side_widget->trans_z_spin_box, SLOT(setValue(double)));
 
         // shaders
-        connect(_side_widget->dl_shader_check_box, SIGNAL(toggled(bool)), _gl_widget, SLOT(set_dl_shader_selected(bool)));
-        connect(_side_widget->rl_shader_check_box, SIGNAL(toggled(bool)), _gl_widget, SLOT(set_rl_shader_selected(bool)));
-        connect(_side_widget->toon_shader_check_box, SIGNAL(toggled(bool)), _gl_widget, SLOT(set_toon_shader_selected(bool)));
-        connect(_side_widget->two_sl_shader_check_box, SIGNAL(toggled(bool)), _gl_widget, SLOT(set_two_sl_shader_selected(bool)));
+        //connect(_side_widget->dl_shader_check_box, SIGNAL(toggled(bool)), _gl_widget, SLOT(set_dl_shader_selected(bool)));
+        //connect(_side_widget->rl_shader_check_box, SIGNAL(toggled(bool)), _gl_widget, SLOT(set_rl_shader_selected(bool)));
+        //connect(_side_widget->toon_shader_check_box, SIGNAL(toggled(bool)), _gl_widget, SLOT(set_toon_shader_selected(bool)));
+        //connect(_side_widget->two_sl_shader_check_box, SIGNAL(toggled(bool)), _gl_widget, SLOT(set_two_sl_shader_selected(bool)));
 
         connect(_side_widget->rl_scale_spin_box, SIGNAL(valueChanged(double)), _gl_widget, SLOT(set_rl_scale(double)));
         connect(_side_widget->rl_smoothing_spin_box, SIGNAL(valueChanged(double)), _gl_widget, SLOT(set_rl_smoothing(double)));
@@ -132,23 +132,20 @@ namespace cagd
         connect(_side_widget->show_iso_v_check_box, SIGNAL(toggled(bool)), _gl_widget, SLOT(setIpBbPatchVisibility(bool)));
         connect(_side_widget->show_iso_d1_u_check_box, SIGNAL(toggled(bool)), _gl_widget, SLOT(setBbPatchD1UVisibility(bool)));
         connect(_side_widget->show_iso_d1_v_check_box, SIGNAL(toggled(bool)), _gl_widget, SLOT(setBbPatchD1VVisibility(bool)));
-        //connect(_side_widget->shaderRadioButton, SIGNAL(toggled(bool)), _gl_widget, SLOT(setShader(bool)));
-        //connect(_side_widget->lightRadioButton, SIGNAL(toggled(bool)), _gl_widget, SLOT(setLight(bool)));
         connect(_side_widget->shaderComboBox, SIGNAL(currentIndexChanged(int)), _gl_widget, SLOT(setShaderType(int)));
         connect(_side_widget->directedCheckBox, SIGNAL(toggled(bool)), _gl_widget, SLOT(setDirectionalLight(bool)));
         connect(_side_widget->pointLikeCheckBox, SIGNAL(toggled(bool)), _gl_widget, SLOT(setReflectorLight(bool)));
         connect(_side_widget->reflectorCheckBox, SIGNAL(toggled(bool)), _gl_widget, SLOT(setPointLikeLight(bool)));
+        connect(_side_widget->tabWidget, SIGNAL(tabBarClicked(int)), _gl_widget, SLOT(shaderOrLight(int)));
 
-        connect(_side_widget->cp_row_spinBox, SIGNAL(valueChanged(int)), _gl_widget, SLOT(set_selected_cp_patch_row(int)));
-        connect(_side_widget->cp_col_spinBox, SIGNAL(valueChanged(int)), _gl_widget, SLOT(set_selected_cp_patch_column(int)));
-        connect(_side_widget->patch_cp_x_spinBox, SIGNAL(valueChanged(double)), _gl_widget, SLOT(patch_cp_set_x(double)));
-        connect(_side_widget->patch_cp_y_spinBox, SIGNAL(valueChanged(double)), _gl_widget, SLOT(patch_cp_set_y(double)));
-        connect(_side_widget->patch_cp_z_spinBox, SIGNAL(valueChanged(double)), _gl_widget, SLOT(patch_cp_set_z(double)));
+        connect(_side_widget->bp_rl_scale_spin_box, SIGNAL(valueChanged(double)), _gl_widget, SLOT(set_rl_scale(double)));
+        connect(_side_widget->bp_rl_smoothing_spin_box, SIGNAL(valueChanged(double)), _gl_widget, SLOT(set_rl_smoothing(double)));
+        connect(_side_widget->bp_rl_shading_spin_box, SIGNAL(valueChanged(double)), _gl_widget, SLOT(set_rl_shading(double)));
 
-        connect(_gl_widget, SIGNAL(patch_control_point_x_changed(double)), _side_widget->patch_cp_x_spinBox, SLOT(setValue(double)));
-        connect(_gl_widget, SIGNAL(patch_control_point_y_changed(double)), _side_widget->patch_cp_y_spinBox, SLOT(setValue(double)));
-        connect(_gl_widget, SIGNAL(patch_control_point_z_changed(double)), _side_widget->patch_cp_z_spinBox, SLOT(setValue(double)));
-
+        connect(_side_widget->bp_toon_outline_r_spin_box, SIGNAL(valueChanged(double)), _gl_widget, SLOT(set_toon_def_outline_r(double)));
+        connect(_side_widget->bp_toon_outline_g_spin_box, SIGNAL(valueChanged(double)), _gl_widget, SLOT(set_toon_def_outline_g(double)));
+        connect(_side_widget->bp_toon_outline_b_spin_box, SIGNAL(valueChanged(double)), _gl_widget, SLOT(set_toon_def_outline_b(double)));
+        connect(_side_widget->bp_toon_outline_a_spin_box, SIGNAL(valueChanged(double)), _gl_widget, SLOT(set_toon_def_outline_a(double)));
         // change scene
         connect(_side_widget->toolBox, SIGNAL(currentChanged(int)), _gl_widget, SLOT(setID(int)));
     }

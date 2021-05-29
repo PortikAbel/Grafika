@@ -55,7 +55,7 @@ namespace cagd
         // shaders
         RowMatrix<ShaderProgram*>   _shaders;
         std::vector<bool>           _shader_selected;
-        float       _rl_scale = 0.0;
+        float       _rl_scale = 1.0;
         float       _rl_smoothing = 0.0;
         float       _rl_shading = 0.0;
         Color4      _toon_def_outline;
@@ -167,7 +167,7 @@ namespace cagd
         bool        _shader             = false;
         bool        _light              = true;
         int         _selected_shader    = 0;
-        bool        _directional_light  = true;
+        bool        _directional_light  = false;
         bool        _reflector_light    = false;
         bool        _point_like_light   = false;
 
@@ -267,8 +267,7 @@ namespace cagd
         void setIsoLineVVisibility(bool);
         void setIsoLineD1UVisibility(bool);
         void setIsoLineD1VVisibility(bool);
-        void setShader(bool);
-        void setLight(bool);
+        void shaderOrLight(int);
         void setShaderType(int);
         void setDirectionalLight(bool);
         void setReflectorLight(bool);
