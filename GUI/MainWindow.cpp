@@ -87,12 +87,17 @@ namespace cagd
         connect(_side_widget->arc_cp_z_spin_box, SIGNAL(valueChanged(double)), _gl_widget, SLOT(arc_cp_set_z(double)));
         connect(_side_widget->arc_d1_check_box, SIGNAL(toggled(bool)), _gl_widget, SLOT(set_arc_d1_visibility(bool)));
         connect(_side_widget->arc_d2_check_box, SIGNAL(toggled(bool)), _gl_widget, SLOT(set_arc_d2_visibility(bool)));
+        connect(_side_widget->arc_1_dir_comboBox, SIGNAL(currentIndexChandeg(int)), _gl_widget, SLOT(set_arc_dir_1(int)));
+        connect(_side_widget->arc_2_dir_comboBox, SIGNAL(currentIndexChandeg(int)), _gl_widget, SLOT(set_arc_dir_2(int)));
+
+        connect(_side_widget->new_arc_button, SIGNAL(clicked()), _gl_widget, SLOT(new_arc()));
+        connect(_side_widget->arc_continue_button, SIGNAL(clicked()), _gl_widget, SLOT(cont_arc()));
+        connect(_side_widget->arc_join_button, SIGNAL(clicked()), _gl_widget, SLOT(join_arcs()));
+        connect(_side_widget->arc_merge_button, SIGNAL(clicked()), _gl_widget, SLOT(merge_arcs()));
 
         connect(_gl_widget, SIGNAL(arc_control_point_x_changed(double)), _side_widget->arc_cp_x_spin_box, SLOT(setValue(double)));
         connect(_gl_widget, SIGNAL(arc_control_point_y_changed(double)), _side_widget->arc_cp_y_spin_box, SLOT(setValue(double)));
         connect(_gl_widget, SIGNAL(arc_control_point_z_changed(double)), _side_widget->arc_cp_z_spin_box, SLOT(setValue(double)));
-
-        connect(_side_widget->new_arc_button, SIGNAL(clicked()), _gl_widget, SLOT(new_arc()));
 
         // bicubic bezier patches
         connect(_side_widget->show_iso_u_check_box, SIGNAL(toggled(bool)), _gl_widget, SLOT(setIsoLineUVisibility(bool)));
