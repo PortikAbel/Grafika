@@ -1899,6 +1899,12 @@ namespace cagd
         update();
     }
 
+    void GLWidget::setNormalsVisibility(bool visibility)
+    {
+        _showNormalVectors = visibility;
+        update();
+    }
+
     void GLWidget::setShader(bool shader)
     {
         _shader = shader;

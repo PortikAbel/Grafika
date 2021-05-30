@@ -104,6 +104,7 @@ namespace cagd
         connect(_side_widget->show_iso_v_check_box, SIGNAL(toggled(bool)), _gl_widget, SLOT(setIsoLineVVisibility(bool)));
         connect(_side_widget->show_iso_d1_u_check_box, SIGNAL(toggled(bool)), _gl_widget, SLOT(setIsoLineD1UVisibility(bool)));
         connect(_side_widget->show_iso_d1_v_check_box, SIGNAL(toggled(bool)), _gl_widget, SLOT(setIsoLineD1VVisibility(bool)));
+        connect(_side_widget->showNormalVectorsCheckBox, SIGNAL(toggled(bool)), _gl_widget, SLOT(setNormalsVisibility(bool)));
         connect(_side_widget->shaderComboBox, SIGNAL(currentIndexChanged(int)), _gl_widget, SLOT(setShaderType(int)));
         connect(_side_widget->directedCheckBox, SIGNAL(toggled(bool)), _gl_widget, SLOT(setDirectionalLight(bool)));
         connect(_side_widget->pointLikeCheckBox, SIGNAL(toggled(bool)), _gl_widget, SLOT(setPointLikeLight(bool)));

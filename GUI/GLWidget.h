@@ -289,6 +289,7 @@ namespace cagd
         void setIsoLineVVisibility(bool);
         void setIsoLineD1UVisibility(bool);
         void setIsoLineD1VVisibility(bool);
+        void setNormalsVisibility(bool);
         void setShader(bool);
         void setLight(bool);
         void setShaderType(int);
