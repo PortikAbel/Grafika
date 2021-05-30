@@ -180,6 +180,27 @@ GLboolean TriangulatedMesh3::Render(GLenum render_mode) const
     return GL_TRUE;
 }
 
+GLboolean TriangulatedMesh3::RenderNormals()
+{
+    if(!_vbo_vertices || !_vbo_normals)
+    {
+        return GL_FALSE;
+    }
+
+    glBegin(GL_LINES);
+    glColor3f(0.2f,0.2f,1.0f);
+        for(size_t i = 0; i < _vertex.size(); ++i)
+        {
+            glVertex3dv(&_vertex[i][0]);
+            DCoordinate3 sum = _vertex[i];
+            sum += 0.3*_normal[i];
+            glVertex3dv(&sum[0]);
+        }
+    glEnd();
+
+    return GL_TRUE;
+}
+
 GLboolean TriangulatedMesh3::UpdateVertexBufferObjects(GLenum usage_flag)
 {
     if (usage_flag != GL_STREAM_DRAW  && usage_flag != GL_STREAM_READ  && usage_flag != GL_STREAM_COPY

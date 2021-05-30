@@ -1042,6 +1042,9 @@ namespace cagd
         {
             return false;
         }
+        if (_showNormalVectors && !_compositeSurface->RenderAllPatchesNormal()){
+            return false;
+        }
 
         if (_shader)
         {
@@ -1892,6 +1895,12 @@ namespace cagd
     void GLWidget::setIsoLineD1VVisibility(bool visibility)
     {
         _showIsoLinesD1V = visibility;
+        update();
+    }
+
+    void GLWidget::setNormalsVisibility(bool visibility)
+    {
+        _showNormalVectors = visibility;
         update();
     }
 
