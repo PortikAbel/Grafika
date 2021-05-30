@@ -296,14 +296,12 @@ namespace cagd
             if (it->image)
             {
                 glEnable(GL_LIGHTING);
-                glEnable(GL_LIGHT0);
                 glEnable(GL_NORMALIZE);
 
                     it->material->Apply();
                     it->image->Render();
 
                 glDisable(GL_LIGHTING);
-                glDisable(GL_LIGHT0);
                 glDisable(GL_NORMALIZE);
             }
         }
