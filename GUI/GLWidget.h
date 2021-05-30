@@ -168,6 +168,7 @@ namespace cagd
         bool        _showIsoLinesV      = false;
         bool        _showIsoLinesD1U    = false;
         bool        _showIsoLinesD1V    = false;
+        bool        _showNormalVectors  = false;
         bool        _shader             = true;
         bool        _light              = false;
         int         _selected_shader    = 0;

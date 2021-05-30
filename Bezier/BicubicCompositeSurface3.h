@@ -70,6 +70,7 @@ namespace cagd
         GLboolean RenderAllPatchesIsoV() const;
         GLboolean RenderAllPatchesIsoUd1() const;
         GLboolean RenderAllPatchesIsoVd1() const;
+        GLboolean RenderAllPatchesNormal() const;
         GLboolean RenderAllPatchesData() const;
         GLboolean RenderSelectedPatch(GLuint index, GLuint order, GLenum render_mode) const;
 

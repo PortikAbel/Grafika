@@ -60,6 +60,8 @@ namespace cagd
         // renders the geometry
         GLboolean Render(GLenum render_mode = GL_TRIANGLES) const;
 
+        GLboolean RenderNormals();
+
         // updates all vertex buffer objects
         GLboolean UpdateVertexBufferObjects(GLenum usage_flag = GL_STATIC_DRAW);
 

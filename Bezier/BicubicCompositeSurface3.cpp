@@ -382,19 +382,20 @@ namespace cagd
     {
         glPointSize(6.0);
 
+
+
+        glPointSize(1.0);
+        return GL_TRUE;
+    }
+
+    GLboolean BicubicCompositeSurface3::RenderAllPatchesNormal() const
+    {
+        glPointSize(6.0);
+
         // TODO: the colors of the iso lines, derivatives and control points/net are not visible. Solve this.
         for (auto it = _attributes.begin(); it != _attributes.end(); ++it)
         {
-            if (it->v_lines)
-            {
-                glColor3f(0.0f, 0.5f, 0.0f); // green for first derivatives
-
-                for(GLuint i=0; i<it->v_lines->GetColumnCount(); ++i)
-                {
-                    (*(it->v_lines))[i]->RenderDerivatives(1, GL_POINTS);
-                    (*(it->v_lines))[i]->RenderDerivatives(1, GL_LINES);
-                }
-            }
+            it->image->RenderNormals();
         }
 
         glPointSize(1.0);
