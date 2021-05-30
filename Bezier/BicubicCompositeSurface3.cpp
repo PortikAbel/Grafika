@@ -407,15 +407,21 @@ namespace cagd
         return GL_TRUE;
     }
 
-    GLboolean BicubicCompositeSurface3::RenderAllPatchesData() const
+    GLboolean BicubicCompositeSurface3::RenderAllPatchesData(GLuint selectedPatchInd, GLuint selectedRowInd, GLuint selectedColInd) const
     {
+        glColor3f(0.7f, 1.0f, 0.0f); // neongreen for control net
+
+        glPointSize(10.0f);
+        glBegin(GL_POINTS);
+            glVertex3dv(&(*_attributes[selectedPatchInd].patch)(selectedRowInd, selectedColInd)[0]);
+        glEnd();
+
         glPointSize(6.0);
 
         for (auto it = _attributes.begin(); it != _attributes.end(); ++it)
         {
             if (it->patch)
             {
-                glColor3f(0.7f, 1.0f, 0.0f); // neongreen for control net
                 it->patch->RenderData();
             }
         }

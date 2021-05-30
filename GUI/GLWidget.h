@@ -150,6 +150,7 @@ namespace cagd
         GLuint      _selectedCurvePoint = 0;
         bool    _showFirstOrderCurveDerivatives = false;
         bool    _showSecondOrderCurveDerivatives = false;
+        bool    _showCurveData                  = false;
 
         CubicCompositeCurve3::Direction _arc_dir_1 = CubicCompositeCurve3::Direction::LEFT;
         CubicCompositeCurve3::Direction _arc_dir_2 = CubicCompositeCurve3::Direction::LEFT;
@@ -171,6 +172,8 @@ namespace cagd
         bool        _showIsoLinesD1U    = false;
         bool        _showIsoLinesD1V    = false;
         bool        _showNormalVectors  = false;
+        bool        _showPatchData      = false;
+
         bool        _shader             = true;
         bool        _light              = false;
         int         _selected_shader    = 0;
@@ -271,6 +274,7 @@ namespace cagd
         void arc_cp_set_z(double);
         void set_arc_d1_visibility(bool);
         void set_arc_d2_visibility(bool);
+        void set_arc_data_visibility(bool);
 
         void new_arc();
         void cont_arc();
@@ -282,7 +286,6 @@ namespace cagd
 
         // patches
 
-        // TODO:
         void set_selected_patch1(int);
         void set_selected_patch2(int);
         void set_selected_cp_patch_row(int);
@@ -296,6 +299,8 @@ namespace cagd
         void setIsoLineD1UVisibility(bool);
         void setIsoLineD1VVisibility(bool);
         void setNormalsVisibility(bool);
+        void setPatchDataVisibility(bool);
+
         void setShader(bool);
         void setLight(bool);
         void setShaderType(int);

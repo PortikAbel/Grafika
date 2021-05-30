@@ -22,7 +22,7 @@ namespace cagd {
            arc = nullptr;
 
         if (arcAttribute.color)
-           color = new Color4(*(arcAttribute.color));
+           color = arcAttribute.color;
         else
            color = nullptr;
 
@@ -69,7 +69,7 @@ namespace cagd {
 
         if (attribute.color)
         {
-           color = new Color4(*(attribute.color));
+           color = attribute.color;
         }
         else
         {
@@ -593,6 +593,22 @@ namespace cagd {
             }
         }
         glPointSize(1.0);
+        return GL_TRUE;
+    }
+
+    GLboolean CubicCompositeCurve3::RenderAllData(GLuint selectedCurveInd, GLuint selectedPointInd)
+    {
+        glPointSize(10.0f);
+        glBegin(GL_POINTS);
+            glVertex3dv(&(*_attributes[selectedCurveInd].arc)[selectedPointInd][0]);
+        glEnd();
+        glPointSize(1.0f);
+
+        for (auto it = _attributes.begin(); it != _attributes.end(); ++it)
+        {
+            it->arc->RenderData();
+        }
+
         return GL_TRUE;
     }
 

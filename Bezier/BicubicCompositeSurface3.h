@@ -72,7 +72,7 @@ namespace cagd
         GLboolean RenderAllPatchesIsoUd1() const;
         GLboolean RenderAllPatchesIsoVd1() const;
         GLboolean RenderAllPatchesNormal() const;
-        GLboolean RenderAllPatchesData() const;
+        GLboolean RenderAllPatchesData(GLuint selectedPatchInd, GLuint selectedRowInd, GLuint selectedColInd) const;
         GLboolean RenderHighlightedPatches(GLuint patchInd1, GLuint patchInd2) const;
 
         int       GetPatchCount();

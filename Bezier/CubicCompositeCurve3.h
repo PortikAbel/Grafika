@@ -41,7 +41,7 @@ namespace cagd
         };
     protected:
         std::vector<ArcAttributes> _attributes;
-        std::vector<Color4>        _colors = {darkRed,yellow,darkGreen,green,blue,darkBlue, purple, pink, orange, grey};
+        std::vector<Color4>        _colors{darkRed,yellow,darkGreen,green,blue,darkBlue, purple, pink, orange, grey};
         GLuint _div_point_count;
 
     public:
@@ -64,6 +64,7 @@ namespace cagd
         GLboolean RenderAllArcs();
         GLboolean RenderAllFirstOrderDerivatives();
         GLboolean RenderAllSecondOrderDerivatives();
+        GLboolean RenderAllData(GLuint selectedCurveInd, GLuint selectedPointInd);
         GLboolean RenderHighlightedArcs(GLuint arcInd1, int arcInd2);
 
         GLboolean GetDataPointValues(const GLuint &arcInd, const GLuint &dataPointInd, DCoordinate3 &p);

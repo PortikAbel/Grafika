@@ -82,14 +82,14 @@ namespace cagd
 
     bool GLWidget::_createSl()
     {
-        HCoordinate3    direction   (-1.0, -1.0, 2.0, 1.0);
+        HCoordinate3    direction   (0.0f, 0.0f, 1.0f, 0.1f);
         Color4          ambient     (0.4f, 0.4f, 0.4f, 1.0f);
         Color4          diffuse     (0.8f, 0.8f, 0.8f, 1.0f);
         Color4          specular    (1.0, 1.0, 1.0, 1.0);
         GLfloat         constant_attenuation(0.1f);
         GLfloat         linear_attenuation(0.1f);
         GLfloat         quadratic_attenuation(0.1f);
-        HCoordinate3    spot_direction(2.0, 1.0, -1.0, 1.0);
+        HCoordinate3    spot_direction(0.0f, 0.0f, -1.0f, 1.0f);
         GLfloat         spot_cutoff(0.2f);
         GLfloat         spot_exponent(0.2f);
 
@@ -949,6 +949,11 @@ namespace cagd
             return false;
         }
 
+        if (_showCurveData && !_compositeCurve->RenderAllData(_selectedCurve1, _selectedCurvePoint))
+        {
+            return false;
+        }
+
         if (_showFirstOrderCurveDerivatives && !_compositeCurve->RenderAllFirstOrderDerivatives())
         {
             return false;
@@ -994,6 +999,11 @@ namespace cagd
     bool GLWidget::_renderBicubicCompositeSurface()
     {
         if (!_dl || !_pl || !_sl)
+        {
+            return false;
+        }
+
+        if (_showPatchData && !_compositeSurface->RenderAllPatchesData(_selectedPatch1, _selectedPointRow, _selectedPointCol))
         {
             return false;
         }
@@ -1803,6 +1813,11 @@ namespace cagd
         _showSecondOrderCurveDerivatives = value;
         update();
     }
+    void GLWidget::set_arc_data_visibility(bool value)
+    {
+        _showCurveData = value;
+        update();
+    }
 
     void GLWidget::new_arc()
     {
@@ -1951,10 +1966,14 @@ namespace cagd
         _showIsoLinesD1V = visibility;
         update();
     }
-
     void GLWidget::setNormalsVisibility(bool visibility)
     {
         _showNormalVectors = visibility;
+        update();
+    }
+    void GLWidget::setPatchDataVisibility(bool visibility)
+    {
+        _showPatchData = visibility;
         update();
     }
 

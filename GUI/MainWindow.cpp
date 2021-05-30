@@ -87,6 +87,7 @@ namespace cagd
         connect(_side_widget->arc_cp_z_spin_box, SIGNAL(valueChanged(double)), _gl_widget, SLOT(arc_cp_set_z(double)));
         connect(_side_widget->arc_d1_check_box, SIGNAL(toggled(bool)), _gl_widget, SLOT(set_arc_d1_visibility(bool)));
         connect(_side_widget->arc_d2_check_box, SIGNAL(toggled(bool)), _gl_widget, SLOT(set_arc_d2_visibility(bool)));
+        connect(_side_widget->arc_data_check_box, SIGNAL(toggled(bool)), _gl_widget, SLOT(set_arc_data_visibility(bool)));
         connect(_side_widget->arc_1_dir_comboBox, SIGNAL(currentIndexChanged(int)), _gl_widget, SLOT(set_arc_dir_1(int)));
         connect(_side_widget->arc_2_dir_comboBox, SIGNAL(currentIndexChanged(int)), _gl_widget, SLOT(set_arc_dir_2(int)));
 
@@ -109,6 +110,7 @@ namespace cagd
         connect(_side_widget->show_iso_d1_u_check_box, SIGNAL(toggled(bool)), _gl_widget, SLOT(setIsoLineD1UVisibility(bool)));
         connect(_side_widget->show_iso_d1_v_check_box, SIGNAL(toggled(bool)), _gl_widget, SLOT(setIsoLineD1VVisibility(bool)));
         connect(_side_widget->showNormalVectorsCheckBox, SIGNAL(toggled(bool)), _gl_widget, SLOT(setNormalsVisibility(bool)));
+        connect(_side_widget->patch_data_check_box, SIGNAL(toggled(bool)), _gl_widget, SLOT(setPatchDataVisibility(bool)));
         connect(_side_widget->shaderComboBox, SIGNAL(currentIndexChanged(int)), _gl_widget, SLOT(setShaderType(int)));
         connect(_side_widget->directedCheckBox, SIGNAL(toggled(bool)), _gl_widget, SLOT(setDirectionalLight(bool)));
         connect(_side_widget->pointLikeCheckBox, SIGNAL(toggled(bool)), _gl_widget, SLOT(setPointLikeLight(bool)));
