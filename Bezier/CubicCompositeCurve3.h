@@ -41,7 +41,7 @@ namespace cagd
         };
     protected:
         std::vector<ArcAttributes> _attributes;
-        std::vector<Color4*>       _colors;
+        std::vector<Color4>        _colors = {darkRed,yellow,darkGreen,green,blue,darkBlue, purple, pink, orange, grey};
         GLuint _div_point_count;
 
     public:
