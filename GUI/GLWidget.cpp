@@ -1920,15 +1920,15 @@ namespace cagd
         update();
     }
 
-    void GLWidget::setReflectorLight(bool reflector_light)
-    {
-        _reflector_light = reflector_light;
-        update();
-    }
-
     void GLWidget::setPointLikeLight(bool point_like_light)
     {
         _point_like_light = point_like_light;
+        update();
+    }
+
+    void GLWidget::setReflectorLight(bool reflector_light)
+    {
+        _reflector_light = reflector_light;
         update();
     }
 }
