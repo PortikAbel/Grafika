@@ -708,10 +708,10 @@ namespace cagd
         {
             glEnable(GL_LIGHTING);
             glEnable(GL_NORMALIZE);
-            //_dl->Enable();
+            _dl->Enable();
             MatFBTurquoise.Apply();
             ret_val = _image_of_ps[_selected_ps]->Render();
-            //_dl->Disable();
+            _dl->Disable();
             glDisable(GL_NORMALIZE);
             glDisable(GL_LIGHTING);
         }
@@ -1786,7 +1786,7 @@ namespace cagd
 
     void GLWidget::cont_arc()
     {
-        if (_compositeCurve->ContinueExistingArc(_selectedCurve1, _arc_continue_dir))
+        if (_compositeCurve->ContinueExistingArc(_selectedCurve1, _arc_dir_1))
         {
             update();
         }
@@ -1794,7 +1794,7 @@ namespace cagd
 
     void GLWidget::join_arcs()
     {
-        if (_compositeCurve->JoinExistingArcs(_selectedCurve1, _arc_join_dir_1, _selectedCurve2, _arc_join_dir_2))
+        if (_compositeCurve->JoinExistingArcs(_selectedCurve1, _arc_dir_1, _selectedCurve2, _arc_dir_2))
         {
             update();
         }
@@ -1802,49 +1802,25 @@ namespace cagd
 
     void GLWidget::merge_arcs()
     {
-        if (_compositeCurve->MergeExistingArcs(_selectedCurve1, _arc_merge_dir_1, _selectedCurve2, _arc_merge_dir_2))
+        if (_compositeCurve->MergeExistingArcs(_selectedCurve1, _arc_dir_1, _selectedCurve2, _arc_dir_2))
         {
             update();
         }
     }
 
-    void GLWidget::set_arc_cont_dir(int dir)
+    void GLWidget::set_arc_dir_1(int dir)
     {
-        if (_arc_continue_dir != dir)
+        if (_arc_dir_1 != dir)
         {
-            _arc_continue_dir = dir == 0 ? CubicCompositeCurve3::Direction::LEFT : CubicCompositeCurve3::Direction::LEFT;
+            _arc_dir_1 = dir == 0 ? CubicCompositeCurve3::Direction::LEFT : CubicCompositeCurve3::Direction::LEFT;
         }
     }
 
-    void GLWidget::set_arc_join_dir_1(int dir)
+    void GLWidget::set_arc_dir_2(int dir)
     {
-        if (_arc_join_dir_1 != dir)
+        if (_arc_dir_2 != dir)
         {
-            _arc_join_dir_1 = dir == 0 ? CubicCompositeCurve3::Direction::LEFT : CubicCompositeCurve3::Direction::RIGHT;
-        }
-    }
-
-    void GLWidget::set_arc_join_dir_2(int dir)
-    {
-        if (_arc_join_dir_2 != dir)
-        {
-            _arc_join_dir_2 = dir == 0 ? CubicCompositeCurve3::Direction::LEFT : CubicCompositeCurve3::Direction::RIGHT;
-        }
-    }
-
-    void GLWidget::set_arc_merge_dir_1(int dir)
-    {
-        if (_arc_merge_dir_1 != dir)
-        {
-            _arc_merge_dir_1 = dir == 0 ? CubicCompositeCurve3::Direction::LEFT : CubicCompositeCurve3::Direction::RIGHT;
-        }
-    }
-
-    void GLWidget::set_arc_merge_dir_2(int dir)
-    {
-        if (_arc_merge_dir_2 != dir)
-        {
-            _arc_merge_dir_2 = dir == 0 ? CubicCompositeCurve3::Direction::LEFT : CubicCompositeCurve3::Direction::RIGHT;
+            _arc_dir_2 = dir == 0 ? CubicCompositeCurve3::Direction::LEFT : CubicCompositeCurve3::Direction::LEFT;
         }
     }
 

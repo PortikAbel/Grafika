@@ -38,11 +38,10 @@ namespace cagd
             ArcAttributes(const ArcAttributes&);
             ArcAttributes& operator=(const ArcAttributes&);
             ~ArcAttributes();
-
-            GLboolean selected;
         };
     protected:
         std::vector<ArcAttributes> _attributes;
+        std::vector<Color4*>        _colors;
         GLuint _div_point_count;
 
     public:
@@ -65,13 +64,12 @@ namespace cagd
         GLboolean RenderAllArcs();
         GLboolean RenderAllFirstOrderDerivatives();
         GLboolean RenderAllSecondOrderDerivatives();
-        GLboolean RenderSelectedArc(const int &d1, const int &d2, GLuint arcInd, int render_data);
+        GLboolean RenderSelectedArc(GLuint arcInd, int selectionInd);
 
         GLboolean GetDataPointValues(const GLuint &arcInd, const GLuint &dataPointInd, DCoordinate3 &p);
         GLboolean GetDataPointValues(const GLuint &arcInd, const GLuint &dataPointInd, GLdouble &x, GLdouble &y, GLdouble &z);
         GLboolean ChangeDataPointValue(const GLuint &arcInd, const GLuint &dataPointInd, const GLuint &pointComponentInd, const GLdouble &val);
 
-        GLboolean GetColorComponents(const GLuint &arcInd, GLdouble &r, GLdouble &g, GLdouble &b);
-        GLboolean ChangeColorComponentValue(const GLuint &arcInd, const GLuint &colorComponentInd, const GLdouble &val);
+        GLboolean ChangeColor(GLuint arcInd, GLuint colorInd);
     };
 }

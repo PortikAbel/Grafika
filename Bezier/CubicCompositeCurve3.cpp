@@ -551,14 +551,8 @@ namespace cagd {
         {
             if (it->image)
             {
-                if(it->selected){
-                    glColor3f(1.0, 1.0, 1.0);
-                    it->image->RenderDerivatives(0, GL_LINE_STRIP);
-                }
-                else{
-                    glColor3f(it->color->r(), it->color->g(), it->color->b());
-                    it->image->RenderDerivatives(0, GL_LINE_STRIP);
-                }
+                glColor3f(it->color->r(), it->color->g(), it->color->b());
+                it->image->RenderDerivatives(0, GL_LINE_STRIP);
             }
         }
         glPointSize(1.0);
@@ -573,12 +567,7 @@ namespace cagd {
         {
             if (it->image)
             {
-                if(it->selected){
-                    glColor3f(0.0, 1.0, 0.0);
-                }
-                else{
-                    glColor3f(it->color->r(), it->color->g(), it->color->b());
-                }
+                glColor3f(it->color->r(), it->color->g(), it->color->b());
                 it->image->RenderDerivatives(1, GL_LINES);
                 it->image->RenderDerivatives(1, GL_POINTS);
             }
@@ -595,12 +584,7 @@ namespace cagd {
         {
             if (it->image)
             {
-                if(it->selected){
-                    glColor3f(0.0, 0.0, 1.0);
-                }
-                else{
-                    glColor3f(it->color->r(), it->color->g(), it->color->b());
-                }
+                glColor3f(it->color->r(), it->color->g(), it->color->b());
                 it->image->RenderDerivatives(2, GL_LINES);
                 it->image->RenderDerivatives(2, GL_POINTS);
             }
@@ -609,9 +593,22 @@ namespace cagd {
         return GL_TRUE;
     }
 
-    GLboolean CubicCompositeCurve3::RenderSelectedArc(
-            const int &d1, const int &d2, GLuint arcInd, int render_data)
+    GLboolean CubicCompositeCurve3::RenderSelectedArc(GLuint arcInd, int selectionInd)
     {
+        if (selectionInd == 1)
+        {
+            glColor3f(1.0f, 0.0f, 0.0f);
+        }
+        else if (selectionInd == 2)
+        {
+            glColor3f(0.0f, 1.0f, 0.0f);
+        }
+        else
+        {
+            return GL_FALSE;
+        }
+        _attributes[arcInd].image->RenderDerivatives(0, GL_LINE_STRIP);
+
         return GL_TRUE;
     }
 
@@ -629,6 +626,21 @@ namespace cagd {
             const GLuint &arcInd, const GLuint &dataPointInd, DCoordinate3 &p)
     {
         p = (*_attributes[arcInd].arc)[dataPointInd];
+        return GL_TRUE;
+    }
+
+    GLboolean CubicCompositeCurve3::ChangeColor(GLuint arcInd, GLuint colorInd)
+    {
+        if (arcInd >= _attributes.size())
+        {
+            return GL_FALSE;
+        }
+        if (colorInd >= _colors.size())
+        {
+            return GL_FALSE;
+        }
+        _attributes[arcInd].color = _colors[colorInd];
+
         return GL_TRUE;
     }
 

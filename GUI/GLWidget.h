@@ -151,11 +151,8 @@ namespace cagd
         bool    _showFirstOrderCurveDerivatives = false;
         bool    _showSecondOrderCurveDerivatives = false;
 
-        CubicCompositeCurve3::Direction _arc_continue_dir = CubicCompositeCurve3::Direction::LEFT;
-        CubicCompositeCurve3::Direction _arc_merge_dir_1 = CubicCompositeCurve3::Direction::LEFT;
-        CubicCompositeCurve3::Direction _arc_merge_dir_2 = CubicCompositeCurve3::Direction::LEFT;
-        CubicCompositeCurve3::Direction _arc_join_dir_1 = CubicCompositeCurve3::Direction::LEFT;
-        CubicCompositeCurve3::Direction _arc_join_dir_2 = CubicCompositeCurve3::Direction::LEFT;
+        CubicCompositeCurve3::Direction _arc_dir_1 = CubicCompositeCurve3::Direction::LEFT;
+        CubicCompositeCurve3::Direction _arc_dir_2 = CubicCompositeCurve3::Direction::LEFT;
 
         bool _createCubicCompositeCurve();
         void _destroyCubicCompositeCurve();
@@ -277,11 +274,8 @@ namespace cagd
         void join_arcs();
         void merge_arcs();
 
-        void set_arc_cont_dir(int);
-        void set_arc_join_dir_1(int);
-        void set_arc_join_dir_2(int);
-        void set_arc_merge_dir_1(int);
-        void set_arc_merge_dir_2(int);
+        void set_arc_dir_1(int);
+        void set_arc_dir_2(int);
 
         // patches
         void set_selected_cp_patch_row(int);
