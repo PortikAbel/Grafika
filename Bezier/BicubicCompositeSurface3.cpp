@@ -287,12 +287,8 @@ namespace cagd
 
     GLboolean BicubicCompositeSurface3::RenderAllPatches() const
     {
-        glPointSize(6.0);
-
-        // TODO: the colors of the iso lines, derivatives and control points/net are not visible. Solve this.
         for (auto it = _attributes.begin(); it != _attributes.end(); ++it)
         {
-
             if (it->image)
             {
                 glEnable(GL_LIGHTING);
@@ -306,7 +302,6 @@ namespace cagd
             }
         }
 
-        glPointSize(1.0);
         return GL_TRUE;
     }
 
@@ -314,7 +309,6 @@ namespace cagd
     {
         glPointSize(6.0);
 
-        // TODO: the colors of the iso lines, derivatives and control points/net are not visible. Solve this.
         for (auto it = _attributes.begin(); it != _attributes.end(); ++it)
         {
             if (it->u_lines)
@@ -336,7 +330,6 @@ namespace cagd
     {
         glPointSize(6.0);
 
-        // TODO: the colors of the iso lines, derivatives and control points/net are not visible. Solve this.
         for (auto it = _attributes.begin(); it != _attributes.end(); ++it)
         {
             if (it->v_lines)
@@ -359,7 +352,6 @@ namespace cagd
     {
         glPointSize(6.0);
 
-        // TODO: the colors of the iso lines, derivatives and control points/net are not visible. Solve this.
         for (auto it = _attributes.begin(); it != _attributes.end(); ++it)
         {
             if (it->u_lines)
@@ -382,7 +374,6 @@ namespace cagd
     {
         glPointSize(6.0);
 
-        // TODO: the colors of the iso lines, derivatives and control points/net are not visible. Solve this.
         for (auto it = _attributes.begin(); it != _attributes.end(); ++it)
         {
             if (it->v_lines)
@@ -405,7 +396,6 @@ namespace cagd
     {
         glPointSize(6.0);
 
-        // TODO: the colors of the iso lines, derivatives and control points/net are not visible. Solve this.
         for (auto it = _attributes.begin(); it != _attributes.end(); ++it)
         {
             if (it->patch)
@@ -418,6 +408,38 @@ namespace cagd
         glPointSize(1.0);
         return GL_TRUE;
     }
+
+    GLboolean BicubicCompositeSurface3::RenderSelectedPatch(GLuint patchInd, GLuint selectionInd) const
+    {
+        if (!_attributes[patchInd].image)
+        {
+            return GL_FALSE;
+        }
+
+        glEnable(GL_LIGHTING);
+        glEnable(GL_NORMALIZE);
+
+        if (selectionInd == 1)
+        {
+            MatFBGold.Apply();
+        }
+        else if (selectionInd == 2)
+        {
+            MatFBSilver.Apply();
+        }
+        else
+        {
+            return GL_FALSE;
+        }
+
+        _attributes[patchInd].image->Render();
+
+        glDisable(GL_LIGHTING);
+        glDisable(GL_NORMALIZE);
+
+        return GL_TRUE;
+    }
+
 
     GLboolean BicubicCompositeSurface3::GetDataPointValues(const GLuint patchIndex, const GLuint row, const GLuint column, DCoordinate3 &position)
     {
@@ -1458,29 +1480,6 @@ namespace cagd
 
         return UpdateVBOs(firstAttribute) && UpdateVBOs(secondAttribute);
     }
-
-    GLboolean BicubicCompositeSurface3::SaveToFile(const string filename) const
-    {
-        fstream f(filename.c_str(), ios_base::out);
-
-        if (!f || !f.good())
-            return GL_FALSE;
-
-        f << *this;
-        return GL_TRUE;
-    }
-
-    GLboolean BicubicCompositeSurface3::LoadFromFile(const string filename)
-    {
-        fstream f(filename.c_str(), ios_base::in);
-
-        if (!f || !f.good())
-            return GL_FALSE;
-
-        f >> *this;
-        return GL_TRUE;
-    }
-
 
     std::ostream& operator <<(std::ostream& lhs, const BicubicCompositeSurface3& surface)
     {
