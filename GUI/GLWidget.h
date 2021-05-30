@@ -162,7 +162,9 @@ namespace cagd
         // ID = 6
 
         BicubicCompositeSurface3*   _compositeSurface;
-        GLuint      _selectedPatch  = 0;
+        GLuint      _selectedPatch1     = 0,    _selectedPatch2   = 0;
+        BicubicCompositeSurface3::Direction _patch_dir_1 = BicubicCompositeSurface3::Direction::N;
+        BicubicCompositeSurface3::Direction _patch_dir_2 = BicubicCompositeSurface3::Direction::N;
         GLuint      _selectedPointRow   = 0,    _selectedPointCol = 0;
         bool        _showIsoLinesU      = false;
         bool        _showIsoLinesV      = false;
@@ -279,6 +281,10 @@ namespace cagd
         void set_arc_dir_2(int);
 
         // patches
+
+        // TODO:
+        // void set_selected_patch1(int);
+        // void set_selected_patch2(int);
         void set_selected_cp_patch_row(int);
         void set_selected_cp_patch_column(int);
         void patch_cp_set_x(double);
@@ -296,6 +302,14 @@ namespace cagd
         void setDirectionalLight(bool);
         void setReflectorLight(bool);
         void setPointLikeLight(bool);
+
+        void new_patch();
+        void cont_patch();
+        void join_patches();
+        void merge_patches();
+
+        void set_patch_dir_1(int);
+        void set_patch_dir_2(int);
 
     signals:
         void setAngle(int);

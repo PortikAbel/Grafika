@@ -73,7 +73,7 @@ namespace cagd
         GLboolean RenderAllPatchesIsoVd1() const;
         GLboolean RenderAllPatchesNormal() const;
         GLboolean RenderAllPatchesData() const;
-        GLboolean RenderSelectedPatch(GLuint patchInd, GLuint selectionInd) const;
+        GLboolean RenderHighlightedPatches(GLuint patchInd1, GLuint patchInd2) const;
 
         GLboolean GetDataPointValues(const GLuint patchIndex, const GLuint row, const GLuint column, DCoordinate3 &position);
         GLboolean GetDataPointValues(const GLuint patchIndex, const GLuint row, const GLuint column, GLdouble &x, GLdouble &y, GLdouble &z);

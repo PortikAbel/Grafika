@@ -939,6 +939,11 @@ namespace cagd
             return false;
         }
 
+        if (!_compositeCurve->RenderHighlightedArcs(_selectedCurve1, _selectedCurve2))
+        {
+            return false;
+        }
+
         if (!_compositeCurve->RenderAllArcs())
         {
             return false;
@@ -969,7 +974,7 @@ namespace cagd
         }
 
         DCoordinate3 selectedPoint;
-        _compositeSurface->GetDataPointValues(_selectedPatch, _selectedPointRow, _selectedPointCol, selectedPoint);
+        _compositeSurface->GetDataPointValues(_selectedPatch1, _selectedPointRow, _selectedPointCol, selectedPoint);
         emit patch_control_point_x_changed(selectedPoint.x());
         emit patch_control_point_y_changed(selectedPoint.y());
         emit patch_control_point_z_changed(selectedPoint.z());
@@ -1014,6 +1019,11 @@ namespace cagd
         }
 
         if (!_compositeSurface)
+        {
+            return false;
+        }
+
+        if (!_compositeSurface->RenderHighlightedPatches(_selectedPatch1, _selectedPatch2))
         {
             return false;
         }
@@ -1837,7 +1847,7 @@ namespace cagd
     {
         _selectedPointRow = index;
         DCoordinate3 selectedPoint;
-        _compositeSurface->GetDataPointValues(_selectedPatch, _selectedPointRow, _selectedPointCol, selectedPoint);
+        _compositeSurface->GetDataPointValues(_selectedPatch1, _selectedPointRow, _selectedPointCol, selectedPoint);
         emit patch_control_point_x_changed(selectedPoint.x());
         emit patch_control_point_y_changed(selectedPoint.y());
         emit patch_control_point_z_changed(selectedPoint.z());
@@ -1847,7 +1857,7 @@ namespace cagd
     {
         _selectedPointCol = index;
         DCoordinate3 selectedPoint;
-        _compositeSurface->GetDataPointValues(_selectedPatch, _selectedPointRow, _selectedPointCol, selectedPoint);
+        _compositeSurface->GetDataPointValues(_selectedPatch1, _selectedPointRow, _selectedPointCol, selectedPoint);
         emit patch_control_point_x_changed(selectedPoint.x());
         emit patch_control_point_y_changed(selectedPoint.y());
         emit patch_control_point_z_changed(selectedPoint.z());
@@ -1856,27 +1866,27 @@ namespace cagd
     void GLWidget::patch_cp_set_x(double x)
     {
         DCoordinate3 selectedPoint;
-        _compositeSurface->GetDataPointValues(_selectedPatch, _selectedPointRow, _selectedPointCol, selectedPoint);
+        _compositeSurface->GetDataPointValues(_selectedPatch1, _selectedPointRow, _selectedPointCol, selectedPoint);
         selectedPoint.x() = x;
-        _compositeSurface->UpdatePatch(_selectedPatch, _selectedPointRow, _selectedPointCol, selectedPoint);
+        _compositeSurface->UpdatePatch(_selectedPatch1, _selectedPointRow, _selectedPointCol, selectedPoint);
         update();
     }
 
     void GLWidget::patch_cp_set_y(double y)
     {
         DCoordinate3 selectedPoint;
-        _compositeSurface->GetDataPointValues(_selectedPatch, _selectedPointRow, _selectedPointCol, selectedPoint);
+        _compositeSurface->GetDataPointValues(_selectedPatch1, _selectedPointRow, _selectedPointCol, selectedPoint);
         selectedPoint.y() = y;
-        _compositeSurface->UpdatePatch(_selectedPatch, _selectedPointRow, _selectedPointCol, selectedPoint);
+        _compositeSurface->UpdatePatch(_selectedPatch1, _selectedPointRow, _selectedPointCol, selectedPoint);
         update();
     }
 
     void GLWidget::patch_cp_set_z(double z)
     {
         DCoordinate3 selectedPoint;
-        _compositeSurface->GetDataPointValues(_selectedPatch, _selectedPointRow, _selectedPointCol, selectedPoint);
+        _compositeSurface->GetDataPointValues(_selectedPatch1, _selectedPointRow, _selectedPointCol, selectedPoint);
         selectedPoint.z() = z;
-        _compositeSurface->UpdatePatch(_selectedPatch, _selectedPointRow, _selectedPointCol, selectedPoint);
+        _compositeSurface->UpdatePatch(_selectedPatch1, _selectedPointRow, _selectedPointCol, selectedPoint);
         update();
     }
 
@@ -1941,5 +1951,71 @@ namespace cagd
     {
         _reflector_light = reflector_light;
         update();
+    }
+
+    void GLWidget::new_patch()
+    {
+        _compositeSurface->InsertNewPatch();
+        update();
+    }
+
+    void GLWidget::cont_patch()
+    {
+        if (_compositeSurface->ContinueExistingPatch(_selectedCurve1, _patch_dir_1))
+        {
+            update();
+        }
+    }
+
+    void GLWidget::join_patches()
+    {
+        if (_compositeSurface->JoinExistingPatches(_selectedCurve1, _patch_dir_1, _selectedCurve2, _patch_dir_2))
+        {
+            update();
+        }
+    }
+
+    void GLWidget::merge_patches()
+    {
+        if (_compositeSurface->MergeExistingPatches(_selectedCurve1, _patch_dir_1, _selectedCurve2, _patch_dir_2))
+        {
+            update();
+        }
+    }
+
+    void GLWidget::set_patch_dir_1(int dir)
+    {
+        if (_patch_dir_1 != dir)
+        {
+            switch (dir)
+            {
+            case 0: _patch_dir_1 = BicubicCompositeSurface3::Direction::N;
+            case 1: _patch_dir_1 = BicubicCompositeSurface3::Direction::NW;
+            case 2: _patch_dir_1 = BicubicCompositeSurface3::Direction::W;
+            case 3: _patch_dir_1 = BicubicCompositeSurface3::Direction::SW;
+            case 4: _patch_dir_1 = BicubicCompositeSurface3::Direction::S;
+            case 5: _patch_dir_1 = BicubicCompositeSurface3::Direction::SE;
+            case 6: _patch_dir_1 = BicubicCompositeSurface3::Direction::E;
+            case 7: _patch_dir_1 = BicubicCompositeSurface3::Direction::NE;
+            }
+        }
+    }
+
+    void GLWidget::set_patch_dir_2(int dir)
+    {
+        if (_patch_dir_2 != dir)
+        {
+            switch (dir)
+            {
+            case 0: _patch_dir_2 = BicubicCompositeSurface3::Direction::N;
+            case 1: _patch_dir_2 = BicubicCompositeSurface3::Direction::NW;
+            case 2: _patch_dir_2 = BicubicCompositeSurface3::Direction::W;
+            case 3: _patch_dir_2 = BicubicCompositeSurface3::Direction::SW;
+            case 4: _patch_dir_2 = BicubicCompositeSurface3::Direction::S;
+            case 5: _patch_dir_2 = BicubicCompositeSurface3::Direction::SE;
+            case 6: _patch_dir_2 = BicubicCompositeSurface3::Direction::E;
+            case 7: _patch_dir_2 = BicubicCompositeSurface3::Direction::NE;
+            }
+        }
     }
 }

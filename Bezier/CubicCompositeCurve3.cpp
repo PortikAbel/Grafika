@@ -596,21 +596,12 @@ namespace cagd {
         return GL_TRUE;
     }
 
-    GLboolean CubicCompositeCurve3::RenderSelectedArc(GLuint arcInd, int selectionInd)
+    GLboolean CubicCompositeCurve3::RenderHighlightedArcs(GLuint arcInd1, int arcInd2)
     {
-        if (selectionInd == 1)
-        {
-            glColor3f(1.0f, 0.0f, 0.0f);
-        }
-        else if (selectionInd == 2)
-        {
-            glColor3f(0.0f, 1.0f, 0.0f);
-        }
-        else
-        {
-            return GL_FALSE;
-        }
-        _attributes[arcInd].image->RenderDerivatives(0, GL_LINE_STRIP);
+        glColor3f(1.0f, 0.0f, 0.0f);
+        _attributes[arcInd1].image->RenderDerivatives(0, GL_LINE_STRIP);
+        glColor3f(0.0f, 1.0f, 0.0f);
+        _attributes[arcInd2].image->RenderDerivatives(0, GL_LINE_STRIP);
 
         return GL_TRUE;
     }

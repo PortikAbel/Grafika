@@ -424,9 +424,9 @@ namespace cagd
         return GL_TRUE;
     }
 
-    GLboolean BicubicCompositeSurface3::RenderSelectedPatch(GLuint patchInd, GLuint selectionInd) const
+    GLboolean BicubicCompositeSurface3::RenderHighlightedPatches(GLuint patchInd1, GLuint patchInd2) const
     {
-        if (!_attributes[patchInd].image)
+        if (!_attributes[patchInd1].image || !_attributes[patchInd2].image)
         {
             return GL_FALSE;
         }
@@ -434,20 +434,10 @@ namespace cagd
         glEnable(GL_LIGHTING);
         glEnable(GL_NORMALIZE);
 
-        if (selectionInd == 1)
-        {
             MatFBGold.Apply();
-        }
-        else if (selectionInd == 2)
-        {
+            _attributes[patchInd1].image->Render();
             MatFBSilver.Apply();
-        }
-        else
-        {
-            return GL_FALSE;
-        }
-
-        _attributes[patchInd].image->Render();
+            _attributes[patchInd2].image->Render();
 
         glDisable(GL_LIGHTING);
         glDisable(GL_NORMALIZE);

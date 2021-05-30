@@ -64,7 +64,7 @@ namespace cagd
         GLboolean RenderAllArcs();
         GLboolean RenderAllFirstOrderDerivatives();
         GLboolean RenderAllSecondOrderDerivatives();
-        GLboolean RenderSelectedArc(GLuint arcInd, int selectionInd);
+        GLboolean RenderHighlightedArcs(GLuint arcInd1, int arcInd2);
 
         GLboolean GetDataPointValues(const GLuint &arcInd, const GLuint &dataPointInd, DCoordinate3 &p);
         GLboolean GetDataPointValues(const GLuint &arcInd, const GLuint &dataPointInd, GLdouble &x, GLdouble &y, GLdouble &z);
