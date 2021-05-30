@@ -283,8 +283,8 @@ namespace cagd
         // patches
 
         // TODO:
-        // void set_selected_patch1(int);
-        // void set_selected_patch2(int);
+        void set_selected_patch1(int);
+        void set_selected_patch2(int);
         void set_selected_cp_patch_row(int);
         void set_selected_cp_patch_column(int);
         void patch_cp_set_x(double);

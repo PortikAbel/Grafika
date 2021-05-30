@@ -445,6 +445,11 @@ namespace cagd
         return GL_TRUE;
     }
 
+    int BicubicCompositeSurface3::GetPatchCount()
+    {
+        return _attributes.size();
+    }
+
 
     GLboolean BicubicCompositeSurface3::GetDataPointValues(const GLuint patchIndex, const GLuint row, const GLuint column, DCoordinate3 &position)
     {

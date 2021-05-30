@@ -75,6 +75,8 @@ namespace cagd
         GLboolean RenderAllPatchesData() const;
         GLboolean RenderHighlightedPatches(GLuint patchInd1, GLuint patchInd2) const;
 
+        int       GetPatchCount();
+
         GLboolean GetDataPointValues(const GLuint patchIndex, const GLuint row, const GLuint column, DCoordinate3 &position);
         GLboolean GetDataPointValues(const GLuint patchIndex, const GLuint row, const GLuint column, GLdouble &x, GLdouble &y, GLdouble &z);
     };

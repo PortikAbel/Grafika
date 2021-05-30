@@ -1854,6 +1854,36 @@ namespace cagd
     // slots of composite surface
     // ---------------------------------------------------
 
+    void GLWidget::set_selected_patch1(int index)
+    {
+        int ind = _compositeSurface->GetPatchCount();
+
+        if (index < ind)
+        {
+            _selectedPatch1 = index;
+            emit selected_cp_row(0);
+            emit selected_cp_column(0);
+            set_selected_cp_patch_row(0);
+            set_selected_cp_patch_column(0);
+        } else {
+            _selectedPatch1 = ind-1;
+            emit selected_patch1(ind-1);
+        }
+    }
+
+    void GLWidget::set_selected_patch2(int index)
+    {
+        int ind = _compositeSurface->GetPatchCount();
+
+        if (index < ind)
+        {
+            _selectedPatch2 = index;
+        } else {
+            _selectedPatch2 = ind-1;
+            emit selected_patch2(ind-1);
+        }
+    }
+
     void GLWidget::set_selected_cp_patch_row(int index)
     {
         _selectedPointRow = index;
