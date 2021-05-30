@@ -82,15 +82,14 @@ namespace cagd
 
     bool GLWidget::_createSl()
     {
-        // creating a white directional light source
-        HCoordinate3    direction   (0.0, 0.0, 1.0, 1.0);
+        HCoordinate3    direction   (-1.0, -1.0, 2.0, 1.0);
         Color4          ambient     (0.4f, 0.4f, 0.4f, 1.0f);
         Color4          diffuse     (0.8f, 0.8f, 0.8f, 1.0f);
         Color4          specular    (1.0, 1.0, 1.0, 1.0);
-        GLfloat         constant_attenuation(1.0);
-        GLfloat         linear_attenuation(0.0);
-        GLfloat         quadratic_attenuation(0.0);
-        HCoordinate3    spot_direction(0.0, 0.0, -1.0);
+        GLfloat         constant_attenuation(0.1f);
+        GLfloat         linear_attenuation(0.1f);
+        GLfloat         quadratic_attenuation(0.1f);
+        HCoordinate3    spot_direction(2.0, 1.0, -1.0, 1.0);
         GLfloat         spot_cutoff(0.2f);
         GLfloat         spot_exponent(0.2f);
 
@@ -1899,6 +1898,12 @@ namespace cagd
     void GLWidget::setIsoLineD1VVisibility(bool visibility)
     {
         _showIsoLinesD1V = visibility;
+        update();
+    }
+
+    void GLWidget::setNormalsVisibility(bool visibility)
+    {
+        _showNormalVectors = visibility;
         update();
     }
 
