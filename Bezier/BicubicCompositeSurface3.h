@@ -52,8 +52,8 @@ namespace cagd
 
         // operations
         BicubicBezierPatch* InitializePatch();
-        GLboolean UpdateVBOs(PatchAttributes &attribute);
         GLboolean InsertNewPatch();
+        GLboolean UpdateVBOs(PatchAttributes &attribute);
         GLboolean DeleteExistingPatch(GLuint index);
 
         GLint     IndexOfAttribute(const PatchAttributes &attribute) const;
@@ -65,6 +65,7 @@ namespace cagd
         GLboolean UpdatePatch(const GLuint patchIndex, const GLuint row, const GLuint column, const DCoordinate3 position);
         GLboolean UpdatePatch(PatchAttributes &attribute, const GLuint row, const GLuint column, const DCoordinate3 position);
         GLboolean MovePatch(const GLuint patchIndex, const DCoordinate3 difference);
+
         GLboolean RenderAllPatches() const;
         GLboolean RenderAllPatchesIsoU() const;
         GLboolean RenderAllPatchesIsoV() const;
@@ -72,14 +73,10 @@ namespace cagd
         GLboolean RenderAllPatchesIsoVd1() const;
         GLboolean RenderAllPatchesNormal() const;
         GLboolean RenderAllPatchesData() const;
-        GLboolean RenderSelectedPatch(GLuint index, GLuint order, GLenum render_mode) const;
+        GLboolean RenderSelectedPatch(GLuint patchInd, GLuint selectionInd) const;
 
         GLboolean GetDataPointValues(const GLuint patchIndex, const GLuint row, const GLuint column, DCoordinate3 &position);
         GLboolean GetDataPointValues(const GLuint patchIndex, const GLuint row, const GLuint column, GLdouble &x, GLdouble &y, GLdouble &z);
-        //GLboolean ChangeDataPointValue(const GLuint &arcInd, const GLuint &dataPointInd, const GLuint &pointComponentInd, const GLdouble &val);
-
-        GLboolean SaveToFile(const std::string filename) const;
-        GLboolean LoadFromFile(const std::string filename);
     };
 }
 

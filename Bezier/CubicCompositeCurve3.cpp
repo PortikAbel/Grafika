@@ -639,7 +639,7 @@ namespace cagd {
         {
             return GL_FALSE;
         }
-        _attributes[arcInd].color = _colors[colorInd];
+        _attributes[arcInd].color = &_colors[colorInd];
 
         return GL_TRUE;
     }
