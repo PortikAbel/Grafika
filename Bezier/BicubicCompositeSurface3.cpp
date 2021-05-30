@@ -195,9 +195,11 @@ namespace cagd
     BicubicCompositeSurface3::BicubicCompositeSurface3(GLuint patchCount):
         _iso_line_count(50)
     {
-        _attributes.resize(patchCount);
+        _attributes.reserve(100);
         for (GLuint i = 0; i < patchCount; i++)
         {
+            PatchAttributes* newAttr = new PatchAttributes;
+            _attributes.push_back(*newAttr);
             _attributes[i].patch = InitializePatch();
             UpdateVBOs(_attributes[i]);
         }

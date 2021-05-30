@@ -70,6 +70,8 @@ namespace cagd
         GLboolean GetDataPointValues(const GLuint &arcInd, const GLuint &dataPointInd, GLdouble &x, GLdouble &y, GLdouble &z);
         GLboolean ChangeDataPointValue(const GLuint &arcInd, const GLuint &dataPointInd, const GLuint &pointComponentInd, const GLdouble &val);
 
+        int       GetArcCount();
+
         GLboolean ChangeColor(GLuint arcInd, GLuint colorInd);
     };
 }

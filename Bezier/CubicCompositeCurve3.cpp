@@ -104,9 +104,11 @@ namespace cagd {
     CubicCompositeCurve3::CubicCompositeCurve3(GLuint arcCount):
        _div_point_count(100)
     {
-        _attributes.resize(arcCount);
+        _attributes.reserve(100);
         for (GLuint i = 0; i < arcCount; i++)
         {
+            ArcAttributes* newAttr = new ArcAttributes;
+            _attributes.push_back(*newAttr);
             _attributes[i].arc = InitializeArc();
             UpdateImageOfArc(i);
         }
@@ -160,114 +162,114 @@ namespace cagd {
             return GL_FALSE;
         }
 
-        ArcAttributes &attribute = _attributes[arcIndex];
+        ArcAttributes* attribute = &_attributes[arcIndex];
 
-        DCoordinate3 difference = (*attribute.arc)[pointIndex] - position;
+        DCoordinate3 difference = (*attribute->arc)[pointIndex] - position;
 
-        (*attribute.arc)[pointIndex] = position;
+        (*attribute->arc)[pointIndex] = position;
 
-        if (pointIndex == 0 && attribute.previous)
+        if (pointIndex == 0 && attribute->previous)
         {
-            if (attribute.previous->next == &attribute) // previous - next
+            if (attribute->previous->next == attribute) // previous - next
             {
-                (*attribute.previous->arc)[3] = position;
-                (*attribute.previous->arc)[2] -= difference;
-                (*attribute.arc)[1] -= difference;
+                (*attribute->previous->arc)[3] = position;
+                (*attribute->previous->arc)[2] -= difference;
+                (*attribute->arc)[1] -= difference;
             }
             else // previous - previous
             {
-                (*attribute.previous->arc)[0] = position;
-                (*attribute.previous->arc)[1] -= difference;
-                (*attribute.arc)[1] -= difference;
+                (*attribute->previous->arc)[0] = position;
+                (*attribute->previous->arc)[1] -= difference;
+                (*attribute->arc)[1] -= difference;
             }
         }
-        else if (pointIndex == 1 && attribute.previous)
+        else if (pointIndex == 1 && attribute->previous)
         {
-            if (attribute.previous->next == &attribute) // previous - next
+            if (attribute->previous->next == attribute) // previous - next
             {
-                (*attribute.previous->arc)[2] = 2 * (*attribute.arc)[0] - (*attribute.arc)[1];
+                (*attribute->previous->arc)[2] = 2 * (*attribute->arc)[0] - (*attribute->arc)[1];
             }
             else // previous - previous
             {
-                (*attribute.previous->arc)[1] = 2 * (*attribute.arc)[0] - (*attribute.arc)[1];
+                (*attribute->previous->arc)[1] = 2 * (*attribute->arc)[0] - (*attribute->arc)[1];
             }
         }
-        else if (pointIndex == 2 && attribute.next)
+        else if (pointIndex == 2 && attribute->next)
         {
-            if (attribute.next->previous == &attribute) // next - previous
+            if (attribute->next->previous == attribute) // next - previous
             {
-                (*attribute.next->arc)[1] = 2 * (*attribute.arc)[3] - (*attribute.arc)[2];
+                (*attribute->next->arc)[1] = 2 * (*attribute->arc)[3] - (*attribute->arc)[2];
             }
             else // next - next
             {
-                (*attribute.next->arc)[2] = 2 * (*attribute.arc)[3] - (*attribute.arc)[2];
+                (*attribute->next->arc)[2] = 2 * (*attribute->arc)[3] - (*attribute->arc)[2];
             }
         }
-        else if (pointIndex == 3 && attribute.next)
+        else if (pointIndex == 3 && attribute->next)
         {
-            if (attribute.next->previous == &attribute) // next - previous
+            if (attribute->next->previous == attribute) // next - previous
             {
-                (*attribute.next->arc)[0] = position;
-                (*attribute.next->arc)[1] -= difference;
-                (*attribute.arc)[2] -= difference;
+                (*attribute->next->arc)[0] = position;
+                (*attribute->next->arc)[1] -= difference;
+                (*attribute->arc)[2] -= difference;
             }
             else // next - next
             {
-                (*attribute.next->arc)[3] = position;
-                (*attribute.next->arc)[2] -= difference;
-                (*attribute.arc)[2] -= difference;
+                (*attribute->next->arc)[3] = position;
+                (*attribute->next->arc)[2] -= difference;
+                (*attribute->arc)[2] -= difference;
             }
         }
 
-        if (attribute.previous && (pointIndex == 0 || pointIndex == 1))
+        if (attribute->previous && (pointIndex == 0 || pointIndex == 1))
         {
-            if (!attribute.previous->arc->UpdateVertexBufferObjectsOfData())
+            if (!attribute->previous->arc->UpdateVertexBufferObjectsOfData())
             {
                 throw Exception("Could not update the VBO of data of arc!");
             }
 
-            attribute.previous->image = attribute.previous->arc->GenerateImage(2, _div_point_count);
-            if (!attribute.image)
+            attribute->previous->image = attribute->previous->arc->GenerateImage(2, _div_point_count);
+            if (!attribute->image)
             {
                 throw Exception("Could not generate the image of arc!");
             }
 
-            if (!attribute.previous->image->UpdateVertexBufferObjects())
+            if (!attribute->previous->image->UpdateVertexBufferObjects())
             {
                 throw Exception("Could not update the VBO of arc image");
             }
         }
-        else if (attribute.next && (pointIndex == 2 || pointIndex == 3))
+        else if (attribute->next && (pointIndex == 2 || pointIndex == 3))
         {
-            if (!attribute.next->arc->UpdateVertexBufferObjectsOfData())
+            if (!attribute->next->arc->UpdateVertexBufferObjectsOfData())
             {
                 throw Exception("Could not update the VBO of data of arc!");
             }
 
-            attribute.next->image = attribute.next->arc->GenerateImage(2, _div_point_count);
-            if (!attribute.image)
+            attribute->next->image = attribute->next->arc->GenerateImage(2, _div_point_count);
+            if (!attribute->image)
             {
                 throw Exception("Could not generate the image of arc!");
             }
 
-            if (!attribute.next->image->UpdateVertexBufferObjects())
+            if (!attribute->next->image->UpdateVertexBufferObjects())
             {
                 throw Exception("Could not update the VBO of arc image");
             }
         }
 
-        if (!attribute.arc->UpdateVertexBufferObjectsOfData())
+        if (!attribute->arc->UpdateVertexBufferObjectsOfData())
         {
             throw Exception("Could not update the VBO of data of arc!");
         }
 
-        attribute.image = attribute.arc->GenerateImage(2, _div_point_count);
-        if (!attribute.image)
+        attribute->image = attribute->arc->GenerateImage(2, _div_point_count);
+        if (!attribute->image)
         {
             throw Exception("Could not generate the image of arc!");
         }
 
-        if (!attribute.image->UpdateVertexBufferObjects())
+        if (!attribute->image->UpdateVertexBufferObjects())
         {
             throw Exception("Could not update the VBO of arc image");
         }
@@ -474,10 +476,10 @@ namespace cagd {
             return GL_FALSE;
         }
 
-        ArcAttributes &attribute = _attributes[arcIndex];
+        ArcAttributes* attribute = &_attributes[arcIndex];
 
-        if ((direction == LEFT && attribute.previous) ||
-            (direction == RIGHT && attribute.next))
+        if ((direction == LEFT && attribute->previous) ||
+            (direction == RIGHT && attribute->next))
         {
             cout << "The arc already has a neighbor in the given direction!" << endl;
             return GL_FALSE;
@@ -485,44 +487,45 @@ namespace cagd {
 
         ArcAttributes newAttr;
         _attributes.push_back(newAttr);
-        ArcAttributes &newAttribute = _attributes.back();
+        ArcAttributes* newAttribute = &_attributes.back();
+        attribute = &_attributes[arcIndex];
 
-        newAttribute.arc = new CubicBezierArc3();
-        CubicBezierArc3* arc = newAttribute.arc;
+        newAttribute->arc = new CubicBezierArc3();
+        CubicBezierArc3* arc = newAttribute->arc;
 
         if (direction == LEFT)
         {
-            (*arc)[3] = (*attribute.arc)[0];
-            (*arc)[2] = 2 * (*attribute.arc)[0] - (*attribute.arc)[1];
+            (*arc)[3] = (*attribute->arc)[0];
+            (*arc)[2] = 2 * (*attribute->arc)[0] - (*attribute->arc)[1];
             (*arc)[1] = 2 * (*arc)[2] - (*arc)[3];
             (*arc)[0] = 2 * (*arc)[1] - (*arc)[2];
 
-            attribute.previous = &newAttribute;
-            newAttribute.next = &attribute;
+            attribute->previous = newAttribute;
+            newAttribute->next = attribute;
         }
         else if (direction == RIGHT)
         {
-            (*arc)[0] = (*attribute.arc)[3];
-            (*arc)[1] = 2 * (*attribute.arc)[3] - (*attribute.arc)[2];
+            (*arc)[0] = (*attribute->arc)[3];
+            (*arc)[1] = 2 * (*attribute->arc)[3] - (*attribute->arc)[2];
             (*arc)[2] = 2 * (*arc)[1] - (*arc)[0];
             (*arc)[3] = 2 * (*arc)[2] - (*arc)[1];
 
-            attribute.next = &newAttribute;
-            newAttribute.previous = &attribute;
+            attribute->next = newAttribute;
+            newAttribute->previous = attribute;
         }
 
-        if (!newAttribute.arc->UpdateVertexBufferObjectsOfData())
+        if (!newAttribute->arc->UpdateVertexBufferObjectsOfData())
         {
             throw Exception("Could not update the VBO of data of the arc");
         }
 
-        newAttribute.image = newAttribute.arc->GenerateImage(2, _div_point_count);
-        if (!newAttribute.image)
+        newAttribute->image = newAttribute->arc->GenerateImage(2, _div_point_count);
+        if (!newAttribute->image)
         {
             throw Exception("Could not generate the image of arc!");
         }
 
-        if (!newAttribute.image->UpdateVertexBufferObjects())
+        if (!newAttribute->image->UpdateVertexBufferObjects())
         {
             throw Exception("Could not update the VBO of arc image");
         }
@@ -642,6 +645,11 @@ namespace cagd {
         _attributes[arcInd].color = &_colors[colorInd];
 
         return GL_TRUE;
+    }
+
+    int CubicCompositeCurve3::GetArcCount()
+    {
+        return _attributes.size();
     }
 
     std::ostream& operator << (std::ostream& lhs, const CubicCompositeCurve3& rhs)

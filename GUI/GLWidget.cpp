@@ -1723,8 +1723,11 @@ namespace cagd
 
     void GLWidget::set_selected_curve1(int index)
     {
-        _selectedCurve1 = index;
-        set_selected_cp_arc(0);
+        if (index < _compositeCurve->GetArcCount())
+        {
+            _selectedCurve1 = index;
+            set_selected_cp_arc(0);
+        }
     }
 
     void GLWidget::set_selected_curve2(int index)
@@ -1815,7 +1818,7 @@ namespace cagd
     {
         if (_arc_dir_1 != dir)
         {
-            _arc_dir_1 = dir == 0 ? CubicCompositeCurve3::Direction::LEFT : CubicCompositeCurve3::Direction::LEFT;
+            _arc_dir_1 = dir == 0 ? CubicCompositeCurve3::Direction::LEFT : CubicCompositeCurve3::Direction::RIGHT;
         }
     }
 
@@ -1823,7 +1826,7 @@ namespace cagd
     {
         if (_arc_dir_2 != dir)
         {
-            _arc_dir_2 = dir == 0 ? CubicCompositeCurve3::Direction::LEFT : CubicCompositeCurve3::Direction::LEFT;
+            _arc_dir_2 = dir == 0 ? CubicCompositeCurve3::Direction::LEFT : CubicCompositeCurve3::Direction::RIGHT;
         }
     }
 
