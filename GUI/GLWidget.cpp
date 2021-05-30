@@ -1043,6 +1043,9 @@ namespace cagd
         {
             return false;
         }
+        if (_showNormalVectors && !_compositeSurface->RenderAllPatchesNormal()){
+            return false;
+        }
 
         if (_shader)
         {

@@ -392,6 +392,19 @@ namespace cagd
         return GL_TRUE;
     }
 
+    GLboolean BicubicCompositeSurface3::RenderAllPatchesNormal() const
+    {
+        glPointSize(6.0);
+
+        for (auto it = _attributes.begin(); it != _attributes.end(); ++it)
+        {
+            it->image->RenderNormals();
+        }
+
+        glPointSize(1.0);
+        return GL_TRUE;
+    }
+
     GLboolean BicubicCompositeSurface3::RenderAllPatchesData() const
     {
         glPointSize(6.0);
