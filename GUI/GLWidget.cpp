@@ -1732,17 +1732,28 @@ namespace cagd
 
     void GLWidget::set_selected_curve1(int index)
     {
-        if (index < _compositeCurve->GetArcCount())
+        int ind = _compositeCurve->GetArcCount();
+        if (index < ind)
         {
             _selectedCurve1 = index;
+            emit selected_cp_arc(0);
             set_selected_cp_arc(0);
+        } else {
+            _selectedCurve1 = ind-1;
+            emit selected_curve1(ind-1);
         }
     }
 
     void GLWidget::set_selected_curve2(int index)
     {
-        _selectedCurve2 = index;
-        set_selected_cp_arc(0);
+        int ind = _compositeCurve->GetArcCount();
+        if (index < ind)
+        {
+            _selectedCurve2 = index;
+        } else {
+            _selectedCurve2 = ind-1;
+            emit selected_curve2(ind-1);
+        }
     }
 
     void GLWidget::set_selected_cp_arc(int index)

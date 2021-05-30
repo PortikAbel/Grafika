@@ -328,8 +328,18 @@ namespace cagd
         void arc_control_point_y_changed(double);
         void arc_control_point_z_changed(double);
 
+        void selected_cp_arc(int);
+        void selected_curve1(int);
+        void selected_curve2(int);
+
         void patch_control_point_x_changed(double);
         void patch_control_point_y_changed(double);
         void patch_control_point_z_changed(double);
+
+        void selected_cp_row(int);
+        void selected_cp_column(int);
+        void selected_patch1(int);
+        void selected_patch2(int);
+
     };
 }

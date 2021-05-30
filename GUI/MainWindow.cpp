@@ -99,6 +99,10 @@ namespace cagd
         connect(_gl_widget, SIGNAL(arc_control_point_y_changed(double)), _side_widget->arc_cp_y_spin_box, SLOT(setValue(double)));
         connect(_gl_widget, SIGNAL(arc_control_point_z_changed(double)), _side_widget->arc_cp_z_spin_box, SLOT(setValue(double)));
 
+        connect(_gl_widget, SIGNAL(selected_cp_arc(int)), _side_widget->arc_cp_index_spin_box, SLOT(setValue(int)));
+        connect(_gl_widget, SIGNAL(selected_curve1(int)), _side_widget->selectedCurve1SpinBox, SLOT(setValue(int)));
+        connect(_gl_widget, SIGNAL(selected_curve2(int)), _side_widget->selectedCurve2SpinBox, SLOT(setValue(int)));
+
         // bicubic bezier patches
         connect(_side_widget->show_iso_u_check_box, SIGNAL(toggled(bool)), _gl_widget, SLOT(setIsoLineUVisibility(bool)));
         connect(_side_widget->show_iso_v_check_box, SIGNAL(toggled(bool)), _gl_widget, SLOT(setIsoLineVVisibility(bool)));
@@ -122,10 +126,6 @@ namespace cagd
 
         // change scene
         connect(_side_widget->toolBox, SIGNAL(currentChanged(int)), _gl_widget, SLOT(setID(int)));
-
-        connect(_gl_widget, SIGNAL(patch_control_point_x_changed(double)), _side_widget->patch_cp_x_spinBox, SLOT(setValue(double)));
-        connect(_gl_widget, SIGNAL(patch_control_point_y_changed(double)), _side_widget->patch_cp_y_spinBox, SLOT(setValue(double)));
-        connect(_gl_widget, SIGNAL(patch_control_point_z_changed(double)), _side_widget->patch_cp_z_spinBox, SLOT(setValue(double)));
     }
 
     //--------------------------------
