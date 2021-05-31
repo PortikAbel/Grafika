@@ -102,6 +102,7 @@ namespace cagd
         connect(_gl_widget, SIGNAL(arc_control_point_z_changed(double)), _side_widget->arc_cp_z_spin_box, SLOT(setValue(double)));
 
         connect(_gl_widget, SIGNAL(selected_cp_arc(int)), _side_widget->arc_cp_index_spin_box, SLOT(setValue(int)));
+        connect(_gl_widget, SIGNAL(selected_cp_arc(int)), _gl_widget, SLOT(set_selected_cp_arc(int)));
         connect(_gl_widget, SIGNAL(selected_curve1(int)), _side_widget->selectedCurve1SpinBox, SLOT(setValue(int)));
         connect(_gl_widget, SIGNAL(selected_curve2(int)), _side_widget->selectedCurve2SpinBox, SLOT(setValue(int)));
         connect(_gl_widget, SIGNAL(selected_arc_color(int)), _side_widget->arc_color_combo_box, SLOT(setCurrentIndex(int)));
@@ -117,7 +118,7 @@ namespace cagd
         connect(_side_widget->directedCheckBox, SIGNAL(toggled(bool)), _gl_widget, SLOT(setDirectionalLight(bool)));
         connect(_side_widget->pointLikeCheckBox, SIGNAL(toggled(bool)), _gl_widget, SLOT(setPointLikeLight(bool)));
         connect(_side_widget->reflectorCheckBox, SIGNAL(toggled(bool)), _gl_widget, SLOT(setReflectorLight(bool)));
-
+        connect(_side_widget->TextureTab, SIGNAL(currentChanged(int)), _gl_widget, SLOT(setTextureMaterial(int)));
 
         connect(_side_widget->selectedPatch1SpinBox, SIGNAL(valueChanged(int)), _gl_widget, SLOT(set_selected_patch1(int)));
         connect(_side_widget->selectedPatch2SpinBox, SIGNAL(valueChanged(int)), _gl_widget, SLOT(set_selected_patch2(int)));
@@ -126,6 +127,8 @@ namespace cagd
         connect(_side_widget->patch_cp_x_spinBox, SIGNAL(valueChanged(double)), _gl_widget, SLOT(patch_cp_set_x(double)));
         connect(_side_widget->patch_cp_y_spinBox, SIGNAL(valueChanged(double)), _gl_widget, SLOT(patch_cp_set_y(double)));
         connect(_side_widget->patch_cp_z_spinBox, SIGNAL(valueChanged(double)), _gl_widget, SLOT(patch_cp_set_z(double)));
+        connect(_side_widget->materialComboBox, SIGNAL(currentIndexChanged(int)), _gl_widget, SLOT(set_patch_mat(int)));
+        connect(_side_widget->textureComboBox, SIGNAL(currentIndexChanged(int)), _gl_widget, SLOT(set_patch_tex(int)));
 
         connect(_gl_widget, SIGNAL(patch_control_point_x_changed(double)), _side_widget->patch_cp_x_spinBox, SLOT(setValue(double)));
         connect(_gl_widget, SIGNAL(patch_control_point_y_changed(double)), _side_widget->patch_cp_y_spinBox, SLOT(setValue(double)));
@@ -135,6 +138,8 @@ namespace cagd
         connect(_gl_widget, SIGNAL(selected_cp_column(int)), _side_widget->cp_col_spinBox, SLOT(setValue(int)));
         connect(_gl_widget, SIGNAL(selected_patch1(int)), _side_widget->selectedPatch1SpinBox, SLOT(setValue(int)));
         connect(_gl_widget, SIGNAL(selected_patch2(int)), _side_widget->selectedPatch2SpinBox, SLOT(setValue(int)));
+        connect(_gl_widget, SIGNAL(selected_patch_mat(int)), _side_widget->materialComboBox, SLOT(setCurrentIndex(int)));
+        connect(_gl_widget, SIGNAL(selected_patch_tex(int)), _side_widget->textureComboBox, SLOT(setCurrentIndex(int)));
 
         // change scene
         connect(_side_widget->toolBox, SIGNAL(currentChanged(int)), _gl_widget, SLOT(setID(int)));

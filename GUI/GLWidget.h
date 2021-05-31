@@ -176,6 +176,7 @@ namespace cagd
 
         bool        _shader             = true;
         bool        _light              = false;
+        bool        _material           = false;
         int         _selected_shader    = 0;
         bool        _directional_light  = false;
         bool        _reflector_light    = false;
@@ -304,6 +305,7 @@ namespace cagd
 
         void setShader(bool);
         void setLight(bool);
+        void setTextureMaterial(int);
         void setShaderType(int);
         void setDirectionalLight(bool);
         void setReflectorLight(bool);
@@ -316,6 +318,8 @@ namespace cagd
 
         void set_patch_dir_1(int);
         void set_patch_dir_2(int);
+        void set_patch_mat(int);
+        void set_patch_tex(int);
 
     signals:
         void setAngle(int);
@@ -347,6 +351,7 @@ namespace cagd
         void selected_cp_column(int);
         void selected_patch1(int);
         void selected_patch2(int);
-
+        void selected_patch_mat(int);
+        void selected_patch_tex(int);
     };
 }

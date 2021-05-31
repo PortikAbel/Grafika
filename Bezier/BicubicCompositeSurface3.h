@@ -26,9 +26,8 @@ namespace cagd
         public:
             BicubicBezierPatch  *patch;
             TriangulatedMesh3   *image;
-            Material            *material; // use pointers to pre-defined materials
-            //QOpenGLTexture      *texture;  // use pointers to pre-defined textures
-            //ShaderProgram       *shaders;   // use pointers to pre-defined shader programs
+            GLuint              matInd;
+            GLuint              texInd;
 
             std::vector<PatchAttributes*>   neighbours;
 
@@ -43,8 +42,12 @@ namespace cagd
 
     protected:
         std::vector<PatchAttributes> _attributes;
+        std::vector<Material>        _materials{ MatFBBrass, MatFBEmerald, MatFBPearl, MatFBRuby, MatFBTurquoise };
+        std::vector<QOpenGLTexture*> _textures;
         GLuint _iso_line_count;
 
+    private:
+        GLvoid   _loadTextures();
 
     public:
         // special/default ctor
@@ -66,7 +69,8 @@ namespace cagd
         GLboolean UpdatePatch(PatchAttributes &attribute, const GLuint row, const GLuint column, const DCoordinate3 position);
         GLboolean MovePatch(const GLuint patchIndex, const DCoordinate3 difference);
 
-        GLboolean RenderAllPatches() const;
+        GLboolean RenderAllPatchesWithMaterials();
+        GLboolean RenderAllPatchesWithTextures();
         GLboolean RenderAllPatchesIsoU() const;
         GLboolean RenderAllPatchesIsoV() const;
         GLboolean RenderAllPatchesIsoUd1() const;
@@ -79,6 +83,12 @@ namespace cagd
 
         GLboolean GetDataPointValues(const GLuint patchIndex, const GLuint row, const GLuint column, DCoordinate3 &position);
         GLboolean GetDataPointValues(const GLuint patchIndex, const GLuint row, const GLuint column, GLdouble &x, GLdouble &y, GLdouble &z);
+
+        GLboolean ChangeMaterial(GLuint patchInd, GLuint matInd);
+        GLboolean ChangeTexture(GLuint patchInd, GLuint texInd);
+
+        GLuint    GetMatInd(GLuint patchInd);
+        GLuint    GetTexInd(GLuint patchInd);
     };
 }
 

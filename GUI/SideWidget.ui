@@ -1064,7 +1064,7 @@
         <x>0</x>
         <y>0</y>
         <width>279</width>
-        <height>1000</height>
+        <height>931</height>
        </rect>
       </property>
       <attribute name="label">
@@ -1139,7 +1139,7 @@
           <item row="6" column="0" colspan="2">
            <widget class="QTabWidget" name="shader_light_tab">
             <property name="currentIndex">
-             <number>0</number>
+             <number>1</number>
             </property>
             <widget class="QWidget" name="tab">
              <attribute name="title">
@@ -1376,6 +1376,140 @@
                 </property>
                </widget>
               </item>
+              <item row="3" column="0" colspan="2">
+               <widget class="QTabWidget" name="TextureTab">
+                <property name="currentIndex">
+                 <number>0</number>
+                </property>
+                <widget class="QWidget" name="tab_3">
+                 <attribute name="title">
+                  <string>Texture</string>
+                 </attribute>
+                 <layout class="QFormLayout" name="formLayout_11">
+                  <item row="0" column="1">
+                   <widget class="QComboBox" name="textureComboBox">
+                    <property name="maximumSize">
+                     <size>
+                      <width>70</width>
+                      <height>16777215</height>
+                     </size>
+                    </property>
+                    <item>
+                     <property name="text">
+                      <string>Texture 0</string>
+                     </property>
+                    </item>
+                    <item>
+                     <property name="text">
+                      <string>Texture 1</string>
+                     </property>
+                    </item>
+                    <item>
+                     <property name="text">
+                      <string>Texture 2</string>
+                     </property>
+                    </item>
+                    <item>
+                     <property name="text">
+                      <string>Texture 3</string>
+                     </property>
+                    </item>
+                    <item>
+                     <property name="text">
+                      <string>Texture 4</string>
+                     </property>
+                    </item>
+                    <item>
+                     <property name="text">
+                      <string>Texture 5</string>
+                     </property>
+                    </item>
+                    <item>
+                     <property name="text">
+                      <string>Texture 6</string>
+                     </property>
+                    </item>
+                    <item>
+                     <property name="text">
+                      <string>Texture 7</string>
+                     </property>
+                    </item>
+                    <item>
+                     <property name="text">
+                      <string>Texture 8</string>
+                     </property>
+                    </item>
+                    <item>
+                     <property name="text">
+                      <string>Texture 9</string>
+                     </property>
+                    </item>
+                   </widget>
+                  </item>
+                  <item row="0" column="0">
+                   <widget class="QLabel" name="label_33">
+                    <property name="text">
+                     <string>Texture</string>
+                    </property>
+                   </widget>
+                  </item>
+                 </layout>
+                </widget>
+                <widget class="QWidget" name="tab_4">
+                 <attribute name="title">
+                  <string>Material</string>
+                 </attribute>
+                 <widget class="QComboBox" name="materialComboBox">
+                  <property name="geometry">
+                   <rect>
+                    <x>60</x>
+                    <y>10</y>
+                    <width>77</width>
+                    <height>22</height>
+                   </rect>
+                  </property>
+                  <item>
+                   <property name="text">
+                    <string>Brass</string>
+                   </property>
+                  </item>
+                  <item>
+                   <property name="text">
+                    <string>Emerald</string>
+                   </property>
+                  </item>
+                  <item>
+                   <property name="text">
+                    <string>Pearl</string>
+                   </property>
+                  </item>
+                  <item>
+                   <property name="text">
+                    <string>Ruby</string>
+                   </property>
+                  </item>
+                  <item>
+                   <property name="text">
+                    <string>Turquoise</string>
+                   </property>
+                  </item>
+                 </widget>
+                 <widget class="QLabel" name="label_35">
+                  <property name="geometry">
+                   <rect>
+                    <x>10</x>
+                    <y>10</y>
+                    <width>47</width>
+                    <height>14</height>
+                   </rect>
+                  </property>
+                  <property name="text">
+                   <string>Material</string>
+                  </property>
+                 </widget>
+                </widget>
+               </widget>
+              </item>
              </layout>
             </widget>
            </widget>
@@ -1607,105 +1741,6 @@
             <property name="text">
              <string>Merge</string>
             </property>
-           </widget>
-          </item>
-          <item row="10" column="0" colspan="2">
-           <widget class="QTabWidget" name="TextureTab">
-            <property name="currentIndex">
-             <number>1</number>
-            </property>
-            <widget class="QWidget" name="tab_3">
-             <attribute name="title">
-              <string>Texture</string>
-             </attribute>
-             <layout class="QFormLayout" name="formLayout_11">
-              <item row="0" column="1">
-               <widget class="QComboBox" name="textureComboBox">
-                <property name="maximumSize">
-                 <size>
-                  <width>70</width>
-                  <height>16777215</height>
-                 </size>
-                </property>
-                <item>
-                 <property name="text">
-                  <string>Mozaik</string>
-                 </property>
-                </item>
-                <item>
-                 <property name="text">
-                  <string>Tapeta</string>
-                 </property>
-                </item>
-                <item>
-                 <property name="text">
-                  <string>Padlo</string>
-                 </property>
-                </item>
-                <item>
-                 <property name="text">
-                  <string>Indiai</string>
-                 </property>
-                </item>
-               </widget>
-              </item>
-              <item row="0" column="0">
-               <widget class="QLabel" name="label_33">
-                <property name="text">
-                 <string>Texture</string>
-                </property>
-               </widget>
-              </item>
-             </layout>
-            </widget>
-            <widget class="QWidget" name="tab_4">
-             <attribute name="title">
-              <string>Material</string>
-             </attribute>
-             <widget class="QComboBox" name="materialComboBox">
-              <property name="geometry">
-               <rect>
-                <x>60</x>
-                <y>10</y>
-                <width>77</width>
-                <height>22</height>
-               </rect>
-              </property>
-              <item>
-               <property name="text">
-                <string>Gold</string>
-               </property>
-              </item>
-              <item>
-               <property name="text">
-                <string>Ruby</string>
-               </property>
-              </item>
-              <item>
-               <property name="text">
-                <string>Emerald</string>
-               </property>
-              </item>
-              <item>
-               <property name="text">
-                <string>Silver</string>
-               </property>
-              </item>
-             </widget>
-             <widget class="QLabel" name="label_35">
-              <property name="geometry">
-               <rect>
-                <x>10</x>
-                <y>10</y>
-                <width>47</width>
-                <height>14</height>
-               </rect>
-              </property>
-              <property name="text">
-               <string>Material</string>
-              </property>
-             </widget>
-            </widget>
            </widget>
           </item>
           <item row="5" column="1">

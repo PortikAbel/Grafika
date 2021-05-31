@@ -3,6 +3,7 @@
 #include <Core/Exceptions.h>
 #include <iostream>
 #include <fstream>
+#include <QRandomGenerator>
 
 using namespace std;
 
@@ -12,10 +13,22 @@ namespace cagd
     // PatchAttributess
     // --------------------------------------------------------------------------------
 
+    GLvoid BicubicCompositeSurface3::_loadTextures()
+    {
+        for (GLuint i = 0; i < 10; i++)
+        {
+            QOpenGLTexture* tex = new QOpenGLTexture(QImage(QStringLiteral("Textures/periodic_texture_0%1.jpg").arg(i)));
+            tex->setMinificationFilter(QOpenGLTexture::LinearMipMapLinear);
+            tex->setMagnificationFilter(QOpenGLTexture::Linear);
+            _textures.push_back(tex);
+        }
+    }
+
     BicubicCompositeSurface3::PatchAttributes::PatchAttributes():
         patch(nullptr), image(nullptr), neighbours(8, nullptr), u_lines(nullptr), v_lines(nullptr)
     {
-        material = new Material(MatFBGold);
+        matInd = QRandomGenerator::global()->bounded(4);
+        texInd = QRandomGenerator::global()->bounded(4);
     }
 
     BicubicCompositeSurface3::PatchAttributes::PatchAttributes(const PatchAttributes &attribute)
@@ -31,7 +44,8 @@ namespace cagd
             image = nullptr;
         }
 
-        material = attribute.material;
+        matInd = attribute.matInd;
+        texInd = attribute.texInd;
 
         neighbours.resize(8, nullptr);
         for (int i = 0; i < 8; ++i)
@@ -195,6 +209,8 @@ namespace cagd
     BicubicCompositeSurface3::BicubicCompositeSurface3(GLuint patchCount):
         _iso_line_count(50)
     {
+        _loadTextures();
+
         _attributes.reserve(100);
         for (GLuint i = 0; i < patchCount; i++)
         {
@@ -287,7 +303,7 @@ namespace cagd
         return -1;
     }
 
-    GLboolean BicubicCompositeSurface3::RenderAllPatches() const
+    GLboolean BicubicCompositeSurface3::RenderAllPatchesWithMaterials()
     {
         for (auto it = _attributes.begin(); it != _attributes.end(); ++it)
         {
@@ -296,11 +312,28 @@ namespace cagd
                 glEnable(GL_LIGHTING);
                 glEnable(GL_NORMALIZE);
 
-                    it->material->Apply();
+                    _materials[it->matInd].Apply();
                     it->image->Render();
 
                 glDisable(GL_LIGHTING);
                 glDisable(GL_NORMALIZE);
+            }
+        }
+
+        return GL_TRUE;
+    }
+
+    GLboolean BicubicCompositeSurface3::RenderAllPatchesWithTextures()
+    {
+        for (auto it = _attributes.begin(); it != _attributes.end(); ++it)
+        {
+            if (it->image)
+            {
+                glEnable(GL_TEXTURE_2D);
+                _textures[it->texInd]->bind();
+                it->image->Render();
+                _textures[it->texInd]->release();
+                glDisable(GL_TEXTURE_2D);
             }
         }
 
@@ -467,6 +500,46 @@ namespace cagd
     {
         (*_attributes[patchIndex].patch).GetData(row,column,x,y,z);
         return GL_TRUE;
+    }
+
+    GLboolean BicubicCompositeSurface3::ChangeMaterial(GLuint patchInd, GLuint matInd)
+    {
+        if (patchInd >= _attributes.size())
+        {
+            return GL_FALSE;
+        }
+        if (matInd >= _materials.size())
+        {
+            return GL_FALSE;
+        }
+        _attributes[patchInd].matInd = matInd;
+
+        return GL_TRUE;
+    }
+
+    GLboolean BicubicCompositeSurface3::ChangeTexture(GLuint patchInd, GLuint texInd)
+    {
+        if (patchInd >= _attributes.size())
+        {
+            return GL_FALSE;
+        }
+        if (texInd >= _textures.size())
+        {
+            return GL_FALSE;
+        }
+        _attributes[patchInd].texInd = texInd;
+
+        return GL_TRUE;
+    }
+
+    GLuint BicubicCompositeSurface3::GetMatInd(GLuint patchInd)
+    {
+        return _attributes[patchInd].matInd;
+    }
+
+    GLuint BicubicCompositeSurface3::GetTexInd(GLuint patchInd)
+    {
+        return _attributes[patchInd].texInd;
     }
 
     GLboolean BicubicCompositeSurface3::InsertNewPatch()

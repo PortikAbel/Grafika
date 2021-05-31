@@ -919,6 +919,8 @@ namespace cagd
         {
             return false;
         }
+        emit selected_arc_color(_compositeCurve->GetColorInd(_selectedCurve1));
+        emit selected_cp_arc(_selectedCurvePoint);
 
         return true;
     }
@@ -983,6 +985,8 @@ namespace cagd
         emit patch_control_point_x_changed(selectedPoint.x());
         emit patch_control_point_y_changed(selectedPoint.y());
         emit patch_control_point_z_changed(selectedPoint.z());
+        emit selected_patch_mat(_compositeSurface->GetMatInd(_selectedPatch1));
+        emit selected_patch_tex(_compositeSurface->GetTexInd(_selectedPatch1));
 
         return true;
     }
@@ -1032,15 +1036,25 @@ namespace cagd
         {
             return false;
         }
-
+/*
         if (!_compositeSurface->RenderHighlightedPatches(_selectedPatch1, _selectedPatch2))
         {
             return false;
         }
-
-        if (!_compositeSurface->RenderAllPatches())
+*/
+        if (_material || _shader)
         {
-            return false;
+            if(!_compositeSurface->RenderAllPatchesWithMaterials())
+            {
+                return false;
+            }
+        }
+        else
+        {
+            if(!_compositeSurface->RenderAllPatchesWithTextures())
+            {
+                return false;
+            }
         }
 
         if (_showIsoLinesU && !_compositeSurface->RenderAllPatchesIsoU())
@@ -1746,13 +1760,13 @@ namespace cagd
         if (index < ind)
         {
             _selectedCurve1 = index;
-            emit selected_arc_color(_compositeCurve->GetColorInd(_selectedCurve1));
-            emit selected_cp_arc(0);
-            set_selected_cp_arc(0);
+            set_selected_cp_arc(_selectedCurvePoint);
         } else {
             _selectedCurve1 = ind-1;
             emit selected_curve1(ind-1);
         }
+        emit selected_arc_color(_compositeCurve->GetColorInd(_selectedCurve1));
+        emit selected_cp_arc(_selectedCurvePoint);
     }
 
     void GLWidget::set_selected_curve2(int index)
@@ -1883,14 +1897,16 @@ namespace cagd
         if (index < ind)
         {
             _selectedPatch1 = index;
-            emit selected_cp_row(0);
-            emit selected_cp_column(0);
             set_selected_cp_patch_row(0);
             set_selected_cp_patch_column(0);
         } else {
             _selectedPatch1 = ind-1;
             emit selected_patch1(ind-1);
         }
+        emit selected_cp_row(0);
+        emit selected_cp_column(0);
+        emit selected_patch_mat(_compositeSurface->GetMatInd(_selectedPatch1));
+        emit selected_patch_tex(_compositeSurface->GetTexInd(_selectedPatch1));
     }
 
     void GLWidget::set_selected_patch2(int index)
@@ -1996,6 +2012,19 @@ namespace cagd
         update();
     }
 
+    void GLWidget::setTextureMaterial(int material)
+    {
+        if (material == 0)
+        {
+            _material = false;
+        }
+        else
+        {
+            _material = true;
+        }
+        update();
+    }
+
     void GLWidget::setShaderType(int selected_shader)
     {
         _selected_shader = selected_shader;
@@ -2084,5 +2113,17 @@ namespace cagd
             case 7: _patch_dir_2 = BicubicCompositeSurface3::Direction::NE;
             }
         }
+    }
+
+    void GLWidget::set_patch_mat(int ind)
+    {
+        _compositeSurface->ChangeMaterial(_selectedPatch1, ind);
+        update();
+    }
+
+    void GLWidget::set_patch_tex(int ind)
+    {
+        _compositeSurface->ChangeTexture(_selectedPatch1, ind);
+        update();
     }
 }
