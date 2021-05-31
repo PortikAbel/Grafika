@@ -43,7 +43,7 @@
         <x>0</x>
         <y>0</y>
         <width>293</width>
-        <height>596</height>
+        <height>589</height>
        </rect>
       </property>
       <attribute name="label">
@@ -56,7 +56,7 @@
         <x>0</x>
         <y>0</y>
         <width>293</width>
-        <height>596</height>
+        <height>589</height>
        </rect>
       </property>
       <attribute name="label">
@@ -198,7 +198,7 @@
         <x>0</x>
         <y>0</y>
         <width>293</width>
-        <height>596</height>
+        <height>589</height>
        </rect>
       </property>
       <attribute name="label">
@@ -341,7 +341,7 @@
         <x>0</x>
         <y>0</y>
         <width>293</width>
-        <height>596</height>
+        <height>589</height>
        </rect>
       </property>
       <attribute name="label">
@@ -463,7 +463,7 @@
         <x>0</x>
         <y>0</y>
         <width>293</width>
-        <height>596</height>
+        <height>589</height>
        </rect>
       </property>
       <attribute name="label">
@@ -668,7 +668,7 @@
         <x>0</x>
         <y>0</y>
         <width>293</width>
-        <height>596</height>
+        <height>589</height>
        </rect>
       </property>
       <attribute name="label">
@@ -1064,7 +1064,7 @@
         <x>0</x>
         <y>0</y>
         <width>279</width>
-        <height>931</height>
+        <height>935</height>
        </rect>
       </property>
       <attribute name="label">
@@ -1386,11 +1386,18 @@
                   <string>Texture</string>
                  </attribute>
                  <layout class="QFormLayout" name="formLayout_11">
+                  <item row="0" column="0">
+                   <widget class="QLabel" name="label_33">
+                    <property name="text">
+                     <string>Texture</string>
+                    </property>
+                   </widget>
+                  </item>
                   <item row="0" column="1">
                    <widget class="QComboBox" name="textureComboBox">
                     <property name="maximumSize">
                      <size>
-                      <width>70</width>
+                      <width>80</width>
                       <height>16777215</height>
                      </size>
                     </property>
@@ -1444,13 +1451,6 @@
                       <string>Texture 9</string>
                      </property>
                     </item>
-                   </widget>
-                  </item>
-                  <item row="0" column="0">
-                   <widget class="QLabel" name="label_33">
-                    <property name="text">
-                     <string>Texture</string>
-                    </property>
                    </widget>
                   </item>
                  </layout>
