@@ -107,14 +107,14 @@ namespace cagd
                 >> rhs._data[3];
     }
 
-    inline Color4 darkRed = Color4(102,0,0);
-    inline Color4 yellow = Color4(255,255,102);
-    inline Color4 darkGreen = Color4(0,102,0);
-    inline Color4 green = Color4(153,255,153);
-    inline Color4 blue = Color4(153,255,255);
-    inline Color4 darkBlue = Color4(0,0,102);
-    inline Color4 purple = Color4(204,153,255);
-    inline Color4 pink = Color4(255,102,178);
-    inline Color4 orange = Color4(255,128,0);
-    inline Color4 grey = Color4(160,160,160);
+    inline Color4 darkRed = Color4(0.4f,0.0f,0.0f);
+    inline Color4 yellow = Color4(1.0f,1.0f,0.4f);
+    inline Color4 darkGreen = Color4(0.0f,0.4f,0.0f);
+    inline Color4 green = Color4(0.6f,1.0f,0.6f);
+    inline Color4 blue = Color4(0.6f,1.0f,1.0f);
+    inline Color4 darkBlue = Color4(0.0f,0.0f,0.4f);
+    inline Color4 purple = Color4(0.8f,0.6f,1.0f);
+    inline Color4 pink = Color4(1.0f,0.4f,0.7f);
+    inline Color4 orange = Color4(1.0f,0.5f,0.0f);
+    inline Color4 grey = Color4(0.6f,0.6f,0.6f);
 }

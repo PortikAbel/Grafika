@@ -1,5 +1,6 @@
 #include "CubicCompositeCurve3.h"
 #include <iostream>
+#include <QRandomGenerator>
 
 using namespace std;
 
@@ -11,7 +12,7 @@ namespace cagd {
        previous(nullptr),
        next(nullptr)
     {
-        color = new Color4(0.2f, 0.4f, 0.3f, 1.0f);
+        colorInd = QRandomGenerator::global()->bounded(9);
     }
 
     CubicCompositeCurve3::ArcAttributes::ArcAttributes(const ArcAttributes& arcAttribute)
@@ -21,10 +22,7 @@ namespace cagd {
         else
            arc = nullptr;
 
-        if (arcAttribute.color)
-           color = arcAttribute.color;
-        else
-           color = nullptr;
+        colorInd = arcAttribute.colorInd;
 
         this->previous = arcAttribute.previous;
         this->next = arcAttribute.next;
@@ -45,7 +43,7 @@ namespace cagd {
            throw Exception("Could not update the VBO of arc");
         }
 
-        color = new Color4(1.0f, 0.0f, 0.0f, 1.0f); // red
+        colorInd = QRandomGenerator::global()->bounded(9);
         next = nullptr;
         previous = nullptr;
     }
@@ -67,14 +65,7 @@ namespace cagd {
             image = nullptr;
         }
 
-        if (attribute.color)
-        {
-           color = attribute.color;
-        }
-        else
-        {
-           color = nullptr;
-        }
+        colorInd = attribute.colorInd;
 
         previous = attribute.previous;
         next = attribute.next;
@@ -88,11 +79,6 @@ namespace cagd {
         {
             delete image;
             image = nullptr;
-        }
-        if (color)
-        {
-            delete color;
-            color = nullptr;
         }
         if (arc)
         {
@@ -117,6 +103,7 @@ namespace cagd {
     CubicCompositeCurve3::~CubicCompositeCurve3()
     {
         _attributes.clear();
+        _colors.clear();
     }
 
     CubicBezierArc3* CubicCompositeCurve3::InitializeArc()
@@ -554,7 +541,7 @@ namespace cagd {
         {
             if (it->image)
             {
-                glColor3f(it->color->r(), it->color->g(), it->color->b());
+                glColor3f(_colors[it->colorInd].r(), _colors[it->colorInd].g(), _colors[it->colorInd].b());
                 it->image->RenderDerivatives(0, GL_LINE_STRIP);
             }
         }
@@ -570,7 +557,7 @@ namespace cagd {
         {
             if (it->image)
             {
-                glColor3f(it->color->r(), it->color->g(), it->color->b());
+                glColor3f(_colors[it->colorInd].r(), _colors[it->colorInd].g(), _colors[it->colorInd].b());
                 it->image->RenderDerivatives(1, GL_LINES);
                 it->image->RenderDerivatives(1, GL_POINTS);
             }
@@ -587,7 +574,7 @@ namespace cagd {
         {
             if (it->image)
             {
-                glColor3f(it->color->r(), it->color->g(), it->color->b());
+                glColor3f(_colors[it->colorInd].r(), _colors[it->colorInd].g(), _colors[it->colorInd].b());
                 it->image->RenderDerivatives(2, GL_LINES);
                 it->image->RenderDerivatives(2, GL_POINTS);
             }
@@ -649,9 +636,14 @@ namespace cagd {
         {
             return GL_FALSE;
         }
-        _attributes[arcInd].color = &_colors[colorInd];
+        _attributes[arcInd].colorInd = colorInd;
 
         return GL_TRUE;
+    }
+
+    GLuint CubicCompositeCurve3::GetColorInd(GLuint arcInd)
+    {
+        return _attributes[arcInd].colorInd;
     }
 
     int CubicCompositeCurve3::GetArcCount()
@@ -668,7 +660,7 @@ namespace cagd {
         for (auto it = rhs._attributes.begin(); it != rhs._attributes.end(); ++it)
         {
             lhs << *it->arc;
-            lhs << *it->color << endl;
+            lhs << it->colorInd << endl;
         }
 
         // connections
@@ -694,7 +686,7 @@ namespace cagd {
         for (auto it = rhs._attributes.begin(); it != rhs._attributes.end(); ++it)
         {
             lhs >> *it->arc;
-            lhs >> *it->color;
+            lhs >> it->colorInd;
         }
 
         rhs.UpdateImageOfAllArcs();

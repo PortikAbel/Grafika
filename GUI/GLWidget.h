@@ -283,6 +283,7 @@ namespace cagd
 
         void set_arc_dir_1(int);
         void set_arc_dir_2(int);
+        void set_arc_color(int);
 
         // patches
 
@@ -336,6 +337,7 @@ namespace cagd
         void selected_cp_arc(int);
         void selected_curve1(int);
         void selected_curve2(int);
+        void selected_arc_color(int);
 
         void patch_control_point_x_changed(double);
         void patch_control_point_y_changed(double);

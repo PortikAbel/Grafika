@@ -1746,6 +1746,7 @@ namespace cagd
         if (index < ind)
         {
             _selectedCurve1 = index;
+            emit selected_arc_color(_compositeCurve->GetColorInd(_selectedCurve1));
             emit selected_cp_arc(0);
             set_selected_cp_arc(0);
         } else {
@@ -1863,6 +1864,12 @@ namespace cagd
         {
             _arc_dir_2 = dir == 0 ? CubicCompositeCurve3::Direction::LEFT : CubicCompositeCurve3::Direction::RIGHT;
         }
+    }
+
+    void GLWidget::set_arc_color(int ind)
+    {
+        _compositeCurve->ChangeColor(_selectedCurve1, ind);
+        update();
     }
 
     // ---------------------------------------------------

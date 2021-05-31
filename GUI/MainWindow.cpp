@@ -90,6 +90,7 @@ namespace cagd
         connect(_side_widget->arc_data_check_box, SIGNAL(toggled(bool)), _gl_widget, SLOT(set_arc_data_visibility(bool)));
         connect(_side_widget->arc_1_dir_comboBox, SIGNAL(currentIndexChanged(int)), _gl_widget, SLOT(set_arc_dir_1(int)));
         connect(_side_widget->arc_2_dir_comboBox, SIGNAL(currentIndexChanged(int)), _gl_widget, SLOT(set_arc_dir_2(int)));
+        connect(_side_widget->arc_color_combo_box, SIGNAL(currentIndexChanged(int)), _gl_widget, SLOT(set_arc_color(int)));
 
         connect(_side_widget->new_arc_button, SIGNAL(clicked()), _gl_widget, SLOT(new_arc()));
         connect(_side_widget->arc_continue_button, SIGNAL(clicked()), _gl_widget, SLOT(cont_arc()));
@@ -103,6 +104,7 @@ namespace cagd
         connect(_gl_widget, SIGNAL(selected_cp_arc(int)), _side_widget->arc_cp_index_spin_box, SLOT(setValue(int)));
         connect(_gl_widget, SIGNAL(selected_curve1(int)), _side_widget->selectedCurve1SpinBox, SLOT(setValue(int)));
         connect(_gl_widget, SIGNAL(selected_curve2(int)), _side_widget->selectedCurve2SpinBox, SLOT(setValue(int)));
+        connect(_gl_widget, SIGNAL(selected_arc_color(int)), _side_widget->arc_color_combo_box, SLOT(setCurrentIndex(int)));
 
         // bicubic bezier patches
         connect(_side_widget->show_iso_u_check_box, SIGNAL(toggled(bool)), _gl_widget, SLOT(setIsoLineUVisibility(bool)));

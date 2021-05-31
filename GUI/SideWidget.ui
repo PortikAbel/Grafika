@@ -812,6 +812,11 @@
             </item>
             <item>
              <property name="text">
+              <string>blue</string>
+             </property>
+            </item>
+            <item>
+             <property name="text">
               <string>purple</string>
              </property>
             </item>
@@ -1057,7 +1062,7 @@
       <property name="geometry">
        <rect>
         <x>0</x>
-        <y>-404</y>
+        <y>0</y>
         <width>279</width>
         <height>1000</height>
        </rect>

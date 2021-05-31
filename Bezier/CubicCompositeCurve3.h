@@ -30,8 +30,9 @@ namespace cagd
         public:
             CubicBezierArc3   *arc;
             GenericCurve3   *image;
-            Color4          *color;
+            //Color4          *color;
             ArcAttributes   *previous, *next;
+            GLuint          colorInd;
 
             ArcAttributes();
             ArcAttributes(CubicBezierArc3 *arc);
@@ -41,7 +42,7 @@ namespace cagd
         };
     protected:
         std::vector<ArcAttributes> _attributes;
-        std::vector<Color4>        _colors{darkRed,yellow,darkGreen,green,blue,darkBlue, purple, pink, orange, grey};
+        std::vector<Color4>        _colors{ darkRed, yellow, darkGreen, green, darkBlue, blue, purple, pink, orange, grey };
         GLuint _div_point_count;
 
     public:
@@ -74,5 +75,6 @@ namespace cagd
         int       GetArcCount();
 
         GLboolean ChangeColor(GLuint arcInd, GLuint colorInd);
+        GLuint    GetColorInd(GLuint arcInd);
     };
 }
