@@ -721,11 +721,11 @@ namespace cagd
 
         PatchAttributes &attribute = _attributes[patchIndex];
 
-         if (attribute.neighbours[direction])
-         {
-             cout << "The patch arlready has a neighbor in the given direction!" << endl;
-             return GL_FALSE;
-         }
+        if (attribute.neighbours[direction])
+        {
+            cout << "The patch arlready has a neighbor in the given direction!" << endl;
+            return GL_FALSE;
+        }
 
         PatchAttributes newAttr;
         _attributes.push_back(newAttr);
@@ -786,8 +786,8 @@ namespace cagd
         }
         else if (direction == NW)
         {
-            attribute.neighbours[3] = &newAttribute;
-            newAttribute.neighbours[7] = &attribute;
+            attribute.neighbours[7] = &newAttribute;
+            newAttribute.neighbours[3] = &attribute;
 
             (*patch)(3, 3) = (*attribute.patch)(0, 0);
             (*patch)(3, 2) = 2 * (*attribute.patch)(0, 0) - (*attribute.patch)(0, 1);
@@ -832,8 +832,8 @@ namespace cagd
                   (*patch)(i, 0) = 2 * (*patch)(i, 1) - (*patch)(i, 2);
 
                 }
-                attribute.neighbours[2] = &newAttribute;
-                newAttribute.neighbours[6] = &attribute;
+                attribute.neighbours[6] = &newAttribute;
+                newAttribute.neighbours[2] = &attribute;
               }
         else if (direction == S)
               {
@@ -934,8 +934,8 @@ namespace cagd
                   (*patch)(i, 3) = 2 * (*patch)(i, 2) - (*patch)(i, 1);
 
                 }
-                attribute.neighbours[6] = &newAttribute;
-                newAttribute.neighbours[2] = &attribute;
+                attribute.neighbours[2] = &newAttribute;
+                newAttribute.neighbours[6] = &attribute;
               }
 
 

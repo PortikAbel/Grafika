@@ -141,6 +141,9 @@ namespace cagd
         connect(_gl_widget, SIGNAL(selected_patch_mat(int)), _side_widget->materialComboBox, SLOT(setCurrentIndex(int)));
         connect(_gl_widget, SIGNAL(selected_patch_tex(int)), _side_widget->textureComboBox, SLOT(setCurrentIndex(int)));
 
+        connect(_side_widget->new_patch_button, SIGNAL(clicked()), _gl_widget, SLOT(new_patch()));
+        connect(_side_widget->patch_continue_button, SIGNAL(clicked()), _gl_widget, SLOT(cont_patch()));
+        connect(_side_widget->patch_1_dir_comboBox, SIGNAL(currentIndexChanged(int)), _gl_widget, SLOT(set_patch_dir_1(int)));
         // change scene
         connect(_side_widget->toolBox, SIGNAL(currentChanged(int)), _gl_widget, SLOT(setID(int)));
     }

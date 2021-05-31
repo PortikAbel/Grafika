@@ -88,10 +88,10 @@ namespace cagd
         Color4          specular    (1.0, 1.0, 1.0, 1.0);
         GLfloat         constant_attenuation(0.1f);
         GLfloat         linear_attenuation(0.1f);
-        GLfloat         quadratic_attenuation(0.1f);
+        GLfloat         quadratic_attenuation(0.01f);
         HCoordinate3    spot_direction(0.0f, 0.0f, -1.0f, 1.0f);
-        GLfloat         spot_cutoff(0.2f);
-        GLfloat         spot_exponent(0.2f);
+        GLfloat         spot_cutoff(4.5f);
+        GLfloat         spot_exponent(2.0f);
 
         _sl = new (nothrow) Spotlight(GL_LIGHT2, direction, ambient, diffuse, specular, constant_attenuation, linear_attenuation, quadratic_attenuation, spot_direction, spot_cutoff, spot_exponent);
 
@@ -1036,12 +1036,12 @@ namespace cagd
         {
             return false;
         }
-/*
+
         if (!_compositeSurface->RenderHighlightedPatches(_selectedPatch1, _selectedPatch2))
         {
             return false;
         }
-*/
+
         if (_material || _shader)
         {
             if(!_compositeSurface->RenderAllPatchesWithMaterials())
@@ -2057,7 +2057,7 @@ namespace cagd
 
     void GLWidget::cont_patch()
     {
-        if (_compositeSurface->ContinueExistingPatch(_selectedCurve1, _patch_dir_1))
+        if (_compositeSurface->ContinueExistingPatch(_selectedPatch1, _patch_dir_1))
         {
             update();
         }
@@ -2065,7 +2065,7 @@ namespace cagd
 
     void GLWidget::join_patches()
     {
-        if (_compositeSurface->JoinExistingPatches(_selectedCurve1, _patch_dir_1, _selectedCurve2, _patch_dir_2))
+        if (_compositeSurface->JoinExistingPatches(_selectedPatch1, _patch_dir_1, _selectedPatch2, _patch_dir_2))
         {
             update();
         }
@@ -2073,7 +2073,7 @@ namespace cagd
 
     void GLWidget::merge_patches()
     {
-        if (_compositeSurface->MergeExistingPatches(_selectedCurve1, _patch_dir_1, _selectedCurve2, _patch_dir_2))
+        if (_compositeSurface->MergeExistingPatches(_selectedPatch1, _patch_dir_1, _selectedPatch2, _patch_dir_2))
         {
             update();
         }
@@ -2085,14 +2085,21 @@ namespace cagd
         {
             switch (dir)
             {
-            case 0: _patch_dir_1 = BicubicCompositeSurface3::Direction::N;
-            case 1: _patch_dir_1 = BicubicCompositeSurface3::Direction::NW;
-            case 2: _patch_dir_1 = BicubicCompositeSurface3::Direction::W;
-            case 3: _patch_dir_1 = BicubicCompositeSurface3::Direction::SW;
-            case 4: _patch_dir_1 = BicubicCompositeSurface3::Direction::S;
-            case 5: _patch_dir_1 = BicubicCompositeSurface3::Direction::SE;
-            case 6: _patch_dir_1 = BicubicCompositeSurface3::Direction::E;
-            case 7: _patch_dir_1 = BicubicCompositeSurface3::Direction::NE;
+            case 0: _patch_dir_1 = BicubicCompositeSurface3::Direction::E;
+                break;
+            case 1: _patch_dir_1 = BicubicCompositeSurface3::Direction::N;
+                break;
+            case 2: _patch_dir_1 = BicubicCompositeSurface3::Direction::S;
+                break;
+            case 3: _patch_dir_1 = BicubicCompositeSurface3::Direction::W;
+                break;
+            case 4: _patch_dir_1 = BicubicCompositeSurface3::Direction::NE;
+                break;
+            case 5: _patch_dir_1 = BicubicCompositeSurface3::Direction::NW;
+                break;
+            case 6: _patch_dir_1 = BicubicCompositeSurface3::Direction::SE;
+                break;
+            case 7: _patch_dir_1 = BicubicCompositeSurface3::Direction::SW;
             }
         }
     }
@@ -2126,4 +2133,5 @@ namespace cagd
         _compositeSurface->ChangeTexture(_selectedPatch1, ind);
         update();
     }
+
 }
