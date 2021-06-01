@@ -904,14 +904,14 @@
             </property>
            </widget>
           </item>
-          <item row="10" column="0">
+          <item row="11" column="0">
            <widget class="QLabel" name="controlPointYLabel">
             <property name="text">
              <string>Control point Y</string>
             </property>
            </widget>
           </item>
-          <item row="10" column="1">
+          <item row="11" column="1">
            <widget class="QDoubleSpinBox" name="arc_cp_y_spin_box">
             <property name="maximumSize">
              <size>
@@ -930,14 +930,14 @@
             </property>
            </widget>
           </item>
-          <item row="11" column="0">
+          <item row="12" column="0">
            <widget class="QLabel" name="controlPointZLabel">
             <property name="text">
              <string>Control point Z</string>
             </property>
            </widget>
           </item>
-          <item row="11" column="1">
+          <item row="12" column="1">
            <widget class="QDoubleSpinBox" name="arc_cp_z_spin_box">
             <property name="maximumSize">
              <size>
@@ -956,14 +956,14 @@
             </property>
            </widget>
           </item>
-          <item row="12" column="0" colspan="2">
+          <item row="13" column="0" colspan="2">
            <widget class="Line" name="line_2">
             <property name="orientation">
              <enum>Qt::Horizontal</enum>
             </property>
            </widget>
           </item>
-          <item row="13" column="0">
+          <item row="14" column="0">
            <widget class="QLabel" name="selectedCurve2Label">
             <property name="font">
              <font>
@@ -980,7 +980,7 @@
             </property>
            </widget>
           </item>
-          <item row="13" column="1">
+          <item row="14" column="1">
            <widget class="QSpinBox" name="selectedCurve2SpinBox">
             <property name="maximumSize">
              <size>
@@ -990,14 +990,14 @@
             </property>
            </widget>
           </item>
-          <item row="14" column="0">
+          <item row="15" column="0">
            <widget class="QLabel" name="label_11">
             <property name="text">
              <string>Selected end</string>
             </property>
            </widget>
           </item>
-          <item row="14" column="1">
+          <item row="15" column="1">
            <widget class="QComboBox" name="arc_2_dir_comboBox">
             <item>
              <property name="text">
@@ -1011,28 +1011,28 @@
             </item>
            </widget>
           </item>
-          <item row="15" column="0">
+          <item row="16" column="0">
            <widget class="QPushButton" name="arc_join_button">
             <property name="text">
              <string>Join</string>
             </property>
            </widget>
           </item>
-          <item row="15" column="1">
+          <item row="16" column="1">
            <widget class="QPushButton" name="arc_merge_button">
             <property name="text">
              <string>Merge</string>
             </property>
            </widget>
           </item>
-          <item row="16" column="0" colspan="2">
+          <item row="17" column="0" colspan="2">
            <widget class="Line" name="line_3">
             <property name="orientation">
              <enum>Qt::Horizontal</enum>
             </property>
            </widget>
           </item>
-          <item row="17" column="0">
+          <item row="18" column="0">
            <widget class="QPushButton" name="new_arc_button">
             <property name="text">
              <string>New arc</string>
@@ -1053,6 +1053,20 @@
             </property>
            </widget>
           </item>
+          <item row="10" column="0">
+           <widget class="QPushButton" name="arc_move_x_minus">
+            <property name="text">
+             <string>-</string>
+            </property>
+           </widget>
+          </item>
+          <item row="10" column="1">
+           <widget class="QPushButton" name="arc_move_x_plus">
+            <property name="text">
+             <string>+</string>
+            </property>
+           </widget>
+          </item>
          </layout>
         </widget>
        </item>
@@ -1062,9 +1076,9 @@
       <property name="geometry">
        <rect>
         <x>0</x>
-        <y>-228</y>
+        <y>-378</y>
         <width>279</width>
-        <height>1028</height>
+        <height>1080</height>
        </rect>
       </property>
       <attribute name="label">
@@ -1131,6 +1145,20 @@
           </item>
           <item row="4" column="1">
            <widget class="QCheckBox" name="showNormalVectorsCheckBox">
+            <property name="text">
+             <string/>
+            </property>
+           </widget>
+          </item>
+          <item row="5" column="0">
+           <widget class="QLabel" name="label_21">
+            <property name="text">
+             <string>Show data</string>
+            </property>
+           </widget>
+          </item>
+          <item row="5" column="1">
+           <widget class="QCheckBox" name="patch_data_check_box">
             <property name="text">
              <string/>
             </property>
@@ -1468,211 +1496,6 @@
             </property>
            </widget>
           </item>
-          <item row="12" column="0">
-           <widget class="QLabel" name="label_26">
-            <property name="text">
-             <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:9pt; text-decoration: underline;&quot;&gt;Control point index&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
-            </property>
-            <property name="textFormat">
-             <enum>Qt::AutoText</enum>
-            </property>
-           </widget>
-          </item>
-          <item row="15" column="0">
-           <widget class="QLabel" name="label_27">
-            <property name="text">
-             <string>Row</string>
-            </property>
-           </widget>
-          </item>
-          <item row="15" column="1">
-           <widget class="QSpinBox" name="cp_row_spinBox">
-            <property name="maximum">
-             <number>3</number>
-            </property>
-           </widget>
-          </item>
-          <item row="17" column="0">
-           <widget class="QLabel" name="label_28">
-            <property name="text">
-             <string>Column</string>
-            </property>
-           </widget>
-          </item>
-          <item row="17" column="1">
-           <widget class="QSpinBox" name="cp_col_spinBox">
-            <property name="maximum">
-             <number>3</number>
-            </property>
-           </widget>
-          </item>
-          <item row="18" column="0">
-           <widget class="QLabel" name="label_29">
-            <property name="text">
-             <string>Control point X</string>
-            </property>
-           </widget>
-          </item>
-          <item row="18" column="1">
-           <widget class="QDoubleSpinBox" name="patch_cp_x_spinBox">
-            <property name="minimum">
-             <double>-99.000000000000000</double>
-            </property>
-            <property name="maximum">
-             <double>99.989999999999995</double>
-            </property>
-            <property name="singleStep">
-             <double>0.100000000000000</double>
-            </property>
-           </widget>
-          </item>
-          <item row="19" column="0">
-           <widget class="QLabel" name="label_30">
-            <property name="text">
-             <string>Control point Y</string>
-            </property>
-           </widget>
-          </item>
-          <item row="19" column="1">
-           <widget class="QDoubleSpinBox" name="patch_cp_y_spinBox">
-            <property name="minimum">
-             <double>-99.000000000000000</double>
-            </property>
-            <property name="singleStep">
-             <double>0.100000000000000</double>
-            </property>
-           </widget>
-          </item>
-          <item row="20" column="0">
-           <widget class="QLabel" name="label_31">
-            <property name="text">
-             <string>Control point Z</string>
-            </property>
-           </widget>
-          </item>
-          <item row="20" column="1">
-           <widget class="QDoubleSpinBox" name="patch_cp_z_spinBox">
-            <property name="minimum">
-             <double>-99.000000000000000</double>
-            </property>
-            <property name="singleStep">
-             <double>0.100000000000000</double>
-            </property>
-           </widget>
-          </item>
-          <item row="21" column="0" colspan="2">
-           <widget class="Line" name="line_4">
-            <property name="orientation">
-             <enum>Qt::Horizontal</enum>
-            </property>
-           </widget>
-          </item>
-          <item row="22" column="0">
-           <widget class="QLabel" name="selectedPatch2Label">
-            <property name="styleSheet">
-             <string notr="true">background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:1, stop:0 rgba(218, 218, 218, 255), stop:0.16 rgba(136, 132, 131, 255), stop:0.225 rgba(166, 166, 150, 255), stop:0.285 rgba(204, 204, 197, 255), stop:0.345 rgba(235, 231, 227, 255), stop:0.415 rgba(192, 197, 192, 255), stop:0.52 rgba(208, 209, 207, 255), stop:0.57 rgba(187, 187, 187, 255), stop:0.635 rgba(191, 191, 191, 255), stop:0.696629 rgba(223, 223, 223, 255), stop:0.75 rgba(218, 218, 218, 255), stop:0.815 rgba(208, 208, 208, 255), stop:0.88 rgba(232, 232, 232, 255), stop:0.935 rgba(217, 217, 217, 255), stop:1 rgba(35, 40, 3, 255));</string>
-            </property>
-            <property name="text">
-             <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:10pt; font-weight:600;&quot;&gt;Selected patch 2&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
-            </property>
-           </widget>
-          </item>
-          <item row="22" column="1">
-           <widget class="QSpinBox" name="selectedPatch2SpinBox"/>
-          </item>
-          <item row="25" column="0" colspan="2">
-           <widget class="Line" name="line_5">
-            <property name="orientation">
-             <enum>Qt::Horizontal</enum>
-            </property>
-           </widget>
-          </item>
-          <item row="26" column="0">
-           <widget class="QPushButton" name="new_patch_button">
-            <property name="text">
-             <string>New patch</string>
-            </property>
-           </widget>
-          </item>
-          <item row="23" column="0">
-           <widget class="QLabel" name="label_20">
-            <property name="text">
-             <string>Selected end</string>
-            </property>
-           </widget>
-          </item>
-          <item row="23" column="1">
-           <widget class="QComboBox" name="patch_2_dir_comboBox">
-            <item>
-             <property name="text">
-              <string>E</string>
-             </property>
-            </item>
-            <item>
-             <property name="text">
-              <string>N</string>
-             </property>
-            </item>
-            <item>
-             <property name="text">
-              <string>S</string>
-             </property>
-            </item>
-            <item>
-             <property name="text">
-              <string>W</string>
-             </property>
-            </item>
-            <item>
-             <property name="text">
-              <string>NE</string>
-             </property>
-            </item>
-            <item>
-             <property name="text">
-              <string>NW</string>
-             </property>
-            </item>
-            <item>
-             <property name="text">
-              <string>SE</string>
-             </property>
-            </item>
-            <item>
-             <property name="text">
-              <string>SW</string>
-             </property>
-            </item>
-           </widget>
-          </item>
-          <item row="24" column="0">
-           <widget class="QPushButton" name="patch_join_button">
-            <property name="text">
-             <string>Join</string>
-            </property>
-           </widget>
-          </item>
-          <item row="24" column="1">
-           <widget class="QPushButton" name="patch_merge_button">
-            <property name="text">
-             <string>Merge</string>
-            </property>
-           </widget>
-          </item>
-          <item row="5" column="1">
-           <widget class="QCheckBox" name="patch_data_check_box">
-            <property name="text">
-             <string/>
-            </property>
-           </widget>
-          </item>
-          <item row="5" column="0">
-           <widget class="QLabel" name="label_21">
-            <property name="text">
-             <string>Show data</string>
-            </property>
-           </widget>
-          </item>
           <item row="11" column="0" colspan="2">
            <widget class="QTabWidget" name="TextureTab">
             <property name="currentIndex">
@@ -1805,6 +1628,211 @@
               </property>
              </widget>
             </widget>
+           </widget>
+          </item>
+          <item row="12" column="0">
+           <widget class="QLabel" name="label_26">
+            <property name="text">
+             <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:9pt; text-decoration: underline;&quot;&gt;Control point index&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+            </property>
+            <property name="textFormat">
+             <enum>Qt::AutoText</enum>
+            </property>
+           </widget>
+          </item>
+          <item row="15" column="0">
+           <widget class="QLabel" name="label_27">
+            <property name="text">
+             <string>Row</string>
+            </property>
+           </widget>
+          </item>
+          <item row="15" column="1">
+           <widget class="QSpinBox" name="cp_row_spinBox">
+            <property name="maximum">
+             <number>3</number>
+            </property>
+           </widget>
+          </item>
+          <item row="17" column="0">
+           <widget class="QLabel" name="label_28">
+            <property name="text">
+             <string>Column</string>
+            </property>
+           </widget>
+          </item>
+          <item row="17" column="1">
+           <widget class="QSpinBox" name="cp_col_spinBox">
+            <property name="maximum">
+             <number>3</number>
+            </property>
+           </widget>
+          </item>
+          <item row="18" column="0">
+           <widget class="QLabel" name="label_29">
+            <property name="text">
+             <string>Control point X</string>
+            </property>
+           </widget>
+          </item>
+          <item row="18" column="1">
+           <widget class="QDoubleSpinBox" name="patch_cp_x_spinBox">
+            <property name="minimum">
+             <double>-99.000000000000000</double>
+            </property>
+            <property name="maximum">
+             <double>99.989999999999995</double>
+            </property>
+            <property name="singleStep">
+             <double>0.100000000000000</double>
+            </property>
+           </widget>
+          </item>
+          <item row="20" column="0">
+           <widget class="QLabel" name="label_30">
+            <property name="text">
+             <string>Control point Y</string>
+            </property>
+           </widget>
+          </item>
+          <item row="20" column="1">
+           <widget class="QDoubleSpinBox" name="patch_cp_y_spinBox">
+            <property name="minimum">
+             <double>-99.000000000000000</double>
+            </property>
+            <property name="singleStep">
+             <double>0.100000000000000</double>
+            </property>
+           </widget>
+          </item>
+          <item row="21" column="0">
+           <widget class="QLabel" name="label_31">
+            <property name="text">
+             <string>Control point Z</string>
+            </property>
+           </widget>
+          </item>
+          <item row="21" column="1">
+           <widget class="QDoubleSpinBox" name="patch_cp_z_spinBox">
+            <property name="minimum">
+             <double>-99.000000000000000</double>
+            </property>
+            <property name="singleStep">
+             <double>0.100000000000000</double>
+            </property>
+           </widget>
+          </item>
+          <item row="26" column="0" colspan="2">
+           <widget class="Line" name="line_4">
+            <property name="orientation">
+             <enum>Qt::Horizontal</enum>
+            </property>
+           </widget>
+          </item>
+          <item row="27" column="0">
+           <widget class="QLabel" name="selectedPatch2Label">
+            <property name="styleSheet">
+             <string notr="true">background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:1, stop:0 rgba(218, 218, 218, 255), stop:0.16 rgba(136, 132, 131, 255), stop:0.225 rgba(166, 166, 150, 255), stop:0.285 rgba(204, 204, 197, 255), stop:0.345 rgba(235, 231, 227, 255), stop:0.415 rgba(192, 197, 192, 255), stop:0.52 rgba(208, 209, 207, 255), stop:0.57 rgba(187, 187, 187, 255), stop:0.635 rgba(191, 191, 191, 255), stop:0.696629 rgba(223, 223, 223, 255), stop:0.75 rgba(218, 218, 218, 255), stop:0.815 rgba(208, 208, 208, 255), stop:0.88 rgba(232, 232, 232, 255), stop:0.935 rgba(217, 217, 217, 255), stop:1 rgba(35, 40, 3, 255));</string>
+            </property>
+            <property name="text">
+             <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:10pt; font-weight:600;&quot;&gt;Selected patch 2&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+            </property>
+           </widget>
+          </item>
+          <item row="27" column="1">
+           <widget class="QSpinBox" name="selectedPatch2SpinBox"/>
+          </item>
+          <item row="28" column="0">
+           <widget class="QLabel" name="label_20">
+            <property name="text">
+             <string>Selected end</string>
+            </property>
+           </widget>
+          </item>
+          <item row="28" column="1">
+           <widget class="QComboBox" name="patch_2_dir_comboBox">
+            <item>
+             <property name="text">
+              <string>E</string>
+             </property>
+            </item>
+            <item>
+             <property name="text">
+              <string>N</string>
+             </property>
+            </item>
+            <item>
+             <property name="text">
+              <string>S</string>
+             </property>
+            </item>
+            <item>
+             <property name="text">
+              <string>W</string>
+             </property>
+            </item>
+            <item>
+             <property name="text">
+              <string>NE</string>
+             </property>
+            </item>
+            <item>
+             <property name="text">
+              <string>NW</string>
+             </property>
+            </item>
+            <item>
+             <property name="text">
+              <string>SE</string>
+             </property>
+            </item>
+            <item>
+             <property name="text">
+              <string>SW</string>
+             </property>
+            </item>
+           </widget>
+          </item>
+          <item row="29" column="0">
+           <widget class="QPushButton" name="patch_join_button">
+            <property name="text">
+             <string>Join</string>
+            </property>
+           </widget>
+          </item>
+          <item row="29" column="1">
+           <widget class="QPushButton" name="patch_merge_button">
+            <property name="text">
+             <string>Merge</string>
+            </property>
+           </widget>
+          </item>
+          <item row="30" column="0" colspan="2">
+           <widget class="Line" name="line_5">
+            <property name="orientation">
+             <enum>Qt::Horizontal</enum>
+            </property>
+           </widget>
+          </item>
+          <item row="31" column="0">
+           <widget class="QPushButton" name="new_patch_button">
+            <property name="text">
+             <string>New patch</string>
+            </property>
+           </widget>
+          </item>
+          <item row="19" column="0">
+           <widget class="QPushButton" name="patch_move_x_minus">
+            <property name="text">
+             <string>-</string>
+            </property>
+           </widget>
+          </item>
+          <item row="19" column="1">
+           <widget class="QPushButton" name="patch_move_x_plus">
+            <property name="text">
+             <string>+</string>
+            </property>
            </widget>
           </item>
          </layout>

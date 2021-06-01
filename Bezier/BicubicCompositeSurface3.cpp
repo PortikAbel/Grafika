@@ -579,13 +579,24 @@ namespace cagd
 
         (*attribute.patch)(row, column) = position;
 
+        /*if (column == 0 && attribute.neighbours[W])
+        {
+            PatchAttributes &neighbour = *attribute.neighbours[];
+            GLuint i, j;
+            attribute._GetSymmetricPointIndexes(row, 0, S, i, j);
+
+
+        }*/
+
         if (row == 1 && attribute.neighbours[N])
         {
             PatchAttributes &neighbour = *attribute.neighbours[N];
             GLuint i, j;
             attribute._GetSymmetricPointIndexes(1, column, N, i, j);
 
-            UpdatePatch(neighbour, i, j, 2 * (*attribute.patch)(0, column) - (*attribute.patch)(1, column));
+            DCoordinate3 difference2 = 2 * (*attribute.patch)(0, column) - (*attribute.patch)(1, column) - (*attribute.patch)(row, column);
+            (*neighbour.patch)(i, j) = difference2;
+            //UpdatePatch(neighbour, i, j, 2 * (*attribute.patch)(0, column) - (*attribute.patch)(1, column));
         }
         if (row == 2 && attribute.neighbours[S])
         {
@@ -593,7 +604,9 @@ namespace cagd
             GLuint i, j;
             attribute._GetSymmetricPointIndexes(2, column, S, i, j);
 
-            UpdatePatch(neighbour, i, j, 2 * (*attribute.patch)(3, column) - (*attribute.patch)(2, column));
+            DCoordinate3 difference2 = 2 * (*attribute.patch)(3, column) - (*attribute.patch)(2, column) - (*attribute.patch)(row, column);
+            (*neighbour.patch)(i, j) = difference2;
+            //UpdatePatch(neighbour, i, j, 2 * (*attribute.patch)(3, column) - (*attribute.patch)(2, column));
         }
 
         if (column == 1 && attribute.neighbours[W])
@@ -602,7 +615,9 @@ namespace cagd
             GLuint i, j;
             attribute._GetSymmetricPointIndexes(row, 1, W, i, j);
 
-            UpdatePatch(neighbour, i, j, 2 * (*attribute.patch)(row, 0) - (*attribute.patch)(row, 1));
+            DCoordinate3 difference2 = 2 * (*attribute.patch)(row, 0) - (*attribute.patch)(row, 1) - (*attribute.patch)(row, column);
+            (*neighbour.patch)(i, j) = difference2;
+            //UpdatePatch(neighbour, i, j, 2 * (*attribute.patch)(row, 0) - (*attribute.patch)(row, 1));
         }
         if (column == 2 && attribute.neighbours[E])
         {
@@ -610,7 +625,9 @@ namespace cagd
             GLuint i, j;
             attribute._GetSymmetricPointIndexes(row, 2, E, i, j);
 
-            UpdatePatch(neighbour, i, j, 2 * (*attribute.patch)(row, 3) - (*attribute.patch)(row, 2));
+            DCoordinate3 difference2 = 2 * (*attribute.patch)(row, 3) - (*attribute.patch)(row, 2) - (*attribute.patch)(row, column);
+            (*neighbour.patch)(i, j) = difference2;
+            //UpdatePatch(neighbour, i, j, 2 * (*attribute.patch)(row, 3) - (*attribute.patch)(row, 2));
         }
 
 
@@ -622,7 +639,9 @@ namespace cagd
             GLuint i, j;
             attribute._GetSymmetricPointIndexes(0, column, N, i, j);
 
-            UpdatePatch(neighbour, i, j, position);
+            DCoordinate3 difference2 = position - (*attribute.patch)(row, column);
+            (*neighbour.patch)(i, j) = difference2;
+            //UpdatePatch(neighbour, i, j, position);
 
             attribute._GetSymmetricPointIndexes(1, column, N, i, j);
 //            UpdatePatch(attribute, 1, column, (*attribute.patch)(1, column) + difference);
@@ -638,7 +657,9 @@ namespace cagd
             GLuint i, j;
             attribute._GetSymmetricPointIndexes(3, column, S, i, j);
 
-            UpdatePatch(neighbour, i, j, position);
+            DCoordinate3 difference2 = position - (*attribute.patch)(row, column);
+            (*neighbour.patch)(i, j) = difference2;
+            //UpdatePatch(neighbour, i, j, position);
 
             attribute._GetSymmetricPointIndexes(2, column, S, i, j);
 //            UpdatePatch(attribute, 2, column, (*attribute.patch)(2, column) + difference);
@@ -655,7 +676,9 @@ namespace cagd
             GLuint i, j;
             attribute._GetSymmetricPointIndexes(row, 0, W, i, j);
 
-            UpdatePatch(neighbour, i, j, position);
+            DCoordinate3 difference2 = position - (*attribute.patch)(row, column);
+            (*neighbour.patch)(i, j) = difference2;
+            //UpdatePatch(neighbour, i, j, position);
 
             attribute._GetSymmetricPointIndexes(row, 1, W, i, j);
 //            UpdatePatch(attribute, row, 1, (*attribute.patch)(row, 1) + difference);
@@ -666,12 +689,13 @@ namespace cagd
         if (column == 3 && attribute.neighbours[E])
         {
             c = 2;
-
             PatchAttributes &neighbour = *attribute.neighbours[E];
             GLuint i, j;
             attribute._GetSymmetricPointIndexes(row, 3, E, i, j);
 
-            UpdatePatch(neighbour, i, j, position);
+            DCoordinate3 difference2 = position - (*attribute.patch)(row, column);
+            (*neighbour.patch)(i, j) = difference2;
+            //UpdatePatch(neighbour, i, j, position);
 
             attribute._GetSymmetricPointIndexes(row, 2, E, i, j);
 //            UpdatePatch(attribute, row, 2, (*attribute.patch)(row, 2) + difference);
@@ -735,23 +759,20 @@ namespace cagd
         BicubicBezierPatch* patch = newAttribute.patch;
 
         if (direction == N)
-        {
-            for(GLuint i=0; i<=3; ++i)
-            {
-               (*patch)(3, i) = (*attribute.patch)(0, i);
-               (*patch)(2, i) = 2 * (*attribute.patch)(0, i) - (*attribute.patch)(1, i);
-               (*patch)(1, i) = 2 * (*patch)(2, i) - (*patch)(3, i);
-               (*patch)(0, i) = 2 * (*patch)(1, i) - (*patch)(2, i);
+                {
+                    for(GLuint i=0; i<=3; ++i)
+                    {
+                       (*patch)(3, i) = (*attribute.patch)(0, i);
+                       (*patch)(2, i) = 2 * (*attribute.patch)(0, i) - (*attribute.patch)(1, i);
+                       (*patch)(1, i) = 2 * (*patch)(2, i) - (*patch)(3, i);
+                       (*patch)(0, i) = 2 * (*patch)(1, i) - (*patch)(2, i);
 
-            }
-            attribute.neighbours[0] = &newAttribute;
-            newAttribute.neighbours[4] = &attribute;
-        }
+                    }
+                    attribute.neighbours[0] = &newAttribute;
+                    newAttribute.neighbours[4] = &attribute;
+                }
         else if (direction == NE)
         {
-            attribute.neighbours[1] = &newAttribute;
-            newAttribute.neighbours[5] = &attribute;
-
             (*patch)(3,0) = (*attribute.patch)(0, 3);
             (*patch)(3,1) = 2*(*attribute.patch)(0, 3) - (*attribute.patch)(0, 2);
             (*patch)(2,0) = 2*(*attribute.patch)(0, 3) - (*attribute.patch)(1, 3);
@@ -783,12 +804,12 @@ namespace cagd
                     (*patch)(j,i) = 2*(*attribute.patch)(j, i-1) - (*attribute.patch)(j, i-2);
                }
             }
+
+            attribute.neighbours[7] = &newAttribute;
+            newAttribute.neighbours[3] = &attribute;
         }
         else if (direction == NW)
         {
-            attribute.neighbours[7] = &newAttribute;
-            newAttribute.neighbours[3] = &attribute;
-
             (*patch)(3, 3) = (*attribute.patch)(0, 0);
             (*patch)(3, 2) = 2 * (*attribute.patch)(0, 0) - (*attribute.patch)(0, 1);
             (*patch)(2, 3) = 2 * (*attribute.patch)(0, 0) - (*attribute.patch)(1, 0);
@@ -821,37 +842,38 @@ namespace cagd
                     (*patch)(i, j) = 2 * (*attribute.patch)(i, j+1) - (*attribute.patch)(i, j+2);
                 }
             }
+
+            attribute.neighbours[1] = &newAttribute;
+            newAttribute.neighbours[5] = &attribute;
         }
-        else if (direction == W)
-              {
-                for(GLuint i=0; i<=3; ++i)
-                {
-                  (*patch)(i, 3) = (*attribute.patch)(i, 0);
-                  (*patch)(i, 2) = 2 * (*attribute.patch)(i, 0) - (*attribute.patch)(i, 1);
-                  (*patch)(i, 1) = 2 * (*patch)(i, 2) - (*patch)(i, 3);
-                  (*patch)(i, 0) = 2 * (*patch)(i, 1) - (*patch)(i, 2);
+        else   if (direction == W)
+                      {
+                        for(GLuint i=0; i<=3; ++i)
+                        {
+                          (*patch)(i, 3) = (*attribute.patch)(i, 0);
+                          (*patch)(i, 2) = 2 * (*attribute.patch)(i, 0) - (*attribute.patch)(i, 1);
+                          (*patch)(i, 1) = 2 * (*patch)(i, 2) - (*patch)(i, 3);
+                          (*patch)(i, 0) = 2 * (*patch)(i, 1) - (*patch)(i, 2);
 
-                }
-                attribute.neighbours[6] = &newAttribute;
-                newAttribute.neighbours[2] = &attribute;
-              }
-        else if (direction == S)
-              {
-                for(GLuint i=0; i<=3; ++i)
-                {
-                  (*patch)(0, i) = (*attribute.patch)(3, i);
-                  (*patch)(1, i) = 2 * (*attribute.patch)(3, i) - (*attribute.patch)(2, i);
-                  (*patch)(2, i) = 2 * (*patch)(1, i) - (*patch)(0, i);
-                  (*patch)(3, i) = 2 * (*patch)(2, i) - (*patch)(1, i);
+                        }
+                        attribute.neighbours[2] = &newAttribute;
+                        newAttribute.neighbours[6] = &attribute;
+                      }
+        else   if (direction == S)
+                      {
+                        for(GLuint i=0; i<=3; ++i)
+                        {
+                          (*patch)(0, i) = (*attribute.patch)(3, i);
+                          (*patch)(1, i) = 2 * (*attribute.patch)(3, i) - (*attribute.patch)(2, i);
+                          (*patch)(2, i) = 2 * (*patch)(1, i) - (*patch)(0, i);
+                          (*patch)(3, i) = 2 * (*patch)(2, i) - (*patch)(1, i);
 
-                }
-                attribute.neighbours[4] = &newAttribute;
-                newAttribute.neighbours[0] = &attribute;
-              }
+                        }
+                        attribute.neighbours[4] = &newAttribute;
+                        newAttribute.neighbours[0] = &attribute;
+                      }
         else if (direction == SE)
         {
-            attribute.neighbours[3] = &newAttribute;
-            newAttribute.neighbours[7] = &attribute;
 
             (*patch)(0, 0) = (*attribute.patch)(3, 3);
             (*patch)(0, 1) = 2 * (*attribute.patch)(3, 3) - (*attribute.patch)(3, 2);
@@ -884,11 +906,12 @@ namespace cagd
                     (*patch)(j, i) = 2 * (*attribute.patch)(j, i-1) - (*attribute.patch)(j, i-2);
                 }
            }
+
+            attribute.neighbours[5] = &newAttribute;
+            newAttribute.neighbours[1] = &attribute;
         }
         else if (direction == SW)
         {
-            attribute.neighbours[5] = &newAttribute;
-            newAttribute.neighbours[1] = &attribute;
 
             (*patch)(0, 3) = (*attribute.patch)(3, 0);
             (*patch)(0, 2) = 2 * (*attribute.patch)(3, 0) - (*attribute.patch)(3, 1);
@@ -923,20 +946,23 @@ namespace cagd
                 }
            }
 
+           attribute.neighbours[3] = &newAttribute;
+           newAttribute.neighbours[7] = &attribute;
+
         }
         else   if (direction == E)
-              {
-                for(GLuint i=0; i<=3; ++i)
-                {
-                  (*patch)(i, 0) = (*attribute.patch)(i, 3);
-                  (*patch)(i, 1) = 2 * (*attribute.patch)(i, 3) - (*attribute.patch)(i, 2);
-                  (*patch)(i, 2) = 2 * (*patch)(i, 1) - (*patch)(i, 0);
-                  (*patch)(i, 3) = 2 * (*patch)(i, 2) - (*patch)(i, 1);
+                      {
+                        for(GLuint i=0; i<=3; ++i)
+                        {
+                          (*patch)(i, 0) = (*attribute.patch)(i, 3);
+                          (*patch)(i, 1) = 2 * (*attribute.patch)(i, 3) - (*attribute.patch)(i, 2);
+                          (*patch)(i, 2) = 2 * (*patch)(i, 1) - (*patch)(i, 0);
+                          (*patch)(i, 3) = 2 * (*patch)(i, 2) - (*patch)(i, 1);
 
-                }
-                attribute.neighbours[2] = &newAttribute;
-                newAttribute.neighbours[6] = &attribute;
-              }
+                        }
+                        attribute.neighbours[6] = &newAttribute;
+                        newAttribute.neighbours[2] = &attribute;
+                      }
 
 
         return UpdateVBOs(newAttribute);

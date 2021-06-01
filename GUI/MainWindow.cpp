@@ -149,6 +149,10 @@ namespace cagd
         connect(_side_widget->patch_join_button, SIGNAL(clicked()), _gl_widget, SLOT(join_patches()));
         connect(_side_widget->patch_merge_button, SIGNAL(clicked()), _gl_widget, SLOT(merge_patches()));
 
+        connect(_side_widget->arc_move_x_minus, SIGNAL(clicked()), _gl_widget, SLOT(arc_move_x_minus()));
+        connect(_side_widget->arc_move_x_plus, SIGNAL(clicked()), _gl_widget, SLOT(arc_move_x_plus()));
+        connect(_side_widget->patch_move_x_minus, SIGNAL(clicked()), _gl_widget, SLOT(patch_move_x_minus()));
+        connect(_side_widget->patch_move_x_plus, SIGNAL(clicked()), _gl_widget, SLOT(patch_move_x_plus()));
 
         // change scene
         connect(_side_widget->toolBox, SIGNAL(currentChanged(int)), _gl_widget, SLOT(setID(int)));
