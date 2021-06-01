@@ -151,8 +151,16 @@ namespace cagd
 
         connect(_side_widget->arc_move_x_minus, SIGNAL(clicked()), _gl_widget, SLOT(arc_move_x_minus()));
         connect(_side_widget->arc_move_x_plus, SIGNAL(clicked()), _gl_widget, SLOT(arc_move_x_plus()));
+        connect(_side_widget->arc_move_y_minus, SIGNAL(clicked()), _gl_widget, SLOT(arc_move_y_minus()));
+        connect(_side_widget->arc_move_y_plus, SIGNAL(clicked()), _gl_widget, SLOT(arc_move_y_plus()));
+        connect(_side_widget->arc_move_z_minus, SIGNAL(clicked()), _gl_widget, SLOT(arc_move_z_minus()));
+        connect(_side_widget->arc_move_z_plus, SIGNAL(clicked()), _gl_widget, SLOT(arc_move_z_plus()));
         connect(_side_widget->patch_move_x_minus, SIGNAL(clicked()), _gl_widget, SLOT(patch_move_x_minus()));
         connect(_side_widget->patch_move_x_plus, SIGNAL(clicked()), _gl_widget, SLOT(patch_move_x_plus()));
+        connect(_side_widget->patch_move_y_minus, SIGNAL(clicked()), _gl_widget, SLOT(patch_move_y_minus()));
+        connect(_side_widget->patch_move_y_plus, SIGNAL(clicked()), _gl_widget, SLOT(patch_move_y_plus()));
+        connect(_side_widget->patch_move_z_minus, SIGNAL(clicked()), _gl_widget, SLOT(patch_move_z_minus()));
+        connect(_side_widget->patch_move_z_plus, SIGNAL(clicked()), _gl_widget, SLOT(patch_move_z_plus()));
 
         // change scene
         connect(_side_widget->toolBox, SIGNAL(currentChanged(int)), _gl_widget, SLOT(setID(int)));

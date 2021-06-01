@@ -286,6 +286,13 @@ namespace cagd
         void set_arc_dir_2(int);
         void set_arc_color(int);
 
+        void arc_move_x_minus();
+        void arc_move_x_plus();
+        void arc_move_y_minus();
+        void arc_move_y_plus();
+        void arc_move_z_minus();
+        void arc_move_z_plus();
+
         // patches
 
         void set_selected_patch1(int);
@@ -320,6 +327,13 @@ namespace cagd
         void set_patch_dir_2(int);
         void set_patch_mat(int);
         void set_patch_tex(int);
+
+        void patch_move_x_minus();
+        void patch_move_x_plus();
+        void patch_move_y_minus();
+        void patch_move_y_plus();
+        void patch_move_z_minus();
+        void patch_move_z_plus();
 
     signals:
         void setAngle(int);

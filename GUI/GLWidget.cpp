@@ -1886,6 +1886,102 @@ namespace cagd
         update();
     }
 
+    void GLWidget::arc_move_x_minus()
+    {
+        DCoordinate3 pointToUpdate;
+        for (GLuint i = 0; i <= 3; i++)
+        {
+            _compositeCurve->GetDataPointValues(_selectedCurve1, i, pointToUpdate);
+            pointToUpdate.x() = pointToUpdate.x() - 0.1;
+            _compositeCurve->UpdateArc(_selectedCurve1, i, pointToUpdate);
+            if (_selectedCurvePoint == i)
+            {
+                emit arc_control_point_x_changed(pointToUpdate.x());
+            }
+        }
+        update();
+    }
+
+    void GLWidget::arc_move_x_plus()
+    {
+        DCoordinate3 pointToUpdate;
+        for (GLuint i = 0; i <= 3; i++)
+        {
+            _compositeCurve->GetDataPointValues(_selectedCurve1, i, pointToUpdate);
+            pointToUpdate.x() = pointToUpdate.x() + 0.1;
+            _compositeCurve->UpdateArc(_selectedCurve1, i, pointToUpdate);
+            if (_selectedCurvePoint == i)
+            {
+                emit arc_control_point_x_changed(pointToUpdate.x());
+            }
+        }
+        update();
+    }
+
+    void GLWidget::arc_move_y_minus()
+    {
+        DCoordinate3 pointToUpdate;
+        for (GLuint i = 0; i <= 3; i++)
+        {
+            _compositeCurve->GetDataPointValues(_selectedCurve1, i, pointToUpdate);
+            pointToUpdate.y() = pointToUpdate.y() - 0.1;
+            _compositeCurve->UpdateArc(_selectedCurve1, i, pointToUpdate);
+            if (_selectedCurvePoint == i)
+            {
+                emit arc_control_point_y_changed(pointToUpdate.y());
+            }
+        }
+        update();
+    }
+
+    void GLWidget::arc_move_y_plus()
+    {
+        DCoordinate3 pointToUpdate;
+        for (GLuint i = 0; i <= 3; i++)
+        {
+            _compositeCurve->GetDataPointValues(_selectedCurve1, i, pointToUpdate);
+            pointToUpdate.y() = pointToUpdate.y() + 0.1;
+            _compositeCurve->UpdateArc(_selectedCurve1, i, pointToUpdate);
+            if (_selectedCurvePoint == i)
+            {
+                emit arc_control_point_y_changed(pointToUpdate.y());
+            }
+        }
+        update();
+    }
+
+    void GLWidget::arc_move_z_minus()
+    {
+        DCoordinate3 pointToUpdate;
+        for (GLuint i = 0; i <= 3; i++)
+        {
+            _compositeCurve->GetDataPointValues(_selectedCurve1, i, pointToUpdate);
+            pointToUpdate.z() = pointToUpdate.z() - 0.1;
+            _compositeCurve->UpdateArc(_selectedCurve1, i, pointToUpdate);
+            if (_selectedCurvePoint == i)
+            {
+                emit arc_control_point_z_changed(pointToUpdate.z());
+            }
+        }
+        update();
+    }
+
+    void GLWidget::arc_move_z_plus()
+    {
+        DCoordinate3 pointToUpdate;
+        for (GLuint i = 0; i <= 3; i++)
+        {
+            _compositeCurve->GetDataPointValues(_selectedCurve1, i, pointToUpdate);
+            pointToUpdate.z() = pointToUpdate.z() + 0.1;
+            _compositeCurve->UpdateArc(_selectedCurve1, i, pointToUpdate);
+            if (_selectedCurvePoint == i)
+            {
+                emit arc_control_point_z_changed(pointToUpdate.z());
+            }
+        }
+        update();
+    }
+
     // ---------------------------------------------------
     // slots of composite surface
     // ---------------------------------------------------
@@ -2132,6 +2228,132 @@ namespace cagd
     {
         _compositeSurface->ChangeTexture(_selectedPatch1, ind);
         update();
+    }
+
+    void GLWidget::patch_move_x_minus()
+    {
+
+        DCoordinate3 selectedPoint;
+        for (GLuint i = 0; i <= 3; i++)
+        {
+            for (GLuint j = 0; j <= 3; j++)
+            {
+                _compositeSurface->GetDataPointValues(_selectedPatch1, i, j, selectedPoint);
+                selectedPoint.x() = selectedPoint.x() - 0.1;
+                _compositeSurface->UpdatePatch(_selectedPatch1, i, j, selectedPoint);
+                if (_selectedPointRow == i && _selectedPointCol == j)
+                {
+                    emit patch_control_point_x_changed(selectedPoint.x());
+                }
+            }
+        }
+        update();
+
+    }
+
+    void GLWidget::patch_move_x_plus()
+    {
+
+        DCoordinate3 selectedPoint;
+        for (GLuint i = 0; i <= 3; i++)
+        {
+            for (GLuint j = 0; j <= 3; j++)
+            {
+                _compositeSurface->GetDataPointValues(_selectedPatch1, i, j, selectedPoint);
+                selectedPoint.x() = selectedPoint.x() + 0.1;
+                _compositeSurface->UpdatePatch(_selectedPatch1, i, j, selectedPoint);
+                if (_selectedPointRow == i && _selectedPointCol == j)
+                {
+                    emit patch_control_point_x_changed(selectedPoint.x());
+                }
+            }
+        }
+        update();
+
+    }
+
+    void GLWidget::patch_move_y_minus()
+    {
+
+        DCoordinate3 selectedPoint;
+        for (GLuint i = 0; i <= 3; i++)
+        {
+            for (GLuint j = 0; j <= 3; j++)
+            {
+                _compositeSurface->GetDataPointValues(_selectedPatch1, i, j, selectedPoint);
+                selectedPoint.y() = selectedPoint.y() - 0.1;
+                _compositeSurface->UpdatePatch(_selectedPatch1, i, j, selectedPoint);
+                if (_selectedPointRow == i && _selectedPointCol == j)
+                {
+                    emit patch_control_point_y_changed(selectedPoint.y());
+                }
+            }
+        }
+        update();
+
+    }
+
+    void GLWidget::patch_move_y_plus()
+    {
+
+        DCoordinate3 selectedPoint;
+        for (GLuint i = 0; i <= 3; i++)
+        {
+            for (GLuint j = 0; j <= 3; j++)
+            {
+                _compositeSurface->GetDataPointValues(_selectedPatch1, i, j, selectedPoint);
+                selectedPoint.y() = selectedPoint.y() + 0.1;
+                _compositeSurface->UpdatePatch(_selectedPatch1, i, j, selectedPoint);
+                if (_selectedPointRow == i && _selectedPointCol == j)
+                {
+                    emit patch_control_point_y_changed(selectedPoint.y());
+                }
+            }
+        }
+        update();
+
+    }
+
+    void GLWidget::patch_move_z_minus()
+    {
+
+        DCoordinate3 selectedPoint;
+        for (GLuint i = 0; i <= 3; i++)
+        {
+            for (GLuint j = 0; j <= 3; j++)
+            {
+                _compositeSurface->GetDataPointValues(_selectedPatch1, i, j, selectedPoint);
+                selectedPoint.z() = selectedPoint.z() - 0.1;
+                _compositeSurface->UpdatePatch(_selectedPatch1, i, j, selectedPoint);
+                if (_selectedPointRow == i && _selectedPointCol == j)
+                {
+                    emit patch_control_point_z_changed(selectedPoint.z());
+                }
+            }
+        }
+        update();
+
+    }
+
+    void GLWidget::patch_move_z_plus()
+    {
+
+        DCoordinate3 selectedPoint;
+        for (GLuint i = 0; i <= 3; i++)
+        {
+            for (GLuint j = 0; j <= 3; j++)
+            {
+                _compositeSurface->GetDataPointValues(_selectedPatch1, i, j, selectedPoint);
+                selectedPoint.z() = selectedPoint.z() + 0.1;
+                _compositeSurface->UpdatePatch(_selectedPatch1, i, j, selectedPoint);
+                if (_selectedPointRow == i && _selectedPointCol == j)
+                {
+                    emit patch_control_point_z_changed(selectedPoint.z());
+                }
+            }
+        }
+        update();
+
     }
 
 }
