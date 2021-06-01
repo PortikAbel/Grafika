@@ -772,77 +772,21 @@ namespace cagd
         }
         else if (direction == NE)
         {
-            (*patch)(3,0) = (*attribute.patch)(0, 3);
-            (*patch)(2,0) = 2*(*attribute.patch)(0, 3) - (*attribute.patch)(1, 3);
-            (*patch)(3,1) = 2*(*attribute.patch)(0, 3) - (*attribute.patch)(0, 2);
-            (*patch)(2,1) = 2*(*attribute.patch)(0, 3) - (*attribute.patch)(1, 2);
-
-            for (int i = 3; i >= 2; i--)
-            {
-                (*patch)(i-2, 0) = 2 * (*patch)(i-1, 0) - (*patch)(i, 0);
-            }
-            for (int i = 2; i <= 3; i++)
-            {
-                (*patch)(3, i) = 2 * (*patch)(3, i-1) - (*patch)(3, i-2);
+            for(int i=0; i<=3; i++) {
+                for (int j=0; j<=3;j++) {
+                    (*patch)(i,j) = 2*(*attribute.patch)(0,3) - (*attribute.patch)(3-i,3-j);
+                }
             }
 
-            for (int i = 1; i >= 0; i--)
-            {
-                (*patch)(i,0) = 2*(*attribute.patch)(i+1, 0) - (*attribute.patch)(i+2, 0);
-            }
-
-            for (int i = 2; i < 4; i++)
-            {
-                (*patch)(2,i) = 2*(*attribute.patch)(2, i-1) - (*attribute.patch)(2, i-2);
-            }
-
-            for (int i = 1; i >= 0; i--)
-            {
-                (*patch)(i,1) = 2*(*attribute.patch)(i+1, 1) - (*attribute.patch)(i+2, 1);
-            }
-
-            for (int i = 2; i < 4; i++) {
-                for (int j = 0; j < 2; j++)
-                {
-                    (*patch)(j,i) = 2*(*attribute.patch)(j, i-1) - (*attribute.patch)(j, i-2);
-               }
-            }
 
             attribute.neighbours[7] = &newAttribute;
             newAttribute.neighbours[3] = &attribute;
         }
         else if (direction == NW)
         {
-            (*patch)(3, 3) = (*attribute.patch)(0, 0);
-            (*patch)(3, 2) = 2 * (*attribute.patch)(0, 0) - (*attribute.patch)(0, 1);
-            (*patch)(2, 3) = 2 * (*attribute.patch)(0, 0) - (*attribute.patch)(1, 0);
-            (*patch)(2, 2) = 2 * (*attribute.patch)(0, 0) - (*attribute.patch)(1, 1);
-
-            for (int i = 1; i >= 0; i--)
-            {
-                (*patch)(3, i) = 2 * (*attribute.patch)(3, i+1) - (*attribute.patch)(3, i+2);
-            }
-
-            for (int i = 1; i >= 0; i--)
-            {
-                (*patch)(i, 3) = 2 * (*attribute.patch)(i+1, 3) - (*attribute.patch)(i+2, 3);
-            }
-
-            for (int i = 1; i >= 0; i--)
-            {
-                (*patch)(2, i) = 2 * (*attribute.patch)(2, i+1) - (*attribute.patch)(2, i+2);
-            }
-
-            for (int i = 1; i >= 0; i--)
-            {
-                (*patch)(i, 2) = 2 * (*attribute.patch)(i+1, 2) - (*attribute.patch)(i+2, 2);
-            }
-
-            for (int i = 1; i >= 0; i--)
-            {
-                for (int j = 1; j >= 0; j--)
-                {
-                    (*patch)(i, j) = 2 * (*attribute.patch)(i, j+1) - (*attribute.patch)(i, j+2);
+            for(int i=0; i<=3; i++) {
+                for (int j=0; j<=3;j++) {
+                    (*patch)(i,j) = 2*(*attribute.patch)(0,0) - (*attribute.patch)(3-i,3-j);
                 }
             }
 
@@ -877,37 +821,11 @@ namespace cagd
         else if (direction == SE)
         {
 
-            (*patch)(0, 0) = (*attribute.patch)(3, 3);
-            (*patch)(0, 1) = 2 * (*attribute.patch)(3, 3) - (*attribute.patch)(3, 2);
-            (*patch)(1, 0) = 2 * (*attribute.patch)(3, 3) - (*attribute.patch)(2, 3);
-            (*patch)(1, 1) = 2 * (*attribute.patch)(3, 3) - (*attribute.patch)(2, 2);
-
-            for (int i = 2; i < 4; i++)
-            {
-                (*patch)(0, i) = 2 * (*attribute.patch)(0, i-1) - (*attribute.patch)(0, i-2);
-            }
-
-            for (int i = 2; i < 4; i++)
-            {
-                (*patch)(i, 0) = 2 * (*attribute.patch)(i-1, 0) - (*attribute.patch)(i-2, 0);
-            }
-
-            for (int i = 2; i < 4; i++) {
-                (*patch)(1, i) = 2 * (*attribute.patch)(1, i-1) - (*attribute.patch)(1, i-2);
-            }
-
-            for (int i = 2; i < 4; i++)
-            {
-                (*patch)(i, 1) = 2 * (*attribute.patch)(i-1, 1) - (*attribute.patch)(i-2, 1);
-            }
-
-            for (int i = 2; i < 4; i++)
-            {
-                for (int j = 2; j < 4; j++)
-                {
-                    (*patch)(j, i) = 2 * (*attribute.patch)(j, i-1) - (*attribute.patch)(j, i-2);
+            for(int i=0; i<=3; i++) {
+                for (int j=0; j<=3;j++) {
+                    (*patch)(i,j) = 2*(*attribute.patch)(3,3) - (*attribute.patch)(3-i,3-j);
                 }
-           }
+            }
 
             attribute.neighbours[5] = &newAttribute;
             newAttribute.neighbours[1] = &attribute;
@@ -915,38 +833,11 @@ namespace cagd
         else if (direction == SW)
         {
 
-            (*patch)(0, 3) = (*attribute.patch)(3, 0);
-            (*patch)(0, 2) = 2 * (*attribute.patch)(3, 0) - (*attribute.patch)(3, 1);
-            (*patch)(1, 3) = 2 * (*attribute.patch)(3, 0) - (*attribute.patch)(2, 0);
-            (*patch)(1, 2) = 2 * (*attribute.patch)(3, 0) - (*attribute.patch)(2, 1);
-
-            for (int i = 1; i >= 0; i--)
-            {
-                (*patch)(0, i) = 2 * (*attribute.patch)(0, i+1) - (*attribute.patch)(0, i+2);
-            }
-
-            for (int i = 2; i < 4; i++)
-            {
-                (*patch)(i, 3) = 2 * (*attribute.patch)(i-1, 3) - (*attribute.patch)(i-2, 3);
-            }
-
-            for (int i = 1; i >= 0; i--)
-            {
-                (*patch)(1, i) = 2 * (*attribute.patch)(1, i+1) - (*attribute.patch)(1, i+2);
-            }
-
-            for (int i = 2; i < 4; i++)
-            {
-                (*patch)(i, 2) = 2 * (*attribute.patch)(i-1, 2) - (*attribute.patch)(i-2, 2);
-            }
-
-            for (int i = 2; i < 4; i++)
-            {
-                for (int j = 1; j >= 0; j--)
-                {
-                    (*patch)(i, j) = 2 * (*attribute.patch)(i, j+1) - (*attribute.patch)(i, j+2);
+            for(int i=0; i<=3; i++) {
+                for (int j=0; j<=3;j++) {
+                    (*patch)(i,j) = 2*(*attribute.patch)(3,0) - (*attribute.patch)(3-i,3-j);
                 }
-           }
+            }
 
            attribute.neighbours[3] = &newAttribute;
            newAttribute.neighbours[7] = &attribute;
