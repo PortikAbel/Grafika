@@ -759,18 +759,18 @@ namespace cagd
         BicubicBezierPatch* patch = newAttribute.patch;
 
         if (direction == N)
-                {
-                    for(GLuint i=0; i<=3; ++i)
-                    {
-                       (*patch)(3, i) = (*attribute.patch)(0, i);
-                       (*patch)(2, i) = 2 * (*attribute.patch)(0, i) - (*attribute.patch)(1, i);
-                       (*patch)(1, i) = 2 * (*patch)(2, i) - (*patch)(3, i);
-                       (*patch)(0, i) = 2 * (*patch)(1, i) - (*patch)(2, i);
+        {
+            for(GLuint i=0; i<=3; ++i)
+            {
+               (*patch)(3, i) = (*attribute.patch)(0, i);
+               (*patch)(2, i) = 2 * (*attribute.patch)(0, i) - (*attribute.patch)(1, i);
+               (*patch)(1, i) = 2 * (*patch)(2, i) - (*patch)(3, i);
+               (*patch)(0, i) = 2 * (*patch)(1, i) - (*patch)(2, i);
 
-                    }
-                    attribute.neighbours[0] = &newAttribute;
-                    newAttribute.neighbours[4] = &attribute;
-                }
+            }
+            attribute.neighbours[0] = &newAttribute;
+            newAttribute.neighbours[4] = &attribute;
+        }
         else if (direction == NE)
         {
             (*patch)(3,0) = (*attribute.patch)(0, 3);
@@ -847,31 +847,30 @@ namespace cagd
             newAttribute.neighbours[5] = &attribute;
         }
         else   if (direction == W)
-                      {
-                        for(GLuint i=0; i<=3; ++i)
-                        {
-                          (*patch)(i, 3) = (*attribute.patch)(i, 0);
-                          (*patch)(i, 2) = 2 * (*attribute.patch)(i, 0) - (*attribute.patch)(i, 1);
-                          (*patch)(i, 1) = 2 * (*patch)(i, 2) - (*patch)(i, 3);
-                          (*patch)(i, 0) = 2 * (*patch)(i, 1) - (*patch)(i, 2);
+        {
+            for(GLuint i=0; i<=3; ++i)
+            {
+                (*patch)(i, 3) = (*attribute.patch)(i, 0);
+                (*patch)(i, 2) = 2 * (*attribute.patch)(i, 0) - (*attribute.patch)(i, 1);
+                (*patch)(i, 1) = 2 * (*patch)(i, 2) - (*patch)(i, 3);
+                (*patch)(i, 0) = 2 * (*patch)(i, 1) - (*patch)(i, 2);
 
-                        }
-                        attribute.neighbours[2] = &newAttribute;
-                        newAttribute.neighbours[6] = &attribute;
-                      }
+            }
+            attribute.neighbours[2] = &newAttribute;
+            newAttribute.neighbours[6] = &attribute;
+        }
         else   if (direction == S)
-                      {
-                        for(GLuint i=0; i<=3; ++i)
-                        {
-                          (*patch)(0, i) = (*attribute.patch)(3, i);
-                          (*patch)(1, i) = 2 * (*attribute.patch)(3, i) - (*attribute.patch)(2, i);
-                          (*patch)(2, i) = 2 * (*patch)(1, i) - (*patch)(0, i);
-                          (*patch)(3, i) = 2 * (*patch)(2, i) - (*patch)(1, i);
-
-                        }
-                        attribute.neighbours[4] = &newAttribute;
-                        newAttribute.neighbours[0] = &attribute;
-                      }
+        {
+        for(GLuint i=0; i<=3; ++i)
+        {
+            (*patch)(0, i) = (*attribute.patch)(3, i);
+            (*patch)(1, i) = 2 * (*attribute.patch)(3, i) - (*attribute.patch)(2, i);
+            (*patch)(2, i) = 2 * (*patch)(1, i) - (*patch)(0, i);
+            (*patch)(3, i) = 2 * (*patch)(2, i) - (*patch)(1, i);
+        }
+        attribute.neighbours[4] = &newAttribute;
+        newAttribute.neighbours[0] = &attribute;
+        }
         else if (direction == SE)
         {
 
@@ -951,20 +950,18 @@ namespace cagd
 
         }
         else   if (direction == E)
-                      {
-                        for(GLuint i=0; i<=3; ++i)
-                        {
-                          (*patch)(i, 0) = (*attribute.patch)(i, 3);
-                          (*patch)(i, 1) = 2 * (*attribute.patch)(i, 3) - (*attribute.patch)(i, 2);
-                          (*patch)(i, 2) = 2 * (*patch)(i, 1) - (*patch)(i, 0);
-                          (*patch)(i, 3) = 2 * (*patch)(i, 2) - (*patch)(i, 1);
+        {
+        for(GLuint i=0; i<=3; ++i)
+        {
+            (*patch)(i, 0) = (*attribute.patch)(i, 3);
+            (*patch)(i, 1) = 2 * (*attribute.patch)(i, 3) - (*attribute.patch)(i, 2);
+            (*patch)(i, 2) = 2 * (*patch)(i, 1) - (*patch)(i, 0);
+            (*patch)(i, 3) = 2 * (*patch)(i, 2) - (*patch)(i, 1);
 
-                        }
-                        attribute.neighbours[6] = &newAttribute;
-                        newAttribute.neighbours[2] = &attribute;
-                      }
-
-
+        }
+        attribute.neighbours[6] = &newAttribute;
+        newAttribute.neighbours[2] = &attribute;
+        }
         return UpdateVBOs(newAttribute);
     }
 
