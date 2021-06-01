@@ -778,7 +778,6 @@ namespace cagd
                 }
             }
 
-
             attribute.neighbours[7] = &newAttribute;
             newAttribute.neighbours[3] = &attribute;
         }

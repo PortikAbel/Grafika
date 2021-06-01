@@ -2206,22 +2206,21 @@ namespace cagd
         {
             switch (dir)
             {
-            case 0: _patch_dir_2 = BicubicCompositeSurface3::Direction::N;
+            case 0: _patch_dir_2 = BicubicCompositeSurface3::Direction::E;
                 break;
-            case 1: _patch_dir_2 = BicubicCompositeSurface3::Direction::NW;
+            case 1: _patch_dir_2 = BicubicCompositeSurface3::Direction::N;
                 break;
-            case 2: _patch_dir_2 = BicubicCompositeSurface3::Direction::W;
+            case 2: _patch_dir_2 = BicubicCompositeSurface3::Direction::S;
                 break;
-            case 3: _patch_dir_2 = BicubicCompositeSurface3::Direction::SW;
+            case 3: _patch_dir_2 = BicubicCompositeSurface3::Direction::W;
                 break;
-            case 4: _patch_dir_2 = BicubicCompositeSurface3::Direction::S;
+            case 4: _patch_dir_2 = BicubicCompositeSurface3::Direction::NE;
                 break;
-            case 5: _patch_dir_2 = BicubicCompositeSurface3::Direction::SE;
+            case 5: _patch_dir_2 = BicubicCompositeSurface3::Direction::NW;
                 break;
-            case 6: _patch_dir_2 = BicubicCompositeSurface3::Direction::E;
+            case 6: _patch_dir_2 = BicubicCompositeSurface3::Direction::SE;
                 break;
-            case 7: _patch_dir_2 = BicubicCompositeSurface3::Direction::NE;
-                break;
+            case 7: _patch_dir_2 = BicubicCompositeSurface3::Direction::SW;
             }
         }
     }
