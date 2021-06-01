@@ -164,8 +164,8 @@ namespace cagd
 
         BicubicCompositeSurface3*   _compositeSurface;
         GLuint      _selectedPatch1     = 0,    _selectedPatch2   = 0;
-        BicubicCompositeSurface3::Direction _patch_dir_1 = BicubicCompositeSurface3::Direction::N;
-        BicubicCompositeSurface3::Direction _patch_dir_2 = BicubicCompositeSurface3::Direction::N;
+        BicubicCompositeSurface3::Direction _patch_dir_1 = BicubicCompositeSurface3::Direction::E;
+        BicubicCompositeSurface3::Direction _patch_dir_2 = BicubicCompositeSurface3::Direction::E;
         GLuint      _selectedPointRow   = 0,    _selectedPointCol = 0;
         bool        _showIsoLinesU      = false;
         bool        _showIsoLinesV      = false;

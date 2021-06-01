@@ -766,21 +766,24 @@ namespace cagd
                (*patch)(2, i) = 2 * (*attribute.patch)(0, i) - (*attribute.patch)(1, i);
                (*patch)(1, i) = 2 * (*patch)(2, i) - (*patch)(3, i);
                (*patch)(0, i) = 2 * (*patch)(1, i) - (*patch)(2, i);
-
             }
-            attribute.neighbours[0] = &newAttribute;
-            newAttribute.neighbours[4] = &attribute;
+            attribute.neighbours[N] = &newAttribute;
+            newAttribute.neighbours[S] = &attribute;
         }
         else if (direction == NE)
         {
             (*patch)(3,0) = (*attribute.patch)(0, 3);
-            (*patch)(3,1) = 2*(*attribute.patch)(0, 3) - (*attribute.patch)(0, 2);
             (*patch)(2,0) = 2*(*attribute.patch)(0, 3) - (*attribute.patch)(1, 3);
+            (*patch)(3,1) = 2*(*attribute.patch)(0, 3) - (*attribute.patch)(0, 2);
             (*patch)(2,1) = 2*(*attribute.patch)(0, 3) - (*attribute.patch)(1, 2);
 
-            for (int i = 2;  i < 4; i++)
+            for (int i = 3; i >= 2; i--)
             {
-                (*patch)(3,i) = (*attribute.patch)(3, i-1) - (*attribute.patch)(3, i-2);
+                (*patch)(i-2, 0) = 2 * (*patch)(i-1, 0) - (*patch)(i, 0);
+            }
+            for (int i = 2; i <= 3; i++)
+            {
+                (*patch)(3, i) = 2 * (*patch)(3, i-1) - (*patch)(3, i-2);
             }
 
             for (int i = 1; i >= 0; i--)
@@ -951,16 +954,16 @@ namespace cagd
         }
         else   if (direction == E)
         {
-        for(GLuint i=0; i<=3; ++i)
-        {
-            (*patch)(i, 0) = (*attribute.patch)(i, 3);
-            (*patch)(i, 1) = 2 * (*attribute.patch)(i, 3) - (*attribute.patch)(i, 2);
-            (*patch)(i, 2) = 2 * (*patch)(i, 1) - (*patch)(i, 0);
-            (*patch)(i, 3) = 2 * (*patch)(i, 2) - (*patch)(i, 1);
+            for(GLuint i=0; i<=3; ++i)
+            {
+                (*patch)(i, 0) = (*attribute.patch)(i, 3);
+                (*patch)(i, 1) = 2 * (*attribute.patch)(i, 3) - (*attribute.patch)(i, 2);
+                (*patch)(i, 2) = 2 * (*patch)(i, 1) - (*patch)(i, 0);
+                (*patch)(i, 3) = 2 * (*patch)(i, 2) - (*patch)(i, 1);
 
-        }
-        attribute.neighbours[6] = &newAttribute;
-        newAttribute.neighbours[2] = &attribute;
+            }
+            attribute.neighbours[E] = &newAttribute;
+            newAttribute.neighbours[W] = &attribute;
         }
         return UpdateVBOs(newAttribute);
     }
