@@ -983,29 +983,29 @@ namespace cagd
         case NW:
             for (GLuint i = 0; i <= 3; ++i)
             {
-                (*newAttribute.patch)(3,i) = 2 * (*firstAttribute.patch)(0,0) - (*firstAttribute.patch)(0,i);
-                (*newAttribute.patch)(2,i) = 2 * (*firstAttribute.patch)(0,0) - (*firstAttribute.patch)(1,i);
+                (*newAttribute.patch)(3,i) = 2 * (*secondAttribute.patch)(0,0) - (*secondAttribute.patch)(0,i);
+                (*newAttribute.patch)(2,i) = 2 * (*secondAttribute.patch)(0,0) - (*secondAttribute.patch)(1,i);
             }
             break;
         case NE:
             for (GLuint i = 0; i <= 3; ++i)
             {
-                (*newAttribute.patch)(3,i) = 2 * (*firstAttribute.patch)(0,3) - (*firstAttribute.patch)(0,i);
-                (*newAttribute.patch)(2,i) = 2 * (*firstAttribute.patch)(0,3) - (*firstAttribute.patch)(1,i);
+                (*newAttribute.patch)(3,i) = 2 * (*secondAttribute.patch)(0,3) - (*secondAttribute.patch)(0,i);
+                (*newAttribute.patch)(2,i) = 2 * (*secondAttribute.patch)(0,3) - (*secondAttribute.patch)(1,i);
             }
             break;
         case SW:
             for (GLuint i = 0; i <= 3; ++i)
             {
-                (*newAttribute.patch)(3,i) = 2 * (*firstAttribute.patch)(3,0) - (*firstAttribute.patch)(3,i);
-                (*newAttribute.patch)(2,i) = 2 * (*firstAttribute.patch)(3,0) - (*firstAttribute.patch)(2,i);
+                (*newAttribute.patch)(3,i) = 2 * (*secondAttribute.patch)(3,0) - (*secondAttribute.patch)(3,i);
+                (*newAttribute.patch)(2,i) = 2 * (*secondAttribute.patch)(3,0) - (*secondAttribute.patch)(2,i);
             }
             break;
         case SE:
             for (GLuint i = 0; i <= 3; ++i)
             {
-                (*newAttribute.patch)(3,i) = 2 * (*firstAttribute.patch)(3,3) - (*firstAttribute.patch)(3,i);
-                (*newAttribute.patch)(2,i) = 2 * (*firstAttribute.patch)(3,3) - (*firstAttribute.patch)(2,i);
+                (*newAttribute.patch)(3,i) = 2 * (*secondAttribute.patch)(3,3) - (*secondAttribute.patch)(3,i);
+                (*newAttribute.patch)(2,i) = 2 * (*secondAttribute.patch)(3,3) - (*secondAttribute.patch)(2,i);
             }
             break;
         }
@@ -1039,8 +1039,8 @@ namespace cagd
                 (*firstAttribute.patch)(0, i) = (*secondAttribute.patch)(0, i) = 0.5 * ((*firstAttribute.patch)(1, i) + (*secondAttribute.patch)(1, i));
             }
 
-            firstAttribute.neighbours[0] = &secondAttribute;
-            secondAttribute.neighbours[0] = &firstAttribute;
+            firstAttribute.neighbours[N] = &secondAttribute;
+            secondAttribute.neighbours[N] = &firstAttribute;
         }
         else if (firstDirection == N && secondDirection == W)
         {
@@ -1049,8 +1049,8 @@ namespace cagd
                 (*firstAttribute.patch)(0, i) = (*secondAttribute.patch)(i, 0) = 0.5 * ((*firstAttribute.patch)(1, i) + (*secondAttribute.patch)(i, 1));
             }
 
-            firstAttribute.neighbours[0] = &secondAttribute;
-            secondAttribute.neighbours[2] = &firstAttribute;
+            firstAttribute.neighbours[N] = &secondAttribute;
+            secondAttribute.neighbours[W] = &firstAttribute;
         }
         else if (firstDirection == N && secondDirection == S)
         {
@@ -1059,135 +1059,8 @@ namespace cagd
                 (*firstAttribute.patch)(0, i) = (*secondAttribute.patch)(3, i) = 0.5 * ((*firstAttribute.patch)(1, i) + (*secondAttribute.patch)(2, i));
             }
 
-            firstAttribute.neighbours[0] = &secondAttribute;
-            secondAttribute.neighbours[4] = &firstAttribute;
-
-            //here
-
-            //Down circle
-
-            PatchAttributes* neighbour = firstAttribute.neighbours[2];
-
-
-            while (neighbour) {
-                (*neighbour->patch)(0,3) = (*firstAttribute.patch)(0,0);
-                if (!UpdateVBOs(*neighbour)){
-                    cout<<"Error at UpdateVBO"<<endl;
-                    return GL_FALSE;
-                }
-
-                neighbour = neighbour->neighbours[0];
-                if(!neighbour){
-                    break;
-                }
-
-
-                (*neighbour->patch)(3,3) =  (*firstAttribute.patch)(0,0);
-
-                if (!UpdateVBOs(*neighbour)){
-                    cout<<"Error at UpdateVBO"<<endl;
-                    return GL_FALSE;
-                }
-
-                neighbour = neighbour->neighbours[6];
-                if(!neighbour){
-                    break;
-                }
-
-
-
-                (*neighbour->patch)(3,0) = (*firstAttribute.patch)(0,0);
-
-                if (!UpdateVBOs(*neighbour)){
-                    cout<<"Error at UpdateVBO"<<endl;
-                    return GL_FALSE;
-                }
-
-                neighbour = neighbour->neighbours[4];
-
-                if(!neighbour || neighbour == &firstAttribute)
-                {
-                    break;
-                }
-
-
-                (*neighbour->patch)(0,0) = (*firstAttribute.patch)(0,0);
-
-                if (!UpdateVBOs(*neighbour)){
-                    cout<<"Error at UpdateVBO"<<endl;
-                    return GL_FALSE;
-                }
-
-                neighbour = neighbour->neighbours[2];
-
-
-
-            }
-
-
-            //Up circle
-
-            PatchAttributes* upNeighbour = firstAttribute.neighbours[6];
-
-
-            while (upNeighbour) {
-                (*upNeighbour->patch)(0,0) = (*firstAttribute.patch)(0,3);
-                if (!UpdateVBOs(*upNeighbour)){
-                    cout<<"Error at UpdateVBO"<<endl;
-                    return GL_FALSE;
-                }
-
-                upNeighbour = upNeighbour->neighbours[0];
-                if(!upNeighbour){
-                    break;
-                }
-
-
-
-                (*upNeighbour->patch)(3,0) =  (*firstAttribute.patch)(0,3);
-
-                if (!UpdateVBOs(*upNeighbour)){
-                    cout<<"Error at UpdateVBO"<<endl;
-                    return GL_FALSE;
-                }
-
-                upNeighbour = upNeighbour->neighbours[2];
-                if(!upNeighbour){
-                    break;
-                }
-
-
-
-                (*upNeighbour->patch)(3,3) = (*firstAttribute.patch)(0,3);
-
-                if (!UpdateVBOs(*upNeighbour)){
-                    cout<<"Error at UpdateVBO"<<endl;
-                    return GL_FALSE;
-                }
-
-                upNeighbour = upNeighbour->neighbours[4];
-
-                if(!upNeighbour || upNeighbour == &firstAttribute)
-                {
-                    break;
-                }
-
-
-                (*upNeighbour->patch)(0,3) = (*firstAttribute.patch)(0,3);
-
-                if (!UpdateVBOs(*upNeighbour)){
-                    cout<<"Error at UpdateVBO"<<endl;
-                    return GL_FALSE;
-                }
-
-                upNeighbour = upNeighbour->neighbours[6];
-
-
-
-            }
-
-
-            //end here
+            firstAttribute.neighbours[N] = &secondAttribute;
+            secondAttribute.neighbours[S] = &firstAttribute;
         }
         else if (firstDirection == N && secondDirection == E)
         {
@@ -1239,117 +1112,6 @@ namespace cagd
             firstAttribute.neighbours[2] = &secondAttribute;
             secondAttribute.neighbours[6] = &firstAttribute;
 
-            // here
-
-
-            //left circle
-            PatchAttributes* neighbour = firstAttribute.neighbours[0];
-
-            while (neighbour) {
-
-                (*neighbour->patch)(3,0) = (*firstAttribute.patch)(0,0);
-
-                if (!UpdateVBOs(*neighbour)){
-                    cout<<"Error at UpdateVBO"<<endl;
-                    return GL_FALSE;
-                }
-
-                neighbour = neighbour->neighbours[2];
-                if(!neighbour){
-                    break;
-                }
-
-                (*neighbour->patch)(3,3) = (*firstAttribute.patch)(0,0);
-
-                if (!UpdateVBOs(*neighbour)){
-                    cout<<"Error at UpdateVBO"<<endl;
-                    return GL_FALSE;
-                }
-
-                neighbour = neighbour->neighbours[4];
-                if(!neighbour){
-                    break;
-                }
-
-                (*neighbour->patch)(0,3) = (*firstAttribute.patch)(0,0);
-
-                if (!UpdateVBOs(*neighbour)){
-                    cout<<"Error at UpdateVBO"<<endl;
-                    return GL_FALSE;
-                }
-
-                neighbour = neighbour->neighbours[6];
-                if(!neighbour || neighbour == &firstAttribute  ){
-                    break;
-                }
-
-                (*neighbour->patch)(0,0) = (*firstAttribute.patch)(0,0);
-
-                if (!UpdateVBOs(*neighbour)){
-                    cout<<"Error at UpdateVBO"<<endl;
-                    return GL_FALSE;
-                }
-
-                neighbour = neighbour->neighbours[0];
-            }
-
-
-            //right circle
-
-            PatchAttributes* rightNeighbour = firstAttribute.neighbours[4];
-
-            while (rightNeighbour) {
-
-                (*rightNeighbour->patch)(0,0) = (*firstAttribute.patch)(3,0);
-
-                if (!UpdateVBOs(*rightNeighbour)){
-                    cout<<"Error at UpdateVBO"<<endl;
-                    return GL_FALSE;
-                }
-
-                rightNeighbour = rightNeighbour->neighbours[2];
-                if(!rightNeighbour){
-                    break;
-                }
-
-                (*rightNeighbour->patch)(0,3) = (*firstAttribute.patch)(3,0);
-
-                if (!UpdateVBOs(*rightNeighbour)){
-                    cout<<"Error at UpdateVBO"<<endl;
-                    return GL_FALSE;
-                }
-
-                rightNeighbour = rightNeighbour->neighbours[0];
-                if(!rightNeighbour){
-                    break;
-                }
-
-                (*rightNeighbour->patch)(3,3) = (*firstAttribute.patch)(3,0);
-
-                if (!UpdateVBOs(*rightNeighbour)){
-                    cout<<"Error at UpdateVBO"<<endl;
-                    return GL_FALSE;
-                }
-
-                rightNeighbour = rightNeighbour->neighbours[6];
-                if(!rightNeighbour || rightNeighbour == &firstAttribute  ){
-                    break;
-                }
-
-                (*rightNeighbour->patch)(3,0) = (*firstAttribute.patch)(3,0);
-
-                if (!UpdateVBOs(*rightNeighbour)){
-                    cout<<"Error at UpdateVBO"<<endl;
-                    return GL_FALSE;
-                }
-
-                rightNeighbour = rightNeighbour->neighbours[0];
-            }
-
-
-            //end here
-
-
         }
         else if (firstDirection == S && secondDirection == N)
         {
@@ -1361,133 +1123,6 @@ namespace cagd
             firstAttribute.neighbours[4] = &secondAttribute;
             secondAttribute.neighbours[0] = &firstAttribute;
 
-
-            //here
-
-            //Down circle
-
-            PatchAttributes* neighbour = firstAttribute.neighbours[2];
-
-            while (neighbour) {
-                (*neighbour->patch)(3,3) = (*firstAttribute.patch)(3,0);
-                if (!UpdateVBOs(*neighbour)){
-                    cout<<"Error at UpdateVBO"<<endl;
-                    return GL_FALSE;
-                }
-
-                neighbour = neighbour->neighbours[4];
-                if(!neighbour){
-                    break;
-                }
-
-
-                (*neighbour->patch)(0,3) =  (*firstAttribute.patch)(3,0);
-
-                if (!UpdateVBOs(*neighbour)){
-                    cout<<"Error at UpdateVBO"<<endl;
-                    return GL_FALSE;
-                }
-
-                neighbour = neighbour->neighbours[6];
-                if(!neighbour){
-                    break;
-                }
-
-
-
-                (*neighbour->patch)(0,0) = (*firstAttribute.patch)(3,0);
-
-                if (!UpdateVBOs(*neighbour)){
-                    cout<<"Error at UpdateVBO"<<endl;
-                    return GL_FALSE;
-                }
-
-                neighbour = neighbour->neighbours[0];
-
-                if(!neighbour || neighbour == &firstAttribute)
-                {
-                    break;
-                }
-
-
-                (*neighbour->patch)(3,0) = (*firstAttribute.patch)(3,0);
-
-                if (!UpdateVBOs(*neighbour)){
-                    cout<<"Error at UpdateVBO"<<endl;
-                    return GL_FALSE;
-                }
-
-                neighbour = neighbour->neighbours[2];
-
-
-
-            }
-
-
-            //Up circle
-
-            PatchAttributes* upNeighbour = firstAttribute.neighbours[6];
-
-
-
-
-            while (upNeighbour) {
-                (*upNeighbour->patch)(3,0) = (*firstAttribute.patch)(3,3);
-                if (!UpdateVBOs(*upNeighbour)){
-                    cout<<"Error at UpdateVBO"<<endl;
-                    return GL_FALSE;
-                }
-
-                upNeighbour = upNeighbour->neighbours[4];
-                if(!upNeighbour){
-                    break;
-                }
-
-
-                (*upNeighbour->patch)(0,0) =  (*firstAttribute.patch)(3,3);
-
-                if (!UpdateVBOs(*upNeighbour)){
-                    cout<<"Error at UpdateVBO"<<endl;
-                    return GL_FALSE;
-                }
-
-                upNeighbour = upNeighbour->neighbours[2];
-                if(!upNeighbour){
-                    break;
-                }
-
-
-
-                (*upNeighbour->patch)(0,3) = (*firstAttribute.patch)(3,3);
-
-                if (!UpdateVBOs(*upNeighbour)){
-                    cout<<"Error at UpdateVBO"<<endl;
-                    return GL_FALSE;
-                }
-
-                upNeighbour = upNeighbour->neighbours[0];
-
-                if(!upNeighbour || upNeighbour == &firstAttribute)
-                {
-                    break;
-                }
-
-
-                (*upNeighbour->patch)(3,3) = (*firstAttribute.patch)(3,3);
-
-                if (!UpdateVBOs(*upNeighbour)){
-                    cout<<"Error at UpdateVBO"<<endl;
-                    return GL_FALSE;
-                }
-
-                upNeighbour = upNeighbour->neighbours[6];
-
-
-
-            }
-
-
-            //end here
         }
         else if (firstDirection == S && secondDirection == W)
         {
@@ -1539,121 +1174,6 @@ namespace cagd
             firstAttribute.neighbours[6] = &secondAttribute;
             secondAttribute.neighbours[2] = &firstAttribute;
 
-
-            // here
-
-
-            //left circle
-            PatchAttributes* neighbour = firstAttribute.neighbours[0];
-
-            while (neighbour) {
-
-                (*neighbour->patch)(3,3) = (*firstAttribute.patch)(0,3);
-
-                if (!UpdateVBOs(*neighbour)){
-                    cout<<"Error at UpdateVBO"<<endl;
-                    return GL_FALSE;
-                }
-
-                neighbour = neighbour->neighbours[6];
-                if(!neighbour){
-                    break;
-                }
-
-                (*neighbour->patch)(3,0) = (*firstAttribute.patch)(0,3);
-
-                if (!UpdateVBOs(*neighbour)){
-                    cout<<"Error at UpdateVBO"<<endl;
-                    return GL_FALSE;
-                }
-
-                neighbour = neighbour->neighbours[4];
-                if(!neighbour){
-                    break;
-                }
-
-                (*neighbour->patch)(0,0) = (*firstAttribute.patch)(0,3);
-
-                if (!UpdateVBOs(*neighbour)){
-                    cout<<"Error at UpdateVBO"<<endl;
-                    return GL_FALSE;
-                }
-
-                neighbour = neighbour->neighbours[2];
-                if(!neighbour || neighbour == &firstAttribute  ){
-                    break;
-                }
-
-                (*neighbour->patch)(0,3) = (*firstAttribute.patch)(0,3);
-
-                if (!UpdateVBOs(*neighbour)){
-                    cout<<"Error at UpdateVBO"<<endl;
-                    return GL_FALSE;
-                }
-
-                neighbour = neighbour->neighbours[0];
-            }
-
-
-//            //right circle
-
-
-
-            PatchAttributes* rightNeighbour = firstAttribute.neighbours[4];
-
-            while (rightNeighbour) {
-
-                (*rightNeighbour->patch)(0,3) = (*firstAttribute.patch)(3,3);
-
-                if (!UpdateVBOs(*rightNeighbour)){
-                    cout<<"Error at UpdateVBO"<<endl;
-                    return GL_FALSE;
-                }
-
-                rightNeighbour = rightNeighbour->neighbours[6];
-                if(!rightNeighbour){
-                    break;
-                }
-
-                (*rightNeighbour->patch)(0,0) = (*firstAttribute.patch)(3,3);
-
-                if (!UpdateVBOs(*rightNeighbour)){
-                    cout<<"Error at UpdateVBO"<<endl;
-                    return GL_FALSE;
-                }
-
-                rightNeighbour = rightNeighbour->neighbours[0];
-                if(!rightNeighbour){
-                    break;
-                }
-
-                (*rightNeighbour->patch)(3,0) = (*firstAttribute.patch)(3,3);
-
-                if (!UpdateVBOs(*rightNeighbour)){
-                    cout<<"Error at UpdateVBO"<<endl;
-                    return GL_FALSE;
-                }
-
-                rightNeighbour = rightNeighbour->neighbours[6];
-                if(!rightNeighbour || rightNeighbour == &firstAttribute  ){
-                    break;
-                }
-
-                (*rightNeighbour->patch)(3,3) = (*firstAttribute.patch)(3,3);
-
-                if (!UpdateVBOs(*rightNeighbour)){
-                    cout<<"Error at UpdateVBO"<<endl;
-                    return GL_FALSE;
-                }
-
-                rightNeighbour = rightNeighbour->neighbours[4];
-            }
-
-
-            //end here
-
-
-
         }
         else if (firstDirection == E && secondDirection == S)
         {
@@ -1674,6 +1194,33 @@ namespace cagd
 
             firstAttribute.neighbours[6] = &secondAttribute;
             secondAttribute.neighbours[6] = &firstAttribute;
+        }
+
+        switch (firstDirection)
+        {
+        case N:
+            if (firstAttribute.neighbours[NE])
+            {
+                PatchAttributes& neighbour = *firstAttribute.neighbours[NE];
+                (*neighbour.patch)(3,0) = (*firstAttribute.patch)(0,3);
+                (*neighbour.patch)(3,1) = 2 * (*firstAttribute.patch)(0,3) - (*firstAttribute.patch)(0,2);
+                (*neighbour.patch)(2,1) = 2 * (*firstAttribute.patch)(0,3) - (*firstAttribute.patch)(1,2);
+                (*neighbour.patch)(2,0) = 2 * (*firstAttribute.patch)(0,3) - (*firstAttribute.patch)(1,3);
+            }
+            if (firstAttribute.neighbours[NW])
+            {
+                PatchAttributes& neighbour = *firstAttribute.neighbours[NW];
+                (*neighbour.patch)(3,3) = (*firstAttribute.patch)(0,0);
+                (*neighbour.patch)(3,2) = 2 * (*firstAttribute.patch)(0,0) - (*firstAttribute.patch)(0,1);
+            }
+            //if () E
+            // W
+            break;
+        }
+
+        switch (secondDirection)
+        {
+
         }
 
         return UpdateVBOs(firstAttribute) && UpdateVBOs(secondAttribute);
