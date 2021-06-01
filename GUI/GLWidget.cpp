@@ -2239,7 +2239,7 @@ namespace cagd
             for (GLuint j = 0; j <= 3; j++)
             {
                 _compositeSurface->GetDataPointValues(_selectedPatch1, i, j, selectedPoint);
-                selectedPoint.x() = selectedPoint.x() - 0.1;
+                selectedPoint.x() = selectedPoint.x() - 1.0;
                 _compositeSurface->UpdatePatch(_selectedPatch1, i, j, selectedPoint);
                 if (_selectedPointRow == i && _selectedPointCol == j)
                 {
@@ -2260,7 +2260,7 @@ namespace cagd
             for (GLuint j = 0; j <= 3; j++)
             {
                 _compositeSurface->GetDataPointValues(_selectedPatch1, i, j, selectedPoint);
-                selectedPoint.x() = selectedPoint.x() + 0.1;
+                selectedPoint.x() = selectedPoint.x() + 1.0;
                 _compositeSurface->UpdatePatch(_selectedPatch1, i, j, selectedPoint);
                 if (_selectedPointRow == i && _selectedPointCol == j)
                 {
@@ -2281,7 +2281,7 @@ namespace cagd
             for (GLuint j = 0; j <= 3; j++)
             {
                 _compositeSurface->GetDataPointValues(_selectedPatch1, i, j, selectedPoint);
-                selectedPoint.y() = selectedPoint.y() - 0.1;
+                selectedPoint.y() = selectedPoint.y() - 1.0;
                 _compositeSurface->UpdatePatch(_selectedPatch1, i, j, selectedPoint);
                 if (_selectedPointRow == i && _selectedPointCol == j)
                 {
@@ -2302,7 +2302,7 @@ namespace cagd
             for (GLuint j = 0; j <= 3; j++)
             {
                 _compositeSurface->GetDataPointValues(_selectedPatch1, i, j, selectedPoint);
-                selectedPoint.y() = selectedPoint.y() + 0.1;
+                selectedPoint.y() = selectedPoint.y() + 1.0;
                 _compositeSurface->UpdatePatch(_selectedPatch1, i, j, selectedPoint);
                 if (_selectedPointRow == i && _selectedPointCol == j)
                 {
@@ -2323,7 +2323,7 @@ namespace cagd
             for (GLuint j = 0; j <= 3; j++)
             {
                 _compositeSurface->GetDataPointValues(_selectedPatch1, i, j, selectedPoint);
-                selectedPoint.z() = selectedPoint.z() - 0.1;
+                selectedPoint.z() = selectedPoint.z() - 1.0;
                 _compositeSurface->UpdatePatch(_selectedPatch1, i, j, selectedPoint);
                 if (_selectedPointRow == i && _selectedPointCol == j)
                 {
@@ -2344,7 +2344,7 @@ namespace cagd
             for (GLuint j = 0; j <= 3; j++)
             {
                 _compositeSurface->GetDataPointValues(_selectedPatch1, i, j, selectedPoint);
-                selectedPoint.z() = selectedPoint.z() + 0.1;
+                selectedPoint.z() = selectedPoint.z() + 1.0;
                 _compositeSurface->UpdatePatch(_selectedPatch1, i, j, selectedPoint);
                 if (_selectedPointRow == i && _selectedPointCol == j)
                 {
