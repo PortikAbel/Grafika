@@ -995,90 +995,132 @@ namespace cagd
         //---------------------------------------------------------
         //                  FIRST DIRECTION
         //---------------------------------------------------------
-        if (firstDirection == N)
+        switch (firstDirection)
         {
-            for (GLuint i=0; i<=3; ++i)
+        case N:
+            for (GLuint i = 0; i <= 3; ++i)
             {
                 (*newAttribute.patch)(0, i) = (*firstAttribute.patch)(0, i);
                 (*newAttribute.patch)(1, i) = 2 * (*firstAttribute.patch)(0, i) - (*firstAttribute.patch)(1, i);
             }
-            firstAttribute.neighbours[0] = &newAttribute;
-            newAttribute.neighbours[4] = &firstAttribute;
-        }
-        else if (firstDirection == W)
-        {
-            for (GLuint i=0; i<=3; ++i)
+            break;
+        case W:
+            for (GLuint i = 0; i <= 3; ++i)
             {
                 (*newAttribute.patch)(0, i) = (*firstAttribute.patch)(i, 0);
                 (*newAttribute.patch)(1, i) = 2 * (*firstAttribute.patch)(i, 0) - (*firstAttribute.patch)(i, 1);
             }
-            firstAttribute.neighbours[2] = &newAttribute;
-            newAttribute.neighbours[6] = &firstAttribute;
-        }
-        else if (firstDirection == S)
-        {
-            for (GLuint i = 0; i < 4; ++i)
+            break;
+        case S:
+            for (GLuint i = 0; i <= 3; ++i)
             {
                 (*newAttribute.patch)(0,i) = (*firstAttribute.patch)(3,i);
                 (*newAttribute.patch)(1,i) = 2 * (*firstAttribute.patch)(3,i) - (*firstAttribute.patch)(2,i);
             }
-            firstAttribute.neighbours[4] = &newAttribute;
-            newAttribute.neighbours[0] = &firstAttribute;
-        }
-        else if (firstDirection == E)
-        {
-            for (GLuint i = 0; i < 4; ++i)
+            break;
+        case E:
+            for (GLuint i = 0; i <= 3; ++i)
             {
                 (*newAttribute.patch)(0,i) = (*firstAttribute.patch)(i,3);
                 (*newAttribute.patch)(1,i) = 2 * (*firstAttribute.patch)(i,3) - (*firstAttribute.patch)(i,2);
             }
-            firstAttribute.neighbours[6] = &newAttribute;
-            newAttribute.neighbours[2] = &firstAttribute;
+            break;
+        case NW:
+            for (GLuint i = 0; i <= 3; ++i)
+            {
+                (*newAttribute.patch)(0,i) = 2 * (*firstAttribute.patch)(0,0) - (*firstAttribute.patch)(0,i);
+                (*newAttribute.patch)(1,i) = 2 * (*firstAttribute.patch)(0,0) - (*firstAttribute.patch)(1,i);
+            }
+            break;
+        case NE:
+            for (GLuint i = 0; i <= 3; ++i)
+            {
+                (*newAttribute.patch)(0,i) = 2 * (*firstAttribute.patch)(0,3) - (*firstAttribute.patch)(0,i);
+                (*newAttribute.patch)(1,i) = 2 * (*firstAttribute.patch)(0,3) - (*firstAttribute.patch)(1,i);
+            }
+            break;
+        case SW:
+            for (GLuint i = 0; i <= 3; ++i)
+            {
+                (*newAttribute.patch)(0,i) = 2 * (*firstAttribute.patch)(3,0) - (*firstAttribute.patch)(3,i);
+                (*newAttribute.patch)(1,i) = 2 * (*firstAttribute.patch)(3,0) - (*firstAttribute.patch)(2,i);
+            }
+            break;
+        case SE:
+            for (GLuint i = 0; i <= 3; ++i)
+            {
+                (*newAttribute.patch)(0,i) = 2 * (*firstAttribute.patch)(3,3) - (*firstAttribute.patch)(3,i);
+                (*newAttribute.patch)(1,i) = 2 * (*firstAttribute.patch)(3,3) - (*firstAttribute.patch)(2,i);
+            }
+            break;
         }
+        firstAttribute.neighbours[firstDirection] = &newAttribute;
+        newAttribute.neighbours[N] = &secondAttribute;
 
         //---------------------------------------------------------
         //                  SECOND DIRECTION
         //---------------------------------------------------------
-        if (secondDirection == N)
+        switch(secondDirection)
         {
+        case N:
             for (GLuint i=0; i<=3; ++i)
             {
                 (*newAttribute.patch)(3, i) = (*secondAttribute.patch)(0, i);
                 (*newAttribute.patch)(2, i) = 2 * (*secondAttribute.patch)(0, i) - (*secondAttribute.patch)(1, i);
             }
-            secondAttribute.neighbours[0] = &newAttribute;
-            newAttribute.neighbours[4] = &secondAttribute;
-        }
-        else if (secondDirection == W)
-        {
+            break;
+        case W:
             for (GLuint i=0; i<=3; ++i)
             {
                 (*newAttribute.patch)(3, i) = (*secondAttribute.patch)(i, 0);
                 (*newAttribute.patch)(2, i) = 2 * (*secondAttribute.patch)(i, 0) - (*secondAttribute.patch)(i, 1);
             }
-            secondAttribute.neighbours[2] = &newAttribute;
-            newAttribute.neighbours[6] = &secondAttribute;
-        }
-        else if (secondDirection == S)
-        {
+            break;
+        case S:
             for (GLuint i = 0; i < 4; ++i)
             {
                 (*newAttribute.patch)(3,i) = (*secondAttribute.patch)(3,i);
                 (*newAttribute.patch)(2,i) = 2 * (*secondAttribute.patch)(3,i) - (*secondAttribute.patch)(2,i);
             }
-            secondAttribute.neighbours[4] = &newAttribute;
-            newAttribute.neighbours[0] = &secondAttribute;
-        }
-        else if (secondDirection == E)
-        {
+            break;
+        case E:
             for (GLuint i = 0; i < 4; ++i)
             {
                 (*newAttribute.patch)(3,i) = (*secondAttribute.patch)(i,3);
                 (*newAttribute.patch)(2,i) = 2 * (*secondAttribute.patch)(3,i) - (*secondAttribute.patch)(i,2);
             }
-            secondAttribute.neighbours[6] = &newAttribute;
-            newAttribute.neighbours[2] = &secondAttribute;
+            break;
+        case NW:
+            for (GLuint i = 0; i <= 3; ++i)
+            {
+                (*newAttribute.patch)(3,i) = 2 * (*firstAttribute.patch)(0,0) - (*firstAttribute.patch)(0,i);
+                (*newAttribute.patch)(2,i) = 2 * (*firstAttribute.patch)(0,0) - (*firstAttribute.patch)(1,i);
+            }
+            break;
+        case NE:
+            for (GLuint i = 0; i <= 3; ++i)
+            {
+                (*newAttribute.patch)(3,i) = 2 * (*firstAttribute.patch)(0,3) - (*firstAttribute.patch)(0,i);
+                (*newAttribute.patch)(2,i) = 2 * (*firstAttribute.patch)(0,3) - (*firstAttribute.patch)(1,i);
+            }
+            break;
+        case SW:
+            for (GLuint i = 0; i <= 3; ++i)
+            {
+                (*newAttribute.patch)(3,i) = 2 * (*firstAttribute.patch)(3,0) - (*firstAttribute.patch)(3,i);
+                (*newAttribute.patch)(2,i) = 2 * (*firstAttribute.patch)(3,0) - (*firstAttribute.patch)(2,i);
+            }
+            break;
+        case SE:
+            for (GLuint i = 0; i <= 3; ++i)
+            {
+                (*newAttribute.patch)(3,i) = 2 * (*firstAttribute.patch)(3,3) - (*firstAttribute.patch)(3,i);
+                (*newAttribute.patch)(2,i) = 2 * (*firstAttribute.patch)(3,3) - (*firstAttribute.patch)(2,i);
+            }
+            break;
         }
+        secondAttribute.neighbours[secondDirection] = &newAttribute;
+        newAttribute.neighbours[S] = &secondAttribute;
 
         return UpdateVBOs(newAttribute);
     }
