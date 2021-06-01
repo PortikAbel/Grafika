@@ -144,6 +144,12 @@ namespace cagd
         connect(_side_widget->new_patch_button, SIGNAL(clicked()), _gl_widget, SLOT(new_patch()));
         connect(_side_widget->patch_continue_button, SIGNAL(clicked()), _gl_widget, SLOT(cont_patch()));
         connect(_side_widget->patch_1_dir_comboBox, SIGNAL(currentIndexChanged(int)), _gl_widget, SLOT(set_patch_dir_1(int)));
+        connect(_side_widget->patch_2_dir_comboBox, SIGNAL(currentIndexChanged(int)), _gl_widget, SLOT(set_patch_dir_2(int)));
+
+        connect(_side_widget->patch_join_button, SIGNAL(clicked()), _gl_widget, SLOT(join_patches()));
+        connect(_side_widget->patch_merge_button, SIGNAL(clicked()), _gl_widget, SLOT(merge_patches()));
+
+
         // change scene
         connect(_side_widget->toolBox, SIGNAL(currentChanged(int)), _gl_widget, SLOT(setID(int)));
     }
