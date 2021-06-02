@@ -210,7 +210,7 @@ namespace cagd
             if (neighbours[NE]->neighbours[NE] == this)
             {
                 symmetricRow = column;
-                symmetricColumn = col
+                //symmetricColumn = col;
             }
         }
     }
@@ -1223,7 +1223,186 @@ namespace cagd
             (*firstAttribute.patch)(0,2) += m - m2;
             (*secondAttribute.patch)(3,1) += m - m2;
         }
-
+        else if (firstDirection == NE && secondDirection == SE)
+        {
+            DCoordinate3 m1 = ((*firstAttribute.patch)(1,3) + (*secondAttribute.patch)(3,2)) * 0.5;
+            DCoordinate3 m2 = ((*firstAttribute.patch)(0,2) + (*secondAttribute.patch)(2,3)) * 0.5;
+            DCoordinate3 m = (m1 + m2) * 0.5;
+            (*firstAttribute.patch)(0,3) = m;
+            (*secondAttribute.patch)(3,3) = m;
+            (*firstAttribute.patch)(1,3) += m - m1;
+            (*secondAttribute.patch)(3,2) += m - m1;
+            (*firstAttribute.patch)(0,2) += m - m2;
+            (*secondAttribute.patch)(2,3) += m - m2;
+        }
+        else if (firstDirection == NE && secondDirection == NE)
+        {
+            DCoordinate3 m1 = ((*firstAttribute.patch)(1,3) + (*secondAttribute.patch)(1,3)) * 0.5;
+            DCoordinate3 m2 = ((*firstAttribute.patch)(0,2) + (*secondAttribute.patch)(0,2)) * 0.5;
+            DCoordinate3 m = (m1 + m2) * 0.5;
+            (*firstAttribute.patch)(0,3) = m;
+            (*secondAttribute.patch)(0,3) = m;
+            (*firstAttribute.patch)(1,3) += m - m1;
+            (*secondAttribute.patch)(1,3) += m - m1;
+            (*firstAttribute.patch)(0,2) += m - m2;
+            (*secondAttribute.patch)(0,2) += m - m2;
+        }
+        else if (firstDirection == NE && secondDirection == NW)
+        {
+            DCoordinate3 m1 = ((*firstAttribute.patch)(1,3) + (*secondAttribute.patch)(0,1)) * 0.5;
+            DCoordinate3 m2 = ((*firstAttribute.patch)(0,2) + (*secondAttribute.patch)(1,0)) * 0.5;
+            DCoordinate3 m = (m1 + m2) * 0.5;
+            (*firstAttribute.patch)(0,3) = m;
+            (*secondAttribute.patch)(0,0) = m;
+            (*firstAttribute.patch)(1,3) += m - m1;
+            (*secondAttribute.patch)(0,1) += m - m1;
+            (*firstAttribute.patch)(0,2) += m - m2;
+            (*secondAttribute.patch)(1,0) += m - m2;
+        }
+        else if (firstDirection == SE && secondDirection == SW)
+        {
+            DCoordinate3 m1 = ((*firstAttribute.patch)(3,2) + (*secondAttribute.patch)(2,0)) * 0.5;
+            DCoordinate3 m2 = ((*firstAttribute.patch)(2,3) + (*secondAttribute.patch)(3,1)) * 0.5;
+            DCoordinate3 m = (m1 + m2) * 0.5;
+            (*firstAttribute.patch)(3,3) = m;
+            (*secondAttribute.patch)(3,0) = m;
+            (*firstAttribute.patch)(3,2) += m - m1;
+            (*secondAttribute.patch)(2,0) += m - m1;
+            (*firstAttribute.patch)(2,3) += m - m2;
+            (*secondAttribute.patch)(3,1) += m - m2;
+        }
+        else if (firstDirection == SE && secondDirection == SE)
+        {
+            DCoordinate3 m1 = ((*firstAttribute.patch)(3,2) + (*secondAttribute.patch)(3,2)) * 0.5;
+            DCoordinate3 m2 = ((*firstAttribute.patch)(2,3) + (*secondAttribute.patch)(2,3)) * 0.5;
+            DCoordinate3 m = (m1 + m2) * 0.5;
+            (*firstAttribute.patch)(3,3) = m;
+            (*secondAttribute.patch)(3,3) = m;
+            (*firstAttribute.patch)(3,2) += m - m1;
+            (*secondAttribute.patch)(3,2) += m - m1;
+            (*firstAttribute.patch)(2,3) += m - m2;
+            (*secondAttribute.patch)(2,3) += m - m2;
+        }
+        else if (firstDirection == SE && secondDirection == NE)
+        {
+            DCoordinate3 m1 = ((*firstAttribute.patch)(3,2) + (*secondAttribute.patch)(1,3)) * 0.5;
+            DCoordinate3 m2 = ((*firstAttribute.patch)(2,3) + (*secondAttribute.patch)(0,2)) * 0.5;
+            DCoordinate3 m = (m1 + m2) * 0.5;
+            (*firstAttribute.patch)(3,3) = m;
+            (*secondAttribute.patch)(0,3) = m;
+            (*firstAttribute.patch)(3,2) += m - m1;
+            (*secondAttribute.patch)(1,3) += m - m1;
+            (*firstAttribute.patch)(2,3) += m - m2;
+            (*secondAttribute.patch)(0,2) += m - m2;
+        }
+        else if (firstDirection == SE && secondDirection == NW)
+        {
+            DCoordinate3 m1 = ((*firstAttribute.patch)(3,2) + (*secondAttribute.patch)(0,1)) * 0.5;
+            DCoordinate3 m2 = ((*firstAttribute.patch)(2,3) + (*secondAttribute.patch)(1,0)) * 0.5;
+            DCoordinate3 m = (m1 + m2) * 0.5;
+            (*firstAttribute.patch)(3,3) = m;
+            (*secondAttribute.patch)(0,0) = m;
+            (*firstAttribute.patch)(3,2) += m - m1;
+            (*secondAttribute.patch)(0,1) += m - m1;
+            (*firstAttribute.patch)(2,3) += m - m2;
+            (*secondAttribute.patch)(1,0) += m - m2;
+        }
+        else if (firstDirection == SW && secondDirection == SW)
+        {
+            DCoordinate3 m1 = ((*firstAttribute.patch)(2,0) + (*secondAttribute.patch)(2,0)) * 0.5;
+            DCoordinate3 m2 = ((*firstAttribute.patch)(3,1) + (*secondAttribute.patch)(3,1)) * 0.5;
+            DCoordinate3 m = (m1 + m2) * 0.5;
+            (*firstAttribute.patch)(3,0) = m;
+            (*secondAttribute.patch)(3,0) = m;
+            (*firstAttribute.patch)(2,0) += m - m1;
+            (*secondAttribute.patch)(2,0) += m - m1;
+            (*firstAttribute.patch)(3,1) += m - m2;
+            (*secondAttribute.patch)(3,1) += m - m2;
+        }
+        else if (firstDirection == SW && secondDirection == SE)
+        {
+            DCoordinate3 m1 = ((*firstAttribute.patch)(2,0) + (*secondAttribute.patch)(3,2)) * 0.5;
+            DCoordinate3 m2 = ((*firstAttribute.patch)(3,1) + (*secondAttribute.patch)(2,3)) * 0.5;
+            DCoordinate3 m = (m1 + m2) * 0.5;
+            (*firstAttribute.patch)(3,0) = m;
+            (*secondAttribute.patch)(3,3) = m;
+            (*firstAttribute.patch)(2,0) += m - m1;
+            (*secondAttribute.patch)(3,2) += m - m1;
+            (*firstAttribute.patch)(3,1) += m - m2;
+            (*secondAttribute.patch)(2,3) += m - m2;
+        }
+        else if (firstDirection == SW && secondDirection == NE)
+        {
+            DCoordinate3 m1 = ((*firstAttribute.patch)(2,0) + (*secondAttribute.patch)(1,3)) * 0.5;
+            DCoordinate3 m2 = ((*firstAttribute.patch)(3,1) + (*secondAttribute.patch)(0,2)) * 0.5;
+            DCoordinate3 m = (m1 + m2) * 0.5;
+            (*firstAttribute.patch)(3,0) = m;
+            (*secondAttribute.patch)(0,3) = m;
+            (*firstAttribute.patch)(2,0) += m - m1;
+            (*secondAttribute.patch)(1,3) += m - m1;
+            (*firstAttribute.patch)(3,1) += m - m2;
+            (*secondAttribute.patch)(0,2) += m - m2;
+        }
+        else if (firstDirection == SW && secondDirection == NW)
+        {
+            DCoordinate3 m1 = ((*firstAttribute.patch)(2,0) + (*secondAttribute.patch)(0,1)) * 0.5;
+            DCoordinate3 m2 = ((*firstAttribute.patch)(3,1) + (*secondAttribute.patch)(1,0)) * 0.5;
+            DCoordinate3 m = (m1 + m2) * 0.5;
+            (*firstAttribute.patch)(3,0) = m;
+            (*secondAttribute.patch)(0,0) = m;
+            (*firstAttribute.patch)(2,0) += m - m1;
+            (*secondAttribute.patch)(0,1) += m - m1;
+            (*firstAttribute.patch)(3,1) += m - m2;
+            (*secondAttribute.patch)(1,0) += m - m2;
+        }
+        else if (firstDirection == NW && secondDirection == SW)
+        {
+            DCoordinate3 m1 = ((*firstAttribute.patch)(0,1) + (*secondAttribute.patch)(2,0)) * 0.5;
+            DCoordinate3 m2 = ((*firstAttribute.patch)(1,0) + (*secondAttribute.patch)(3,1)) * 0.5;
+            DCoordinate3 m = (m1 + m2) * 0.5;
+            (*firstAttribute.patch)(0,0) = m;
+            (*secondAttribute.patch)(3,0) = m;
+            (*firstAttribute.patch)(0,1) += m - m1;
+            (*secondAttribute.patch)(2,0) += m - m1;
+            (*firstAttribute.patch)(1,0) += m - m2;
+            (*secondAttribute.patch)(3,1) += m - m2;
+        }
+        else if (firstDirection == NW && secondDirection == SE)
+        {
+            DCoordinate3 m1 = ((*firstAttribute.patch)(0,1) + (*secondAttribute.patch)(3,2)) * 0.5;
+            DCoordinate3 m2 = ((*firstAttribute.patch)(1,0) + (*secondAttribute.patch)(2,3)) * 0.5;
+            DCoordinate3 m = (m1 + m2) * 0.5;
+            (*firstAttribute.patch)(0,0) = m;
+            (*secondAttribute.patch)(3,3) = m;
+            (*firstAttribute.patch)(0,1) += m - m1;
+            (*secondAttribute.patch)(3,2) += m - m1;
+            (*firstAttribute.patch)(1,0) += m - m2;
+            (*secondAttribute.patch)(2,3) += m - m2;
+        }
+        else if (firstDirection == NW && secondDirection == NE)
+        {
+            DCoordinate3 m1 = ((*firstAttribute.patch)(0,1) + (*secondAttribute.patch)(1,3)) * 0.5;
+            DCoordinate3 m2 = ((*firstAttribute.patch)(1,0) + (*secondAttribute.patch)(0,2)) * 0.5;
+            DCoordinate3 m = (m1 + m2) * 0.5;
+            (*firstAttribute.patch)(0,0) = m;
+            (*secondAttribute.patch)(0,3) = m;
+            (*firstAttribute.patch)(0,1) += m - m1;
+            (*secondAttribute.patch)(1,3) += m - m1;
+            (*firstAttribute.patch)(1,0) += m - m2;
+            (*secondAttribute.patch)(0,2) += m - m2;
+        }
+        else if (firstDirection == NW && secondDirection == NW)
+        {
+            DCoordinate3 m1 = ((*firstAttribute.patch)(0,1) + (*secondAttribute.patch)(0,1)) * 0.5;
+            DCoordinate3 m2 = ((*firstAttribute.patch)(1,0) + (*secondAttribute.patch)(1,0)) * 0.5;
+            DCoordinate3 m = (m1 + m2) * 0.5;
+            (*firstAttribute.patch)(0,0) = m;
+            (*secondAttribute.patch)(0,0) = m;
+            (*firstAttribute.patch)(0,1) += m - m1;
+            (*secondAttribute.patch)(0,1) += m - m1;
+            (*firstAttribute.patch)(1,0) += m - m2;
+            (*secondAttribute.patch)(1,0) += m - m2;
+        }
         switch (firstDirection)
         {
         case N:
@@ -1359,6 +1538,86 @@ namespace cagd
                 PatchAttributes& neighbour = *firstAttribute.neighbours[S];
                 (*neighbour.patch)(0,0) = (*firstAttribute.patch)(3,0);
                 (*neighbour.patch)(1,0) = 2 * (*firstAttribute.patch)(3,0) - (*firstAttribute.patch)(2,0);
+                UpdateVBOs(neighbour);
+            }
+            break;
+        case NE:
+            if (firstAttribute.neighbours[E])
+            {
+                PatchAttributes& neighbour = *firstAttribute.neighbours[E];
+                (*neighbour.patch)(0,0) = (*firstAttribute.patch)(0,3);
+                (*neighbour.patch)(1,0) = (*firstAttribute.patch)(1,3);
+                (*neighbour.patch)(0,1) = 2 * (*firstAttribute.patch)(0,3) - (*firstAttribute.patch)(0,2);
+                (*neighbour.patch)(1,1) = 2 * (*firstAttribute.patch)(1,3) - (*firstAttribute.patch)(1,2);
+                UpdateVBOs(neighbour);
+            }
+            if (firstAttribute.neighbours[N])
+            {
+                PatchAttributes& neighbour = *firstAttribute.neighbours[N];
+                (*neighbour.patch)(3,3) = (*firstAttribute.patch)(0,3);
+                (*neighbour.patch)(3,2) = (*firstAttribute.patch)(0,2);
+                (*neighbour.patch)(2,3) = 2 * (*firstAttribute.patch)(0,3) - (*firstAttribute.patch)(1,3);
+                (*neighbour.patch)(2,2) = 2 * (*firstAttribute.patch)(0,2) - (*firstAttribute.patch)(1,2);
+                UpdateVBOs(neighbour);
+            }
+            break;
+        case SE:
+            if (firstAttribute.neighbours[E])
+            {
+                PatchAttributes& neighbour = *firstAttribute.neighbours[E];
+                (*neighbour.patch)(3,0) = (*firstAttribute.patch)(3,3);
+                (*neighbour.patch)(2,0) = (*firstAttribute.patch)(2,3);
+                (*neighbour.patch)(3,1) = 2 * (*firstAttribute.patch)(3,3) - (*firstAttribute.patch)(3,2);
+                (*neighbour.patch)(2,1) = 2 * (*firstAttribute.patch)(2,3) - (*firstAttribute.patch)(2,2);
+                UpdateVBOs(neighbour);
+            }
+            if (firstAttribute.neighbours[S])
+            {
+                PatchAttributes& neighbour = *firstAttribute.neighbours[S];
+                (*neighbour.patch)(0,3) = (*firstAttribute.patch)(3,3);
+                (*neighbour.patch)(0,2) = (*firstAttribute.patch)(3,2);
+                (*neighbour.patch)(1,3) = 2 * (*firstAttribute.patch)(3,3) - (*firstAttribute.patch)(2,3);
+                (*neighbour.patch)(1,2) = 2 * (*firstAttribute.patch)(3,2) - (*firstAttribute.patch)(2,2);
+                UpdateVBOs(neighbour);
+            }
+            break;
+        case SW:
+            if (firstAttribute.neighbours[W])
+            {
+                PatchAttributes& neighbour = *firstAttribute.neighbours[W];
+                (*neighbour.patch)(3,3) = (*firstAttribute.patch)(3,0);
+                (*neighbour.patch)(2,3) = (*firstAttribute.patch)(2,0);
+                (*neighbour.patch)(3,2) = 2 * (*firstAttribute.patch)(3,0) - (*firstAttribute.patch)(3,1);
+                (*neighbour.patch)(2,2) = 2 * (*firstAttribute.patch)(2,0) - (*firstAttribute.patch)(2,1);
+                UpdateVBOs(neighbour);
+            }
+            if (firstAttribute.neighbours[S])
+            {
+                PatchAttributes& neighbour = *firstAttribute.neighbours[S];
+                (*neighbour.patch)(0,0) = (*firstAttribute.patch)(3,0);
+                (*neighbour.patch)(0,1) = (*firstAttribute.patch)(3,1);
+                (*neighbour.patch)(1,0) = 2 * (*firstAttribute.patch)(3,0) - (*firstAttribute.patch)(2,0);
+                (*neighbour.patch)(1,1) = 2 * (*firstAttribute.patch)(3,1) - (*firstAttribute.patch)(2,1);
+                UpdateVBOs(neighbour);
+            }
+            break;
+        case NW:
+            if (firstAttribute.neighbours[W])
+            {
+                PatchAttributes& neighbour = *firstAttribute.neighbours[W];
+                (*neighbour.patch)(0,3) = (*firstAttribute.patch)(0,0);
+                (*neighbour.patch)(1,3) = (*firstAttribute.patch)(1,0);
+                (*neighbour.patch)(0,2) = 2 * (*firstAttribute.patch)(0,0) - (*firstAttribute.patch)(0,1);
+                (*neighbour.patch)(1,2) = 2 * (*firstAttribute.patch)(1,0) - (*firstAttribute.patch)(1,1);
+                UpdateVBOs(neighbour);
+            }
+            if (firstAttribute.neighbours[N])
+            {
+                PatchAttributes& neighbour = *firstAttribute.neighbours[N];
+                (*neighbour.patch)(3,0) = (*firstAttribute.patch)(0,0);
+                (*neighbour.patch)(3,1) = (*firstAttribute.patch)(0,1);
+                (*neighbour.patch)(2,0) = 2 * (*firstAttribute.patch)(0,0) - (*firstAttribute.patch)(1,0);
+                (*neighbour.patch)(2,1) = 2 * (*firstAttribute.patch)(0,1) - (*firstAttribute.patch)(1,1);
                 UpdateVBOs(neighbour);
             }
             break;
@@ -1499,6 +1758,86 @@ namespace cagd
                 PatchAttributes& neighbour = *secondAttribute.neighbours[S];
                 (*neighbour.patch)(0,0) = (*secondAttribute.patch)(3,0);
                 (*neighbour.patch)(1,0) = 2 * (*secondAttribute.patch)(3,0) - (*secondAttribute.patch)(2,0);
+                UpdateVBOs(neighbour);
+            }
+            break;
+        case NE:
+            if (secondAttribute.neighbours[E])
+            {
+                PatchAttributes& neighbour = *secondAttribute.neighbours[E];
+                (*neighbour.patch)(0,0) = (*secondAttribute.patch)(0,3);
+                (*neighbour.patch)(1,0) = (*secondAttribute.patch)(1,3);
+                (*neighbour.patch)(0,1) = 2 * (*secondAttribute.patch)(0,3) - (*secondAttribute.patch)(0,2);
+                (*neighbour.patch)(1,1) = 2 * (*secondAttribute.patch)(1,3) - (*secondAttribute.patch)(1,2);
+                UpdateVBOs(neighbour);
+            }
+            if (secondAttribute.neighbours[N])
+            {
+                PatchAttributes& neighbour = *secondAttribute.neighbours[N];
+                (*neighbour.patch)(3,3) = (*secondAttribute.patch)(0,3);
+                (*neighbour.patch)(3,2) = (*secondAttribute.patch)(0,2);
+                (*neighbour.patch)(2,3) = 2 * (*secondAttribute.patch)(0,3) - (*secondAttribute.patch)(1,3);
+                (*neighbour.patch)(2,2) = 2 * (*secondAttribute.patch)(0,2) - (*secondAttribute.patch)(1,2);
+                UpdateVBOs(neighbour);
+            }
+            break;
+        case SE:
+            if (secondAttribute.neighbours[E])
+            {
+                PatchAttributes& neighbour = *secondAttribute.neighbours[E];
+                (*neighbour.patch)(3,0) = (*secondAttribute.patch)(3,3);
+                (*neighbour.patch)(2,0) = (*secondAttribute.patch)(2,3);
+                (*neighbour.patch)(3,1) = 2 * (*secondAttribute.patch)(3,3) - (*secondAttribute.patch)(3,2);
+                (*neighbour.patch)(2,1) = 2 * (*secondAttribute.patch)(2,3) - (*secondAttribute.patch)(2,2);
+                UpdateVBOs(neighbour);
+            }
+            if (secondAttribute.neighbours[S])
+            {
+                PatchAttributes& neighbour = *secondAttribute.neighbours[S];
+                (*neighbour.patch)(0,3) = (*secondAttribute.patch)(3,3);
+                (*neighbour.patch)(0,2) = (*secondAttribute.patch)(3,2);
+                (*neighbour.patch)(1,3) = 2 * (*secondAttribute.patch)(3,3) - (*secondAttribute.patch)(2,3);
+                (*neighbour.patch)(1,2) = 2 * (*secondAttribute.patch)(3,2) - (*secondAttribute.patch)(2,2);
+                UpdateVBOs(neighbour);
+            }
+            break;
+        case SW:
+            if (secondAttribute.neighbours[W])
+            {
+                PatchAttributes& neighbour = *secondAttribute.neighbours[W];
+                (*neighbour.patch)(3,3) = (*secondAttribute.patch)(3,0);
+                (*neighbour.patch)(2,3) = (*secondAttribute.patch)(2,0);
+                (*neighbour.patch)(3,2) = 2 * (*secondAttribute.patch)(3,0) - (*secondAttribute.patch)(3,1);
+                (*neighbour.patch)(2,2) = 2 * (*secondAttribute.patch)(2,0) - (*secondAttribute.patch)(2,1);
+                UpdateVBOs(neighbour);
+            }
+            if (secondAttribute.neighbours[S])
+            {
+                PatchAttributes& neighbour = *secondAttribute.neighbours[S];
+                (*neighbour.patch)(0,0) = (*secondAttribute.patch)(3,0);
+                (*neighbour.patch)(0,1) = (*secondAttribute.patch)(3,1);
+                (*neighbour.patch)(1,0) = 2 * (*secondAttribute.patch)(3,0) - (*secondAttribute.patch)(2,0);
+                (*neighbour.patch)(1,1) = 2 * (*secondAttribute.patch)(3,1) - (*secondAttribute.patch)(2,1);
+                UpdateVBOs(neighbour);
+            }
+            break;
+        case NW:
+            if (secondAttribute.neighbours[W])
+            {
+                PatchAttributes& neighbour = *secondAttribute.neighbours[W];
+                (*neighbour.patch)(0,3) = (*secondAttribute.patch)(0,0);
+                (*neighbour.patch)(1,3) = (*secondAttribute.patch)(1,0);
+                (*neighbour.patch)(0,2) = 2 * (*secondAttribute.patch)(0,0) - (*secondAttribute.patch)(0,1);
+                (*neighbour.patch)(1,2) = 2 * (*secondAttribute.patch)(1,0) - (*secondAttribute.patch)(1,1);
+                UpdateVBOs(neighbour);
+            }
+            if (secondAttribute.neighbours[N])
+            {
+                PatchAttributes& neighbour = *secondAttribute.neighbours[N];
+                (*neighbour.patch)(3,0) = (*secondAttribute.patch)(0,0);
+                (*neighbour.patch)(3,1) = (*secondAttribute.patch)(0,1);
+                (*neighbour.patch)(2,0) = 2 * (*secondAttribute.patch)(0,0) - (*secondAttribute.patch)(1,0);
+                (*neighbour.patch)(2,1) = 2 * (*secondAttribute.patch)(0,1) - (*secondAttribute.patch)(1,1);
                 UpdateVBOs(neighbour);
             }
             break;
