@@ -1211,6 +1211,18 @@ namespace cagd
             firstAttribute.neighbours[6] = &secondAttribute;
             secondAttribute.neighbours[6] = &firstAttribute;
         }
+        else if (firstDirection == NE && secondDirection == SW)
+        {
+            DCoordinate3 m1 = ((*firstAttribute.patch)(1,3) + (*secondAttribute.patch)(2,0)) * 0.5;
+            DCoordinate3 m2 = ((*firstAttribute.patch)(0,2) + (*secondAttribute.patch)(3,1)) * 0.5;
+            DCoordinate3 m = (m1 + m2) * 0.5;
+            (*firstAttribute.patch)(0,3) = m;
+            (*secondAttribute.patch)(3,0) = m;
+            (*firstAttribute.patch)(1,3) += m - m1;
+            (*secondAttribute.patch)(2,0) += m - m1;
+            (*firstAttribute.patch)(0,2) += m - m2;
+            (*secondAttribute.patch)(3,1) += m - m2;
+        }
 
         switch (firstDirection)
         {
