@@ -1053,7 +1053,7 @@ namespace cagd
                 (*newAttribute.patch)(0, i) = (*firstAttribute.patch)(0, i);
                 (*newAttribute.patch)(1, i) = 2 * (*firstAttribute.patch)(0, i) - (*firstAttribute.patch)(1, i);
             }
-            newAttribute.neighbours[N] = &secondAttribute;
+            newAttribute.neighbours[N] = &firstAttribute;
             break;
         case W:
             for (GLuint i = 0; i <= 3; ++i)
@@ -1061,7 +1061,7 @@ namespace cagd
                 (*newAttribute.patch)(0, i) = (*firstAttribute.patch)(i, 0);
                 (*newAttribute.patch)(1, i) = 2 * (*firstAttribute.patch)(i, 0) - (*firstAttribute.patch)(i, 1);
             }
-            newAttribute.neighbours[N] = &secondAttribute;
+            newAttribute.neighbours[N] = &firstAttribute;
             break;
         case S:
             for (GLuint i = 0; i <= 3; ++i)
@@ -1069,7 +1069,7 @@ namespace cagd
                 (*newAttribute.patch)(0,i) = (*firstAttribute.patch)(3,i);
                 (*newAttribute.patch)(1,i) = 2 * (*firstAttribute.patch)(3,i) - (*firstAttribute.patch)(2,i);
             }
-            newAttribute.neighbours[N] = &secondAttribute;
+            newAttribute.neighbours[N] = &firstAttribute;
             break;
         case E:
             for (GLuint i = 0; i <= 3; ++i)
@@ -1077,7 +1077,7 @@ namespace cagd
                 (*newAttribute.patch)(0,i) = (*firstAttribute.patch)(i,3);
                 (*newAttribute.patch)(1,i) = 2 * (*firstAttribute.patch)(i,3) - (*firstAttribute.patch)(i,2);
             }
-            newAttribute.neighbours[N] = &secondAttribute;
+            newAttribute.neighbours[N] = &firstAttribute;
             break;
         case NW:
             for (GLuint i = 0; i <= 3; ++i)
@@ -1085,7 +1085,7 @@ namespace cagd
                 (*newAttribute.patch)(0,i) = 2 * (*firstAttribute.patch)(0,0) - (*firstAttribute.patch)(0,i);
                 (*newAttribute.patch)(1,i) = 2 * (*firstAttribute.patch)(0,0) - (*firstAttribute.patch)(1,i);
             }
-            newAttribute.neighbours[NW] = &secondAttribute;
+            newAttribute.neighbours[NW] = &firstAttribute;
             break;
         case NE:
             for (GLuint i = 0; i <= 3; ++i)
@@ -1093,7 +1093,7 @@ namespace cagd
                 (*newAttribute.patch)(0,i) = 2 * (*firstAttribute.patch)(0,3) - (*firstAttribute.patch)(0,i);
                 (*newAttribute.patch)(1,i) = 2 * (*firstAttribute.patch)(0,3) - (*firstAttribute.patch)(1,i);
             }
-            newAttribute.neighbours[NW] = &secondAttribute;
+            newAttribute.neighbours[NW] = &firstAttribute;
             break;
         case SW:
             for (GLuint i = 0; i <= 3; ++i)
@@ -1101,7 +1101,7 @@ namespace cagd
                 (*newAttribute.patch)(0,i) = 2 * (*firstAttribute.patch)(3,0) - (*firstAttribute.patch)(3,i);
                 (*newAttribute.patch)(1,i) = 2 * (*firstAttribute.patch)(3,0) - (*firstAttribute.patch)(2,i);
             }
-            newAttribute.neighbours[NW] = &secondAttribute;
+            newAttribute.neighbours[NW] = &firstAttribute;
             break;
         case SE:
             for (GLuint i = 0; i <= 3; ++i)
@@ -1109,7 +1109,7 @@ namespace cagd
                 (*newAttribute.patch)(0,i) = 2 * (*firstAttribute.patch)(3,3) - (*firstAttribute.patch)(3,i);
                 (*newAttribute.patch)(1,i) = 2 * (*firstAttribute.patch)(3,3) - (*firstAttribute.patch)(2,i);
             }
-            newAttribute.neighbours[NW] = &secondAttribute;
+            newAttribute.neighbours[NW] = &firstAttribute;
             break;
         }
         firstAttribute.neighbours[firstDirection] = &newAttribute;
