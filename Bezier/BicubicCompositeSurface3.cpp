@@ -205,12 +205,102 @@ namespace cagd
             return;
         }
 
+        if (direction == NW)
+        {
+            if (neighbours[NW]->neighbours[NE] == this)
+            {
+                symmetricRow = column;
+                symmetricColumn = 3 - row;
+            }
+            else if (neighbours[NW]->neighbours[NW] == this)
+            {
+                symmetricRow = row;
+                symmetricColumn = column;
+            }
+            else if (neighbours[NW]->neighbours[SW] == this)
+            {
+                symmetricRow = 3 - column;
+                symmetricColumn = row;
+            }
+            else if (neighbours[NW]->neighbours[SE] == this)
+            {
+                symmetricRow = 3 - row;
+                symmetricColumn = 3 - column;
+            }
+
+            return;
+        }
         if (direction == NE)
         {
             if (neighbours[NE]->neighbours[NE] == this)
             {
+                symmetricRow = row;
+                symmetricColumn = column;
+            }
+            else if (neighbours[NE]->neighbours[NW] == this)
+            {
+                symmetricRow = 3 - column;
+                symmetricColumn = row;
+            }
+            else if (neighbours[NE]->neighbours[SW] == this)
+            {
+                symmetricRow = 3 - row;
+                symmetricColumn = 3 - column;
+            }
+            else if (neighbours[NE]->neighbours[SE] == this)
+            {
                 symmetricRow = column;
-                symmetricColumn = col
+                symmetricColumn = 3 - row;
+            }
+
+            return;
+        }
+        if (direction == SE)
+        {
+            if (neighbours[SE]->neighbours[NE] == this)
+            {
+                symmetricRow = 3 - column;
+                symmetricColumn = row;
+            }
+            else if (neighbours[SE]->neighbours[NW] == this)
+            {
+                symmetricRow = 3 - row;
+                symmetricColumn = 3 - column;
+            }
+            else if (neighbours[SE]->neighbours[SW] == this)
+            {
+                symmetricRow = column;
+                symmetricColumn = 3 - row;
+            }
+            else if (neighbours[SE]->neighbours[SE] == this)
+            {
+                symmetricRow = row;
+                symmetricColumn = column;
+            }
+
+            return;
+        }
+        if (direction == SW)
+        {
+            if (neighbours[SW]->neighbours[NE] == this)
+            {
+                symmetricRow = 3 - row;
+                symmetricColumn = 3 - column;
+            }
+            else if (neighbours[SW]->neighbours[NW] == this)
+            {
+                symmetricRow = column;
+                symmetricColumn = 3 - row;
+            }
+            else if (neighbours[SW]->neighbours[SW] == this)
+            {
+                symmetricRow = row;
+                symmetricColumn = column;
+            }
+            else if (neighbours[SW]->neighbours[SE] == this)
+            {
+                symmetricRow = 3 - column;
+                symmetricColumn = row;
             }
         }
     }
@@ -584,134 +674,94 @@ namespace cagd
 
     GLboolean BicubicCompositeSurface3::UpdatePatch(PatchAttributes &attribute, const GLuint row, const GLuint column, const DCoordinate3 position)
     {
-        GLint r = -1, c = -1;
-
-        DCoordinate3 difference = position - (*attribute.patch)(row, column);
+        GLuint i, j;
 
         (*attribute.patch)(row, column) = position;
 
-        if (row == 1 && attribute.neighbours[N])
+        // edge points
+        if (row == 0)
         {
-            PatchAttributes &neighbour = *attribute.neighbours[N];
-            GLuint i, j;
-            attribute._GetSymmetricPointIndexes(1, column, N, i, j);
-
-            DCoordinate3 difference2 = 2 * (*attribute.patch)(0, column) - (*attribute.patch)(1, column) - (*attribute.patch)(row, column);
-            (*neighbour.patch)(i, j) = difference2;
-            //UpdatePatch(neighbour, i, j, 2 * (*attribute.patch)(0, column) - (*attribute.patch)(1, column));
+            if (attribute.neighbours[N])
+            {
+                PatchAttributes &neighbour = *attribute.neighbours[N];
+                attribute._GetSymmetricPointIndexes(0, column, N, i, j);
+                (*neighbour.patch)(i, j) = position;
+                UpdateVBOs(neighbour);
+            }
         }
-        if (row == 2 && attribute.neighbours[S])
+        if (row == 1)
         {
-            PatchAttributes &neighbour = *attribute.neighbours[S];
-            GLuint i, j;
-            attribute._GetSymmetricPointIndexes(2, column, S, i, j);
-
-            DCoordinate3 difference2 = 2 * (*attribute.patch)(3, column) - (*attribute.patch)(2, column) - (*attribute.patch)(row, column);
-            (*neighbour.patch)(i, j) = difference2;
-            //UpdatePatch(neighbour, i, j, 2 * (*attribute.patch)(3, column) - (*attribute.patch)(2, column));
+            if (attribute.neighbours[N])
+            {
+                PatchAttributes &neighbour = *attribute.neighbours[N];
+                attribute._GetSymmetricPointIndexes(1, column, N, i, j);
+                (*neighbour.patch)(i, j) = 2 * (*attribute.patch)(0, column) - (*attribute.patch)(1, column);
+                UpdateVBOs(neighbour);
+            }
         }
-
-        if (column == 1 && attribute.neighbours[W])
+        if (row == 2)
         {
-            PatchAttributes &neighbour = *attribute.neighbours[W];
-            GLuint i, j;
-            attribute._GetSymmetricPointIndexes(row, 1, W, i, j);
-
-            DCoordinate3 difference2 = 2 * (*attribute.patch)(row, 0) - (*attribute.patch)(row, 1) - (*attribute.patch)(row, column);
-            (*neighbour.patch)(i, j) = difference2;
-            //UpdatePatch(neighbour, i, j, 2 * (*attribute.patch)(row, 0) - (*attribute.patch)(row, 1));
+            if (attribute.neighbours[S])
+            {
+                PatchAttributes &neighbour = *attribute.neighbours[S];
+                attribute._GetSymmetricPointIndexes(2, column, S, i, j);
+                (*neighbour.patch)(i, j) = 2 * (*attribute.patch)(3, column) - (*attribute.patch)(2, column);
+                UpdateVBOs(neighbour);
+            }
         }
-        if (column == 2 && attribute.neighbours[E])
+        if (row == 3)
         {
-            PatchAttributes &neighbour = *attribute.neighbours[E];
-            GLuint i, j;
-            attribute._GetSymmetricPointIndexes(row, 2, E, i, j);
-
-            DCoordinate3 difference2 = 2 * (*attribute.patch)(row, 3) - (*attribute.patch)(row, 2) - (*attribute.patch)(row, column);
-            (*neighbour.patch)(i, j) = difference2;
-            //UpdatePatch(neighbour, i, j, 2 * (*attribute.patch)(row, 3) - (*attribute.patch)(row, 2));
-        }
-
-
-        if (row == 0 && attribute.neighbours[N])
-        {
-            r = 1;
-
-            PatchAttributes &neighbour = *attribute.neighbours[N];
-            GLuint i, j;
-            attribute._GetSymmetricPointIndexes(0, column, N, i, j);
-
-            DCoordinate3 difference2 = position - (*attribute.patch)(row, column);
-            (*neighbour.patch)(i, j) = difference2;
-            //UpdatePatch(neighbour, i, j, position);
-
-            attribute._GetSymmetricPointIndexes(1, column, N, i, j);
-//            UpdatePatch(attribute, 1, column, (*attribute.patch)(1, column) + difference);
-            (*attribute.patch)(1, column) += difference;
-//            (*neighbour.patch)(i, j) += difference;
-//            _UpdateVBOs(neighbour);
-        }
-        if (row == 3 && attribute.neighbours[S])
-        {
-            r = 2;
-
-            PatchAttributes &neighbour = *attribute.neighbours[S];
-            GLuint i, j;
-            attribute._GetSymmetricPointIndexes(3, column, S, i, j);
-
-            DCoordinate3 difference2 = position - (*attribute.patch)(row, column);
-            (*neighbour.patch)(i, j) = difference2;
-            //UpdatePatch(neighbour, i, j, position);
-
-            attribute._GetSymmetricPointIndexes(2, column, S, i, j);
-//            UpdatePatch(attribute, 2, column, (*attribute.patch)(2, column) + difference);
-            (*attribute.patch)(2, column) += difference;
-//            (*neighbour.patch)(i, j) += difference;
-//            _UpdateVBOs(neighbour);
+            if (attribute.neighbours[S])
+            {
+                PatchAttributes &neighbour = *attribute.neighbours[S];
+                attribute._GetSymmetricPointIndexes(3, column, S, i, j);
+                (*neighbour.patch)(i, j) = position;
+                UpdateVBOs(neighbour);
+            }
         }
 
-        if (column == 0 && attribute.neighbours[W])
+        if (column == 0)
         {
-            c = 1;
-
-            PatchAttributes &neighbour = *attribute.neighbours[W];
-            GLuint i, j;
-            attribute._GetSymmetricPointIndexes(row, 0, W, i, j);
-
-            DCoordinate3 difference2 = position - (*attribute.patch)(row, column);
-            (*neighbour.patch)(i, j) = difference2;
-            //UpdatePatch(neighbour, i, j, position);
-
-            attribute._GetSymmetricPointIndexes(row, 1, W, i, j);
-//            UpdatePatch(attribute, row, 1, (*attribute.patch)(row, 1) + difference);
-            (*attribute.patch)(row, 1) += difference;
-//            (*neighbour.patch)(i, j) += difference;
-//            _UpdateVBOs(neighbour);
+            if (attribute.neighbours[W])
+            {
+                PatchAttributes &neighbour = *attribute.neighbours[W];
+                attribute._GetSymmetricPointIndexes(row, 0, W, i, j);
+                (*neighbour.patch)(i, j) = position;
+                UpdateVBOs(neighbour);
+            }
         }
-        if (column == 3 && attribute.neighbours[E])
+        if (column == 1)
         {
-            c = 2;
-            PatchAttributes &neighbour = *attribute.neighbours[E];
-            GLuint i, j;
-            attribute._GetSymmetricPointIndexes(row, 3, E, i, j);
-
-            DCoordinate3 difference2 = position - (*attribute.patch)(row, column);
-            (*neighbour.patch)(i, j) = difference2;
-            //UpdatePatch(neighbour, i, j, position);
-
-            attribute._GetSymmetricPointIndexes(row, 2, E, i, j);
-//            UpdatePatch(attribute, row, 2, (*attribute.patch)(row, 2) + difference);
-            (*attribute.patch)(row, 2) += difference;
-//            (*neighbour.patch)(i, j) += difference;
-//            _UpdateVBOs(neighbour);
+            if (attribute.neighbours[W])
+            {
+                PatchAttributes &neighbour = *attribute.neighbours[W];
+                attribute._GetSymmetricPointIndexes(row, 1, W, i, j);
+                (*neighbour.patch)(i, j) = 2 * (*attribute.patch)(row, 0) - (*attribute.patch)(row, 1);
+                UpdateVBOs(neighbour);
+            }
         }
-
-        // corner point
-        if (r != -1 && c != -1)
+        if (column == 2)
         {
-            (*attribute.patch)(r, c) += difference;
-            // UpdatePatch(attribute, r, c, (*attribute.patch)(r, c) + difference);
+            if (attribute.neighbours[E])
+            {
+                PatchAttributes &neighbour = *attribute.neighbours[E];
+                attribute._GetSymmetricPointIndexes(row, 2, E, i, j);
+                (*neighbour.patch)(i, j) = 2 * (*attribute.patch)(row, 3) - (*attribute.patch)(row, 2);
+                UpdateVBOs(neighbour);
+            }
         }
+        if (column == 3)
+        {
+            if (attribute.neighbours[E])
+            {
+                PatchAttributes &neighbour = *attribute.neighbours[E];
+                attribute._GetSymmetricPointIndexes(row, 3, E, i, j);
+                (*neighbour.patch)(i, j) = position;
+                UpdateVBOs(neighbour);
+            }
+        }
+
+
 
         return UpdateVBOs(attribute);
     }
