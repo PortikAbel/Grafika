@@ -1206,15 +1206,15 @@ namespace cagd
             return GL_FALSE;
         }
 
+        firstAttribute.neighbours[firstDirection] = &secondAttribute;
+        secondAttribute.neighbours[secondDirection] = &firstAttribute;
+
         if (firstDirection == N && secondDirection == N)
         {
             for(GLuint i=0; i<=3; ++i)
             {
                 (*firstAttribute.patch)(0, i) = (*secondAttribute.patch)(0, i) = 0.5 * ((*firstAttribute.patch)(1, i) + (*secondAttribute.patch)(1, i));
             }
-
-            firstAttribute.neighbours[N] = &secondAttribute;
-            secondAttribute.neighbours[N] = &firstAttribute;
         }
         else if (firstDirection == N && secondDirection == W)
         {
@@ -1222,9 +1222,6 @@ namespace cagd
             {
                 (*firstAttribute.patch)(0, i) = (*secondAttribute.patch)(i, 0) = 0.5 * ((*firstAttribute.patch)(1, i) + (*secondAttribute.patch)(i, 1));
             }
-
-            firstAttribute.neighbours[N] = &secondAttribute;
-            secondAttribute.neighbours[W] = &firstAttribute;
         }
         else if (firstDirection == N && secondDirection == S)
         {
@@ -1232,9 +1229,6 @@ namespace cagd
             {
                 (*firstAttribute.patch)(0, i) = (*secondAttribute.patch)(3, i) = 0.5 * ((*firstAttribute.patch)(1, i) + (*secondAttribute.patch)(2, i));
             }
-
-            firstAttribute.neighbours[N] = &secondAttribute;
-            secondAttribute.neighbours[S] = &firstAttribute;
         }
         else if (firstDirection == N && secondDirection == E)
         {
@@ -1242,9 +1236,6 @@ namespace cagd
             {
                 (*firstAttribute.patch)(0, i) = (*secondAttribute.patch)(i, 3) = 0.5 * ((*firstAttribute.patch)(1, i) + (*secondAttribute.patch)(i, 2));
             }
-
-            firstAttribute.neighbours[0] = &secondAttribute;
-            secondAttribute.neighbours[6] = &firstAttribute;
         }
         else if (firstDirection == W && secondDirection == N)
         {
@@ -1252,9 +1243,6 @@ namespace cagd
             {
                 (*firstAttribute.patch)(i, 0) = (*secondAttribute.patch)(0, i) = 0.5 * ((*firstAttribute.patch)(i, 1) + (*secondAttribute.patch)(1, i));
             }
-
-            firstAttribute.neighbours[2] = &secondAttribute;
-            secondAttribute.neighbours[0] = &firstAttribute;
         }
         else if (firstDirection == W && secondDirection == W)
         {
@@ -1262,9 +1250,6 @@ namespace cagd
             {
                 (*firstAttribute.patch)(i, 0) = (*secondAttribute.patch)(i, 0) = 0.5 * ((*firstAttribute.patch)(i, 1) + (*secondAttribute.patch)(i, 1));
             }
-
-            firstAttribute.neighbours[2] = &secondAttribute;
-            secondAttribute.neighbours[2] = &firstAttribute;
         }
         else if (firstDirection == W && secondDirection == S)
         {
@@ -1272,9 +1257,6 @@ namespace cagd
             {
                 (*firstAttribute.patch)(i, 0) = (*secondAttribute.patch)(3, i) = 0.5 * ((*firstAttribute.patch)(i, 1) + (*secondAttribute.patch)(2, i));
             }
-
-            firstAttribute.neighbours[2] = &secondAttribute;
-            secondAttribute.neighbours[4] = &firstAttribute;
         }
         else if (firstDirection == W && secondDirection == E)
         {
@@ -1282,10 +1264,6 @@ namespace cagd
             {
                 (*firstAttribute.patch)(i, 0) = (*secondAttribute.patch)(i, 3) = 0.5 * ((*firstAttribute.patch)(i, 1) + (*secondAttribute.patch)(i, 2));
             }
-
-            firstAttribute.neighbours[2] = &secondAttribute;
-            secondAttribute.neighbours[6] = &firstAttribute;
-
         }
         else if (firstDirection == S && secondDirection == N)
         {
@@ -1293,10 +1271,6 @@ namespace cagd
             {
                 (*firstAttribute.patch)(3, i) = (*secondAttribute.patch)(0, i) = 0.5 * ((*firstAttribute.patch)(2, i) + (*secondAttribute.patch)(1, i));
             }
-
-            firstAttribute.neighbours[4] = &secondAttribute;
-            secondAttribute.neighbours[0] = &firstAttribute;
-
         }
         else if (firstDirection == S && secondDirection == W)
         {
@@ -1304,9 +1278,6 @@ namespace cagd
             {
                 (*firstAttribute.patch)(3, i) = (*secondAttribute.patch)(i, 0) = 0.5 * ((*firstAttribute.patch)(2, i) + (*secondAttribute.patch)(i, 1));
             }
-
-            firstAttribute.neighbours[4] = &secondAttribute;
-            secondAttribute.neighbours[2] = &firstAttribute;
         }
         else if (firstDirection == S && secondDirection == S)
         {
@@ -1314,9 +1285,6 @@ namespace cagd
             {
                 (*firstAttribute.patch)(3, i) = (*secondAttribute.patch)(3, i) = 0.5 * ((*firstAttribute.patch)(2, i) + (*secondAttribute.patch)(2, i));
             }
-
-            firstAttribute.neighbours[4] = &secondAttribute;
-            secondAttribute.neighbours[4] = &firstAttribute;
         }
         else if (firstDirection == S && secondDirection == E)
         {
@@ -1324,9 +1292,6 @@ namespace cagd
             {
                 (*firstAttribute.patch)(3, i) = (*secondAttribute.patch)(i, 3) = 0.5 * ((*firstAttribute.patch)(2, i) + (*secondAttribute.patch)(i, 2));
             }
-
-            firstAttribute.neighbours[4] = &secondAttribute;
-            secondAttribute.neighbours[6] = &firstAttribute;
         }
         else if (firstDirection == E && secondDirection == N)
         {
@@ -1334,9 +1299,6 @@ namespace cagd
             {
                 (*firstAttribute.patch)(i, 3) = (*secondAttribute.patch)(0, i) = 0.5 * ((*firstAttribute.patch)(i, 2) + (*secondAttribute.patch)(1, i));
             }
-
-            firstAttribute.neighbours[6] = &secondAttribute;
-            secondAttribute.neighbours[0] = &firstAttribute;
         }
         else if (firstDirection == E && secondDirection == W)
         {
@@ -1344,10 +1306,6 @@ namespace cagd
             {
                 (*firstAttribute.patch)(i, 3) = (*secondAttribute.patch)(i, 0) = 0.5 * ((*firstAttribute.patch)(i, 2) + (*secondAttribute.patch)(i, 1));
             }
-
-            firstAttribute.neighbours[6] = &secondAttribute;
-            secondAttribute.neighbours[2] = &firstAttribute;
-
         }
         else if (firstDirection == E && secondDirection == S)
         {
@@ -1355,9 +1313,6 @@ namespace cagd
             {
                 (*firstAttribute.patch)(i, 3) = (*secondAttribute.patch)(3, i) = 0.5 * ((*firstAttribute.patch)(i, 2) + (*secondAttribute.patch)(2, i));
             }
-
-            firstAttribute.neighbours[6] = &secondAttribute;
-            secondAttribute.neighbours[4] = &firstAttribute;
         }
         else if (firstDirection == E && secondDirection == E)
         {
@@ -1365,9 +1320,6 @@ namespace cagd
             {
                 (*firstAttribute.patch)(i, 3) = (*secondAttribute.patch)(i, 3) = 0.5 * ((*firstAttribute.patch)(i, 2) + (*secondAttribute.patch)(i, 2));
             }
-
-            firstAttribute.neighbours[6] = &secondAttribute;
-            secondAttribute.neighbours[6] = &firstAttribute;
         }
         else if (firstDirection == NE && secondDirection == SW)
         {
