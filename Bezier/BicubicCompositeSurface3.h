@@ -30,6 +30,7 @@ namespace cagd
             GLuint              texInd;
 
             std::vector<PatchAttributes*>   neighbours;
+            bool                updated;
 
             RowMatrix<GenericCurve3*>* u_lines;
             RowMatrix<GenericCurve3*>* v_lines;
@@ -38,6 +39,17 @@ namespace cagd
             PatchAttributes();
             PatchAttributes(const PatchAttributes &attributes);
             ~PatchAttributes();
+        };
+
+        class PointUpdate
+        {
+        public:
+            GLuint          row;
+            GLuint          col;
+            DCoordinate3    pos;
+
+            PointUpdate(): row(4), col(4) {};
+            PointUpdate(GLuint row, GLuint col, DCoordinate3 pos): row(row), col(col), pos(pos) {};
         };
 
     protected:
@@ -66,7 +78,7 @@ namespace cagd
         GLboolean MergeExistingPatches(const GLuint &firstPatchIndex, Direction firstDirection, const GLuint &secondPatchIndex, Direction secondDirection);
 
         GLboolean UpdatePatch(const GLuint patchIndex, const GLuint row, const GLuint column, const DCoordinate3 position);
-        GLboolean UpdatePatch(PatchAttributes *attribute, const GLuint row, const GLuint column, const DCoordinate3 position);
+        GLboolean UpdatePatch(PatchAttributes *attribute, std::vector<PointUpdate> points);
         GLboolean MovePatch(const GLuint patchIndex, const DCoordinate3 difference);
 
         GLboolean RenderAllPatchesWithMaterials();

@@ -14,7 +14,7 @@ namespace cagd
     // --------------------------------------------------------------------------------
 
     BicubicCompositeSurface3::PatchAttributes::PatchAttributes():
-        patch(nullptr), image(nullptr), neighbours(8, nullptr), u_lines(nullptr), v_lines(nullptr)
+        patch(nullptr), image(nullptr), neighbours(8, nullptr), updated(false), u_lines(nullptr), v_lines(nullptr)
     {
         matInd = QRandomGenerator::global()->bounded(4);
         texInd = QRandomGenerator::global()->bounded(4);
@@ -35,6 +35,7 @@ namespace cagd
 
         matInd = attribute.matInd;
         texInd = attribute.texInd;
+        updated = attribute.updated;
 
         neighbours.resize(8, nullptr);
         for (int i = 0; i < 8; ++i)
@@ -587,7 +588,6 @@ namespace cagd
         return _attributes.size();
     }
 
-
     GLboolean BicubicCompositeSurface3::GetDataPointValues(const GLuint patchIndex, const GLuint row, const GLuint column, DCoordinate3 &position)
     {
         (*_attributes[patchIndex]->patch).GetData(row,column,position);
@@ -665,207 +665,202 @@ namespace cagd
             return GL_FALSE;
         }
 
-        return UpdatePatch(_attributes[patchIndex], row, column, position);
+        for (auto it = _attributes.begin(); it != _attributes.end(); it++)
+        {
+            (*it)->updated = false;
+        }
+
+        std::vector<PointUpdate> points;
+        points.push_back(PointUpdate(row, column, position));
+        return UpdatePatch(_attributes[patchIndex], points);
     }
 
-    GLboolean BicubicCompositeSurface3::UpdatePatch(PatchAttributes *attribute, const GLuint row, const GLuint column, const DCoordinate3 position)
+    GLboolean BicubicCompositeSurface3::UpdatePatch(PatchAttributes *attribute, std::vector<PointUpdate> points)
     {
+        PatchAttributes *neighbour;
+        std::vector<PointUpdate> neighbour_points[8];
         GLuint i, j;
+        attribute->updated = true;
 
-        DCoordinate3 diference = position - (*attribute->patch)(row, column);
-        (*attribute->patch)(row, column) = position;
+        for (auto it = points.begin(); it != points.end(); it++)
+        {
+            GLuint row = it->row;
+            GLuint column = it->col;
+            DCoordinate3 position = it->pos;
 
-        if (row == 0)
-        {
-            if (attribute->neighbours[N])
-            {
-                PatchAttributes *neighbour = attribute->neighbours[N];
-                attribute->_GetSymmetricPointIndexes(row, column, N, i, j);
-                (*neighbour->patch)(i, j) = position;
-                attribute->_GetSymmetricPointIndexes(1, column, N, i, j);
-                (*neighbour->patch)(i, j) = 2 * position - (*attribute->patch)(1, column);
-                UpdateVBOs(neighbour);
-            }
-            if (column < 2 && attribute->neighbours[NW])
-            {
-                PatchAttributes *neighbour = attribute->neighbours[NW];
-                attribute->_GetSymmetricPointIndexes(row, column, NW, i, j);
-                if (column == 0)
-                {
-                    (*neighbour->patch)(i, j) = position;
-                    attribute->_GetSymmetricPointIndexes(1, 0, NW, i, j);
-                    (*neighbour->patch)(i, j) = 2 * position - (*attribute->patch)(1, 0);
-                    attribute->_GetSymmetricPointIndexes(0, 1, NW, i, j);
-                    (*neighbour->patch)(i, j) = 2 * position - (*attribute->patch)(0, 1);
-                }
-                if (column == 1)
-                {
-                    (*neighbour->patch)(i, j) = 2 * (*attribute->patch)(0, 0) - position;
-                }
-                UpdateVBOs(neighbour);
-            }
-            if (column > 1 && attribute->neighbours[NE])
-            {
-                PatchAttributes *neighbour = attribute->neighbours[NE];
-                attribute->_GetSymmetricPointIndexes(row, column, NE, i, j);
-                if (column == 3)
-                {
-                    (*neighbour->patch)(i, j) = position;
-                    attribute->_GetSymmetricPointIndexes(0, 2, NE, i, j);
-                    (*neighbour->patch)(i, j) = 2 * position - (*attribute->patch)(0, 2);
-                    attribute->_GetSymmetricPointIndexes(1, 3, NE, i, j);
-                    (*neighbour->patch)(i, j) = 2 * position - (*attribute->patch)(1, 3);
-                }
-                if (column == 2)
-                {
-                    (*neighbour->patch)(i, j) = 2 * (*attribute->patch)(0, 3) - position;
-                }
-                UpdateVBOs(neighbour);
-            }
-        }
-        if (row == 1)
-        {
-            if (attribute->neighbours[N])
-            {
-                PatchAttributes *neighbour = attribute->neighbours[N];
-                attribute->_GetSymmetricPointIndexes(row, column, N, i, j);
-                (*neighbour->patch)(i, j) = 2 * (*attribute->patch)(0, column) - position;
-                UpdateVBOs(neighbour);
-            }
-            if (column == 0 && attribute->neighbours[NW])
-            {
-                PatchAttributes *neighbour = attribute->neighbours[NW];
-                attribute->_GetSymmetricPointIndexes(row, column, NW, i, j);
-                (*neighbour->patch)(i, j) = 2 * (*attribute->patch)(0, 0) - position;
-                UpdateVBOs(neighbour);
-            }
-            if (column == 3 && attribute->neighbours[NE])
-            {
-                PatchAttributes *neighbour = attribute->neighbours[NE];
-                attribute->_GetSymmetricPointIndexes(row, column, NE, i, j);
-                (*neighbour->patch)(i, j) = 2 * (*attribute->patch)(0, 3) - position;
-                UpdateVBOs(neighbour);
-            }
-        }
-        if (row == 2)
-        {
-            if (attribute->neighbours[S])
-            {
-                PatchAttributes *neighbour = attribute->neighbours[S];
-                attribute->_GetSymmetricPointIndexes(row, column, S, i, j);
-                (*neighbour->patch)(i, j) = 2 * (*attribute->patch)(3, column) - position;
-                UpdateVBOs(neighbour);
-            }
-            if (column == 0 && attribute->neighbours[SW])
-            {
-                PatchAttributes *neighbour = attribute->neighbours[SW];
-                attribute->_GetSymmetricPointIndexes(row, column, SW, i, j);
-                (*neighbour->patch)(i, j) = 2 * (*attribute->patch)(3, 0) - position;
-                UpdateVBOs(neighbour);
-            }
-            if (column == 3 && attribute->neighbours[SE])
-            {
-                PatchAttributes *neighbour = attribute->neighbours[SE];
-                attribute->_GetSymmetricPointIndexes(row, column, SE, i, j);
-                (*neighbour->patch)(i, j) = 2 * (*attribute->patch)(3, 3) - position;
-                UpdateVBOs(neighbour);
-            }
-        }
-        if (row == 3)
-        {
-            if (attribute->neighbours[S])
-            {
-                PatchAttributes *neighbour = attribute->neighbours[S];
-                attribute->_GetSymmetricPointIndexes(row, column, S, i, j);
-                (*neighbour->patch)(i, j) = position;
-                attribute->_GetSymmetricPointIndexes(2, column, S, i, j);
-                (*neighbour->patch)(i, j) = 2 * position - (*attribute->patch)(2, column);
-                UpdateVBOs(neighbour);
-            }
-            if (column == 0 && attribute->neighbours[SW])
-            {
-                PatchAttributes *neighbour = attribute->neighbours[SW];
-                attribute->_GetSymmetricPointIndexes(row, column, SW, i, j);
-                if (column == 0)
-                {
-                    (*neighbour->patch)(i, j) = position;
-                    attribute->_GetSymmetricPointIndexes(2, 0, SW, i, j);
-                    (*neighbour->patch)(i, j) = 2 * position - (*attribute->patch)(2, 0);
-                    attribute->_GetSymmetricPointIndexes(3, 1, SW, i, j);
-                    (*neighbour->patch)(i, j) = 2 * position - (*attribute->patch)(3, 1);
-                }
-                if (column == 1)
-                {
-                    (*neighbour->patch)(i, j) = 2 * (*attribute->patch)(3, 0) - position;
-                }
-                UpdateVBOs(neighbour);
-            }
-            if (column == 3 && attribute->neighbours[SE])
-            {
-                PatchAttributes *neighbour = attribute->neighbours[SE];
-                attribute->_GetSymmetricPointIndexes(row, column, SE, i, j);
-                if (column == 3)
-                {
-                    (*neighbour->patch)(i, j) = position;
-                    attribute->_GetSymmetricPointIndexes(2, 3, SE, i, j);
-                    (*neighbour->patch)(i, j) = 2 * position - (*attribute->patch)(2, 3);
-                    attribute->_GetSymmetricPointIndexes(3, 2, SE, i, j);
-                    (*neighbour->patch)(i, j) = 2 * position - (*attribute->patch)(3, 2);
-                }
-                if (column == 2)
-                {
-                    (*neighbour->patch)(i, j) = 2 * (*attribute->patch)(3, 3) - position;
-                }
-                UpdateVBOs(neighbour);
-            }
-        }
+            DCoordinate3 diference = position - (*attribute->patch)(row, column);
+            (*attribute->patch)(row, column) = position;
 
-        if (column == 0)
-        {
-            if (attribute->neighbours[W])
+            if (row == 0)
             {
-                PatchAttributes *neighbour = attribute->neighbours[W];
+                if (attribute->neighbours[N] && !attribute->neighbours[N]->updated)
+                {
+                    neighbour = attribute->neighbours[N];
+                    attribute->_GetSymmetricPointIndexes(row, column, N, i, j);
+                    neighbour_points[N].push_back(PointUpdate(i, j, position));
+                    attribute->_GetSymmetricPointIndexes(1, column, N, i, j);
+                    neighbour_points[N].push_back(PointUpdate(i, j, 2 * position - (*attribute->patch)(1, column)));
+                }
+                if (column < 2 && attribute->neighbours[NW] && !attribute->neighbours[NW]->updated)
+                {
+                    neighbour = attribute->neighbours[NW];
+                    attribute->_GetSymmetricPointIndexes(row, column, NW, i, j);
+                    if (column == 0)
+                    {
+                        neighbour_points[NW].push_back(PointUpdate(i, j, position));
+                        attribute->_GetSymmetricPointIndexes(1, 0, NW, i, j);
+                        neighbour_points[NW].push_back(PointUpdate(i, j, 2 * position - (*attribute->patch)(1, 0)));
+                        attribute->_GetSymmetricPointIndexes(0, 1, NW, i, j);
+                        neighbour_points[NW].push_back(PointUpdate(i, j, 2 * position - (*attribute->patch)(0, 1)));
+                    }
+                    if (column == 1)
+                    {
+                        neighbour_points[NW].push_back(PointUpdate(i, j, 2 * (*attribute->patch)(0, 0) - position));
+                    }
+                }
+                if (column > 1 && attribute->neighbours[NE] && !attribute->neighbours[NE]->updated)
+                {
+                    neighbour = attribute->neighbours[NE];
+                    attribute->_GetSymmetricPointIndexes(row, column, NE, i, j);
+                    if (column == 3)
+                    {
+                        neighbour_points[NE].push_back(PointUpdate(i, j, position));
+                        attribute->_GetSymmetricPointIndexes(0, 2, NE, i, j);
+                        neighbour_points[NE].push_back(PointUpdate(i, j, 2 * position - (*attribute->patch)(0, 2)));
+                        attribute->_GetSymmetricPointIndexes(1, 3, NE, i, j);
+                        neighbour_points[NE].push_back(PointUpdate(i, j, 2 * position - (*attribute->patch)(1, 3)));
+                    }
+                    if (column == 2)
+                    {
+                        neighbour_points[NE].push_back(PointUpdate(i, j, 2 * (*attribute->patch)(0, 3) - position));
+                    }
+                }
+            }
+            if (row == 1)
+            {
+                if (attribute->neighbours[N] && !attribute->neighbours[N]->updated)
+                {
+                    neighbour = attribute->neighbours[N];
+                    attribute->_GetSymmetricPointIndexes(row, column, N, i, j);
+                    neighbour_points[N].push_back(PointUpdate(i, j, 2 * (*attribute->patch)(0, column) - position));
+                }
+                if (column == 0 && attribute->neighbours[NW] && !attribute->neighbours[NW]->updated)
+                {
+                    neighbour = attribute->neighbours[NW];
+                    attribute->_GetSymmetricPointIndexes(row, column, NW, i, j);
+                    neighbour_points[N].push_back(PointUpdate(i, j, 2 * (*attribute->patch)(0, 0) - position));
+                }
+                if (column == 3 && attribute->neighbours[NE] && !attribute->neighbours[NE]->updated)
+                {
+                    neighbour = attribute->neighbours[NE];
+                    attribute->_GetSymmetricPointIndexes(row, column, NE, i, j);
+                    neighbour_points[N].push_back(PointUpdate(i, j, 2 * (*attribute->patch)(0, 3) - position));
+                }
+            }
+            if (row == 2)
+            {
+                if (attribute->neighbours[S] && !attribute->neighbours[S]->updated)
+                {
+                    neighbour = attribute->neighbours[S];
+                    attribute->_GetSymmetricPointIndexes(row, column, S, i, j);
+                    neighbour_points[S].push_back(PointUpdate(i, j, 2 * (*attribute->patch)(3, column) - position));
+                }
+                if (column == 0 && attribute->neighbours[SW] && !attribute->neighbours[SW]->updated)
+                {
+                    neighbour = attribute->neighbours[SW];
+                    attribute->_GetSymmetricPointIndexes(row, column, SW, i, j);
+                    neighbour_points[SW].push_back(PointUpdate(i, j, 2 * (*attribute->patch)(3, 0) - position));
+                }
+                if (column == 3 && attribute->neighbours[SE] && !attribute->neighbours[SE]->updated)
+                {
+                    neighbour = attribute->neighbours[SE];
+                    attribute->_GetSymmetricPointIndexes(row, column, SE, i, j);
+                    neighbour_points[SE].push_back(PointUpdate(i, j, 2 * (*attribute->patch)(3, 3) - position));
+                }
+            }
+            if (row == 3)
+            {
+                if (attribute->neighbours[S] && !attribute->neighbours[S]->updated)
+                {
+                    neighbour = attribute->neighbours[S];
+                    attribute->_GetSymmetricPointIndexes(row, column, S, i, j);
+                    neighbour_points[S].push_back(PointUpdate(i, j, position));
+                    attribute->_GetSymmetricPointIndexes(2, column, S, i, j);
+                    neighbour_points[S].push_back(PointUpdate(i, j, 2 * position - (*attribute->patch)(2, column)));
+                }
+                if (column < 2 && attribute->neighbours[SW] && !attribute->neighbours[SW]->updated)
+                {
+                    neighbour = attribute->neighbours[SW];
+                    attribute->_GetSymmetricPointIndexes(row, column, SW, i, j);
+                    if (column == 0)
+                    {
+                        neighbour_points[SW].push_back(PointUpdate(i, j, position));
+                        attribute->_GetSymmetricPointIndexes(2, 0, SW, i, j);
+                        neighbour_points[SW].push_back(PointUpdate(i, j, 2 * position - (*attribute->patch)(2, 0)));
+                        attribute->_GetSymmetricPointIndexes(3, 1, SW, i, j);
+                        neighbour_points[SW].push_back(PointUpdate(i, j, 2 * position - (*attribute->patch)(3, 1)));
+                    }
+                    if (column == 1)
+                    {
+                        neighbour_points[SW].push_back(PointUpdate(i, j, 2 * (*attribute->patch)(3, 0) - position));
+                    }
+                }
+                if (column > 1 && attribute->neighbours[SE] && !attribute->neighbours[SE]->updated)
+                {
+                    neighbour = attribute->neighbours[SE];
+                    attribute->_GetSymmetricPointIndexes(row, column, SE, i, j);
+                    if (column == 3)
+                    {
+                        neighbour_points[SE].push_back(PointUpdate(i, j, position));
+                        attribute->_GetSymmetricPointIndexes(2, 3, SE, i, j);
+                        neighbour_points[SE].push_back(PointUpdate(i, j, 2 * position - (*attribute->patch)(2, 3)));
+                        attribute->_GetSymmetricPointIndexes(3, 2, SE, i, j);
+                        neighbour_points[SE].push_back(PointUpdate(i, j, 2 * position - (*attribute->patch)(3, 2)));
+                    }
+                    if (column == 2)
+                    {
+                        neighbour_points[SE].push_back(PointUpdate(i, j, 2 * (*attribute->patch)(3, 3) - position));
+                    }
+                }
+            }
+
+            if (column == 0 && attribute->neighbours[W] && !attribute->neighbours[W]->updated)
+            {
+                neighbour = attribute->neighbours[W];
                 attribute->_GetSymmetricPointIndexes(row, column, W, i, j);
-                (*neighbour->patch)(i, j) = position;
+                neighbour_points[W].push_back(PointUpdate(i, j, position));
                 attribute->_GetSymmetricPointIndexes(row, 1, W, i, j);
-                (*neighbour->patch)(i, j) = 2 * position - (*attribute->patch)(row, 1);
-                UpdateVBOs(neighbour);
+                neighbour_points[W].push_back(PointUpdate(i, j, 2 * position - (*attribute->patch)(row, 1)));
             }
-        }
-        if (column == 1)
-        {
-            if (attribute->neighbours[W])
+            if (column == 1 && attribute->neighbours[W] && !attribute->neighbours[W]->updated)
             {
-                PatchAttributes *neighbour = attribute->neighbours[W];
+                neighbour = attribute->neighbours[W];
                 attribute->_GetSymmetricPointIndexes(row, column, W, i, j);
-                (*neighbour->patch)(i, j) = 2 * (*attribute->patch)(row, 0) - position;
-                UpdateVBOs(neighbour);
+                neighbour_points[W].push_back(PointUpdate(i, j, 2 * (*attribute->patch)(row, 0) - position));
             }
-        }
-        if (column == 2)
-        {
-            if (attribute->neighbours[E])
+            if (column == 2 && attribute->neighbours[E] && !attribute->neighbours[E]->updated)
             {
-                PatchAttributes *neighbour = attribute->neighbours[E];
+                neighbour = attribute->neighbours[E];
                 attribute->_GetSymmetricPointIndexes(row, column, E, i, j);
-                (*neighbour->patch)(i, j) = 2 * (*attribute->patch)(row, 3) - position;
-                UpdateVBOs(neighbour);
+                neighbour_points[E].push_back(PointUpdate(i, j, 2 * (*attribute->patch)(row, 3) - position));
             }
-        }
-        if (column == 3)
-        {
-            if (attribute->neighbours[E])
+            if (column == 3 && attribute->neighbours[E] && !attribute->neighbours[E]->updated)
             {
-                PatchAttributes *neighbour = attribute->neighbours[E];
+                neighbour = attribute->neighbours[E];
                 attribute->_GetSymmetricPointIndexes(row, column, E, i, j);
-                (*neighbour->patch)(i, j) = position;
+                neighbour_points[E].push_back(PointUpdate(i, j, position));
                 attribute->_GetSymmetricPointIndexes(row, 2, E, i, j);
-                (*neighbour->patch)(i, j) = 2 * position - (*attribute->patch)(row, 2);
-                UpdateVBOs(neighbour);
+                neighbour_points[E].push_back(PointUpdate(i, j, 2 * position - (*attribute->patch)(row, 2)));
             }
         }
 
-
+        for (i = 0; i < 8; i++)
+        {
+            if (attribute->neighbours[i] && neighbour_points[i].size() > 0)
+            {
+                UpdatePatch(attribute->neighbours[i], neighbour_points[i]);
+            }
+        }
 
         return UpdateVBOs(attribute);
     }
