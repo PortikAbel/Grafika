@@ -41,7 +41,7 @@ namespace cagd
         };
 
     protected:
-        std::vector<PatchAttributes> _attributes;
+        std::vector<PatchAttributes*> _attributes;
         std::vector<Material>        _materials{ MatFBBrass, MatFBEmerald, MatFBPearl, MatFBRuby, MatFBTurquoise };
         std::vector<QOpenGLTexture*> _textures;
         GLuint _iso_line_count;
@@ -56,17 +56,17 @@ namespace cagd
         // operations
         BicubicBezierPatch* InitializePatch();
         GLboolean InsertNewPatch();
-        GLboolean UpdateVBOs(PatchAttributes &attribute);
+        GLboolean UpdateVBOs(PatchAttributes *attribute);
         GLboolean DeleteExistingPatch(GLuint index);
 
-        GLint     IndexOfAttribute(const PatchAttributes &attribute) const;
+        GLint     IndexOfAttribute(const PatchAttributes *attribute) const;
 
         GLboolean ContinueExistingPatch(const GLuint &index, Direction direction);
         GLboolean JoinExistingPatches(const GLuint &firstPatchIndex, Direction firstDirection, const GLuint &secondPatchIndex, Direction secondDirection);
         GLboolean MergeExistingPatches(const GLuint &firstPatchIndex, Direction firstDirection, const GLuint &secondPatchIndex, Direction secondDirection);
 
         GLboolean UpdatePatch(const GLuint patchIndex, const GLuint row, const GLuint column, const DCoordinate3 position);
-        GLboolean UpdatePatch(PatchAttributes &attribute, const GLuint row, const GLuint column, const DCoordinate3 position);
+        GLboolean UpdatePatch(PatchAttributes *attribute, const GLuint row, const GLuint column, const DCoordinate3 position);
         GLboolean MovePatch(const GLuint patchIndex, const DCoordinate3 difference);
 
         GLboolean RenderAllPatchesWithMaterials();
