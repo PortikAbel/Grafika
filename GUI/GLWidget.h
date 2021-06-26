@@ -190,6 +190,12 @@ namespace cagd
     private slots:
         void _animate();
 
+    protected:
+        void mouseDoubleClickEvent(QMouseEvent *event) override;
+        void mouseMoveEvent(QMouseEvent *event) override;
+        void mousePressEvent(QMouseEvent *event) override;
+        void mouseReleaseEvent(QMouseEvent *event) override;
+
     public:
         // special and default constructor
         // the format specifies the properties of the rendering window
