@@ -90,6 +90,8 @@ namespace cagd
 
         GLuint    GetMatInd(GLuint patchInd);
         GLuint    GetTexInd(GLuint patchInd);
+        GLuint    GetUIsoLineCount();
+        GLuint    GetVIsoLineCount();
 
         GLvoid UpdateUIsoLines(GLuint iso_line_count);
         GLvoid UpdateVIsoLines(GLuint iso_line_count);

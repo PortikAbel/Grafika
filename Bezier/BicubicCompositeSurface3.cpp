@@ -610,6 +610,15 @@ namespace cagd
         return _attributes.size();
     }
 
+    GLuint BicubicCompositeSurface3::GetUIsoLineCount()
+    {
+        return _u_iso_line_count;
+    }
+
+    GLuint BicubicCompositeSurface3::GetVIsoLineCount()
+    {
+        return _v_iso_line_count;
+    }
 
     GLboolean BicubicCompositeSurface3::GetDataPointValues(const GLuint patchIndex, const GLuint row, const GLuint column, DCoordinate3 &position)
     {

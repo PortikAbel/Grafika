@@ -371,5 +371,8 @@ namespace cagd
         void selected_patch2(int);
         void selected_patch_mat(int);
         void selected_patch_tex(int);
+
+        void u_iso_line_count(int);
+        void v_iso_line_count(int);
     };
 }

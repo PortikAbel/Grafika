@@ -1099,6 +1099,14 @@ namespace cagd
                 _sl->Disable();
             }
         }
+
+        DCoordinate3 selectedPoint;
+        _compositeSurface->GetDataPointValues(_selectedPatch1, _selectedPointRow, _selectedPointCol, selectedPoint);
+        emit patch_control_point_x_changed(selectedPoint.x());
+        emit patch_control_point_y_changed(selectedPoint.y());
+        emit patch_control_point_z_changed(selectedPoint.z());
+        emit u_iso_line_count(_compositeSurface->GetUIsoLineCount());
+        emit v_iso_line_count(_compositeSurface->GetVIsoLineCount());
         return true;
     }
 
@@ -1391,7 +1399,7 @@ namespace cagd
     std::istream& GLWidget::loadSurfaces(std::istream & stream)
     {
         return stream >> *_compositeSurface;
-        update();
+        // update();
     }
 
     //-----------------------------------
