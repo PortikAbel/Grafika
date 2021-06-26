@@ -293,6 +293,10 @@ namespace cagd
         void arc_move_z_minus();
         void arc_move_z_plus();
 
+        void update_u_iso_line_count(int);
+        void update_v_iso_line_count(int);
+
+
         // patches
 
         void set_selected_patch1(int);

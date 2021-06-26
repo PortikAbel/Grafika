@@ -44,7 +44,8 @@ namespace cagd
         std::vector<PatchAttributes> _attributes;
         std::vector<Material>        _materials{ MatFBBrass, MatFBEmerald, MatFBPearl, MatFBRuby, MatFBTurquoise };
         std::vector<QOpenGLTexture*> _textures;
-        GLuint _iso_line_count;
+        GLuint _u_iso_line_count;
+        GLuint _v_iso_line_count;
 
     private:
         GLvoid   _loadTextures();
@@ -89,6 +90,9 @@ namespace cagd
 
         GLuint    GetMatInd(GLuint patchInd);
         GLuint    GetTexInd(GLuint patchInd);
+
+        GLvoid UpdateUIsoLines(GLuint iso_line_count);
+        GLvoid UpdateVIsoLines(GLuint iso_line_count);
     };
 }
 

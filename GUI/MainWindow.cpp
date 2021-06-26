@@ -110,6 +110,8 @@ namespace cagd
         // bicubic bezier patches
         connect(_side_widget->show_iso_u_check_box, SIGNAL(toggled(bool)), _gl_widget, SLOT(setIsoLineUVisibility(bool)));
         connect(_side_widget->show_iso_v_check_box, SIGNAL(toggled(bool)), _gl_widget, SLOT(setIsoLineVVisibility(bool)));
+        connect(_side_widget->update_u_iso_lines, SIGNAL(valueChanged(int)), _gl_widget, SLOT(update_u_iso_line_count(int)));
+        connect(_side_widget->update_v_iso_lines, SIGNAL(valueChanged(int)), _gl_widget, SLOT(update_v_iso_line_count(int)));
         connect(_side_widget->show_iso_d1_u_check_box, SIGNAL(toggled(bool)), _gl_widget, SLOT(setIsoLineD1UVisibility(bool)));
         connect(_side_widget->show_iso_d1_v_check_box, SIGNAL(toggled(bool)), _gl_widget, SLOT(setIsoLineD1VVisibility(bool)));
         connect(_side_widget->showNormalVectorsCheckBox, SIGNAL(toggled(bool)), _gl_widget, SLOT(setNormalsVisibility(bool)));

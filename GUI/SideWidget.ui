@@ -35,7 +35,7 @@
       </sizepolicy>
      </property>
      <property name="currentIndex">
-      <number>5</number>
+      <number>6</number>
      </property>
      <widget class="QWidget" name="triangle_page">
       <property name="geometry">
@@ -1104,9 +1104,9 @@
       <property name="geometry">
        <rect>
         <x>0</x>
-        <y>-378</y>
+        <y>0</y>
         <width>279</width>
-        <height>1130</height>
+        <height>1188</height>
        </rect>
       </property>
       <attribute name="label">
@@ -1130,72 +1130,72 @@
             </property>
            </widget>
           </item>
-          <item row="1" column="0">
+          <item row="2" column="0">
            <widget class="QLabel" name="showDerivativesInDirULabel">
             <property name="text">
              <string>Show V iso lines</string>
             </property>
            </widget>
           </item>
-          <item row="1" column="1">
+          <item row="2" column="1">
            <widget class="QCheckBox" name="show_iso_v_check_box"/>
           </item>
-          <item row="2" column="0">
+          <item row="4" column="0">
            <widget class="QLabel" name="showDerivativesInDirVLabel">
             <property name="text">
              <string>Show derivatives in dir U</string>
             </property>
            </widget>
           </item>
-          <item row="2" column="1">
+          <item row="4" column="1">
            <widget class="QCheckBox" name="show_iso_d1_u_check_box"/>
           </item>
-          <item row="3" column="0">
+          <item row="5" column="0">
            <widget class="QLabel" name="showInterpolatedBezierPatchLabel">
             <property name="text">
              <string>Show derivatives in dir V</string>
             </property>
            </widget>
           </item>
-          <item row="3" column="1">
+          <item row="5" column="1">
            <widget class="QCheckBox" name="show_iso_d1_v_check_box">
             <property name="checked">
              <bool>false</bool>
             </property>
            </widget>
           </item>
-          <item row="4" column="0">
+          <item row="6" column="0">
            <widget class="QLabel" name="label_34">
             <property name="text">
              <string>Show normal vectors</string>
             </property>
            </widget>
           </item>
-          <item row="4" column="1">
+          <item row="6" column="1">
            <widget class="QCheckBox" name="showNormalVectorsCheckBox">
             <property name="text">
              <string/>
             </property>
            </widget>
           </item>
-          <item row="5" column="0">
+          <item row="7" column="0">
            <widget class="QLabel" name="label_21">
             <property name="text">
              <string>Show data</string>
             </property>
            </widget>
           </item>
-          <item row="5" column="1">
+          <item row="7" column="1">
            <widget class="QCheckBox" name="patch_data_check_box">
             <property name="text">
              <string/>
             </property>
            </widget>
           </item>
-          <item row="6" column="0" colspan="2">
+          <item row="8" column="0" colspan="2">
            <widget class="QTabWidget" name="shader_light_tab">
             <property name="currentIndex">
-             <number>1</number>
+             <number>0</number>
             </property>
             <widget class="QWidget" name="tab">
              <attribute name="title">
@@ -1436,7 +1436,7 @@
             </widget>
            </widget>
           </item>
-          <item row="7" column="0">
+          <item row="9" column="0">
            <widget class="QLabel" name="selectedPatch1Label">
             <property name="font">
              <font>
@@ -1453,7 +1453,7 @@
             </property>
            </widget>
           </item>
-          <item row="7" column="1">
+          <item row="9" column="1">
            <widget class="QSpinBox" name="selectedPatch1SpinBox">
             <property name="maximumSize">
              <size>
@@ -1466,14 +1466,14 @@
             </property>
            </widget>
           </item>
-          <item row="9" column="0">
+          <item row="11" column="0">
            <widget class="QLabel" name="label_12">
             <property name="text">
              <string>Selected end</string>
             </property>
            </widget>
           </item>
-          <item row="9" column="1">
+          <item row="11" column="1">
            <widget class="QComboBox" name="patch_1_dir_comboBox">
             <item>
              <property name="text">
@@ -1517,14 +1517,14 @@
             </item>
            </widget>
           </item>
-          <item row="10" column="0">
+          <item row="12" column="0">
            <widget class="QPushButton" name="patch_continue_button">
             <property name="text">
              <string>Continue</string>
             </property>
            </widget>
           </item>
-          <item row="11" column="0" colspan="2">
+          <item row="13" column="0" colspan="2">
            <widget class="QTabWidget" name="TextureTab">
             <property name="currentIndex">
              <number>1</number>
@@ -1658,7 +1658,7 @@
             </widget>
            </widget>
           </item>
-          <item row="12" column="0">
+          <item row="14" column="0">
            <widget class="QLabel" name="label_26">
             <property name="text">
              <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:9pt; text-decoration: underline;&quot;&gt;Control point index&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
@@ -1668,42 +1668,42 @@
             </property>
            </widget>
           </item>
-          <item row="15" column="0">
+          <item row="17" column="0">
            <widget class="QLabel" name="label_27">
             <property name="text">
              <string>Row</string>
             </property>
            </widget>
           </item>
-          <item row="15" column="1">
+          <item row="17" column="1">
            <widget class="QSpinBox" name="cp_row_spinBox">
             <property name="maximum">
              <number>3</number>
             </property>
            </widget>
           </item>
-          <item row="17" column="0">
+          <item row="19" column="0">
            <widget class="QLabel" name="label_28">
             <property name="text">
              <string>Column</string>
             </property>
            </widget>
           </item>
-          <item row="17" column="1">
+          <item row="19" column="1">
            <widget class="QSpinBox" name="cp_col_spinBox">
             <property name="maximum">
              <number>3</number>
             </property>
            </widget>
           </item>
-          <item row="18" column="0">
+          <item row="20" column="0">
            <widget class="QLabel" name="label_29">
             <property name="text">
              <string>Control point X</string>
             </property>
            </widget>
           </item>
-          <item row="18" column="1">
+          <item row="20" column="1">
            <widget class="QDoubleSpinBox" name="patch_cp_x_spinBox">
             <property name="minimum">
              <double>-99.000000000000000</double>
@@ -1716,14 +1716,14 @@
             </property>
            </widget>
           </item>
-          <item row="20" column="0">
+          <item row="22" column="0">
            <widget class="QLabel" name="label_30">
             <property name="text">
              <string>Control point Y</string>
             </property>
            </widget>
           </item>
-          <item row="20" column="1">
+          <item row="22" column="1">
            <widget class="QDoubleSpinBox" name="patch_cp_y_spinBox">
             <property name="minimum">
              <double>-99.000000000000000</double>
@@ -1733,14 +1733,14 @@
             </property>
            </widget>
           </item>
-          <item row="22" column="0">
+          <item row="24" column="0">
            <widget class="QLabel" name="label_31">
             <property name="text">
              <string>Control point Z</string>
             </property>
            </widget>
           </item>
-          <item row="22" column="1">
+          <item row="24" column="1">
            <widget class="QDoubleSpinBox" name="patch_cp_z_spinBox">
             <property name="minimum">
              <double>-99.000000000000000</double>
@@ -1750,14 +1750,14 @@
             </property>
            </widget>
           </item>
-          <item row="27" column="0" colspan="2">
+          <item row="29" column="0" colspan="2">
            <widget class="Line" name="line_4">
             <property name="orientation">
              <enum>Qt::Horizontal</enum>
             </property>
            </widget>
           </item>
-          <item row="28" column="0">
+          <item row="30" column="0">
            <widget class="QLabel" name="selectedPatch2Label">
             <property name="styleSheet">
              <string notr="true">background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:1, stop:0 rgba(218, 218, 218, 255), stop:0.16 rgba(136, 132, 131, 255), stop:0.225 rgba(166, 166, 150, 255), stop:0.285 rgba(204, 204, 197, 255), stop:0.345 rgba(235, 231, 227, 255), stop:0.415 rgba(192, 197, 192, 255), stop:0.52 rgba(208, 209, 207, 255), stop:0.57 rgba(187, 187, 187, 255), stop:0.635 rgba(191, 191, 191, 255), stop:0.696629 rgba(223, 223, 223, 255), stop:0.75 rgba(218, 218, 218, 255), stop:0.815 rgba(208, 208, 208, 255), stop:0.88 rgba(232, 232, 232, 255), stop:0.935 rgba(217, 217, 217, 255), stop:1 rgba(35, 40, 3, 255));</string>
@@ -1767,17 +1767,17 @@
             </property>
            </widget>
           </item>
-          <item row="28" column="1">
+          <item row="30" column="1">
            <widget class="QSpinBox" name="selectedPatch2SpinBox"/>
           </item>
-          <item row="29" column="0">
+          <item row="31" column="0">
            <widget class="QLabel" name="label_20">
             <property name="text">
              <string>Selected end</string>
             </property>
            </widget>
           </item>
-          <item row="29" column="1">
+          <item row="31" column="1">
            <widget class="QComboBox" name="patch_2_dir_comboBox">
             <item>
              <property name="text">
@@ -1821,73 +1821,119 @@
             </item>
            </widget>
           </item>
-          <item row="30" column="0">
+          <item row="32" column="0">
            <widget class="QPushButton" name="patch_join_button">
             <property name="text">
              <string>Join</string>
             </property>
            </widget>
           </item>
-          <item row="30" column="1">
+          <item row="32" column="1">
            <widget class="QPushButton" name="patch_merge_button">
             <property name="text">
              <string>Merge</string>
             </property>
            </widget>
           </item>
-          <item row="31" column="0" colspan="2">
+          <item row="33" column="0" colspan="2">
            <widget class="Line" name="line_5">
             <property name="orientation">
              <enum>Qt::Horizontal</enum>
             </property>
            </widget>
           </item>
-          <item row="32" column="0">
+          <item row="34" column="0">
            <widget class="QPushButton" name="new_patch_button">
             <property name="text">
              <string>New patch</string>
             </property>
            </widget>
           </item>
-          <item row="19" column="0">
+          <item row="21" column="0">
            <widget class="QPushButton" name="patch_move_x_minus">
             <property name="text">
              <string>-</string>
             </property>
            </widget>
           </item>
-          <item row="19" column="1">
+          <item row="21" column="1">
            <widget class="QPushButton" name="patch_move_x_plus">
             <property name="text">
              <string>+</string>
             </property>
            </widget>
           </item>
-          <item row="21" column="0">
+          <item row="23" column="0">
            <widget class="QPushButton" name="patch_move_y_minus">
             <property name="text">
              <string>-</string>
             </property>
            </widget>
           </item>
-          <item row="21" column="1">
+          <item row="23" column="1">
            <widget class="QPushButton" name="patch_move_y_plus">
             <property name="text">
              <string>+</string>
             </property>
            </widget>
           </item>
-          <item row="23" column="0">
+          <item row="25" column="0">
            <widget class="QPushButton" name="patch_move_z_minus">
             <property name="text">
              <string>-</string>
             </property>
            </widget>
           </item>
-          <item row="23" column="1">
+          <item row="25" column="1">
            <widget class="QPushButton" name="patch_move_z_plus">
             <property name="text">
              <string>+</string>
+            </property>
+           </widget>
+          </item>
+          <item row="1" column="0">
+           <widget class="QLabel" name="label_23">
+            <property name="text">
+             <string>U iso line count</string>
+            </property>
+           </widget>
+          </item>
+          <item row="1" column="1">
+           <widget class="QSpinBox" name="update_u_iso_lines">
+            <property name="maximumSize">
+             <size>
+              <width>60</width>
+              <height>16777215</height>
+             </size>
+            </property>
+            <property name="minimum">
+             <number>0</number>
+            </property>
+            <property name="maximum">
+             <number>200</number>
+            </property>
+            <property name="value">
+             <number>50</number>
+            </property>
+           </widget>
+          </item>
+          <item row="3" column="1">
+           <widget class="QSpinBox" name="update_v_iso_lines">
+            <property name="maximumSize">
+             <size>
+              <width>60</width>
+              <height>16777215</height>
+             </size>
+            </property>
+            <property name="value">
+             <number>50</number>
+            </property>
+           </widget>
+          </item>
+          <item row="3" column="0">
+           <widget class="QLabel" name="label_24">
+            <property name="text">
+             <string>V iso line count</string>
             </property>
            </widget>
           </item>

@@ -2357,4 +2357,18 @@ namespace cagd
 
     }
 
+    void GLWidget::update_u_iso_line_count(int iso_line_count){
+
+        _compositeSurface->UpdateUIsoLines(iso_line_count);
+        update();
+
+    }
+
+    void GLWidget::update_v_iso_line_count(int iso_line_count){
+
+        _compositeSurface->UpdateVIsoLines(iso_line_count);
+        update();
+
+    }
+
 }

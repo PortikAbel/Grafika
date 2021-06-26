@@ -308,7 +308,7 @@ namespace cagd
     // --------------------------------------------------------------------------------
 
     BicubicCompositeSurface3::BicubicCompositeSurface3(GLuint patchCount):
-        _iso_line_count(50)
+        _u_iso_line_count(50), _v_iso_line_count(50)
     {
         _loadTextures();
 
@@ -319,6 +319,26 @@ namespace cagd
             _attributes.push_back(*newAttr);
             _attributes[i].patch = InitializePatch();
             UpdateVBOs(_attributes[i]);
+        }
+    }
+
+    GLvoid BicubicCompositeSurface3::UpdateUIsoLines(GLuint iso_line_count)
+    {
+        _u_iso_line_count = iso_line_count;
+        for (GLuint i = 0; i < _attributes.size(); i++)
+        {
+            PatchAttributes &attribute = _attributes[i];
+            UpdateVBOs(attribute);
+        }
+    }
+
+    GLvoid BicubicCompositeSurface3::UpdateVIsoLines(GLuint iso_line_count)
+    {
+        _v_iso_line_count = iso_line_count;
+        for (GLuint i = 0; i < _attributes.size(); i++)
+        {
+            PatchAttributes &attribute = _attributes[i];
+            UpdateVBOs(attribute);
         }
     }
 
@@ -361,8 +381,8 @@ namespace cagd
             throw Exception("Could not update the VBO of data of the patch!");
         }
 
-        attribute.u_lines = attribute.patch->GenerateUIsoparametricLines(_iso_line_count, 1, 30);
-        attribute.v_lines = attribute.patch->GenerateVIsoparametricLines(_iso_line_count, 1, 30);
+        attribute.u_lines = attribute.patch->GenerateUIsoparametricLines(_u_iso_line_count, 1, 30);
+        attribute.v_lines = attribute.patch->GenerateVIsoparametricLines(_v_iso_line_count, 1, 30);
         for(GLuint i=0; i<attribute.u_lines->GetColumnCount(); ++i)
         {
             if((*attribute.u_lines)[i])
@@ -378,7 +398,7 @@ namespace cagd
             }
         }
 
-        attribute.image = attribute.patch->GenerateImage(_iso_line_count, _iso_line_count);
+        attribute.image = attribute.patch->GenerateImage(_u_iso_line_count, _v_iso_line_count);
         if (!attribute.image)
         {
             throw Exception("Could not generate the image of patch!");
@@ -2007,7 +2027,8 @@ namespace cagd
 
     std::ostream& operator <<(std::ostream& lhs, const BicubicCompositeSurface3& surface)
     {
-        lhs << surface._iso_line_count << endl;
+        lhs << surface._u_iso_line_count << endl;
+        lhs << surface._v_iso_line_count << endl;
         lhs << surface._attributes.size() << endl;
 
         for (auto it = surface._attributes.begin(); it != surface._attributes.end(); ++it)
@@ -2032,7 +2053,7 @@ namespace cagd
     {
         GLuint n;
 
-        lhs >> surface._iso_line_count;
+        lhs >> surface._u_iso_line_count >> surface._v_iso_line_count;
         lhs >> n;
 
         surface._attributes.clear();
