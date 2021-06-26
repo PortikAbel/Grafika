@@ -309,16 +309,15 @@ namespace cagd {
                     GLdouble tX = c.x();
                     GLdouble tY = c.y();
                     GLdouble distance = (x - tX) * (x - tX) + (y - tY) * (y - tY);
+                    cout << x << ' ' << tX << ' ' << y << ' ' << tY << endl;
                     if (distance < minDist){
-                        cout << x << ' ' << tX << ' ' << y << ' ' << tY << endl;
-                        cout << distance << ' ' << j << endl;
                         minDist = distance;
                         clickedArc = j;
                     }
                 }
             }
         }
-        cout << minDist;
+
         return clickedArc;
     }
 

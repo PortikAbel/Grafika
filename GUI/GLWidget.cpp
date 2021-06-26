@@ -2390,15 +2390,17 @@ namespace cagd
             case 5:
             {
                 // curves
-                GLdouble height = this -> size().height();
+                GLdouble height = this -> geometry().height();
                 GLdouble y = (event->globalPosition().y()-54.0) / height * 4.2;
                 if (y >= 1.7){
                     y = -abs(y - 1.7);
                 }else{
                     y = abs(y - 1.7);
                 }
+                y = y / _zoom;
                 GLdouble width = this -> size().width();
                 GLdouble x = (event->globalPosition().x() - width) / width * 5.2 - 8;
+                x = x / _zoom;
                 DCoordinate3 mC(x, y, 0);
                 int selectedCurve = _compositeCurve -> mouseOnCurve(mC);
                 if (selectedCurve != -1){
