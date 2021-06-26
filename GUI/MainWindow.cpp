@@ -110,6 +110,8 @@ namespace cagd
         // bicubic bezier patches
         connect(_side_widget->show_iso_u_check_box, SIGNAL(toggled(bool)), _gl_widget, SLOT(setIsoLineUVisibility(bool)));
         connect(_side_widget->show_iso_v_check_box, SIGNAL(toggled(bool)), _gl_widget, SLOT(setIsoLineVVisibility(bool)));
+        connect(_side_widget->update_u_iso_lines, SIGNAL(valueChanged(int)), _gl_widget, SLOT(update_u_iso_line_count(int)));
+        connect(_side_widget->update_v_iso_lines, SIGNAL(valueChanged(int)), _gl_widget, SLOT(update_v_iso_line_count(int)));
         connect(_side_widget->show_iso_d1_u_check_box, SIGNAL(toggled(bool)), _gl_widget, SLOT(setIsoLineD1UVisibility(bool)));
         connect(_side_widget->show_iso_d1_v_check_box, SIGNAL(toggled(bool)), _gl_widget, SLOT(setIsoLineD1VVisibility(bool)));
         connect(_side_widget->showNormalVectorsCheckBox, SIGNAL(toggled(bool)), _gl_widget, SLOT(setNormalsVisibility(bool)));
@@ -134,6 +136,8 @@ namespace cagd
         connect(_gl_widget, SIGNAL(patch_control_point_y_changed(double)), _side_widget->patch_cp_y_spinBox, SLOT(setValue(double)));
         connect(_gl_widget, SIGNAL(patch_control_point_z_changed(double)), _side_widget->patch_cp_z_spinBox, SLOT(setValue(double)));
 
+        connect(_gl_widget, SIGNAL(u_iso_line_count(int)), _side_widget->update_u_iso_lines, SLOT(setValue(int)));
+        connect(_gl_widget, SIGNAL(v_iso_line_count(int)), _side_widget->update_v_iso_lines, SLOT(setValue(int)));
         connect(_gl_widget, SIGNAL(selected_cp_row(int)), _side_widget->cp_row_spinBox, SLOT(setValue(int)));
         connect(_gl_widget, SIGNAL(selected_cp_column(int)), _side_widget->cp_col_spinBox, SLOT(setValue(int)));
         connect(_gl_widget, SIGNAL(selected_patch1(int)), _side_widget->selectedPatch1SpinBox, SLOT(setValue(int)));

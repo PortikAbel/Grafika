@@ -190,6 +190,12 @@ namespace cagd
     private slots:
         void _animate();
 
+    protected:
+        void mouseDoubleClickEvent(QMouseEvent *event) override;
+        void mouseMoveEvent(QMouseEvent *event) override;
+        void mousePressEvent(QMouseEvent *event) override;
+        void mouseReleaseEvent(QMouseEvent *event) override;
+
     public:
         // special and default constructor
         // the format specifies the properties of the rendering window
@@ -293,6 +299,10 @@ namespace cagd
         void arc_move_z_minus();
         void arc_move_z_plus();
 
+        void update_u_iso_line_count(int);
+        void update_v_iso_line_count(int);
+
+
         // patches
 
         void set_selected_patch1(int);
@@ -367,5 +377,8 @@ namespace cagd
         void selected_patch2(int);
         void selected_patch_mat(int);
         void selected_patch_tex(int);
+
+        void u_iso_line_count(int);
+        void v_iso_line_count(int);
     };
 }

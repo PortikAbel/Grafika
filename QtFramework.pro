@@ -8,6 +8,8 @@ greaterThan(QT_MAJOR_VERSION, 4){
     QMAKE_CXXFLAGS += -std=c++0x
 }
 
+CONFIG += console
+
 greaterThan(QT_MAJOR_VERSION, 5){
     QT             += openglwidgets
 }
@@ -68,6 +70,8 @@ mac {
 FORMS += \
     GUI/MainWindow.ui \
     GUI/SideWidget.ui
+
+QMAKE_CXXFLAGS += -std=gnu++14
 
 HEADERS += \
     Bezier/BicubicBezierPatches.h \

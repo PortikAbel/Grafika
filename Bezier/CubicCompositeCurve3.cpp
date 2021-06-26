@@ -289,6 +289,39 @@ namespace cagd {
         return GL_TRUE;
     }
 
+    int CubicCompositeCurve3::mouseOnCurve(DCoordinate3 mC)
+    {
+        int clickedArc = -1;
+        GLdouble minDist = 0.2;
+        GLdouble x = mC.x();
+        GLdouble y = mC.y();
+        for (GLuint j = 0; j < _attributes.size(); j++)
+        {
+            ArcAttributes* it = &_attributes[j];
+            if (it ->image)
+            {
+                DCoordinate3 c;
+                GLuint pointCount;
+                pointCount = it -> image -> GetPointCount();
+                for (GLuint i = 0; i < pointCount; i++)
+                {
+                    it -> image -> GetDerivative(0, i, c);
+                    GLdouble tX = c.x();
+                    GLdouble tY = c.y();
+                    GLdouble distance = (x - tX) * (x - tX) + (y - tY) * (y - tY);
+                    if (distance < minDist){
+                        cout << x << ' ' << tX << ' ' << y << ' ' << tY << endl;
+                        cout << distance << ' ' << j << endl;
+                        minDist = distance;
+                        clickedArc = j;
+                    }
+                }
+            }
+        }
+        cout << minDist;
+        return clickedArc;
+    }
+
     GLboolean CubicCompositeCurve3::JoinExistingArcs(
             const GLuint &firstArcIndex,
             Direction firstDirection,
@@ -537,14 +570,14 @@ namespace cagd {
     {
         glPointSize(6.0);
 
-        for (auto it = _attributes.begin(); it != _attributes.end(); ++it)
-        {
-            if (it->image)
+            for (auto it = _attributes.begin(); it != _attributes.end(); ++it)
             {
-                glColor3f(_colors[it->colorInd].r(), _colors[it->colorInd].g(), _colors[it->colorInd].b());
-                it->image->RenderDerivatives(0, GL_LINE_STRIP);
+                if (it->image)
+                {
+                    glColor3f(_colors[it->colorInd].r(), _colors[it->colorInd].g(), _colors[it->colorInd].b());
+                    it->image->RenderDerivatives(0, GL_LINE_STRIP);
+                }
             }
-        }
         glPointSize(1.0);
         return GL_TRUE;
     }

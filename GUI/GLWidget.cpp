@@ -15,6 +15,7 @@ using namespace std;
 #include "../Core/Matrices.h"
 #include "../Core/Materials.h"
 #include "../Core/Constants.h"
+#include <QMouseEvent>
 
 namespace cagd
 {
@@ -1099,6 +1100,14 @@ namespace cagd
                 _sl->Disable();
             }
         }
+
+        DCoordinate3 selectedPoint;
+        _compositeSurface->GetDataPointValues(_selectedPatch1, _selectedPointRow, _selectedPointCol, selectedPoint);
+        emit patch_control_point_x_changed(selectedPoint.x());
+        emit patch_control_point_y_changed(selectedPoint.y());
+        emit patch_control_point_z_changed(selectedPoint.z());
+        emit u_iso_line_count(_compositeSurface->GetUIsoLineCount());
+        emit v_iso_line_count(_compositeSurface->GetVIsoLineCount());
         return true;
     }
 
@@ -1391,7 +1400,7 @@ namespace cagd
     std::istream& GLWidget::loadSurfaces(std::istream & stream)
     {
         return stream >> *_compositeSurface;
-        update();
+        // update();
     }
 
     //-----------------------------------
@@ -2355,6 +2364,61 @@ namespace cagd
         }
         update();
 
+    }
+
+    void GLWidget::update_u_iso_line_count(int iso_line_count){
+
+        _compositeSurface->UpdateUIsoLines(iso_line_count);
+        update();
+
+    }
+
+    void GLWidget::update_v_iso_line_count(int iso_line_count){
+
+        _compositeSurface->UpdateVIsoLines(iso_line_count);
+        update();
+
+    }
+
+    void GLWidget::mouseDoubleClickEvent(QMouseEvent *event){
+        QWidget::mouseDoubleClickEvent(event);
+    }
+
+    void GLWidget::mousePressEvent(QMouseEvent *event){
+        QWidget::mousePressEvent(event);
+        switch (_homework_id){
+            case 5:
+            {
+                // curves
+                GLdouble height = this -> size().height();
+                GLdouble y = (event->globalPosition().y()-54.0) / height * 4.2;
+                if (y >= 1.7){
+                    y = -abs(y - 1.7);
+                }else{
+                    y = abs(y - 1.7);
+                }
+                GLdouble width = this -> size().width();
+                GLdouble x = (event->globalPosition().x() - width) / width * 5.2 - 8;
+                DCoordinate3 mC(x, y, 0);
+                int selectedCurve = _compositeCurve -> mouseOnCurve(mC);
+                if (selectedCurve != -1){
+                    emit selected_curve1(selectedCurve);
+                }
+            }
+            break;
+            case 6:
+                // patches
+                break;
+        }
+
+    }
+
+    void GLWidget::mouseMoveEvent(QMouseEvent *event){
+        QWidget::mouseMoveEvent(event);
+    }
+
+    void GLWidget::mouseReleaseEvent(QMouseEvent *event){
+        QWidget::mouseReleaseEvent(event);
     }
 
 }
