@@ -13,6 +13,7 @@ namespace cagd {
         GLboolean BlendingFunctionValues(GLdouble u, RowMatrix<GLdouble>& values) const;
         GLboolean CalculateDerivatives(GLuint max_order_of_derivatives, GLdouble u, Derivatives &d) const;
 
+        GLboolean GetData(GLuint index, DCoordinate3& data) const;
     };
 
 }

@@ -59,4 +59,11 @@ namespace cagd {
         return GL_TRUE;
     }
 
+    GLboolean CubicBezierArc3::GetData(GLuint index, DCoordinate3 &data) const
+    {
+        data = _data[index];
+
+        return GL_TRUE;
+    }
+
 }

@@ -77,7 +77,7 @@ namespace cagd
         GLboolean ChangeColor(GLuint arcInd, GLuint colorInd);
         GLuint    GetColorInd(GLuint arcInd);
         int       mouseOnCurve(DCoordinate3 mC);
-
+        int       mouseOnCP(int arcInd, DCoordinate3 mC);
 
     };
 }

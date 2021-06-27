@@ -2380,46 +2380,65 @@ namespace cagd
 
     }
 
-    void GLWidget::mouseDoubleClickEvent(QMouseEvent *event){
+    DCoordinate3 GLWidget::getMouseCoords(QMouseEvent *event)
+    {
+        GLdouble height = this -> geometry().height();
+        GLdouble y = (event->globalPosition().y()-54.0) / height * 4.2;
+        if (y >= 1.7){
+            y = -abs(y - 1.7);
+        }else{
+            y = abs(y - 1.7);
+        }
+        y = y / _zoom;
+        GLdouble width = this -> size().width();
+        GLdouble x = (event->globalPosition().x() - width) / width * 5.2 - 8;
+        x = x / _zoom;
+        return DCoordinate3(x, y, 0);
+    }
+
+    void GLWidget::mouseDoubleClickEvent(QMouseEvent *event)
+    {
         QWidget::mouseDoubleClickEvent(event);
     }
 
-    void GLWidget::mousePressEvent(QMouseEvent *event){
+    void GLWidget::mousePressEvent(QMouseEvent *event)
+    {
         QWidget::mousePressEvent(event);
+        DCoordinate3 mC = getMouseCoords(event);
         switch (_homework_id){
             case 5:
             {
-                // curves
-                GLdouble height = this -> geometry().height();
-                GLdouble y = (event->globalPosition().y()-54.0) / height * 4.2;
-                if (y >= 1.7){
-                    y = -abs(y - 1.7);
-                }else{
-                    y = abs(y - 1.7);
-                }
-                y = y / _zoom;
-                GLdouble width = this -> size().width();
-                GLdouble x = (event->globalPosition().x() - width) / width * 5.2 - 8;
-                x = x / _zoom;
-                DCoordinate3 mC(x, y, 0);
                 int selectedCurve = _compositeCurve -> mouseOnCurve(mC);
                 if (selectedCurve != -1){
                     emit selected_curve1(selectedCurve);
+                    int selectedCP = _compositeCurve -> mouseOnCP(selectedCurve, mC);
+                    cout << endl << selectedCP << endl;
+                    if (selectedCP != -1)
+                    {
+                        emit selected_cp_arc(selectedCP);
+                    }
                 }
             }
             break;
             case 6:
-                // patches
-                break;
+            {
+                int selectedPatch = _compositeSurface -> MouseOnPatch(mC);
+                if (selectedPatch != -1){
+                    emit selected_patch1(selectedPatch);
+                }
+            }
+            break;
         }
 
     }
 
-    void GLWidget::mouseMoveEvent(QMouseEvent *event){
+    void GLWidget::mouseMoveEvent(QMouseEvent *event)
+    {
         QWidget::mouseMoveEvent(event);
     }
 
-    void GLWidget::mouseReleaseEvent(QMouseEvent *event){
+    void GLWidget::mouseReleaseEvent(QMouseEvent *event)
+    {
         QWidget::mouseReleaseEvent(event);
     }
 

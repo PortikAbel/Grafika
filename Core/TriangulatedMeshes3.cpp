@@ -530,3 +530,10 @@ TriangulatedMesh3::~TriangulatedMesh3()
 {
     DeleteVertexBufferObjects();
 }
+
+GLboolean TriangulatedMesh3::GetVertex(GLuint index, DCoordinate3& coord)
+{
+    coord = _vertex[index];
+
+    return GL_TRUE;
+}

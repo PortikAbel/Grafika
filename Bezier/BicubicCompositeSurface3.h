@@ -107,6 +107,8 @@ namespace cagd
 
         GLvoid UpdateUIsoLines(GLuint iso_line_count);
         GLvoid UpdateVIsoLines(GLuint iso_line_count);
+
+        int MouseOnPatch(DCoordinate3 mC);
     };
 }
 

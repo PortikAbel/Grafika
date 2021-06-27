@@ -2038,4 +2038,42 @@ namespace cagd
 
         return lhs;
     }
+
+    int BicubicCompositeSurface3::MouseOnPatch(DCoordinate3 mC)
+        {
+            int clickedPatch = -1;
+            GLdouble minDist = 0.2;
+            GLdouble x = mC.x();
+            GLdouble y = mC.y();
+            GLboolean patchFound = GL_FALSE;
+
+            for (GLuint j = 0; j < _attributes.size(); j++)
+            {
+                PatchAttributes *it = _attributes[j];
+                if (it ->image)
+                {
+                    DCoordinate3 c;
+                    GLuint pointCount;
+                    pointCount = it -> image -> VertexCount();
+                    for (GLuint i = 0; i < pointCount; i++)
+                    {
+                        it -> image -> GetVertex(i, c);
+                        GLdouble tX = c.x();
+                        GLdouble tY = c.y();
+                        GLdouble distance = (x - tX) * (x - tX) + (y - tY) * (y - tY);
+                        if (distance < minDist){
+                            minDist = distance;
+                            clickedPatch = j;
+                        }
+                    }
+                    if (patchFound == GL_TRUE)
+                    {
+                        break;
+                    }
+                }
+            }
+
+            return clickedPatch;
+        }
+
 }

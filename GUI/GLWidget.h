@@ -195,6 +195,7 @@ namespace cagd
         void mouseMoveEvent(QMouseEvent *event) override;
         void mousePressEvent(QMouseEvent *event) override;
         void mouseReleaseEvent(QMouseEvent *event) override;
+        DCoordinate3 getMouseCoords(QMouseEvent *event);
 
     public:
         // special and default constructor

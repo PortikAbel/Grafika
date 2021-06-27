@@ -292,7 +292,7 @@ namespace cagd {
     int CubicCompositeCurve3::mouseOnCurve(DCoordinate3 mC)
     {
         int clickedArc = -1;
-        GLdouble minDist = 0.2;
+        GLdouble minDist = 0.1;
         GLdouble x = mC.x();
         GLdouble y = mC.y();
         for (GLuint j = 0; j < _attributes.size(); j++)
@@ -309,7 +309,6 @@ namespace cagd {
                     GLdouble tX = c.x();
                     GLdouble tY = c.y();
                     GLdouble distance = (x - tX) * (x - tX) + (y - tY) * (y - tY);
-                    cout << x << ' ' << tX << ' ' << y << ' ' << tY << endl;
                     if (distance < minDist){
                         minDist = distance;
                         clickedArc = j;
@@ -319,6 +318,32 @@ namespace cagd {
         }
 
         return clickedArc;
+    }
+
+    int CubicCompositeCurve3::mouseOnCP(int arcInd, DCoordinate3 mC)
+    {
+        GLdouble minDist = 0.2;
+        GLdouble x = mC.x();
+        GLdouble y = mC.y();
+        int clickedCP = -1;
+        ArcAttributes* selectedArc = &_attributes[arcInd];
+        DCoordinate3 c;
+
+        for (GLuint i = 0; i < 4; i++)
+        {
+            selectedArc -> arc -> GetData(i, c);
+            GLdouble tX = c.x();
+            GLdouble tY = c.y();
+            GLdouble distance = (x - tX) * (x - tX) + (y - tY) * (y - tY);
+            cout << x << ' ' << tX << ' ' << y << ' ' << tY << endl;
+            if (distance < minDist){
+                minDist = distance;
+                clickedCP = i;
+            }
+        }
+
+        cout << endl << minDist << ' ' << clickedCP;
+        return clickedCP;
     }
 
     GLboolean CubicCompositeCurve3::JoinExistingArcs(
