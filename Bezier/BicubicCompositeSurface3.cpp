@@ -2076,4 +2076,36 @@ namespace cagd
             return clickedPatch;
         }
 
+    GLboolean BicubicCompositeSurface3::MouseOnCP(int patchInd, DCoordinate3 mC, int &cpX, int &cpY)
+    {
+        cpX = -1;
+        cpY = -1;
+        GLdouble minDist = 0.2;
+        GLdouble x = mC.x();
+        GLdouble y = mC.y();
+
+        PatchAttributes *selectedPatch = _attributes[patchInd];
+        DCoordinate3 c;
+
+        for (GLuint i = 0; i < 4; i++)
+        {
+            for (GLuint j = 0; j < 4; j++)
+            {
+                selectedPatch -> patch -> GetData(i, j, c);
+                GLdouble tX = c.x();
+                GLdouble tY = c.y();
+                GLdouble distance = (x - tX) * (x - tX) + (y - tY) * (y - tY);
+
+                if (distance < minDist){
+                    minDist = distance;
+                    cpX = i;
+                    cpY = j;
+                }
+            }
+        }
+
+        return GL_TRUE;
+
+    }
+
 }

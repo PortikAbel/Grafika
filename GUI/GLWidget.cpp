@@ -2412,7 +2412,6 @@ namespace cagd
                 if (selectedCurve != -1){
                     emit selected_curve1(selectedCurve);
                     int selectedCP = _compositeCurve -> mouseOnCP(selectedCurve, mC);
-                    cout << endl << selectedCP << endl;
                     if (selectedCP != -1)
                     {
                         emit selected_cp_arc(selectedCP);
@@ -2425,6 +2424,13 @@ namespace cagd
                 int selectedPatch = _compositeSurface -> MouseOnPatch(mC);
                 if (selectedPatch != -1){
                     emit selected_patch1(selectedPatch);
+                    int cpX, cpY;
+                    _compositeSurface -> MouseOnCP(selectedPatch, mC, cpX, cpY);
+                    if (cpX != -1)
+                    {
+                        emit set_selected_cp_patch_row(cpX);
+                        emit set_selected_cp_patch_column(cpY);
+                    }
                 }
             }
             break;
