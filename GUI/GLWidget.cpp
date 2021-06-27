@@ -2382,17 +2382,15 @@ namespace cagd
 
     DCoordinate3 GLWidget::getMouseCoords(QMouseEvent *event)
     {
+        cout<<this->height()<< " " << this -> geometry().height()<< " ";
+        cout<<event->position().x()<< " "<< event->position().y()<< " " ;
         GLdouble height = this -> geometry().height();
-        GLdouble y = (event->globalPosition().y()-54.0) / height * 4.2;
-        if (y >= 1.7){
-            y = -abs(y - 1.7);
-        }else{
-            y = abs(y - 1.7);
-        }
-        y = y / _zoom;
+        GLdouble y = event->position().y() - this->height()/2;
+        y = -y / (_zoom*193);
         GLdouble width = this -> size().width();
-        GLdouble x = (event->globalPosition().x() - width) / width * 5.2 - 8;
-        x = x / _zoom;
+        GLdouble x = event->position().x() - this->width()/2;
+        x = x / (_zoom*193);
+        cout<<x<<" "<<y<<endl;
         return DCoordinate3(x, y, 0);
     }
 
