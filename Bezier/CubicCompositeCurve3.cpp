@@ -328,7 +328,6 @@ namespace cagd {
         int clickedCP = -1;
         ArcAttributes* selectedArc = &_attributes[arcInd];
         DCoordinate3 c;
-
         for (GLuint i = 0; i < 4; i++)
         {
             selectedArc -> arc -> GetData(i, c);

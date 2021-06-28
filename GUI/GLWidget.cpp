@@ -2384,12 +2384,13 @@ namespace cagd
     {
         cout<<this->height()<< " " << this -> geometry().height()<< " ";
         cout<<event->position().x()<< " "<< event->position().y()<< " " ;
-        GLdouble height = this -> geometry().height();
-        GLdouble y = event->position().y() - this->height()/2;
-        y = -y / (_zoom*193);
-        GLdouble width = this -> size().width();
-        GLdouble x = event->position().x() - this->width()/2;
-        x = x / (_zoom*193);
+        GLdouble height = this -> height();
+        GLdouble y = event->position().y() - height/2;
+        cout<<(height/49.5)<<endl;
+        y = -y / (_zoom*(height/4.95));
+        GLdouble width = this -> width();
+        GLdouble x = event->position().x() - width/2;
+        x = x / (_zoom*(width/4.95));
         cout<<x<<" "<<y<<endl;
         return DCoordinate3(x, y, 0);
     }
