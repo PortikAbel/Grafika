@@ -110,6 +110,7 @@ namespace cagd
 
         int MouseOnPatch(DCoordinate3 mC);
         GLboolean MouseOnCP(int selectedPatch, DCoordinate3 mC, int &cpX, int &cpY);
+        GLboolean MouseNotOnPatchOnCP(DCoordinate3 mC, int &selectedPatch, int &cpX, int &cpY);
     };
 }
 

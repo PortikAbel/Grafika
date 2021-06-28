@@ -2408,11 +2408,22 @@ namespace cagd
             case 5:
             {
                 int selectedCurve = _compositeCurve -> mouseOnCurve(mC);
-                if (selectedCurve != -1){
+                if (selectedCurve != -1)
+                {
                     emit selected_curve1(selectedCurve);
                     int selectedCP = _compositeCurve -> mouseOnCP(selectedCurve, mC);
                     if (selectedCP != -1)
                     {
+                        emit selected_cp_arc(selectedCP);
+                    }
+                }
+                else
+                {
+                    int selectedCP = -1;
+                    _compositeCurve -> mouseNotOnCurveOnCP(mC, selectedCurve, selectedCP);
+                    if (selectedCurve != -1)
+                    {
+                        emit selected_curve1(selectedCurve);
                         emit selected_cp_arc(selectedCP);
                     }
                 }
@@ -2421,12 +2432,24 @@ namespace cagd
             case 6:
             {
                 int selectedPatch = _compositeSurface -> MouseOnPatch(mC);
-                if (selectedPatch != -1){
+                if (selectedPatch != -1)
+                {
                     emit selected_patch1(selectedPatch);
                     int cpX, cpY;
                     _compositeSurface -> MouseOnCP(selectedPatch, mC, cpX, cpY);
                     if (cpX != -1)
                     {
+                        emit set_selected_cp_patch_row(cpX);
+                        emit set_selected_cp_patch_column(cpY);
+                    }
+                }
+                else
+                {
+                    int cpX, cpY;
+                    _compositeSurface -> MouseNotOnPatchOnCP(mC, selectedPatch, cpX, cpY);
+                    if (selectedPatch != -1)
+                    {
+                        emit selected_patch1(selectedPatch);
                         emit set_selected_cp_patch_row(cpX);
                         emit set_selected_cp_patch_column(cpY);
                     }

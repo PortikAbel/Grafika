@@ -78,6 +78,7 @@ namespace cagd
         GLuint    GetColorInd(GLuint arcInd);
         int       mouseOnCurve(DCoordinate3 mC);
         int       mouseOnCP(int arcInd, DCoordinate3 mC);
+        GLboolean mouseNotOnCurveOnCP(DCoordinate3 mC, int &arcInd, int &cp);
 
     };
 }

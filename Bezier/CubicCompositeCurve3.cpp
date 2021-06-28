@@ -341,8 +341,34 @@ namespace cagd {
             }
         }
 
-        cout << endl << minDist << ' ' << clickedCP;
         return clickedCP;
+    }
+
+    GLboolean CubicCompositeCurve3::mouseNotOnCurveOnCP(DCoordinate3 mC, int &arcInd, int &cp)
+    {
+        GLdouble minDist = 0.1;
+        GLdouble x = mC.x();
+        GLdouble y = mC.y();
+        for (GLuint j = 0; j < _attributes.size(); j++)
+        {
+            ArcAttributes* selectedArc = &_attributes[j];
+            DCoordinate3 c;
+            for (GLuint i = 0; i < 4; i++)
+            {
+                selectedArc -> arc -> GetData(i, c);
+                GLdouble tX = c.x();
+                GLdouble tY = c.y();
+                GLdouble distance = (x - tX) * (x - tX) + (y - tY) * (y - tY);
+                cout << x << ' ' << tX << ' ' << y << ' ' << tY << endl;
+                if (distance < minDist){
+                    minDist = distance;
+                    arcInd = j;
+                    cp = i;
+                }
+            }
+        }
+
+        return GL_TRUE;
     }
 
     GLboolean CubicCompositeCurve3::JoinExistingArcs(
