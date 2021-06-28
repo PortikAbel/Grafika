@@ -308,7 +308,8 @@ namespace cagd {
                     it -> image -> GetDerivative(0, i, c);
                     GLdouble tX = c.x();
                     GLdouble tY = c.y();
-                    GLdouble distance = (x - tX) * (x - tX) + (y - tY) * (y - tY);
+                    GLdouble tZ = c.z();
+                    GLdouble distance = (x - tX) * (x - tX) + (y - tY) * (y - tY) + tZ * tZ;
                     if (distance < minDist){
                         minDist = distance;
                         clickedArc = j;
@@ -333,7 +334,8 @@ namespace cagd {
             selectedArc -> arc -> GetData(i, c);
             GLdouble tX = c.x();
             GLdouble tY = c.y();
-            GLdouble distance = (x - tX) * (x - tX) + (y - tY) * (y - tY);
+            GLdouble tZ = c.z();
+            GLdouble distance = (x - tX) * (x - tX) + (y - tY) * (y - tY) + tZ * tZ;
             cout << x << ' ' << tX << ' ' << y << ' ' << tY << endl;
             if (distance < minDist){
                 minDist = distance;
@@ -358,7 +360,8 @@ namespace cagd {
                 selectedArc -> arc -> GetData(i, c);
                 GLdouble tX = c.x();
                 GLdouble tY = c.y();
-                GLdouble distance = (x - tX) * (x - tX) + (y - tY) * (y - tY);
+                GLdouble tZ = c.z();
+                GLdouble distance = (x - tX) * (x - tX) + (y - tY) * (y - tY) + tZ * tZ;
                 cout << x << ' ' << tX << ' ' << y << ' ' << tY << endl;
                 if (distance < minDist){
                     minDist = distance;

@@ -2045,6 +2045,7 @@ namespace cagd
             GLdouble minDist = 0.2;
             GLdouble x = mC.x();
             GLdouble y = mC.y();
+
             GLboolean patchFound = GL_FALSE;
 
             for (GLuint j = 0; j < _attributes.size(); j++)
@@ -2060,7 +2061,8 @@ namespace cagd
                         it -> image -> GetVertex(i, c);
                         GLdouble tX = c.x();
                         GLdouble tY = c.y();
-                        GLdouble distance = (x - tX) * (x - tX) + (y - tY) * (y - tY);
+                        GLdouble tZ = c.z();
+                        GLdouble distance = (x - tX) * (x - tX) + (y - tY) * (y - tY) + tZ * tZ;
                         if (distance < minDist){
                             minDist = distance;
                             clickedPatch = j;
@@ -2094,7 +2096,8 @@ namespace cagd
                 selectedPatch -> patch -> GetData(i, j, c);
                 GLdouble tX = c.x();
                 GLdouble tY = c.y();
-                GLdouble distance = (x - tX) * (x - tX) + (y - tY) * (y - tY);
+                GLdouble tZ = c.z();
+                GLdouble distance = (x - tX) * (x - tX) + (y - tY) * (y - tY) + tZ * tZ;
 
                 if (distance < minDist){
                     minDist = distance;
@@ -2125,7 +2128,8 @@ namespace cagd
                     selectedPatch -> patch -> GetData(i, j, c);
                     GLdouble tX = c.x();
                     GLdouble tY = c.y();
-                    GLdouble distance = (x - tX) * (x - tX) + (y - tY) * (y - tY);
+                    GLdouble tZ = c.z();
+                    GLdouble distance = (x - tX) * (x - tX) + (y - tY) * (y - tY) + tZ * tZ;
 
                     if (distance < minDist){
                         minDist = distance;
