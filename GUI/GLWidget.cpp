@@ -2410,11 +2410,15 @@ namespace cagd
                 int selectedCurve = _compositeCurve -> mouseOnCurve(mC);
                 if (selectedCurve != -1)
                 {
-                    emit selected_curve1(selectedCurve);
-                    int selectedCP = _compositeCurve -> mouseOnCP(selectedCurve, mC);
-                    if (selectedCP != -1)
-                    {
-                        emit selected_cp_arc(selectedCP);
+                    if (!(event->buttons() & Qt::LeftButton)){
+                        emit selected_curve2(selectedCurve);
+                    } else {
+                        emit selected_curve1(selectedCurve);
+                        int selectedCP = _compositeCurve -> mouseOnCP(selectedCurve, mC);
+                        if (selectedCP != -1)
+                        {
+                            emit selected_cp_arc(selectedCP);
+                        }
                     }
                 }
                 else
@@ -2434,13 +2438,17 @@ namespace cagd
                 int selectedPatch = _compositeSurface -> MouseOnPatch(mC);
                 if (selectedPatch != -1)
                 {
-                    emit selected_patch1(selectedPatch);
-                    int cpX, cpY;
-                    _compositeSurface -> MouseOnCP(selectedPatch, mC, cpX, cpY);
-                    if (cpX != -1)
-                    {
-                        emit set_selected_cp_patch_row(cpX);
-                        emit set_selected_cp_patch_column(cpY);
+                    if (!(event->buttons() & Qt::LeftButton)){
+                        emit selected_patch2(selectedPatch);
+                    } else {
+                        emit selected_patch1(selectedPatch);
+                        int cpX, cpY;
+                        _compositeSurface -> MouseOnCP(selectedPatch, mC, cpX, cpY);
+                        if (cpX != -1)
+                        {
+                            emit set_selected_cp_patch_row(cpX);
+                            emit set_selected_cp_patch_column(cpY);
+                        }
                     }
                 }
                 else
