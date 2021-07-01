@@ -13,6 +13,7 @@ namespace cagd {
        next(nullptr)
     {
         colorInd = QRandomGenerator::global()->bounded(9);
+
     }
 
     CubicCompositeCurve3::ArcAttributes::ArcAttributes(const ArcAttributes& arcAttribute)
@@ -324,7 +325,7 @@ namespace cagd {
     int CubicCompositeCurve3::mouseOnCP(int arcInd, DCoordinate3 mC)
     {
         //Az egyenes: x/x0 = y/y0 = z-5/-5
-        GLdouble minDist = 0.01;
+        GLdouble minDist = 0.1;
         GLdouble x0 = mC.x();
         GLdouble y0 = mC.y();
 
@@ -352,9 +353,23 @@ namespace cagd {
         return clickedCP;
     }
 
+    void CubicCompositeCurve3::moveToMouse(int arcInd, int selectedCP, DCoordinate3 mC, GLdouble &x, GLdouble &y){
+        GLdouble x0 = mC.x();
+        GLdouble y0 = mC.y();
+
+        ArcAttributes* selectedArc = &_attributes[arcInd];
+        DCoordinate3 c;
+
+        selectedArc -> arc -> GetData(selectedCP, c);
+
+        GLdouble z = c.z();
+        x = (z-5.0)*x0/(-5.0);
+        y = (z-5.0)*y0/(-5.0);
+    }
+
     GLboolean CubicCompositeCurve3::mouseNotOnCurveOnCP(DCoordinate3 mC, int &arcInd, int &cp)
     {
-        GLdouble minDist = 0.01;
+        GLdouble minDist = 0.1;
         GLdouble x0 = mC.x();
         GLdouble y0 = mC.y();
         for (GLuint j = 0; j < _attributes.size(); j++)

@@ -2082,7 +2082,7 @@ namespace cagd
     {
         cpX = -1;
         cpY = -1;
-        GLdouble minDist = 0.01;
+        GLdouble minDist = 0.1;
         GLdouble x0 = mC.x();
         GLdouble y0 = mC.y();
 
@@ -2115,9 +2115,23 @@ namespace cagd
 
     }
 
+    void BicubicCompositeSurface3::moveToMouse(int patchInd, int cpX, int cpY, DCoordinate3 mC, GLdouble &x, GLdouble &y){
+        GLdouble x0 = mC.x();
+        GLdouble y0 = mC.y();
+
+        PatchAttributes *selectedPatch = _attributes[patchInd];
+        DCoordinate3 c;
+
+        selectedPatch -> patch -> GetData(cpX, cpY, c);
+
+        GLdouble z = c.z();
+        x = (z-5.0)*x0/(-5.0);
+        y = (z-5.0)*y0/(-5.0);
+    }
+
     GLboolean BicubicCompositeSurface3::MouseNotOnPatchOnCP(DCoordinate3 mC, int &patchInd, int &cpX, int &cpY)
     {
-        GLdouble minDist = 0.01;
+        GLdouble minDist = 0.1;
         GLdouble x0 = mC.x();
         GLdouble y0 = mC.y();
 

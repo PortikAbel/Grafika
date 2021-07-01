@@ -2471,6 +2471,84 @@ namespace cagd
     void GLWidget::mouseMoveEvent(QMouseEvent *event)
     {
         QWidget::mouseMoveEvent(event);
+        DCoordinate3 mC = getMouseCoords(event);
+        switch (_homework_id){
+            case 5:
+            {
+                int selectedCurve = _compositeCurve -> mouseOnCurve(mC);
+                if (selectedCurve != -1)
+                {
+                    if (!(event->buttons() & Qt::LeftButton)){
+                        emit selected_curve2(selectedCurve);
+                    } else {
+                        emit selected_curve1(selectedCurve);
+                        int selectedCP = _compositeCurve -> mouseOnCP(selectedCurve, mC);
+                        if (selectedCP != -1)
+                        {
+                            emit selected_cp_arc(selectedCP);
+                            GLdouble x,y;
+                            _compositeCurve -> moveToMouse(selectedCurve, selectedCP, mC, x, y);
+                            emit arc_cp_set_x(x);
+                            emit arc_cp_set_y(y);
+                        }
+                    }
+                }
+                else
+                {
+                    int selectedCP = -1;
+                    _compositeCurve -> mouseNotOnCurveOnCP(mC, selectedCurve, selectedCP);
+                    if (selectedCurve != -1)
+                    {
+                        emit selected_curve1(selectedCurve);
+                        emit selected_cp_arc(selectedCP);
+                        GLdouble x,y;
+                        _compositeCurve -> moveToMouse(selectedCurve, selectedCP, mC, x, y);
+                        emit arc_cp_set_x(x);
+                        emit arc_cp_set_y(y);
+                    }
+                }
+            }
+            break;
+            case 6:
+            {
+                int selectedPatch = _compositeSurface -> MouseOnPatch(mC);
+                if (selectedPatch != -1)
+                {
+                    if (!(event->buttons() & Qt::LeftButton)){
+                        emit selected_patch2(selectedPatch);
+                    } else {
+                        emit selected_patch1(selectedPatch);
+                        int cpX, cpY;
+                        _compositeSurface -> MouseOnCP(selectedPatch, mC, cpX, cpY);
+                        if (cpX != -1)
+                        {
+                            emit set_selected_cp_patch_row(cpX);
+                            emit set_selected_cp_patch_column(cpY);
+                            GLdouble x,y;
+                            _compositeSurface -> moveToMouse(selectedPatch, cpX, cpY, mC, x, y);
+                            emit patch_cp_set_x(x);
+                            emit patch_cp_set_y(y);
+                        }
+                    }
+                }
+                else
+                {
+                    int cpX, cpY;
+                    _compositeSurface -> MouseNotOnPatchOnCP(mC, selectedPatch, cpX, cpY);
+                    if (selectedPatch != -1)
+                    {
+                        emit selected_patch1(selectedPatch);
+                        emit set_selected_cp_patch_row(cpX);
+                        emit set_selected_cp_patch_column(cpY);
+                        GLdouble x,y;
+                        _compositeSurface -> moveToMouse(selectedPatch, cpX, cpY, mC, x, y);
+                        emit patch_cp_set_x(x);
+                        emit patch_cp_set_y(y);
+                    }
+                }
+            }
+            break;
+        }
     }
 
     void GLWidget::mouseReleaseEvent(QMouseEvent *event)
