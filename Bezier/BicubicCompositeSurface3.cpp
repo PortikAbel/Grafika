@@ -2082,9 +2082,9 @@ namespace cagd
     {
         cpX = -1;
         cpY = -1;
-        GLdouble minDist = 0.2;
-        GLdouble x = mC.x();
-        GLdouble y = mC.y();
+        GLdouble minDist = 0.01;
+        GLdouble x0 = mC.x();
+        GLdouble y0 = mC.y();
 
         PatchAttributes *selectedPatch = _attributes[patchInd];
         DCoordinate3 c;
@@ -2094,10 +2094,14 @@ namespace cagd
             for (GLuint j = 0; j < 4; j++)
             {
                 selectedPatch -> patch -> GetData(i, j, c);
-                GLdouble tX = c.x();
-                GLdouble tY = c.y();
-                GLdouble tZ = c.z();
-                GLdouble distance = (x - tX) * (x - tX) + (y - tY) * (y - tY) + tZ * tZ;
+                GLdouble x1 = c.x();
+                GLdouble y1 = c.y();
+                GLdouble z1 = c.z();
+                GLdouble a = 5*y1 + y0*z1-5*y0;
+                GLdouble b = 5*x0-5*x1-x0*z1;
+                GLdouble c = x0*y1-x1*y0;
+                GLdouble distance = (a*a+b*b+c*c)/(x0*x0+y0*y0+25);
+                cout << a << ' ' << b << ' ' << c << ' ' << distance << endl;
 
                 if (distance < minDist){
                     minDist = distance;
@@ -2113,9 +2117,9 @@ namespace cagd
 
     GLboolean BicubicCompositeSurface3::MouseNotOnPatchOnCP(DCoordinate3 mC, int &patchInd, int &cpX, int &cpY)
     {
-        GLdouble minDist = 0.2;
-        GLdouble x = mC.x();
-        GLdouble y = mC.y();
+        GLdouble minDist = 0.01;
+        GLdouble x0 = mC.x();
+        GLdouble y0 = mC.y();
 
         for (GLuint k = 0; k < _attributes.size(); k++)
         {
@@ -2126,10 +2130,14 @@ namespace cagd
                 for (GLuint j = 0; j < 4; j++)
                 {
                     selectedPatch -> patch -> GetData(i, j, c);
-                    GLdouble tX = c.x();
-                    GLdouble tY = c.y();
-                    GLdouble tZ = c.z();
-                    GLdouble distance = (x - tX) * (x - tX) + (y - tY) * (y - tY) + tZ * tZ;
+                    GLdouble x1 = c.x();
+                    GLdouble y1 = c.y();
+                    GLdouble z1 = c.z();
+                    GLdouble a = 5*y1 + y0*z1-5*y0;
+                    GLdouble b = 5*x0-5*x1-x0*z1;
+                    GLdouble c = x0*y1-x1*y0;
+                    GLdouble distance = (a*a+b*b+c*c)/(x0*x0+y0*y0+25);
+                    cout << a << ' ' << b << ' ' << c << ' ' << distance << endl;
 
                     if (distance < minDist){
                         minDist = distance;

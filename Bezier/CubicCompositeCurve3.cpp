@@ -323,20 +323,26 @@ namespace cagd {
 
     int CubicCompositeCurve3::mouseOnCP(int arcInd, DCoordinate3 mC)
     {
-        GLdouble minDist = 0.2;
-        GLdouble x = mC.x();
-        GLdouble y = mC.y();
+        //Az egyenes: x/x0 = y/y0 = z-5/-5
+        GLdouble minDist = 0.01;
+        GLdouble x0 = mC.x();
+        GLdouble y0 = mC.y();
+
         int clickedCP = -1;
         ArcAttributes* selectedArc = &_attributes[arcInd];
         DCoordinate3 c;
+        cout<<"Tavolsagok az egyenestol\n";
         for (GLuint i = 0; i < 4; i++)
         {
             selectedArc -> arc -> GetData(i, c);
-            GLdouble tX = c.x();
-            GLdouble tY = c.y();
-            GLdouble tZ = c.z();
-            GLdouble distance = (x - tX) * (x - tX) + (y - tY) * (y - tY) + tZ * tZ;
-            cout << x << ' ' << tX << ' ' << y << ' ' << tY << endl;
+            GLdouble x1 = c.x();
+            GLdouble y1 = c.y();
+            GLdouble z1 = c.z();
+            GLdouble a = 5*y1 + y0*z1-5*y0;
+            GLdouble b = 5*x0-5*x1-x0*z1;
+            GLdouble c = x0*y1-x1*y0;
+            GLdouble distance = (a*a+b*b+c*c)/(x0*x0+y0*y0+25);
+            cout << a << ' ' << b << ' ' << c << ' ' << distance << endl;
             if (distance < minDist){
                 minDist = distance;
                 clickedCP = i;
@@ -348,21 +354,25 @@ namespace cagd {
 
     GLboolean CubicCompositeCurve3::mouseNotOnCurveOnCP(DCoordinate3 mC, int &arcInd, int &cp)
     {
-        GLdouble minDist = 0.1;
-        GLdouble x = mC.x();
-        GLdouble y = mC.y();
+        GLdouble minDist = 0.01;
+        GLdouble x0 = mC.x();
+        GLdouble y0 = mC.y();
         for (GLuint j = 0; j < _attributes.size(); j++)
         {
             ArcAttributes* selectedArc = &_attributes[j];
             DCoordinate3 c;
+            cout<<"Tavolsagok az egyenestol\n";
             for (GLuint i = 0; i < 4; i++)
             {
                 selectedArc -> arc -> GetData(i, c);
-                GLdouble tX = c.x();
-                GLdouble tY = c.y();
-                GLdouble tZ = c.z();
-                GLdouble distance = (x - tX) * (x - tX) + (y - tY) * (y - tY) + tZ * tZ;
-                cout << x << ' ' << tX << ' ' << y << ' ' << tY << endl;
+                GLdouble x1 = c.x();
+                GLdouble y1 = c.y();
+                GLdouble z1 = c.z();
+                GLdouble a = 5*y1 + y0*z1-5*y0;
+                GLdouble b = 5*x0-5*x1-x0*z1;
+                GLdouble c = x0*y1-x1*y0;
+                GLdouble distance = (a*a+b*b+c*c)/(x0*x0+y0*y0+25);
+                cout << a << ' ' << b << ' ' << c << ' ' << distance << endl;
                 if (distance < minDist){
                     minDist = distance;
                     arcInd = j;
